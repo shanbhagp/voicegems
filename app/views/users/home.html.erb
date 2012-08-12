@@ -1,0 +1,47 @@
+<h1> Namewaves </h1>
+
+<h2> Please sign in: </h2>
+ <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+      <% end %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:session, url: sessions_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<h2> Not registered? Sign up here: </h2>
+
+<%= form_for(User.new) do |f| %>
+
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+	<%= f.label :password %>
+	<%= f.password_field :password %>
+  </div>
+
+ <div class="field">
+	<%= f.label :password_confirmation, "Confirm Password" %>
+	<%= f.password_field :password_confirmation %>
+ </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<h2> [Other website information here] </h2>
