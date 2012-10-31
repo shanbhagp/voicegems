@@ -12,9 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui
+//= require jquery.ui.all
 //= require jquery.purr
-//= require jquery.ui.datepicker
 //= require best_in_place
 //= require bootstrap
 //= provide jrec
