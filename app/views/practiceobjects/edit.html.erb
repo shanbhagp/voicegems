@@ -1,0 +1,128 @@
+
+<%# show page is restricted through correct_user %>
+<div class="jumbotron">
+      <h1> Edit Your NameGuide for <em><%= @practiceobject.event.title %></em> </h1>
+      <br/>
+  </div>
+             <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
+<br/>
+<br/>
+
+<div class="container">
+
+
+
+<div id="porecmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="myModalLabel"><em>Name Recording for <%= @practiceobject.event.title %></em></h3>
+            </div>
+            <div class="modal-body">
+            
+            
+   <iframe src='<%= porecording_practiceobject_path(@practiceobject) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
+
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      <h4><span class="blue">Instructions<span/></h4> 
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                      Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
+                      <ol>
+                        <li><strong>Press 'RECORD', then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li>
+                        <li> You will have 10 seconds maximum recording time. <strong>Please say your name clearly and slowly, then immediately press 'STOP'</strong>, to make it easier for the person hearing/practicing your name.</li>
+                        <li>Your recording will automatically play back to you:</li>
+                           <ul>
+                               <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
+                                <li>If you're not happy with it, press 'RECORD' to try again.</li>
+                            </ul>
+                        </ol> 
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      <h4><span class="blue">Please Note<span/></h4>
+                    </a>
+                  </div>
+                  <div id="collapseTwo" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul>
+                         <li>You will need to <strong>wait a minute and refresh your profile page</strong> to see the changes take effect in your NameGuide. </li>
+                         <li>If you're re-recording your name, pressing 'UPLOAD' will over-write the previous recording. </li>
+                         <li>If the recording doesn't play back or sound good:
+                          <ul>
+                            <li> Please ensure you have a quiet environment. </li>
+                            <li> Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</li>
+                            <li> Check to make sure your speaker volume is up. </li>
+                          </ul>
+                         </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-dismiss="modal">Done</button>
+
+             
+            </div>
+</div>
+
+
+                                         
+
+
+<div class="row">
+  <div class="span12 well">
+      <h4> <span class="label label-info"><i class="icon-edit icon-white"></i></span>&nbsp;<strong>Create/Update your <em>NameGuide</em> for <%= @practiceobject.event.title %>:</strong> </h4>
+      <br/>
+       <%= form_for(@practiceobject, :html => {:class => "form-vertical"}) do |f| %>
+         <div class="span3">
+          <span class="label label-info">Step 1</span> <br/>Enter your name as you would like it announced:<br/><br/>
+          <%= f.text_field :phonetic, :class => "span3" %>
+           <span class="help-block">(e.g., 'Dr. Henry Jones, Jr.')</span>
+         </div>
+         <div class="span3">
+          <span class="label label-info">Step 2</span><br/>Enter any notes to help with correct pronunciation:</br><br/>
+          <%= f.text_area :notes, :class => "span3", :placeholder => "(you can leave this blank if you wish)" %>
+           <span class="help-block">(e.g., 'first name sounds like Groupon' or 'last name pronounced uh-SEEF')"</span>
+         </div>
+         <div class="span3">
+          <span class="label label-important">Step 3</span><br/>Create or change the name recording for this event: <br/><br/>
+           <a data-toggle="modal" href="#porecmodal" class="btn btn-danger btn-large">Record Name <i class="icon-caret-right icon-white"></i> </a>
+         </div>
+         <div class="span2">
+          <span class="label label-info">Step 4</span><br/>Save any changes:<br/><br/><br/>
+          <%= f.submit "Save Changes", class: "btn btn-large btn-primary", disable_with: 'saving...' %>
+         </div>
+         
+          
+
+
+      <% end %>                     
+          
+
+
+  </div>
+</div>
+
+            <div class="span1 offset11">
+          <a href="<%= users_path%>/<%= current_user.id %>" class="btn btn-default">Cancel</a>
+        </div>
+
+
+</div>

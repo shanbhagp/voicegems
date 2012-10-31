@@ -69,5 +69,83 @@ module SessionsHelper
   end
 
 
+  def idconcat(x)
+    '#' + x.to_s 
+  end
+#was being used for best-in-place, don't think it's being used now
+
+ def  keyconcat(k)
+  "alert alert-" + k.to_s 
+ end 
+
+#def alert_stub
+ # "alert alert-block alert-"
+#end
+#this was unncessary - was using this with <div class="<%=alert_stub%><%=key%>">  in the erb 
+
+private
+
+    def correct_user
+      @user = User.find(params[:id])
+       unless current_user?(@user)
+        redirect_to current_user
+        flash[:notice] = "Sorry, not authorized for that page."
+        #flash is not working here for root path, i think because @user is reset by the home action
+        # works with redirect to current_user
+       end
+    end
+
+    def correct_admin
+      @event = Event.find(params[:id])
+      unless @event.adminkeys.find_by_user_id(current_user.id)
+        redirect_to current_user
+        flash[:notice] = "Sorry, not authorized for that page."
+      end
+    end 
+    # currently not being used for anything
+
+  def correct_admin_or_user
+      @event = Event.find(params[:id])
+      unless @event.adminkeys.find_by_user_id(current_user.id) || @event.practiceobjects.find_by_user_id(current_user.id)
+        redirect_to current_user
+        flash[:notice] = "Sorry, not authorized for that page."
+      end
+    end 
+  #being used for event show page
+
+def not_customer
+    if current_user.customer == true 
+      redirect_to current_user
+      flash[:notice] = "You are already subscribed to our service."
+    end 
+end 
+#being used for stripenewcustomer action, to prevent signing up for a subscription when already a customer
+
+def has_active_customer
+    @event = Event.find(params[:id])
+
+    unless !@event.customerkeys.nil? && User.find_by_id(@event.customerkeys.first.user_id).customer == true 
+      redirect_to current_user
+      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact NameCoach or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
+    end 
+end 
+
+
+def correct_user_for_po
+@practiceobject = Practiceobject.find(params[:id])
+       unless current_user?(@practiceobject.user)
+        redirect_to current_user
+        flash[:notice] = "Sorry, not authorized for that page."
+        #flash is not working here for root path, i think because @user is reset by the home action
+        # works with redirect to current_user
+       end
+end 
+
+def owner
+  unless current_user.email == 'shanbhagp@aol.com'
+    redirect_to current_user
+    flash[:notice] = "Sorry, not authorized for that page."
+  end 
+end
 
 end

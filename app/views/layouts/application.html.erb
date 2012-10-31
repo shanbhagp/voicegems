@@ -1,14 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>App4</title>
+  <title>NameCoach</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
 
-<%= yield %>
-<%= debug(params) if Rails.env.development? %>
-</body>
+  <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <link rel="icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+ <script type="text/javascript" src="<%= asset_path('aplayer/audio.min.js') %>"></script>
+
+ <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+</head>
+
+	<body>
+		
+		
+			<%= render 'layouts/header' %>
+		 
+
+
+			<%= yield %>
+
+			<%= render 'layouts/footer' %>
+			
+			<%= debug(params) if Rails.env.development? %>
+
+		
+
+	</body>
 </html>

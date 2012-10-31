@@ -1,0 +1,125 @@
+<div class="jumbotron">
+        <h1>Customer Signup</h1>
+      <br/>
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-check icon-white"></i>&nbsp;Step 1: New User Registration</h3>
+      <h3><i class="icon-share-alt icon-white"></i>&nbsp;<% if current_user.customer_id.blank? %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Free Trial Subscription<% else %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Subscription<% end %></h3>
+  </div>
+               
+<!-- This is exactly the same as stripetest, except for the jumbotron stuff -->
+             
+             <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
+<br/>
+<br/>
+
+        <div class="container" />
+
+        <!-- jQuery is used only for this example; it isn't required to use Stripe -->
+       
+        <script type="text/javascript">
+            // this identifies your website in the createToken call below
+            Stripe.setPublishableKey('pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE');
+
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    // re-enable the submit button
+                    $('.submit-button').removeAttr("disabled");
+                    // show the errors on the form
+                    $(".payment-errors").html(response.error.message);
+                } else {
+                    var form$ = $("#payment-form");
+                    // token contains id, last4, and card type
+                    var token = response['id'];
+                    // insert the token into the form so it gets submitted to the server
+                    form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                    // and submit
+                    form$.get(0).submit();
+                }
+            }
+
+            $(document).ready(function() {
+                $("#payment-form").submit(function(event) {
+                    // disable the submit button to prevent repeated clicks
+                    $('.submit-button').attr("disabled", "disabled");
+                    // createToken returns immediately - the supplied callback submits the form if there are no errors
+                    Stripe.createToken({
+                        number: $('.card-number').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('#card_month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeResponseHandler);
+                    return false; // submit from callback
+                });
+            });
+
+        </script>
+
+<br/>
+
+
+<div class="row">
+
+        <div class="well span6 offset3">
+        <h3> Payment Details </h3>
+        <hr/>
+        <h4> Subscription Plan: Unlimited Event Pages, Unlimited Name Recordings - $29.95/month </h4> 
+        <br/>
+        <% if current_user.customer_id.blank? %>
+        <h4> Free Trial Period: 21 days </h4> 
+        <% else %>
+        <h5> You have previously subscribed to our service. We hope you enjoyed your free trial, and thank you for choosing to subscribe again! </h5>
+        <% end %>
+        <hr/>
+        <!-- to display errors returned by createToken -->
+        <h5 class="cent"><%= image_tag "lockoverlay.png" %>&nbsp;Secure Payment </h5>
+        <span class="payment-errors"></span>
+        <br/>
+        <br/>
+     <%= label_tag :pay_with_card do %>
+      <%= image_tag "visa.png" %>
+      <%= image_tag "mastercard.png" %>
+      <%= image_tag "discover.png" %>
+      <%= image_tag "american_express.png" %>
+      <%= image_tag "jcb.png" %>
+      <%= image_tag "diners.png" %>
+    <% end %>
+        <form action="<%= stripereceiver_url %>" method="POST" id="payment-form">
+            <div class="form-row">
+                <label>Card Number</label>
+                <input type="text" size="20" autocomplete="off" class="card-number" />
+            </div>
+            <div class="form-row">
+                <label>CVC Security Code</label>
+                <input type="text" size="4" autocomplete="off" class="card-cvc" /> <%= image_tag "cvv.png" %>
+            </div>
+    
+
+
+             <div class="form-row">
+                <label>Expiration Date</label>
+                <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+                <span> / </span>
+                 <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", class:  "card-expiry-year"} %>
+               
+            </div>
+
+            <br/>
+            <br/>
+                <input type="hidden" name="plan" value=<% if current_user.customer_id.blank? %>"test"<% else %>"prev_sub"<% end %>>
+            <% if current_user.customer_id.blank? %>
+            <p> Your card will not be charged until the free trial period ends.  If you cancel your subscription before then, you will not be charged. </p>
+            <% else %> 
+            <p> Your card will be charged now for the first month. You may cancel your subscription any time. </p>
+            <% end %>
+            <br/>
+            <button type="submit" class="submit-button btn btn-success btn-large">Subscribe!</button>
+        </form>
+</div>
+</div>
+
+</div>

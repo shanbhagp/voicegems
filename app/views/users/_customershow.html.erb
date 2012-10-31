@@ -1,0 +1,156 @@
+
+ <ul id="myTab" class="nav nav-tabs">
+	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
+	  <li><a href="#nw" data-toggle="tab"><strong>Your NameGuide<% if !current_user.practiceobjects.nil? && current_user.practiceobjects.count > 1 %>s<% end %></strong></a></li>
+</ul>
+          
+<div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="ev">
+							<div class="row">
+
+				 		<%# replacement form for customers to create event %>
+				        
+				          <div class="span12">
+				            <div class="well">
+				              <h4><i class="icon-edit icon-blue"></i>&nbsp;<strong>Create an event page:</strong> </h4> </br>
+
+				                   <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
+				                      
+				                     	
+				                        <%= f.text_field :title, :placeholder => 'Title (required)', :class => "span3" %>  &nbsp;&nbsp;
+				                         
+				                            
+				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "span2" %> &nbsp;&nbsp;
+
+				                        <%= f.text_field :event_code, :placeholder => 'Event Code (not required)', :class => "span3" %>
+				                        			<div id="info-code" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										            <div class="modal-header">
+										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										              <h3 id="myModalLabel">What's the Event Code?</h3>
+										            </div>
+										            <div class="modal-body">
+
+										            <p> One way to get an event attendee to record their name for the Event Page is through the event code.  Just give the attendees the code, and ask them to register at <strong>www.name-coach.com</strong>. </p> 
+
+										        	 <p> When they enter this code, they will automatically be able to record their name for your event.  </p>
+
+										            <p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the event page and pressing the 'Invite Attendee' button (the recommended method). </p>
+										 			
+										 			<h4>What You Should Do Now: </h4>	
+													<p> You can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+
+													<p> If you leave the field blank, we will choose a unique 5-character code for you. </p>
+
+													<h4>After That:</h4>
+													<p> Whether you choose one or we choose one for you, the code will displayed on the event page, visible only to you or anyone else you invite to be admin.  You don't need to use it, but you may choose to in order to avoid typing in email addresses of your attendees. However, we recommend using email addresses to make it a bit easier for attendees to record their name (they just need to follow a link in the email we send them.)
+
+										            </div>
+
+										            <div class="modal-footer">
+										              <button class="btn" data-dismiss="modal">Close</button>
+										                
+										        
+										              </div>
+										           </div>
+				                 			<a data-toggle="modal" href="#info-code" ><i class="icon-info-sign "></i></a> &nbsp;&nbsp;
+				                        <%= f.submit "Create Event Page", class: "btn btn-primary"  %> <br/>
+				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
+
+				                    <% end %>
+				                
+				              </div>
+				          </div>
+				        
+				        <%# end replacement form %>
+
+				  </div>
+
+				<hr/>
+
+				 <div class="row">
+				    <div class="span12">
+				      <div class="well">
+
+				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Event pages you administer: </strong></h4>
+				            <br/>
+				            <% if @user.adminevents.count == 0 %> 
+				            (no event pages created yet)
+				            <% else %> 
+						            <table class="table table-striped event">
+						              <% @user.adminevents.each do |e| %>
+						                <tr>  
+						                  <td><strong><%= link_to e.title, e %></strong> </td>
+						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
+						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit event</span></a>	 </td> 
+						                   <td> 
+				                  			 <div id="<%= e.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                          <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
+                                                          </div>
+                                                          <div class="modal-body">
+
+                                                                <br/>
+                                                                  <table class="table table-condensed table-striped">
+                                                                    <thead>
+                                                                      <th>First Name</th>
+                                                                      <th>Last Name</th>
+                                                                      <th>Email</th>                                                                      
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <% e.admins.each do |a| %>
+                                                                      <tr>
+                                                                        <td> <%= a.first_name %> </td>
+                                                                        <td> <%= a.last_name %> </td>
+                                                                        <td> <%= a.email %> </td>
+                                                                      </tr>
+                                                                    <% end %>
+                                                                  </tbody> 
+                                                                  </table> 
+                                                               
+                                                          </div>
+
+                                                          <div class="modal-footer">
+                                                            <button class="btn" data-dismiss="modal">Close</button>
+                                                              
+                                                      
+                                                            </div>
+                                                        </div>
+
+                                                          
+                                                           
+                                                              <a data-toggle="modal" href="#<%= e.id %>" class="btn btn-info btn-small">See All Event Admins</a>
+                                                         
+                                                         
+                                                </td>
+						                  <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+						                  </td>
+						                  
+
+						                </tr>
+						              <% end %>
+						            </table> 
+						    <% end %> 
+				      </div>
+				    </div>
+
+				  </div>   			               
+				      </div>
+
+	
+      <div class="tab-pane fade" id="nw">
+		 <%= render 'users/regularshow' %> 	               
+     </div>
+
+</div>
+
+
+  
+
+
+
+												          
+
+
+										        
+												    

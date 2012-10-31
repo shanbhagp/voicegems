@@ -1,0 +1,94 @@
+
+<div class="jumbotron">
+      <h1> Edit Event Details for <%= @event.title %> </em> </h1>
+      <br/>
+  </div>
+             <% flash.each do |key, value| %>
+            	<div class="alert alert-block alert-<%=key%>"> 
+            	<button type="button" class="close" data-dismiss="alert">×</button>
+            	<%= value %> 
+            	</div>
+            <% end %>
+
+<br/>
+<br/>
+
+<div class="container">
+
+<div class="span6 offset3">
+				            <div class="well">
+				              <h4> <span class="blue"><i class="icon-edit icon-white"></i></span>&nbsp;<strong>Edit event page:</strong> </h4> </br>
+
+				                   <%= form_for(@event, :html => {:class => "form-horizontal"}) do |f| %>
+				                      
+				                        <%= f.label :title, "Event Title" %>
+				                        <%= f.text_field :title, :class => "span3" %>
+
+
+				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
+				                         <br/>
+				                         <br/>
+				                        
+				                        <%= f.label :date %> 
+				                        <% if !@event.date.nil? %>
+				                        <%= f.text_field :date, :class => "span2", :value => @event.date.strftime("%b %d, %Y") %>
+				                        <% else %>
+				                        <%= f.text_field :date, :class => "span2", :value => @event.date %>
+				                        <% end %>
+				                 
+				                        <br/>
+				                        <br/>
+
+				                        <%= f.label :event_code %>
+				                        <%= f.text_field :event_code, :class => "span2" %>
+				                        				<div id="info-code2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										            <div class="modal-header">
+										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										              <h3 id="myModalLabel">What's the Event Code?</h3>
+										            </div>
+										            <div class="modal-body">
+
+										            <p> One way to get an event attendee to record their name for the Name Practice Page is through the event code.  Just give the attendees the code, and ask them to register at <strong>www.name-coach.com</strong>. </p> 
+
+										        	 <p> When they enter this code, they will automatically be able to record their name for your event.  </p>
+
+										            <p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the event page and pressing the 'Invite Attendee' button (the recommended method). </p>
+										 			
+										 			<h4>What You Should Do Now: </h4>	
+													<p> You can choose a new event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+
+													<p> If you don't change the field, the event code will remain the same. </p>
+
+													<h4>After That:</h4>
+													<p> The code will displayed on the event page, visible only to you or anyone else you invite to be admin.  You don't need to use it, but you may choose to in order to avoid typing in email addresses of your attendees. However, we recommend using email addresses to make it a bit easier for attendees to record their name (they just need to follow a link in the email we send them.)
+
+										            </div>
+
+										            <div class="modal-footer">
+										              <button class="btn" data-dismiss="modal">Close</button>
+										                
+										        
+										              </div>
+										           </div>
+				                 			<a data-toggle="modal" href="#info-code2" ><i class="icon-info-sign "></i></a>
+
+
+
+				                        	 <div class="form-actions">
+     
+    										 <%= f.submit "Save Changes", class: "btn btn-primary", confirm: 'Are you sure?', disable_with: 'saving changes...'  %> 
+    										 &nbsp; 
+ 											<a href="<%= users_path%>/<%= current_user.id %>" class="btn btn-small">Cancel Edits </a>
+											</div>
+
+
+				                    <% end %>
+				                 
+				              </div>
+				          </div>
+
+</div>
+				    
+
+
+

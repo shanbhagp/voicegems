@@ -11,7 +11,101 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120812033333) do
+ActiveRecord::Schema.define(:version => 20121026013054) do
+
+  create_table "admininvites", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "token"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "recipient_email"
+    t.integer  "admin_id"
+    t.integer  "user_id"
+  end
+
+  add_index "admininvites", ["token"], :name => "index_admininvites_on_token"
+
+  create_table "adminkeys", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "event_id"
+  end
+
+  add_index "adminkeys", ["event_id"], :name => "index_adminkeys_on_event_id"
+  add_index "adminkeys", ["user_id", "event_id"], :name => "index_adminkeys_on_user_id_and_event_id", :unique => true
+  add_index "adminkeys", ["user_id"], :name => "index_adminkeys_on_user_id"
+
+  create_table "customerkeys", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "customerkeys", ["event_id"], :name => "index_customerkeys_on_event_id"
+  add_index "customerkeys", ["user_id", "event_id"], :name => "index_customerkeys_on_user_id_and_event_id", :unique => true
+  add_index "customerkeys", ["user_id"], :name => "index_customerkeys_on_user_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.datetime "date"
+    t.string   "access_code"
+    t.string   "event_code"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "events", ["access_code"], :name => "index_events_on_access_code"
+  add_index "events", ["event_code"], :name => "index_events_on_event_code"
+
+  create_table "practiceobjects", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.text     "admin_notes"
+    t.integer  "userinvite_id"
+    t.integer  "admin_id"
+    t.string   "token"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "recording"
+    t.string   "phonetic"
+    t.text     "notes"
+    t.boolean  "hidden"
+  end
+
+  add_index "practiceobjects", ["email"], :name => "index_practiceobjects_on_email"
+  add_index "practiceobjects", ["event_id"], :name => "index_practiceobjects_on_event_id"
+  add_index "practiceobjects", ["token"], :name => "index_practiceobjects_on_token"
+  add_index "practiceobjects", ["user_id", "event_id"], :name => "index_practiceobjects_on_user_id_and_event_id", :unique => true
+  add_index "practiceobjects", ["user_id"], :name => "index_practiceobjects_on_user_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "canceled_at"
+    t.boolean  "active"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "explanation"
+    t.string   "plan_id"
+    t.string   "customer_id"
+  end
+
+  create_table "userinvites", :force => true do |t|
+    t.integer  "practiceobject_id"
+    t.integer  "admin_id"
+    t.string   "recipient_email"
+    t.datetime "sent_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "invite_type"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
@@ -21,13 +115,22 @@ ActiveRecord::Schema.define(:version => 20120812033333) do
     t.string   "remember_token"
     t.string   "recording"
     t.string   "phonetic"
-    t.string   "notes"
+    t.text     "notes"
     t.boolean  "admin"
-    t.boolean  "customer"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.boolean  "customer",               :default => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.float    "salt"
+    t.string   "invite_token"
+    t.integer  "subscription_id"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "company"
+    t.string   "customer_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["password_reset_token"], :name => "index_users_on_password_reset_token"
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

@@ -12,4 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= requjire jquery.ui
+//= require jquery.purr
+//= require best_in_place
+//= require bootstrap
+//= provide jrec
+//= provide aplayer
 //= require_tree .

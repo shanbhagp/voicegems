@@ -1,0 +1,28 @@
+<h1>Listing Subscriptions</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>User ID</th>
+     <th>Email</th>
+    <th>Plan ID</th>
+    <th>Customer IDl</th>
+    <th>Canceled At</th>
+    <th>Active?</th>
+    <th>Explanation</th>
+  </tr>
+
+<% @subs.each do |k| %>
+  <tr>
+    <td><%= k.id %></td>
+    <td><%= k.user_id %></td>
+    <td><%= k.email%></td>
+    <td><%= k.plan_id %></td>
+    <td><%= k.customer_id %></td>
+    <td><%= k.canceled_at %></td>
+    <td><%= k.active %></td>
+    <td> <%= k.explanation %> </td>
+<% end %>
+</table>
+
+<br />

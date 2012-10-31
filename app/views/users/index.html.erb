@@ -1,7 +1,8 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
+    <th> ID </th>
     <th>First name</th>
     <th>Last name</th>
     <th>Password digest</th>
@@ -10,15 +11,16 @@
     <th>Recording</th>
     <th>Phonetic</th>
     <th>Notes</th>
-    <th>Admin</th>
-    <th>Customer</th>
-    <th></th>
+    <th>Admin?</th>
+    <th>Customer?</th>
+    <th>Customer ID</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @users.each do |user| %>
   <tr>
+        <td><%= user.id %></td>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
     <td><%= user.password_digest %></td>
@@ -29,6 +31,7 @@
     <td><%= user.notes %></td>
     <td><%= user.admin %></td>
     <td><%= user.customer %></td>
+    <td><%= user.customer_id %> </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

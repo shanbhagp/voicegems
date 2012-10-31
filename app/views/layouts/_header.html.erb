@@ -1,0 +1,62 @@
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+    
+
+         <%= link_to image_tag("combo2r4_2.png", alt: "Rails"), root_path, id: "logo" %>
+         <h5 class="logo">&nbsp;&nbsp;&nbsp;hear the name, say it right </h5>
+      <nav>
+        <ul class="nav pull-right">
+
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Help", '#' %></li>
+
+          <% if !signed_in? %>
+          <li>
+            <%= link_to "Reset Password", new_password_reset_path %>
+          </li>
+          <li>
+              <%= form_for(:session, url: sessions_path, :html => {:class => "navbar-form pull-right"} ) do |f| %>
+
+              
+              <%= f.text_field :email, :class => "span2", :placeholder => "Email" %>
+
+             
+              <%= f.password_field :password, :class => "span2", :placeholder => "Password" %>
+
+                  <%= button_tag(type: 'submit', class: "btn btn-primary btn-small") do %>
+                   Sign in <i class="icon-chevron-right icon-white"></i> 
+                  <% end %>
+
+            <% end %>
+       
+          </li>
+
+          <% end %>
+
+          <% if signed_in? %>
+            <li><%= link_to "Profile", current_user %></li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Account <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Change Password", account_user_path(current_user) %></li>
+                <li><%= link_to "Edit Name/Email", edit_user_path(current_user) %></li>
+                <% if current_user.customer == false || current_user.customer == nil %><li><%= link_to "Purchase Subscription", stripetest_path %></li> <% end %> 
+                <% if current_user.customer == true %> <li><%= link_to "Cancel Subscription", cancel_path %></li><% end %> 
+                <li class="divider"></li>
+                <li> <%= link_to "Sign out", signout_path, method: "delete" %></li>
+              </ul>
+            </li>
+          <% end %>
+
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+            
+

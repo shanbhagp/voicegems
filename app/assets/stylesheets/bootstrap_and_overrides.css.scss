@@ -1,0 +1,376 @@
+@import "bootstrap";
+
+/* body { padding-top: 60px;  background-color: #E0B3F0;} */
+body { padding-top: 40px;} 
+
+
+
+@import "bootstrap-responsive";
+@import 'font-awesome';
+
+$grayMediumLight: #eaeaea;
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 2px;
+  font-size: 1.7em;
+  color: #934069;
+    opacity:0.8;
+  filter:alpha(opacity=80);
+
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: #F0E6FF;
+    text-decoration: none;
+    opacity:1.0;
+  filter:alpha(opacity=100);
+  }
+}
+
+.logo {
+  float: left;
+  margin-right: 10px;
+  padding-top: 12px;
+  font-size: .8em;
+  font-weight: bold;
+}
+
+
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $grayLight;
+  a {
+    color: $gray;
+    &:hover { 
+      color: $grayDarker;
+    }
+  }  
+  small { 
+    float: left; 
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+.jumbotron {
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+
+.jumbotron h1 {
+  color: white;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.jumbotron h3 {
+  color: white;
+}
+
+.event td {
+  text-align: center;
+  vertical-align: middle;
+  min-width: 150px;
+
+}
+
+.event th big-cell {
+  min-width: 240px;
+}
+
+.event th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.note-cell {
+  max-width: 250px;
+}
+
+.rec-cell {
+  max-width: 28px;
+}
+
+
+.label-left {
+float:left;
+}
+
+.label-right {
+float:right;
+}
+
+#c {
+ text-align: center;
+  vertical-align: middle;
+  
+}
+
+.btn-right {
+  float:right;
+}
+
+.btn-record {
+  color: black;
+}
+
+button.btn-record:hover {
+  color: black;
+}
+
+.payment-errors {
+  color: red;
+}
+
+.icon-blue {
+  color: blue;
+}
+
+.blue {
+  color:blue;
+}
+
+.red {
+  color:red;
+}
+
+.white {
+  color:white;
+}
+
+.black {
+  color:black;
+}
+
+.modal-header {
+  /*  border-style: solid; */
+ /* border-color: white; */
+
+  color: #fff;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+h3, h4 {
+  color: white;
+}
+}
+
+
+.label-purple {
+  border-style: solid;
+  border-color: white;
+
+  color: #fff;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+
+.cent {
+  text-align: center;
+}
+
+
+textarea {
+  resize: vertical;
+   height: 40px;
+}
+
+/* what does this do? it's from Hartl*/
+
+html {
+  overflow-y: scroll;
+}
+
+
+
+
+
+      .audiojs { height: 22px; background: #404040; max-width: 23px;
+         background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);}
+      .audiojs .play-pause { width: 15px; height: 20px; padding: 0px 8px 0px 0px; }
+      .audiojs p { width: 25px; height: 20px; margin: -3px 0px 0px -1px; }
+      .audiojs .scrubber { background: #5a5a5a; width: 150px; height: 10px; margin: 5px; }
+      .audiojs .progress { height: 10px; width: 0px; background: #ccc;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(0.5, #ddd), color-stop(0.51, #ccc), color-stop(1, #ccc));
+        background-image: -moz-linear-gradient(center top, #ccc 0%, #ddd 50%, #ccc 51%, #ccc 100%); }
+      .audiojs .loaded { height: 10px; background: #000;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #222), color-stop(0.5, #333), color-stop(0.51, #222), color-stop(1, #222));
+        background-image: -moz-linear-gradient(center top, #222 0%, #333 50%, #222 51%, #222 100%); }
+      .audiojs .time { float: left; height: 25px; line-height: 25px; }
+      .audiojs .error-message { height: 24px;line-height: 24px; }
+
+
+
+/* to center btn-group main button in a table cell */
+.btn-group {
+    display:inline-block;
+}
+
+.btn-group .btn-modal {
+  float:right;
+}
+
+.btn-modal {
+  float:right;
+}
+
+.left {
+  text-align:left
+}
+
+.right {
+  text-align:right;
+}
+
+.fl-right {
+  float:right;
+}
+
+.fl-right {
+  float:left;
+}
+
+
+.pad-right {
+  padding-right: 40px;
+}
+
+/* from stylebootstrap.info */
+.navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background: rgb(226,226,226); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(226,226,226,1) 0%, rgba(219,219,219,1) 33%, rgba(209,209,209,1) 58%, rgba(254,254,254,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(226,226,226,1)), color-stop(33%,rgba(219,219,219,1)), color-stop(58%,rgba(209,209,209,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 33%,rgba(209,209,209,1) 58%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 33%,rgba(209,209,209,1) 58%,rgba(254,254,254,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 33%,rgba(209,209,209,1) 58%,rgba(254,254,254,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 33%,rgba(209,209,209,1) 58%,rgba(254,254,254,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+
+}
+
+.navbar .nav > li > a {
+  float: none;
+  padding: 10px 10px 11px;
+  line-height: 19px;
+  font-size: 14px;
+  color: black; /* was #4f247c from stylebootstrap.info */
+  text-decoration: none;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  color: #4f247c;
+  text-decoration: none;
+  background-color: #222222;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* END from stylebootstrap.info */
+
+
+.bg-dark {
+ background-image: url(/assets/low_contrast_linen.png);
+}
+
+
+body
+{
+background-image: url(/assets/groovepaper.png);
+} 
+
+.table-header {
+  color: #fff;
+   background-image: url(/assets/low_contrast_linen.png);
+h3, h4 {
+  color: white;
+}
+}
+
+.bg-signup {
+  background-image: url(/assets/low_contrast_linen.png);
+}
+
+.bg-purple {
+
+  color: #fff;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+} 
+
+
+/* this seems to center the first image, but not the other two */
+.carousel-inner { text-align: center; }
+
+.carousel .item > img { display: inline-block; }

@@ -1,0 +1,43 @@
+
+<div class="jumbotron">
+      <h1>Customer Signup</h1>
+      <br/>
+      <h3><i class="icon-share-alt icon-white"></i>&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 1: New User Registration</h3>
+     
+      <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Free Trial Subscription</h3>
+  </div>
+
+<div class="container">
+
+<br/>
+<br/>
+
+<div class="row">
+      <div class="well span5 offset3">
+      <h4> <span class="label label-info"> <i class="icon-user icon-white">&nbsp;</i> New User Registration </span> </h4>
+          <%= simple_form_for(@user, url: newcustomercreate_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <br/>
+          <%= f.error_notification %>
+          
+            
+             
+              <%= f.input :first_name, label: "First Name" %>
+              <%= f.input :last_name, label: "Last Name" %>
+              <%= f.input :email %>
+              <%= f.input :company, label: "Company Name" %>
+              <%= f.input :password, hint: "(minimum 6 characters)", label: "Create Password" %>
+              <%= f.input :password_confirmation, label: "Confirm Password" %>
+
+            
+              <div class="form-actions">
+               
+              <%= f.button :submit, "Register!", class: "btn btn-large btn-primary" %>
+           
+              </div>
+
+          <% end %>
+
+      </div>
+
+
+</div>
