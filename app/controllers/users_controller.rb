@@ -596,6 +596,10 @@ def newcustomercreate
       # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
       flash[:success] = "Thank you for registering.  Please fill in your payment details to finish subscribing."
+      if @user.email == 'shanbhagp@aol.com'
+          @user.customer = true
+          @user.save
+      end 
       redirect_to stripenewcustomer_path 
     else
 
