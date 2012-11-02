@@ -604,6 +604,10 @@ def newcustomercreate
           @user.customer = true
           @user.save
       end 
+      if @user.email == 'teststartx@example.com'
+          @user.customer = true
+          @user.save
+      end 
       redirect_to stripenewcustomer_path 
     else
 
