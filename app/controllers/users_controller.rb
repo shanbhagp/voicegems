@@ -204,7 +204,7 @@ end
             end 
 
           if params[:user][:password]
-             UserMailer.password_change(@user).deliver 
+             UserMailer.password_change(@user, @user.email).deliver 
              redirect_to @user, notice: 'Password update was successful.' 
           else
             if params[:user][:email]
