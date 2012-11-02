@@ -14,9 +14,7 @@ before_filter :owner, only: [:index]
 		 # @userinvite.sent_at is updated in the Mailer action
 	     @userinvite.save
 	     @to = @po.email
-	        unless current_user.email == 'teststartx@example.com'
-     		 @to = 'shanbhagp@aol.com'
-   			end 
+	     startx
 	     UserInviteMailer.invite_reminder(@userinvite, new_user_url(:token => @po.token), @po, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email sent.'
 	end
