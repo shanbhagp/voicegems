@@ -20,13 +20,15 @@
             <li> The process is simple!
                 <ol>
                   <br/>
-                  <li> On the registration page: fill out your name and email, and choose a password.<br/> (Or if you have already registered on our site, please sign in under 'Already Registered on our Site?') </li><br/>
-                  <li> Clicking 'Register!' will then direct you to a page on which you can record your name (through our online voice recorder).  Don't worry, this part is super-easy too.  </li><br/>
+                  <li> Step1: Fill out your name and email. </li><br/> 
+                   <li>Step 2: Enter your name as you would like it announced at the event, and any notes to help with pronunciation</li><br/>
+                  <li> Step 3: Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes less than a minute. Just make sure to press 'Upload.' </li><br/>
                    <li> Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event! </li><br/>
+                   <li>If you have already registered on our site, please sign in under 'Already Registered on our Site? </li>
                  </ol>
             </li> 
            
-            <li> More questions? See our 'Help' page. When you're ready to register, just click on the link in your invitation email again. <em> Otherwise, please register now! Thank you!</em> </li>
+            <li> More questions? See our 'Help' page. When you're ready to register, just click on the link in your invitation email again. <em> Thank you!</em> </li>
             </ul>
 
             </div>
@@ -47,7 +49,7 @@
            <%# note here that blank? checks to see if objet is nil (nil?) or contains whitespace (empty? on non-nil object) %>
            <% if !@po.event.nil? %> 
 
-              <h3> <% if !@po.first_name.blank? %> Hi <%= @po.first_name %>! <% end %> You've been invited to register and record your name for an upcoming event<% if !@po.event.title.blank? %>, <%= @po.event.title %><% end %>.&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3> <% if !@po.first_name.blank? %> Hi <%= @po.first_name %>! <% end %> You've been invited to record your name for an upcoming event<% if !@po.event.title.blank? %>, <%= @po.event.title %><% end %>.&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
 
           <% end %>
           <% end %>
