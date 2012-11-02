@@ -5,7 +5,11 @@ require File.expand_path('../application', __FILE__)
 App4::Application.initialize!
 
 #Action Mailer configuration for Heroku
-config.action_mailer.delivery_method = :smtp
+
+#config.action_mailer.delivery_method = :smtp
+# app crashed with the above line
+
+ActionMailer::Base.delivery_method = :smtp
 
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.aol.com",
@@ -15,4 +19,4 @@ ActionMailer::Base.smtp_settings = {
   :authentication  => :login
 }
 
-config.action_mailer.raise_delivery_errors = true
+#config.action_mailer.raise_delivery_errors = true
