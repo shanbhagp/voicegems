@@ -44,7 +44,7 @@ before_filter :owner, only: [:index]
 	     @userinvite.save  
 	     @to = @po.user.email
 	     startx
-	     UserInviteMailer.rerecording_reminder(@userinvite, root_url, @to).deliver 
+	     UserInviteMailer.rerecording_reminder(@userinvite, root_url, @po, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email (to rerecord name) sent.'
 
 	end 
