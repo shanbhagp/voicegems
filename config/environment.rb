@@ -7,7 +7,7 @@ App4::Application.initialize!
 #Action Mailer configuration for Heroku
 
 #config.action_mailer.delivery_method = :smtp
-# app crashed with the above line
+# app crashed with the above line, because uninitialized constant config
 
 ActionMailer::Base.delivery_method = :smtp
 
