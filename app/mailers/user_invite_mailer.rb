@@ -1,5 +1,5 @@
 class UserInviteMailer < ActionMailer::Base
-  default from: "praveen@namewaves.com"
+  default from: "shanbhagp@aol.com"
   #note that still sends from prshanbhag@gmail.com
   def user_invitation (userinvite, url, po)
     @po = po
