@@ -5,6 +5,7 @@ $(function() {
 </script>
 
 <% if current_user.email == 'startx@example.com' %>
+<div class = "row">
 	<div class = "span4 offset4">
 			<div class="accordion" id="accordionstartx">
                 <div class="accordion-group bg-signup">
@@ -22,11 +23,12 @@ $(function() {
                                         
             </div>   <%# end accordion%>
 	</div>
+</div>
 <% end %>
 
-<hr/>
+<br/>
 
-<div> <%# wrap tabs%>
+<div class="row"> <%# wrap tabs%>
 
  <ul id="myTab" class="nav nav-tabs">
 	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
