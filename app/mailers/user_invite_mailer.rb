@@ -1,6 +1,8 @@
 class UserInviteMailer < ActionMailer::Base
   default from: "shanbhagp@aol.com"
   #note that still sends from prshanbhag@gmail.com
+  default headers['X-No-Spam'] = 'True'
+
   def user_invitation (userinvite, url, po, bcc)
     @po = po
     @url = url
