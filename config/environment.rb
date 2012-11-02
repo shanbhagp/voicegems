@@ -9,14 +9,14 @@ App4::Application.initialize!
 #config.action_mailer.delivery_method = :smtp
 # app crashed with the above line, because uninitialized constant config
 
-ActionMailer::Base.delivery_method = :smtp
+#ActionMailer::Base.delivery_method = :smtp
 
-ActionMailer::Base.smtp_settings = {
-  :address  => "smtp.aol.com",
-  :port  => 25,
-  :user_name  => "shanbhagp@aol.com",
-  :password  => "4oceana7ddd",
-  :authentication  => :login
-}
+#ActionMailer::Base.smtp_settings = {
+#  :address  => "smtp.aol.com",
+#  :port  => 25,
+#  :user_name  => "shanbhagp@aol.com",
+ # :password  => "4oceana7ddd",
+#  :authentication  => :login
+#}
 
 #config.action_mailer.raise_delivery_errors = true
