@@ -237,7 +237,7 @@ end
   def changepassword
     @user = current_user
     if @user.update_attributes(params[:user]) then 
-         UserMailer.password_change(@user).deliver 
+         UserMailer.password_change(@user, @user.email).deliver 
          redirect_to @user, notice: 'Password update was successful.' 
     else
         render action: "account"

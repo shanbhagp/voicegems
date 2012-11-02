@@ -84,7 +84,7 @@ module SessionsHelper
 #this was unncessary - was using this with <div class="<%=alert_stub%><%=key%>">  in the erb
 
 def startx
-    unless current_user.email == 'teststartx@example.com'
+    if current_user.email == 'x@example.com'
          @to = 'shanbhagp@aol.com'
     end 
 end  
