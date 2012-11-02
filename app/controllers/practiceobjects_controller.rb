@@ -66,13 +66,7 @@ def create
                        @ui.recipient_email = @practiceobject.email 
                        @ui.invite_type = "invitation"
                        @ui.save
-                       # for exceptions to staging mail interceptor
-                        if current_user.email == 'teststartx@example.com'
-                          @bcc = 'shanbhagp@aol.com'
-                        else
-                          @bcc = nil 
-                        end 
-                       UserInviteMailer.existing_user_invitation(@ui, root_url, @practiceobject, @bcc).deliver 
+                       UserInviteMailer.existing_user_invitation(@ui, root_url, @practiceobject).deliver 
                        redirect_to @event, notice: 'Attendee with that email address is an existing user and is now registered for this event.'
                     else
                       flash[:error] = 'Please enter a valid email address.'
@@ -91,7 +85,13 @@ def create
                        @ui.recipient_email = @practiceobject.email 
                        @ui.invite_type = "invitation"
                        @ui.save
-                       UserInviteMailer.user_invitation(@ui, new_user_url(:token => @practiceobject.token), @practiceobject).deliver 
+                        # for exceptions to staging mail interceptor
+                        if current_user.email == 'teststartx@example.com'
+                          @bcc = 'shanbhagp@aol.com'
+                        else
+                          @bcc = nil 
+                        end 
+                       UserInviteMailer.user_invitation(@ui, new_user_url(:token => @practiceobject.token), @practiceobject, @bcc).deliver 
                        flash[:success] = "An invitation was emailed to #{@practiceobject.email}. The record should appear in the third tab."
                        redirect_to @event
                     else
