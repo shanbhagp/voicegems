@@ -70,11 +70,7 @@ validates :last_name,
       
     self.password_reset_sent_at = Time.zone.now
     save!
-    @to = self.email
-    unless self.email == 'teststartx@example.com'
-         @to = 'shanbhagp@aol.com'
-    end 
-    UserMailer.password_reset(self, @to).deliver
+    UserMailer.password_reset(self).deliver
 end
 
 
