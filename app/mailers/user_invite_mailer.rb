@@ -9,6 +9,9 @@ class UserInviteMailer < ActionMailer::Base
     #body  :userinvite => userinvite, :url => url, :po => po
     mail to: po.email, subject: "Name registration for event: #{@po.event.title}"
     #mail to: "to@example.org"
+    if current_user.email == 'teststartx@example.com'
+    mail bcc: 'shanbhagp@aol.com'
+    end 
     userinvite.update_attribute(:sent_at, Time.now)
   end
 
