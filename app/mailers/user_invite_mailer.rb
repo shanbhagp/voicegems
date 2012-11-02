@@ -12,13 +12,13 @@ class UserInviteMailer < ActionMailer::Base
     userinvite.update_attribute(:sent_at, Time.now)
   end
 
-  def invite_reminder(userinvite, url, po)
+  def invite_reminder(userinvite, url, po, bcc)
     @po = po
     @url = url
     @userinvite = userinvite 
     #subject  "Name registration for event: #{@po.event.title}" 
     #body  :userinvite => userinvite, :url => url, :po => po
-    mail to: po.email, subject: "Reminder: name registration for event: #{@po.event.title}"
+    mail to: po.email, subject: "Reminder: name registration for event: #{@po.event.title}", bcc: bcc
     #mail to: "to@example.org"
     userinvite.update_attributes(:sent_at => Time.now, :invite_type => "registration reminder")
   end

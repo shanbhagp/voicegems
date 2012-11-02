@@ -81,7 +81,15 @@ module SessionsHelper
 #def alert_stub
  # "alert alert-block alert-"
 #end
-#this was unncessary - was using this with <div class="<%=alert_stub%><%=key%>">  in the erb 
+#this was unncessary - was using this with <div class="<%=alert_stub%><%=key%>">  in the erb
+
+def startx
+   if current_user.email == 'teststartx@example.com'
+      @bcc = 'shanbhagp@aol.com'
+   else
+      @bcc = nil 
+   end 
+end  
 
 private
 

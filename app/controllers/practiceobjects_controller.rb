@@ -86,11 +86,7 @@ def create
                        @ui.invite_type = "invitation"
                        @ui.save
                         # for exceptions to staging mail interceptor
-                        if current_user.email == 'teststartx@example.com'
-                          @bcc = 'shanbhagp@aol.com'
-                        else
-                          @bcc = nil 
-                        end 
+                        startx
                        UserInviteMailer.user_invitation(@ui, new_user_url(:token => @practiceobject.token), @practiceobject, @bcc).deliver 
                        flash[:success] = "An invitation was emailed to #{@practiceobject.email}. The record should appear in the third tab."
                        redirect_to @event
