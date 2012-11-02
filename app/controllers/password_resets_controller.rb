@@ -5,7 +5,10 @@ class PasswordResetsController < ApplicationController
   def create
   	  user = User.find_by_email(params[:email])
  	  if user
- 	    user.send_password_reset 
+      user.password_reset_token = SecureRandom.urlsafe_base64
+      user.password_reset_sent_at = Time.zone.now
+      user.save
+ 	    UserMailer.password_reset(user) 
  	    flash[:success] = "Email sent with password reset instructions."
         redirect_to root_url
   	  else

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :notes, :phonetic, :recording, :salt, :password_confirmation, :password, :admin, :customer, :invite_token, :event_code, :customer_id, :company
+  attr_accessible :email, :first_name, :last_name, :notes, :phonetic, :recording, :salt, :password_confirmation, :password, :admin, :customer, :invite_token, :event_code, :customer_id, :company, :password_reset_token
   #be sure to remove admin and customer from accessible, which I think then means you can't submit a form, but rather have to set it in a controller?
   attr_accessor :password_confirmation, :event_code, :access_code 
 
@@ -62,7 +62,7 @@ validates :last_name,
   :if => lambda{new_record? }
 # otherwise was changing the remembrer_token upon update, therby ending the session
 
-
+#made this obsolete - but maybe add the loop to check for duplicated tokens in the password resets controller
   def send_password_reset
       begin
         self[:password_reset_token] = SecureRandom.urlsafe_base64
