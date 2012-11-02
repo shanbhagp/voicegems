@@ -25,8 +25,10 @@ before_filter :owner, only: [:index]
 		 #find the associated practice object from the incoming practice object id hidden field (f.id)
 		 @userinvite = Userinvite.new(practiceobject_id: @po.id, recipient_email: @po.email, admin_id: current_user.id)
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject
-	     @userinvite.save  
-	     UserInviteMailer.recording_reminder(@userinvite, root_url, @po).deliver 
+	     @userinvite.save
+	     @to = @po.user.email
+	     startx  
+	     UserInviteMailer.recording_reminder(@userinvite, root_url, @po, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email (to record name) sent.'
 
 	end 
@@ -38,7 +40,9 @@ before_filter :owner, only: [:index]
 		 @userinvite = Userinvite.new(practiceobject_id: @po.id, recipient_email: @po.email, admin_id: current_user.id)
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject
 	     @userinvite.save  
-	     UserInviteMailer.rerecording_reminder(@userinvite, root_url, @po).deliver 
+	     @to = @po.user.email
+	     startx
+	     UserInviteMailer.rerecording_reminder(@userinvite, root_url, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email (to rerecord name) sent.'
 
 	end 

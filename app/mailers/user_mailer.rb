@@ -8,9 +8,9 @@ class UserMailer < ActionMailer::Base
   #
 
 
-def password_reset(user)
+def password_reset(user, to)
   @user = user
-  mail :to => user.email, :subject => "Password Reset"
+  mail :to => to, :subject => "Password Reset"
 end
 
 def welcome(user)
@@ -18,9 +18,9 @@ def welcome(user)
 	mail :to => user.email, :subject => "Welcome to NameCoach"
 end
 
-def password_change(user)
+def password_change(user, to)
   @user = user
-  mail :to => user.email, :subject => "Password update for your NameCoach account"
+  mail :to => to, :subject => "Password update for your NameCoach account"
 end 
 
 end

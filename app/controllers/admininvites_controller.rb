@@ -33,22 +33,30 @@ before_filter :owner, only: [:index]
 			 		 	 	@adminkey = Adminkey.new(event_id: @event.id, user_id: u.id)
 				            if @adminkey.save 
 				            	if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_user_id(u.id) #check if PO exists for this event/user_id; if so..
-				            		AdminInviteMailer.admin_notify(@ai, root_url).deliver 
+				            		@to = @ai.recipient_email
+	    							startx
+				            		AdminInviteMailer.admin_notify(@ai, root_url, @to).deliver 
 					            	redirect_to @ai.event, notice: 'The person at this email address is already registered on our site, is now registered as an admin for this event, and will be notified. '
 				            	else  # PO does not exist for this event/user_id
 				            		if !@event.practiceobjects.nil? &&  @event.practiceobjects.find_by_email(u.email) #check if PO exists for this event/em entered (if, say, there's a floating PO for this event for this existing user)
 				            				#anchor PO to that user_id, and default to user attributes (already convered case of already existing PO for this user_id/event)
 				            				@event.practiceobjects.find_by_email(u.email).update_attributes(:user_id => u.id, :recording => u.recording, :phonetic => u.phonetic, :notes => u.notes)
-				            				AdminInviteMailer.admin_notify(@ai, root_url).deliver 
+				            				@to = @ai.recipient_email
+	    									startx
+				            				AdminInviteMailer.admin_notify(@ai, root_url, @to).deliver 
 					            			redirect_to @ai.event, notice: 'The person at this email address is already registered on our site, is now registered as an admin for this event, and will be notified. '
 				            		else #PO does not exist for this event/em entered
 				            			#create a new PO, send notification 
 				            			@po = Practiceobject.new(:user_id => u.id, :event_id => @event.id, :email => u.email, :first_name => u.first_name, :last_name => u.last_name, :recording => u.recording, :notes => u.notes, :phonetic => u.phonetic)
 				            			if @po.save  #this should save - already checked if user u had a PO for this event
-					            			AdminInviteMailer.admin_notify(@ai, root_url).deliver 
+					            			@to = @ai.recipient_email
+	    									startx
+					            			AdminInviteMailer.admin_notify(@ai, root_url, @to).deliver 
 						            		redirect_to @ai.event, notice: 'The person at this email address is already registered on our site, is now registered as an admin for this event, and will be notified. '
 						            	else #should'nt happen, but just in case
-						            		AdminInviteMailer.admin_notify(@ai, root_url).deliver 
+						            		@to = @ai.recipient_email
+	    									startx
+						            		AdminInviteMailer.admin_notify(@ai, root_url, @to).deliver 
 					            			redirect_to @ai.event, notice: 'The person at this email address is already registered on our site, is now registered as an admin for this event, and will be notified. '
 						            	end 
 				            		end 
@@ -64,7 +72,9 @@ before_filter :owner, only: [:index]
 			 	else #email on @ai is not that of existing user - execute original code
 			 		if @ai.save  
 				     	#AdminInviteMailer.admin_invitation(@ai, new_user_url(:token => @practiceobject.token), @practiceobject).deliver 
-				     	AdminInviteMailer.admin_invitation(@ai, adminsignup_url(:token => @ai.token)).deliver 
+				     	@to = @ai.recipient_email
+	    				startx
+				     	AdminInviteMailer.admin_invitation(@ai, adminsignup_url(:token => @ai.token), @to).deliver 
 				     	redirect_to @ai.event, notice: 'Admin has been invited for this event.'
 			 	 	else
 				 	 	redirect_to @ai.event, notice: 'Something went wrong - please make sure to enter valid email address'
