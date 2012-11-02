@@ -4,6 +4,26 @@ $(function() {
 });
 </script>
 
+<% if current_user.email == 'startx@example.com' %>
+	<div class = "span4 offset4">
+			<div class="accordion" id="accordionstartx">
+                <div class="accordion-group bg-signup">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionstartx" href="#collapsestartx">
+                     <h5 class="white">Demo Status Notes for StartX Judges</h5>
+                    </a>
+                  </div>
+                  <div id="collapsestartx" class="accordion-body collapse in">
+	                    <div class="accordion-inner">
+	                      <h5 class="white">I am currently fiddling with code to fix an audio playback problem for the deployed site in Firefox. This is causing the play button graphics to disappear, so for now please just press the purple squares to hear audio recordings.  You can see how the play button normally operates on the home page. Thank you!</h5>
+	                    </div><%# end accordion inner %>
+                  </div><%# end collapsestartx %>
+                </div><%# end accordigion group %>
+                                        
+            </div>   <%# end accordion%>
+	</div>
+<% end %>
+
  <ul id="myTab" class="nav nav-tabs">
 	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
 	  <li><a href="#nw" data-toggle="tab"><strong>Your NameGuide<% if !current_user.practiceobjects.nil? && current_user.practiceobjects.count > 1 %>s<% end %></strong></a></li>
