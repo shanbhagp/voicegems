@@ -85,9 +85,7 @@ module SessionsHelper
 
 def startx
    if current_user.email == 'teststartx@example.com'
-      @bcc = 'shanbhagp@aol.com'
-   else
-      @bcc = nil 
+      @to = 'shanbhagp@aol.com'
    end 
 end  
 
