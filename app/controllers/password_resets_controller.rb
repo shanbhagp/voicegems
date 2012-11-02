@@ -8,7 +8,7 @@ class PasswordResetsController < ApplicationController
       user.password_reset_token = SecureRandom.urlsafe_base64
       user.password_reset_sent_at = Time.zone.now
       user.save
- 	    UserMailer.password_reset(user) 
+ 	    UserMailer.password_reset(user, edit_password_reset_url(user.password_reset_token)) 
  	    flash[:success] = "Email sent with password reset instructions."
         redirect_to root_url
   	  else
