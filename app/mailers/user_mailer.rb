@@ -1,5 +1,4 @@
 class UserMailer < ActionMailer::Base
-  default_url_options[:host] = request.host_with_port
   default from: "shanbhagp@aol.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
