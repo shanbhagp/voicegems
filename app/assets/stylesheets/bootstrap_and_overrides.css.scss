@@ -233,8 +233,7 @@ html {
 
 
 
-
-      .audiojs { height: 50px; background: #404040; max-width: 200x;
+     .audiojs { height: 22px; background: #404040; max-width: 23px;
          background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
@@ -248,7 +247,7 @@ html {
       .audiojs .play-pause { width: 15px; height: 20px; padding: 0px 8px 0px 0px; }
       .audiojs p { width: 25px; height: 20px; margin: -3px 0px 0px -1px; }
       .audiojs .scrubber { background: #5a5a5a; width: 150px; height: 10px; margin: 5px; }
-      .audiojs .progress { height: 10px; width: 2px; background: #ccc;
+      .audiojs .progress { height: 10px; width: 0px; background: #ccc;
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(0.5, #ddd), color-stop(0.51, #ccc), color-stop(1, #ccc));
         background-image: -moz-linear-gradient(center top, #ccc 0%, #ddd 50%, #ccc 51%, #ccc 100%); }
       .audiojs .loaded { height: 10px; background: #000;
