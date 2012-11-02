@@ -12,7 +12,7 @@ before_filter :owner, only: [:index]
 		 @userinvite = Userinvite.new(practiceobject_id: @po.id, recipient_email: @po.email, admin_id: current_user.id)
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject
 		 # @userinvite.sent_at is updated in the Mailer action
-	     @userinvite.save  
+	     @userinvite.save
 	     startx
 	     UserInviteMailer.invite_reminder(@userinvite, new_user_url(:token => @po.token), @po, @bcc).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email sent.'

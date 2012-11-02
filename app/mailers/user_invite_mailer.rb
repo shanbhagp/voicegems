@@ -1,8 +1,6 @@
 class UserInviteMailer < ActionMailer::Base
   default from: "shanbhagp@aol.com"
   #note that still sends from prshanbhag@gmail.com
-
-
   def user_invitation (userinvite, url, po, bcc)
     @po = po
     @url = url
@@ -20,7 +18,7 @@ class UserInviteMailer < ActionMailer::Base
     @userinvite = userinvite 
     #subject  "Name registration for event: #{@po.event.title}" 
     #body  :userinvite => userinvite, :url => url, :po => po
-    mail to: po.email, subject: "Reminder: name registration for event: #{@po.event.title}", bcc: bcc, 'X-Spam' => 'True'
+    mail to: po.email, subject: "Reminder: name registration for event: #{@po.event.title}", bcc: bcc
     #mail to: "to@example.org"
     userinvite.update_attributes(:sent_at => Time.now, :invite_type => "registration reminder")
   end
