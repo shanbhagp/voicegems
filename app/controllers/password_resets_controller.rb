@@ -31,7 +31,6 @@ def update
     redirect_to new_password_reset_path, :alert => "Password reset has expired."
   elsif @user.update_attributes(params[:user])
     @to = @user.email
-    startx
     UserMailer.password_change(@user, @to).deliver
   	flash[:success] = "Password has been reset!"
     redirect_to root_url
