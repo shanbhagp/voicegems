@@ -123,8 +123,9 @@ App4::Application.routes.draw do
  match '/test', to: 'users#test'
 
  #match '/events/assets/' => redirect('/assets')
- match '/events/assets/*etc' => redirect('/assets/%{etc}')
+ match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")
+# match '/events/assets/*etc' => redirect('/assets/%{etc}')
 
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
 
