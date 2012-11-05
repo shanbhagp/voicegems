@@ -21,7 +21,8 @@ App4::Application.routes.draw do
 
   resources :customerkeys
 
-  resources :events
+  resources :events, :path => '/'
+#resources :posts, :path => "/admin/posts"
 
   resources :users do
     member do
@@ -126,7 +127,7 @@ App4::Application.routes.draw do
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")
 # match '/events/assets/*etc' => redirect('/assets/%{etc}')
-match '/events/assets/aplayer/*etc' => redirect('/assets/aplayer/%{etc}')
+#match '/events/assets/aplayer/*etc' => redirect('/assets/aplayer/%{etc}')
 
 
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
