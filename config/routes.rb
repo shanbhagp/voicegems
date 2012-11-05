@@ -134,7 +134,7 @@ App4::Application.routes.draw do
 #match "/events/assets" => redirect {|p, req| "/assets/#{req.subdomain}" }  #same old route
 #match "/events/assets/:name" => redirect {|params| "/assets/#{params[:name]}" }  # same old route
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /[^/]+/ } #gives an application error
-match '/events/assets/aplayer/:a.:b.:c.:d' => redirect('/assets/aplayer/%{a}%{b}%{c}%{d}')#, :constraints => { :a => /.*/ }
+match '/events/assets/aplayer/:a.:b.:c.:d.:e' => redirect('/assets/aplayer/%{a}%{b}%{c}%{d}%{e}')#, :constraints => { :a => /.*/ }
 #match "/stories/:name" => redirect("/posts/%{name}")
 # map.connect ':scale/:text.:format', :controller => 'barcode', :requirements => { :text => /.*/ }
 
