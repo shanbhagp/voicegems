@@ -128,9 +128,9 @@ App4::Application.routes.draw do
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")
 # match '/events/assets/*etc' => redirect('/assets/%{etc}')
-#match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
-match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
-
+match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
+#match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
+match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
 #savannah-5516.herokuapp.com/assets/aplayer/audiojs.swf?playerInstance=audiojs.instances[%27audiojs0%27]&datetime=1352004313978.8704
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
 
