@@ -21,8 +21,9 @@ App4::Application.routes.draw do
 
   resources :customerkeys
 
-  resources :events, :path => '/'
+ # resources :events, :path => '/'
 #resources :posts, :path => "/admin/posts"
+ resources :events
 
   resources :users do
     member do
