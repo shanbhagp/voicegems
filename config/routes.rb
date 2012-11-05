@@ -122,6 +122,9 @@ App4::Application.routes.draw do
 
  match '/test', to: 'users#test'
 
+ match '/events/assets' => redirect('/assets')
+
+
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
 
   #match ':controller(/:action(/:id))(.:format)' 
