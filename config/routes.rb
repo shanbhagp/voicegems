@@ -134,7 +134,9 @@ App4::Application.routes.draw do
 #match "/events/assets" => redirect {|p, req| "/assets/#{req.subdomain}" }  #same old route
 #match "/events/assets/:name" => redirect {|params| "/assets/#{params[:name]}" }  # same old route
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /[^/]+/ } #gives an application error
-match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
+match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}')#, :constraints => { :a => /.*/ }
+#match "/stories/:name" => redirect("/posts/%{name}")
+# map.connect ':scale/:text.:format', :controller => 'barcode', :requirements => { :text => /.*/ }
 
 #savannah-5516.herokuapp.com/assets/aplayer/audiojs.swf?playerInstance=audiojs.instances[%27audiojs0%27]&datetime=1352004313978.8704
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
