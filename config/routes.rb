@@ -136,7 +136,7 @@ App4::Application.routes.draw do
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /[^/]+/ } #gives an application error
 #match '/events/assets/aplayer/:a.:b?:c.:d.:e' => redirect('/assets/aplayer/%{a}.%{b}?%{c}.%{d}.%{e}') #same old route
 #match '/events/assets/aplayer/*a.*b?*c.*d.*e' => redirect('/assets/aplayer/%{a}.%{b}?%{c}.%{d}.%{e}') #same old route
-match '/events/assets/aplayer/*a.*b' => redirect('/assets/aplayer/%{a}.%{b}')
+match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}')
 #match '/events/assets/aplayer/:a.:b.:c.:d.:e' => redirect('/assets/aplayer/%{a}%{b}%{c}%{d}%{e}')#same old route
 #match '/events/assets/aplayer/*a.*b.*c.*d.*e' => redirect('/assets/aplayer/%{a}%{b}%{c}%{d}%{e}')
 #match "/stories/:name" => redirect("/posts/%{name}")
