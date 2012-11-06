@@ -129,8 +129,8 @@ App4::Application.routes.draw do
 #match "/stories/:name" => redirect("/posts/%{name}")
  #match '/events/assets/*etc' => redirect('/assets/%{etc}')  #GIVES partial path
  #match '/events/assets/aplayer/*etc' => redirect('/assets/aplayer/%{etc}')  # gives same old path now! wtf?
- match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}')
-
+ #match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}') #gives path to audiojs
+ match '/events/assets/aplayer/:a.:b' => redirect('/assets/aplayer/%{a}')
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
 #match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
