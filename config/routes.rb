@@ -130,7 +130,7 @@ App4::Application.routes.draw do
 # match '/events/assets/*etc' => redirect('/assets/%{etc}')
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
 #match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
-#match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
+match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
 #match "/events/assets" => redirect {|p, req| "/assets/#{req.subdomain}" }  #same old route
 #match "/events/assets/:name" => redirect {|params| "/assets/#{params[:name]}" }  # same old route
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /[^/]+/ } #gives an application error
@@ -141,8 +141,8 @@ App4::Application.routes.draw do
 #match '/events/assets/aplayer/*a.*b.*c.*d.*e' => redirect('/assets/aplayer/%{a}%{b}%{c}%{d}%{e}')
 #match "/stories/:name" => redirect("/posts/%{name}")
 # map.connect ':scale/:text.:format', :controller => 'barcode', :requirements => { :text => /.*/ }
-match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'
-  
+
+
 #savannah-5516.herokuapp.com/assets/aplayer/audiojs.swf?playerInstance=audiojs.instances[%27audiojs0%27]&datetime=1352004313978.8704
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
 
