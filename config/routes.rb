@@ -133,7 +133,7 @@ App4::Application.routes.draw do
 # match '/events/assets/aplayer/:a.:b' => redirect('/assets/aplayer/%{a}')  #gives same old path
 #match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ } # this gives same old path!
 #match '/events/assets/aplayer/:e.:d?:c.:b.:a' => redirect('/assets/aplayer/%{a}')  #same old path
-match '/events/assets/aplayer/:e.:d.:b.:a' => redirect('/assets/aplayer/%{a}') 
+match '/events/assets/aplayer/:e.:d.:b.:a' => redirect('/assets/aplayer/%{a}') #same old path
 
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
 #match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
