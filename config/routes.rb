@@ -131,7 +131,9 @@ App4::Application.routes.draw do
  #match '/events/assets/aplayer/*etc' => redirect('/assets/aplayer/%{etc}')  # gives same old path now! wtf?
  #match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}') #gives path to audiojs
 # match '/events/assets/aplayer/:a.:b' => redirect('/assets/aplayer/%{a}')  #gives same old path
-match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
+#match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ } # this gives same old path!
+match '/events/assets/aplayer/:e.:d?:c.:b.:a' => redirect('/assets/aplayer/%{a}')
+
 
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
 #match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
@@ -147,8 +149,10 @@ match '/events/assets/aplayer/:a' => redirect('/assets/aplayer/%{a}'), :requirem
 #match "/stories/:name" => redirect("/posts/%{name}")
 # map.connect ':scale/:text.:format', :controller => 'barcode', :requirements => { :text => /.*/ }
 
-
+#SEPARATORS = %w( / ; . , ? )
 #savannah-5516.herokuapp.com/assets/aplayer/audiojs.swf?playerInstance=audiojs.instances[%27audiojs0%27]&datetime=1352004313978.8704
+# aplayer/:e.:d?:c.:b.:a
+#aplayer/:e.:d.:b.:a
  #match '/hide/:id', to: 'practiceobjects#destroy', via: :destroy
 
   #match ':controller(/:action(/:id))(.:format)' 
