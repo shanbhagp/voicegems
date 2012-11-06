@@ -127,10 +127,10 @@ App4::Application.routes.draw do
  #match '/events/assets/' => redirect('/assets')
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")
-# match '/events/assets/*etc' => redirect('/assets/%{etc}')
+ match '/events/assets/*etc' => redirect('/assets/%{etc}')
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :requirements => { :a => /.*/ }
 #match '/events/assets/aplayer/audiojs.swf?playerInstance=audiojs/*a' => redirect('/assets/aplayer/audiojs.swf?playerInstance=audiojs%{a}'), :constraints => { :a => /.*/ }
-match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
+#match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /.*/ }
 #match "/events/assets" => redirect {|p, req| "/assets/#{req.subdomain}" }  #same old route
 #match "/events/assets/:name" => redirect {|params| "/assets/#{params[:name]}" }  # same old route
 #match '/events/assets/aplayer/*a' => redirect('/assets/aplayer/%{a}'), :constraints => { :a => /[^/]+/ } #gives an application error
