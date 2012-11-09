@@ -1,5 +1,5 @@
 class AdminInviteMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "no-reply@name-coach.com"
 
 def admin_invitation(admininvite, url, to)
     @url = url

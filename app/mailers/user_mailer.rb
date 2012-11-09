@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "passwords@namecoach.com"
+  default from: "no-reply@name-coach.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
