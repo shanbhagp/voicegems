@@ -35,52 +35,67 @@
             
                                 <iframe src='<%= test_user_path(current_user) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
             
-                                  <div class="accordion" id="accordionrec">
-                                    <div class="accordion-group">
-                                      <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec1">
-                                          <h4><span class="blue">Instructions<span/></h4> 
-                                        </a>
-                                      </div>
-                                      <div id="collapserec1" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                          Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
-                                          <ol>
-                                            <li><strong>Press 'RECORD', then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li>
-                                            <li> You will have 10 seconds maximum recording time. <strong>Please say your name clearly and slowly, then immediately press 'STOP'</strong>, to make it easier for the person hearing/practicing your name.</li>
-                                            <li>Your recording will automatically play back to you:</li>
-                                               <ul>
-                                                   <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
-                                                    <li>If you're not happy with it, press 'RECORD' to try again.</li>
-                                                </ul>
-                                            </ol> 
-                                        </div>
-                                      </div>
+                                <div class="accordion" id="accordionrec">
+
+                                  <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec1">
+                                        <h4><span class="blue">Instructions<span/></h4> 
+                                      </a>
                                     </div>
-                                    <div class="accordion-group">
-                                      <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec2">
-                                          <h4><span class="blue">Please Note<span/></h4>
-                                        </a>
-                                      </div>
-                                      <div id="collapserec2" class="accordion-body collapse">
-                                        <div class="accordion-inner">
-                                            <ul>
-                                             <li>You will need to <strong>wait a minute and refresh your profile page</strong> to see the changes take effect in your NameGuide. </li>
-                                             <li>If you're re-recording your name, pressing 'UPLOAD' will over-write the previous recording. </li>
-                                             <li>If the recording doesn't play back or sound good:
-                                              <ul>
-                                                <li> Please ensure you have a quiet environment. </li>
-                                                <li> Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</li>
-                                                <li> Check to make sure your speaker volume is up. </li>
+                                    <div id="collapserec1" class="accordion-body collapse">
+                                      <div class="accordion-inner">
+                                        Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
+                                        <ol>
+                                          <li><strong>Press 'RECORD', then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
+                                          <li> You will have 10 seconds maximum recording time. <strong>Please say your name clearly and slowly, then immediately press 'STOP'</strong>, to make it easier for the person hearing/practicing your name.</li> <br/>
+                                          <li>Your recording will automatically play back to you:</li>
+                                             <ul>
+                                                 <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
+                                                  <li>If you're not happy with it, press 'RECORD' to try again.</li>
                                               </ul>
-                                             </li>
-                                          </ul>
-                                        </div>
+                                          </ol> 
                                       </div>
                                     </div>
-                                  </div>  
-             
+                                  </div>
+
+                                  <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec2">
+                                        <h4><span class="blue">Problems?<span/></h4>
+                                      </a>
+                                    </div>
+                                    <div id="collapserec2" class="accordion-body collapse">
+                                      <div class="accordion-inner">
+                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                          
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
+                                             <hr/>
+                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
+                                          
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
+                                              <hr/>
+                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
+                                              <hr/>
+                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
+                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
+                                      </div>
+                                    </div>
+                                  </div>    
+
+                                  <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="/flashissue" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
+                                    </div>
+                                  </div>      
+
+
+                                </div>   <!-- end accordion -->
 
                              </div> <%# End modal body %> 
             

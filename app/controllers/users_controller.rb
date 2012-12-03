@@ -23,7 +23,7 @@ before_filter :owner, only: [:console, :index]
   end
 
   def skip
-    flash[:info] = "Welcome to your NameCoach profile page. You may need to wait a minute and refresh the page to hear your name recording below."
+    flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below."
     redirect_to current_user
   end 
 
@@ -203,9 +203,9 @@ end
                 end 
             end 
 
-          if params[:user][:password]
-             UserMailer.password_change(@user, @user.email).deliver 
-             redirect_to @user, notice: 'Password update was successful.' 
+          if params[:user][:password]  #I think this only occurs when user sets pw for the first time, when signing up.
+                 flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below."
+                 redirect_to @user
           else
             if params[:user][:email]
               redirect_to @user, notice: 'User update was successful.'
