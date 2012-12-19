@@ -100,7 +100,10 @@
                              </div> <%# End modal body %> 
             
                              <div class="modal-footer">
-                                  <h5 class="right">(click here after you upload your recording)</h5> <a href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large span1"> DONE <i class="icon-caret-right icon-white"></i> </a>
+                                  <h6 class="right">(click here after you upload your recording)</h6> 
+                                  <%= link_to setpassword_user_path(current_user), confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large span1' do %>
+                                                  DONE&nbsp;<i class="icon-caret-right icon-white"></i>
+                                         <% end %>
                              </div>
 
                          </div> <%# end modal %>
