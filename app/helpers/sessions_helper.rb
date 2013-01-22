@@ -127,6 +127,7 @@ def not_customer
 end 
 #being used for stripenewcustomer action, to prevent signing up for a subscription when already a customer
 
+#this is no longer being used, replaced by active_page_check in events_helper
 def has_active_customer
     @event = Event.find(params[:id])
 

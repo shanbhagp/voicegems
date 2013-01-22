@@ -783,3 +783,330 @@ background="<%= image_path('navy_blue.png')%>"
      -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
           box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
 } 
+
+------------------------------------------------------------
+!@event.customerkeys.nil? && User.find_by_id(@event.customerkeys.first.user_id).customer == true 
+
+def customer_has_active_subscription
+    if !current_user.subscriptions.nil?
+        current_user.subscriptions.each do |s|
+            if s.active == true
+              return true
+            end
+        end 
+    else
+      return false
+    end 
+end
+
+def customer_has_active_subscription?
+    if !current_user.subscriptions.nil?
+        current_user.subscriptions.each do |s|
+          s.active == true
+        end 
+    end
+
+end
+
+
+def customer_has_active_subscription?
+    if !current_user.subscriptions.nil?
+        current_user.subscriptions.any? {|s| s.active == true }  
+    end
+
+end
+
+def customer_has_active_subscription?
+   !current_user.subscriptions.nil? && current_user.subscriptions.any? {|s| s.active == true }  
+end
+
+def customer_has_purchased_pages?
+
+end 
+
+def customer_only_has_active_subscription?
+    customer_has_active_subscription && 
+end
+
+
+       <%# customer only has purchased pages, purchased events > 0, no active subscription  %>
+       <% if !customer_has_active_subscription? && current_user.purchased_events > 0 %>
+
+       <%# END customer only has purchased pages, purchased events > 0 %>
+       <% end %>  
+
+
+       <%# customer only has active subscription, no remaining purchased pages %>
+       <% if customer_has_active_subscription? && !current_user.purchased_events > 0 %>
+
+       <%# END customer only has subscription %>
+       <% end %>
+
+
+       <%# customer has both subscription and purchased pages, purchased events > 0 %>
+       <% if customer_has_active_subscription? && current_user.purchased_events > 0 %>
+
+       <%# END customer has both subscription and purchased pages, purchased events > 0  %>
+       <% end %>
+
+
+       <%# customer has no active subscription, purchased events = 0 %>
+       <% if !customer_has_active_subscription? && !current_user.purchased_events > 0 %>
+
+       <%# END customer has no active subscription, purchased events = 0  %>
+       <% end %>
+
+
+
+-----------------------------------------------------------------------------------
+       <%# customer has both subscription and purchased pages, purchased events = 0 %>
+       <% if  %>
+
+
+       <%# END customer has both subscription and purchased pages, purchased events = 0  %>
+       <% end %>
+
+----------------------------------------------------------------------
+
+<%= f.hidden_field :purchase_type, :value => 'subscription' %>
+
+
+ <% if purch_and_sub_pages_left? %>
+                                        <span class="help-block">(<%= current_user.purchased_events %> p pages remaining)</span>   <span class="help-block">(<%= sub_pages_left %> s pages remaining) </span>
+                                      <% end %>
+
+
+                                        <%= f.radio_button :purchase_type, :checked => true, :id => 'purchased', :value => 'purchased' %> 
+                                        <%= label :purchase_type_purchased, "#{current_user.purchased_events}dpurchased" %>   
+                                        <%= f.radio_button :purchase_type, :id => 'subscription', :value => 'subscription'   %> 
+                                        <%= label :purchase_type_subscription, 'subscription' %> 
+
+
+
+--------------------------
+
+THIS WAS THE EXISTING EVENT#CREATE CODE (for the most part)
+              # RUN EXISTING CODE
+                 #generate the event_code 
+                 if @event.event_code.blank?
+                  generate_event_code(@event)
+                    if  @event.save  
+                     @event.customerkeys.create!(user_id: current_user.id)
+                     @event.adminkeys.create!(user_id: current_user.id)
+                     redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                  else
+                  flash[:error] = 'Please enter a title and date for your event.'
+                  redirect_to current_user
+                  end
+
+                 else
+                  if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
+                         redirect_to current_user, notice: "This event code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+                  else 
+                        e = @event.event_code.upcase.delete(' ')
+                        @event.event_code = e 
+                        if  @event.save  
+                         @event.customerkeys.create!(user_id: current_user.id)
+                         @event.adminkeys.create!(user_id: current_user.id)
+                         redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                      else
+                      redirect_to current_user, notice: 'Please enter a title and date for your event.'
+                      end
+                end 
+              end 
+             #END RUN EXISTING CODE
+-------------------------------------
+THIS IS THE CODE STRUCTURE I WANTED TO INTEGRATE TO IMPLEMENT CHECKING AND DECREMENTING P AND S EVENT TYPES
+
+  def create
+       @event = Event.new(params[:event])
+       @user = current_user
+
+       if  @event.purchase_type == 's'
+         if customer_has_active_subscription? && sub_pages_left > 0  #double-check to see if has some sub pages
+          @s = current_user.subscriptions.select {|s| s.active == true}.first
+          @s.decrement(:events_remaining)
+          if @s.save
+
+          else #should't happen because subscription should save
+            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+            redirect_to current_user
+          end 
+         else #shouldn't happen because event creation well shouldn't allow incoming s event_type if no s pages are left
+          flash[:error] = 'No event pages remaining.  Please purchase more.'
+          redirect_to current_user
+         end 
+       else
+        if @event.purchase_type == 'p'
+          if @user.purchased_events > 0
+            @user.decrement(:purchased_events)
+            if @user.save
+
+
+            else #shouldn't happen because @user should save
+              flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+              redirect_to current_user
+            end 
+            
+          else #shouldn't happen because event creation well shouldn't allow incoming p event_type if no p pages are left
+            flash[:error] = 'No event pages remaining.  Please purchase more.'
+            redirect_to current_user
+          end
+        else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
+          flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+          redirect_to current_user
+        end 
+       end 
+
+
+
+  end
+
+------------------------------------------
+          @s = current_user.subscriptions.select {|s| s.active == true}.first
+          @s.decrement(:events_remaining)
+          if @s.save
+
+          else #should't happen because subscription should save
+            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+            redirect_to current_user
+          end 
+
+
+
+            @user.decrement(:purchased_events)
+            if @user.save
+
+
+            else #shouldn't happen because @user should save
+              flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+              redirect_to current_user
+            end 
+
+--------------------------------
+AND THIS WAS THE RESULT OF INTEGRATING THE TWO ABOVE:
+
+  def create
+       @event = Event.new(params[:event])
+       @user = current_user
+
+       if  @event.purchase_type == 's'
+         if customer_has_active_subscription? && sub_pages_left > 0  #double-check to see if has some sub pages
+           # RUN MODIFIED FOR subscription events EXISTING CODE
+                   #generate the event_code 
+                   if @event.event_code.blank?
+                    generate_event_code(@event)
+                      if  @event.save  
+                        #try decrementing s
+                          @s = current_user.subscriptions.select {|s| s.active == true}.first
+                    @s.decrement(:events_remaining)
+                    if @s.save
+                       @event.customerkeys.create!(user_id: current_user.id)
+                           @event.adminkeys.create!(user_id: current_user.id)
+                           redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                    else #should't happen because subscription should save
+                      flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+                      redirect_to current_user
+                    end  
+                  # end try decrementing s
+                    else
+                    flash[:error] = 'Please enter a title and date for your event.'
+                    redirect_to current_user
+                    end
+
+                   else
+                    if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
+                           redirect_to current_user, notice: "This event code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+                    else 
+                          e = @event.event_code.upcase.delete(' ')
+                          @event.event_code = e 
+                          if  @event.save  
+                          #try decrementing s
+                            @s = current_user.subscriptions.select {|s| s.active == true}.first
+                      @s.decrement(:events_remaining)
+                      if @s.save
+                         @event.customerkeys.create!(user_id: current_user.id)
+                             @event.adminkeys.create!(user_id: current_user.id)
+                             redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                      else #should't happen because subscription should save
+                        flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+                        redirect_to current_user
+                      end  
+                    # end try decrementing s
+                          else
+                          redirect_to current_user, notice: 'Please enter a title and date for your event.'
+                          end
+                  end 
+                end 
+               #END RUN MODIFIED for subscription events EXISTING CODE
+
+         else #shouldn't happen because event creation well shouldn't allow incoming s event_type if no s pages are left
+          flash[:error] = 'No event pages remaining.  Please purchase more.'
+          redirect_to current_user
+         end 
+       else
+        if @event.purchase_type == 'p'
+          if @user.purchased_events > 0
+                 # RUN MODIFIED for purchased events EXISTING CODE
+                     #generate the event_code 
+                     if @event.event_code.blank?
+                      generate_event_code(@event)
+                        if  @event.save  
+                          # try decrementing p
+                           @user.decrement(:purchased_events)
+                       if @user.save
+                            @event.customerkeys.create!(user_id: current_user.id)
+                              @event.adminkeys.create!(user_id: current_user.id)
+                              redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                 else #shouldn't happen because @user should save
+                            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+                            redirect_to current_user
+                       end 
+                       # END try decrementing p
+                      else
+                      flash[:error] = 'Please enter a title and date for your event.'
+                      redirect_to current_user
+                      end
+
+                     else
+                      if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
+                             redirect_to current_user, notice: "This event code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+                      else 
+                            e = @event.event_code.upcase.delete(' ')
+                            @event.event_code = e 
+                            if  @event.save  
+                            # try decrementing p
+                             @user.decrement(:purchased_events)
+                         if @user.save
+                              @event.customerkeys.create!(user_id: current_user.id)
+                                @event.adminkeys.create!(user_id: current_user.id)
+                                redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+                   else #shouldn't happen because @user should save
+                              flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+                              redirect_to current_user
+                         end 
+                         # END try decrementing p
+                          else
+                          redirect_to current_user, notice: 'Please enter a title and date for your event.'
+                          end
+                    end 
+                  end 
+                 #END RUN MODIFIED for purchased pages EXISTING CODE
+
+
+            
+          else #shouldn't happen because event creation well shouldn't allow incoming p event_type if no p pages are left
+            flash[:error] = 'No event pages remaining.  Please purchase more.'
+            redirect_to current_user
+          end
+        else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
+          flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+          redirect_to current_user
+        end 
+       end 
+
+
+
+  end
+
+  -----------------------------

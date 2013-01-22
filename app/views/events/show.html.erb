@@ -327,9 +327,11 @@
 		 <% end %> <%# @registeredandrecordedpos.each do |f| %>				    			
 
 		 <% if @registeredandrecordedpos.count == 0  %>
+		 	   <div class="row">
 				<div class=" well span6 offset3 cent">
 					<h3> No entries in this category </h3>
 				</div>
+			   </div>
 		 <% end %>
 
      </div> <%# END TAB PANE 1 div class="tab-pane fade in active" id="reg" %>	
@@ -548,9 +550,11 @@
 	     <% end %> <%# END @registeredandunrecordedpos.each do |f|%>					    			
 
 		 <% if @registeredandunrecordedpos.count == 0  %>
+		   <div class="row">
 			<div class=" well span6 offset3 cent">
 				<h3> No entries in this category </h3>
 			</div>
+		    </div>
 		 <% end %> 
 
      </div> <%# END tab 2 %>
@@ -729,9 +733,11 @@
   	     </table>
       	
       	 <% if @unregisteredpos.count == 0  %>
+      	 	  <div class="row">
 				<div class=" well span6 offset3 cent">
 				<h3> No entries in this category </h3>
 				</div>
+			 </div>
 	     <% end %>
 
 

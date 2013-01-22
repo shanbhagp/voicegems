@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121026013054) do
+ActiveRecord::Schema.define(:version => 20130111013343) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -54,12 +54,22 @@ ActiveRecord::Schema.define(:version => 20121026013054) do
     t.datetime "date"
     t.string   "access_code"
     t.string   "event_code"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "purchase_type"
   end
 
   add_index "events", ["access_code"], :name => "index_events_on_access_code"
   add_index "events", ["event_code"], :name => "index_events_on_event_code"
+
+  create_table "plans", :force => true do |t|
+    t.string   "name"
+    t.integer  "events_number"
+    t.integer  "trial_period"
+    t.integer  "monthly_cost_cents"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "practiceobjects", :force => true do |t|
     t.integer  "user_id"
@@ -90,11 +100,13 @@ ActiveRecord::Schema.define(:version => 20121026013054) do
     t.string   "email"
     t.datetime "canceled_at"
     t.boolean  "active"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.text     "explanation"
     t.string   "plan_id"
     t.string   "customer_id"
+    t.integer  "events_remaining", :default => 0
+    t.integer  "events_used",      :default => 0
   end
 
   create_table "userinvites", :force => true do |t|
@@ -127,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20121026013054) do
     t.datetime "password_reset_sent_at"
     t.string   "company"
     t.string   "customer_id"
+    t.integer  "purchased_events",       :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

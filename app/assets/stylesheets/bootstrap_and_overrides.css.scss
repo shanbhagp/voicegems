@@ -286,10 +286,13 @@ html {
   float:right;
 }
 
-.fl-right {
+.fl-left {
   float:left;
 }
 
+.fltlft {
+  float:left;
+}
 
 .pad-right {
   padding-right: 40px;
@@ -376,3 +379,57 @@ h3, h4 {
 .carousel-inner { text-align: center; }
 
 .carousel .item > img { display: inline-block; }
+
+
+
+/* FOR PRICING PAGE from http://bootstraptoday.com/plans-pricing/ */
+
+/* Plan and pricing*/
+
+.PlanPageContent{margin: 30px 30px 0px 30px; overflow:hidden}
+
+.PlanBox { margin: 40px 20px; overflow:hidden;}
+
+.PlanBox1 { border-radius: 5px 5px 0px 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; background:#333; width:230px; margin-left:5px; }
+
+.PlanBoxGold { border-radius: 5px 5px 0px 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; color: #fff;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2); width:230px; margin-left:5px;}
+
+.PlanBoxHeading {color:#fff; padding:10px; font: Bold 22px ; color:#FFF;}
+.PlanBoxContent {background:#f5f5f5; border:#ccc 1px solid; overflow:hidden}
+
+.PlanBoxContent li{ padding:10px; border-top:#E9E9E9 1px solid; font: normal 16px; color:#333; list-style: none outside none}
+
+.PlanBoxSignUp a{border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; background:#1164c2; float:left; margin: 0px 0px 10px 0px; padding: 10px; color:#FFF}
+
+.PlanBoxSignUp a:hover {background:#C92D16; color:#FFF; text-decoration:none;}
+
+.PlanContent { width:760px; overflow:hidden; margin:0px 80px; line-height:22px;}
+.PlanContent img {margin: 0px 0px 30px 0px;}
+
+.PlanContent1 {width:335px; overflow:hidden; margin:30px 0px; padding:10px;}
+
+.PlanBox2 { border-radius: 5px 5px 0px 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; background:#333; width:400px; margin-left:5px; }
+
+.PlanBox3 { border-radius: 5px 5px 0px 0px; -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; color: #fff;
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%); /* IE10+ */
+  background: linear-gradient(45deg, #020031 0%,#6d3353 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2); width:400px; margin-left:5px; }

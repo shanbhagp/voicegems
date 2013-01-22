@@ -3,7 +3,7 @@
 
  <%= form_for(:c, url: unsubscribe_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
- 	<%= @s.try(:id) %>
+ 	
 
 <% end %>
 
@@ -16,8 +16,8 @@
 
                 	<h4> Customer: <%=current_user.first_name%> <%= current_user.last_name %></h4><br/>
                 	<h4> Plan: <%= @s.plan_id %></h4><br/>
-                	<h4> Trial Period Start: <%= @s.created_at.strftime("%b %d, %Y") %></h4><br/>
-                	<h4> Trial Period End: <%= @s_end.strftime("%b %d, %Y") %> <br/>
+                	<h4> Trial Period Start: <%= @firstsub.created_at.strftime("%b %d, %Y") %></h4><br/>
+                	<h4> Trial Period End: <%= @firstsub_end.strftime("%b %d, %Y") %> <br/>
 
                 	<br/>
                 	<br/>

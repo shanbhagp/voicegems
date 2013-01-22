@@ -1,0 +1,91 @@
+
+
+<div class="jumbotron">
+        <h1>Subscription Plans</h1>
+      
+</div>
+              
+             
+             <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
+<br/>
+<br/>
+
+<div class="container">
+
+<div class="row">
+
+ <div class="span8 offset2">
+  
+ <!--SILVER-->
+        <div class="fltlft PlanBoxGold">
+          <div class="PlanBoxHeading">SILVER PLAN</div>
+          <div class="PlanBoxContent">
+            <ul>
+              <li><strong>$35 Monthly</strong></li>
+              <li>25 Events / Year</li>
+              <li>Unlimited Name Recordings </li>
+              <li>Free 14 Day Trial</li>
+              <li>
+                <p class="PlanBoxSignUp"><%= form_for(:sec, url: purchase_sub_existing_choose_path) do |y| %>
+                   <%= y.hidden_field :plan, :value => 'silver' %>
+                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                  <% end %>    </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!--Gold-->
+        <div class="fltlft PlanBoxGold">
+          <div class="PlanBoxHeading">GOLD PLAN</div>
+          <div class="PlanBoxContent">
+            <ul>
+              <li><strong>$55 Monthly</strong></li>
+              <li>50 Events / Year</li>
+              <li>Unlimited Name Recordings</li>
+              <li>Free 14 Day Trial</li>
+              <li>
+                <p class="PlanBoxSignUp">  <%= form_for(:sec, url:purchase_sub_existing_choose_path) do |y| %>
+                    <%= y.hidden_field :plan, :value => 'gold' %>
+                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                  <% end %>   </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!--Platinum-->
+        <div class="fltlft PlanBoxGold">
+          <div class="PlanBoxHeading">PLATINUM PLAN</div>
+          <div class="PlanBoxContent">
+            <ul>
+              <li><strong>$85 Monthly</strong></li>
+              <li>100 Events/ Year</li>
+              <li>Unlimited Name Recordings</li>
+              <li>Free 14 Day Trial</li>
+              <li>
+                <p class="PlanBoxSignUp"> <%= form_for(:sec, url: purchase_sub_existing_choose_path) do |y| %>
+                    <%= y.hidden_field :plan, :value => 'platinum' %>
+                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                  <% end %>  </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+
+
+

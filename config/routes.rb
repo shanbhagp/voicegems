@@ -1,5 +1,7 @@
 App4::Application.routes.draw do
 
+  resources :plans
+
   get "password_resets/new"
 
   resources :password_resets
@@ -94,7 +96,7 @@ App4::Application.routes.draw do
 
  match '/addcodeadmin', to: 'sessions#addcodeadmin'
 
- match '/stripetest', to: 'users#stripetest'
+ match '/purchase_sub_existing', to: 'users#purchase_sub_existing'  #this used to be called stripetest
 
  match '/stripereceiver', to: 'users#stripereceiver' #, via: :post 
 
@@ -125,7 +127,55 @@ App4::Application.routes.draw do
  match '/test', to: 'users#test'
 
  match '/flashissue', to: 'static#flashissue'
+
+ match '/pricing', to: 'subscriptions#pricing'
+
+ match '/stripenewcustomertesting', to: 'users#stripenewcustomertesting'
+
+ match '/changesub', to: 'users#changesub'
+
+ match '/newcustomer_purchase', to: 'users#newcustomer_purchase'
+
+ match '/newcustomercreate_purchase', to: 'users#newcustomercreate_purchase'
+
+ match '/stripenewcustomer_purchase', to: 'users#stripenewcustomer_purchase'
+
+ match '/changepur', to: 'users#changepur'
+
+ match '/stripereceiver_purchase', to: 'users#stripereceiver_purchase'
+
+ match '/change_subscription', to: 'subscriptions#change_subscription'
+
+ match '/changesubscription_choose', to: 'subscriptions#changesubscription_choose'
+
+ match  '/stripereceiver_existing', to: 'subscriptions#stripereceiver_existing'
+
+ match '/existing_card_changesub', to: 'subscriptions#existing_card_changesub'
  
+ match '/purchase_sub_existing_choose', to: 'users#purchase_sub_existing_choose'
+
+ match '/changesub_existinguser', to: 'users#changesub_existinguser'
+
+ match '/purchase_sub_existing_card', to: 'users#purchase_sub_existing_card'
+
+ match '/purchase_sub_new_card', to: 'users#purchase_sub_new_card'
+
+ match '/purchase_sub_not_stripe_customer', to: 'users#purchase_sub_not_stripe_customer'
+
+ match '/existing_user_purchase', to: 'users#existing_user_purchase'
+
+ match '/existing_user_purchase_select', to: 'users#existing_user_purchase_select'
+
+ match '/existing_changepur', to: 'users#existing_changepur'
+
+ match '/purchase_events_existing_card', to: 'users#purchase_events_existing_card'
+
+ match '/purchase_events_new_card', to: 'users#purchase_events_new_card'
+
+ match '/purchase_events_new_stripe_customer', to: 'users#purchase_events_new_stripe_customer'
+
+ match '/plantest', to: 'static#plantest'
+
  #match '/events/assets/' => redirect('/assets')
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")

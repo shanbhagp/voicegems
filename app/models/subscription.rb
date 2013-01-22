@@ -9,5 +9,6 @@ class Subscription < ActiveRecord::Base
 
   scope :active, where(active: true)
 
+  default_scope order: 'subscriptions.created_at ASC'  #puts in order from oldest (first) to newest
 
 end
