@@ -23,10 +23,10 @@
 
          <div class="row">
             <% if customer_has_active_subscription? %> 
-            <p><icon class="icon-caret-right"></i>&nbsp;You have <%= @s.events_remaining %> event pages left on your <%= @s.plan_id %> plan through the year ending <%= @s_year.strftime("%b %d, %Y") %>.</p>
+            <p><icon class="icon-caret-right"></i>&nbsp;You have <%= @s.events_remaining %> event page<% if @s.events_remaining > 1 %>s<% end %> left on your <%= @s.plan_id %> plan through the year ending <%= @s_year.strftime("%b %d, %Y") %>.</p>
             <% end %>
             <% if current_user.purchased_events > 0 %>
-            <p><icon class="icon-caret-right"></i>&nbsp;You <% if customer_has_active_subscription? %>also <% end %>have <%= current_user.purchased_events %> purchased event pages remaining.</p>
+            <p><icon class="icon-caret-right"></i>&nbsp;You <% if customer_has_active_subscription? %>also <% end %>have <%= current_user.purchased_events %> purchased event page<% if current_user.purchased_events > 1 %>s<% end %> remaining.</p>
             <% end %> 
             <p>You may purchase <% if current_user.customer == true %>additional <% end %> event pages here.</p>
 
