@@ -13,6 +13,7 @@ gem 'best_in_place'
 gem 'stripe'
 gem 'pg'
 gem 'thin'
+gem 'exceptional'
 #gem 'letter_opener', :group => :development
 
 #gem "mail", "2.1.3"

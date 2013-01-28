@@ -88,7 +88,7 @@
                 Select number of events:
                 <%= form_for(:pnc, url: newcustomer_purchase_path) do |y| %>
                   <%= y.select :number, (1..24) %>
-                  <%= y.submit "Purchase", class: "btn-primary btn-large" %>
+                  <%= y.submit "Checkout!", class: "btn-primary btn-large" %>
                 <% end %>  
               </li>
             </ul>
