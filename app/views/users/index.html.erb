@@ -14,7 +14,7 @@
     <th>Admin?</th>
     <th>Customer?</th>
     <th>Customer ID</th>
-    <th></th>
+    <th>Purchased Events</th>
     <th></th>
   </tr>
 
@@ -32,6 +32,7 @@
     <td><%= user.admin %></td>
     <td><%= user.customer %></td>
     <td><%= user.customer_id %> </td>
+    <td><%= user.purchased_events %> </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -71,7 +71,7 @@ def changesubscription_choose
 	 @cardtype = c.active_card.type
 	end 
 	if @newplan == @currentplan
-		flash[:error] = "You are already subscribed to the #{@currentplan.titleize} plan.  Please choose another."
+		flash[:error] = "You are already subscribed to the #{@currentplan.titleize} plan."
 		redirect_to change_subscription_path
 	else
 	@nplan = Plan.find_by_name(@newplan)
