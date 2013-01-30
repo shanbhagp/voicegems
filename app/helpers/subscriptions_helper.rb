@@ -3,13 +3,13 @@ module SubscriptionsHelper
 # wasn't sure how to make this work
 #def suboptions
 #	if @plan.name == 'basic'
-#		[ ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Pro Plan (100 pages/yr, $85/mo", "pro"] ]
+#		[ ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Pro Plan (100 pages/yr, $85/mo)", "pro"] ]
 #	end
 #	if @plan.name == 'gold'
-#		[["Basic Plan (25 pages/yr, $35/mo)", "basic"], ["Pro Plan (100 pages/yr, $85/mo", "pro"] ]
+#		[["Basic Plan (25 pages/yr, $35/mo)", "basic"], ["Pro Plan (100 pages/yr, $85/mo)", "pro"] ]
 #	end
 #
-#	[["Basic Plan (25 pages/yr, $35/mo)", "basic"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Pro Plan (100 pages/yr, $85/mo", "pro"] ]
+#	[["Basic Plan (25 pages/yr, $35/mo)", "basic"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Pro Plan (100 pages/yr, $85/mo)", "pro"] ]
 #end 
 
 
