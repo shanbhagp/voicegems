@@ -572,35 +572,94 @@ def changesub_existinguser
    @plan = params[:sub][:plan]
    @planobject = Plan.find_by_name(@plan)
    @events_number = @planobject.events_number 
+   @code = params[:sub][:code]
+
+    if is_valid_sub_coupon(@code) && !@planobject.nil?
+          @coupon = Coupon.find_by_name(@code)
+          @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+    end
+
    if !current_user.customer_id.blank?
      c = Stripe::Customer.retrieve(current_user.customer_id)
      @last4 = c.active_card.last4
      @cardtype = c.active_card.type
    end 
+
    render action: 'purchase_sub_existing_choose'
+
 end 
+
+def sub_coupon_existing_user
+  @plan = params[:sub][:plan]
+  @planobject = Plan.find_by_name(@plan)
+  @events_number = @planobject.events_number
+  @code = params[:sub][:code]
+
+   if !current_user.customer_id.blank?
+     c = Stripe::Customer.retrieve(current_user.customer_id)
+     @last4 = c.active_card.last4
+     @cardtype = c.active_card.type
+   end 
+
+  if is_valid_sub_coupon(@code) && !@planobject.nil? && has_not_trialed?  # to stop people from getting a code and applying it (by cancelling then resubscribing) when already been subscribed for a while
+          @coupon = Coupon.find_by_name(@code)
+          @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'purchase_sub_existing_choose'
+      
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'purchase_sub_existing_choose'
+    end
+
+
+end
 
 # charge stripe and create sub for existing user with no active sub purchasing a sub with existing cc details
 def purchase_sub_existing_card
   @plan = params[:sub][:plan]
   @events_number = params[:sub][:events_number]
+  @code = params[:sub][:code]
 
   # retrieve stripe customer object yet again
   if !current_user.customer_id.blank?
      c = Stripe::Customer.retrieve(current_user.customer_id)
   end 
   
-  #create new subscription object in my database
-  @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
-    @sub.events_remaining = @events_number
-    @sub.save 
+  if is_valid_sub_coupon(@code) 
 
-  #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
-  if has_not_trialed?
-  c.update_subscription(:plan => @plan)
+       #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
+      if has_not_trialed?
+          c.update_subscription(:plan => @plan, :coupon => @code)
+      else
+          c.update_subscription(:plan => @plan, :trial_end => (Date.today + 1.day).to_time.to_i, :coupon => @code) 
+      end 
+      #create new subscription object in my database
+      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
+      @sub.events_remaining = @events_number
+      @sub.coupon = @code
+      @sub.save 
   else
-  c.update_subscription(:plan => @plan, :trial_end => (Date.today + 1.day).to_time.to_i) 
+      #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
+      if has_not_trialed?
+          c.update_subscription(:plan => @plan)
+      else
+          c.update_subscription(:plan => @plan, :trial_end => (Date.today + 1.day).to_time.to_i) 
+      end 
+          #create new subscription object in my database
+      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
+      @sub.events_remaining = @events_number
+      @sub.save 
   end 
+
 
   flash[:success] = "Thank you! You are now subscribed to the #{@plan} plan!"
   redirect_to current_user
@@ -612,13 +671,15 @@ def purchase_sub_new_card
   token = params[:stripeToken]
   @plan = params[:plan] 
   @events_number = params[:events_number] 
+  @code = params[:code]
 
-  if update_card_and_new_subscription(token, @plan)
+  if update_card_and_new_subscription(token, @plan, @code)
     c = Stripe::Customer.retrieve(current_user.customer_id)
  
     #create new subscription object in my database
     @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
     @sub.events_remaining = @events_number
+    @sub.coupon = @code 
     @sub.save 
 
     flash[:success] = "Thank you! You are now subscribed to the #{@plan} plan!"
@@ -636,8 +697,9 @@ def purchase_sub_not_stripe_customer
   token = params[:stripeToken]
   @plan = params[:plan] 
   @events_number = params[:events_number]  #not being used right now because create_customer helper finds the events_number form the plan object via @plan argument
-   
-   if create_customer(token, @plan)  #using the same helper as when a new user signs up as a customer
+  @code = params[:code] 
+
+   if create_customer(token, @plan, @code)  #using the same helper as when a new user signs up as a customer
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
@@ -649,33 +711,7 @@ def purchase_sub_not_stripe_customer
 
 end 
 
-def stripereceiver  #incoming from stripenewcustomer form
-  # get the credit card details submitted by the form
-    token = params[:stripeToken]
-    plan = params[:plan]
 
-
-    #this needs to change to allow for canceled subs  
-    # UPDATE: this is coming from stripenewcustomer, which is only accessible to NEW USERS - so won't need to change to allow for cancellations, and it will never be the case that user.customer = true already for this user
-    if current_user.customer == true #user is already a customer  
-                                      # this should not happen often b/c a customer won't have access to the sign-up link (but this will change when add single-use)      
-      redirect_to current_user, notice: "You are already subscribed to our service. Your card was not charged."  
-
-    else #user not already a customer 
-
-        if create_customer(token, plan)
-              #record stripe's (?) customer_id for this user
-              # this helper is in users helper
-          
-          redirect_to current_user
-        else
-          render 'stripenewcustomer'
-        end 
-
-    end    
-    
-
-end 
 
 
 def newcustomer
@@ -727,7 +763,7 @@ def newcustomercreate
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-                        flash[:error] = "You are already registered on our site. Please sign in, and go to 'Purchase Subscription' under your Accounts tab."
+                        flash[:error] = "You are already registered on our site. Please sign in, and go to 'Purchase Subscription' under your Account tab."
                          redirect_to root_path
           else
               render action: 'newcustomer'
@@ -740,8 +776,10 @@ end
 
 def stripenewcustomer 
   #@plan = 'silver'  #just in case for some reason @plan is not defined in the view, will have default value of 'basic'.  Note that if there are card processing errors, for some reason the @plan value is not retained in the view
-
+  @coupon = nil #default when form first renders.  Won't be set by this line in the subsequent renderings of stripenewcustomer below
+  @code = nil 
 end 
+
 
 #def hide
 #  redirect_to root_path
@@ -757,8 +795,73 @@ def changesub
   @plan = params[:sub][:plan]
   @planobject = Plan.find_by_name(@plan)
   @events_number = @planobject.events_number 
-   render action: 'stripenewcustomer'
+  @code = params[:sub][:code]
+
+    if is_valid_sub_coupon(@code) && !@planobject.nil?
+          @coupon = Coupon.find_by_name(@code)
+          @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+    end
+
+  render action: 'stripenewcustomer'
 end 
+
+def sub_coupon 
+  @plan = params[:coup][:plan]
+  @planobject = Plan.find_by_name(@plan)
+  @events_number = @planobject.events_number
+  @code = params[:coup][:code]
+  
+   if is_valid_sub_coupon(@code) && !@planobject.nil?
+          @coupon = Coupon.find_by_name(@code)
+          @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'stripenewcustomer'
+      
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'stripenewcustomer'
+    end
+end 
+
+
+
+def stripereceiver  #incoming from stripenewcustomer form
+  # get the credit card details submitted by the form
+    token = params[:stripeToken]
+    plan = params[:plan]
+    code = params[:code]
+
+
+    #this needs to change to allow for canceled subs  
+    # UPDATE: this is coming from stripenewcustomer, which is only accessible to NEW USERS - so won't need to change to allow for cancellations, and it will never be the case that user.customer = true already for this user
+    if current_user.customer == true #user is already a customer  
+                                      # this should not happen often b/c a customer won't have access to the sign-up link (but this will change when add single-use)      
+      redirect_to current_user, notice: "You are already subscribed to our service. Your card was not charged."  
+
+    else #user not already a customer 
+
+        if create_customer(token, plan, code)
+              #record stripe's (?) customer_id for this user
+              # this helper is in users helper
+          
+          redirect_to current_user
+        else
+          render 'stripenewcustomer'
+        end 
+
+    end    
+    
+
+end 
+
 
 def newcustomer_purchase
   @user = User.new 
@@ -831,6 +934,7 @@ def stripenewcustomer_purchase
 end 
 
 def changepur
+  # @cost in DOLLARS
   @number= params[:pur][:number].to_i
     if @number.to_i < 6 
        @cost = @number.to_i*35 
@@ -848,19 +952,54 @@ def changepur
 end 
 
 
+def coupon_purchase
+    @coupon= params[:coup][:code]
+    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+    if is_valid_single_use_coupon(@coupon)
+          @price = '$35'
+          @cost = 5  # IN DOLLARS
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'stripenewcustomer_purchase'
+      
+    else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+          if @number.to_i < 6 
+             @cost = @number.to_i*35 
+             @price = '$35'
+          end 
+          if @number.to_i > 5 && @number.to_i < 11 
+             @cost = @number.to_i*30 
+             @price = '$30'
+          end 
+          if @number.to_i > 10 
+             @cost = @number.to_i*25 
+             @price = '$25'
+          end 
+      @coupon = nil 
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'stripenewcustomer_purchase'
+    end
+
+end 
+
 
 def stripereceiver_purchase  #incoming from stripenewcustomer form
   # get the credit card details submitted by the form
     token = params[:stripeToken]
     number = params[:number].to_i
-
+    coupon = params[:coupon]
+    cost = params[:cost]
 
     #this needs to change to allow for canceled subs - I think this is taken care of, no prior canceled subs for a true new customer(user)  
 
-        if create_customer_purchase(token, number)
+        if create_customer_purchase(token, number, cost)
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
+            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
           redirect_to current_user
         else
           render 'stripenewcustomer_purchase'
@@ -930,15 +1069,60 @@ def existing_changepur
    render action: 'existing_user_purchase_select'
 end 
 
+
+def existing_coupon_purchase
+    @coupon= params[:coup][:code]
+    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+
+     # if user is a stripe customer, want to allow him to use existing card
+   if !current_user.customer_id.blank?  
+     c = Stripe::Customer.retrieve(current_user.customer_id)
+     @last4 = c.active_card.last4
+     @cardtype = c.active_card.type
+   end 
+
+
+    if is_valid_single_use_coupon(@coupon)
+          @price = '$35'
+          @cost = 5  # IN DOLLARS
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'existing_user_purchase_select'
+      
+    else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+          if @number.to_i < 6 
+             @cost = @number.to_i*35 
+             @price = '$35'
+          end 
+          if @number.to_i > 5 && @number.to_i < 11 
+             @cost = @number.to_i*30 
+             @price = '$30'
+          end 
+          if @number.to_i > 10 
+             @cost = @number.to_i*25 
+             @price = '$25'
+          end 
+      @coupon = nil 
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'existing_user_purchase_select'
+    end
+end 
+
 # use existing stripe card to purchase events
 def purchase_events_existing_card
 
   @number = params[:peu][:number]
+  coupon = params[:peu][:coupon]
+  cost = params[:peu][:cost]
 
   # retrieve stripe customer object (downstream from user having a customer_id)
   c = Stripe::Customer.retrieve(current_user.customer_id)
   
-  if existing_customer_purchase_events_existing_card(@number)
+  if existing_customer_purchase_events_existing_card(@number, cost)
+         #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
       flash[:success] = "Thank you! You have purchased an additional #{@number} event pages."
       redirect_to current_user
   else #errors in processing the card shouldn't usually happen, because the card was originally ok.  Can test by using stripes card number that binds to customer but does not charge correctly.
@@ -954,8 +1138,14 @@ end
 def purchase_events_new_card
     token = params[:stripeToken]
     @number = params[:number].to_i
+    coupon = params[:coupon]
+    cost = params[:cost]
 
-        if update_card_and_purchase(token, @number)
+        if update_card_and_purchase(token, @number, cost)
+           #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
           flash[:success] = "Thank you! You have purchased an additional #{@number} event pages."
           redirect_to current_user
         else
@@ -967,9 +1157,15 @@ end
 def purchase_events_new_stripe_customer
       token = params[:stripeToken]
       @number = params[:number].to_i
+      coupon = params[:coupon]
+      cost = params[:cost]
 
-        if create_customer_and_purchase_existing_user(token, @number) # this is almost like create_customer_purchase, except have flash.nows in that helper
-          redirect_to current_user
+        if create_customer_and_purchase_existing_user(token, @number, cost) # this is almost like create_customer_purchase, except have flash.nows in that helper
+           #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
+           redirect_to current_user
         else
           redirect_to existing_user_purchase_path
         end 

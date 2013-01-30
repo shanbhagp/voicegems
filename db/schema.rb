@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130111013343) do
+ActiveRecord::Schema.define(:version => 20130129084416) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -37,6 +37,22 @@ ActiveRecord::Schema.define(:version => 20130111013343) do
   add_index "adminkeys", ["event_id"], :name => "index_adminkeys_on_event_id"
   add_index "adminkeys", ["user_id", "event_id"], :name => "index_adminkeys_on_user_id_and_event_id", :unique => true
   add_index "adminkeys", ["user_id"], :name => "index_adminkeys_on_user_id"
+
+  create_table "coupons", :force => true do |t|
+    t.string   "name",               :default => "single_use"
+    t.integer  "percent_off"
+    t.integer  "max_redemptions"
+    t.string   "duration"
+    t.integer  "duration_in_months"
+    t.datetime "redeem_by"
+    t.integer  "times_redeemed"
+    t.string   "free_page_name"
+    t.integer  "free_page_user"
+    t.boolean  "active"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.datetime "redeemed_on"
+  end
 
   create_table "customerkeys", :force => true do |t|
     t.integer  "user_id"
@@ -107,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20130111013343) do
     t.string   "customer_id"
     t.integer  "events_remaining", :default => 0
     t.integer  "events_used",      :default => 0
+    t.string   "coupon"
   end
 
   create_table "userinvites", :force => true do |t|

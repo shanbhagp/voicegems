@@ -16,8 +16,20 @@ module UsersHelper
                                   text.scan(regex).join(zero_width_space)
     end
 
-    def create_customer(token, plan)
+    def create_customer(token, plan, code)
 
+        if !code.nil? && is_valid_sub_coupon(code) 
+        
+        # create a Customer
+        customer = Stripe::Customer.create(
+          :card => token,
+          :plan => plan,
+          :description => "#{current_user.first_name} #{current_user.last_name}",
+          :email => current_user.email,
+          :coupon => code 
+        )
+
+        else
         # create a Customer
         customer = Stripe::Customer.create(
           :card => token,
@@ -26,6 +38,8 @@ module UsersHelper
           :email => current_user.email
         )
 
+        end 
+ 
         if !customer.nil?
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
          # will have to change this to calculated adjusted ER's for when a customer canceled a previous subscription
@@ -36,6 +50,7 @@ module UsersHelper
             @er = 0 #just so @er not undefined - will probably need to change this if-else-end code to be more elegant
           end 
           @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :plan_id => plan, :active => true)
+          @sub.coupon = code
           @sub.events_remaining = @er
           @sub.save 
           flash[:success] = "Thank you for subscribing!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
@@ -118,18 +133,46 @@ module UsersHelper
       !has_trialed? 
     end 
 
-    # for non-subscroption/by-the-event-page purchases
-    def create_customer_purchase(token, number)
+    def is_valid_single_use_coupon(coupon)
+        Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true
+    end 
 
-    if number.to_i < 6 
-       @cost = number.to_i*35 
+    def redeem_single_use_coupon(coupon)
+       if Coupon.find_by_free_page_name(coupon)
+        c = Coupon.find_by_free_page_name(coupon)
+        c.active = false 
+        c.free_page_user = current_user.id
+        c.save
+      end  
     end 
-    if number.to_i > 5 && number.to_i < 11 
-       @cost = number.to_i*30 
-    end 
-    if number.to_i > 10 
-       @cost = number.to_i*25 
-    end 
+
+  def is_valid_sub_coupon(coupon)
+      Coupon.find_by_name(coupon) && Coupon.find_by_name(coupon).active == true
+  end 
+
+
+    # for non-subscription/by-the-event-page purchases
+    def create_customer_purchase(token, number, cost)
+
+      @cost = cost 
+
+      # was passing in coupon here too
+    #if number.to_i < 6 
+    #   @cost = number.to_i*35 
+    #end 
+    #if number.to_i > 5 && number.to_i < 11 
+   #    @cost = number.to_i*30 
+    #end 
+   # if number.to_i > 10 
+   #    @cost = number.to_i*25 
+   # end 
+#
+   # if !coupon.blank?
+   #   if is_valid_single_use_coupon(coupon)
+    #    @cost = 0
+    #  end  
+    #end 
+
         # create a Customer
         customer = Stripe::Customer.create(
           :card => token,
@@ -206,7 +249,7 @@ module UsersHelper
    end 
 
 # for the purchase_sub_new_card action (stripe customer w/o active sub buying a sub)
-  def update_card_and_new_subscription(token, plan)
+  def update_card_and_new_subscription(token, plan, code)
       #should be a customer_id b/c downstream from option in which user has an existing stripe customer id
       c = Stripe::Customer.retrieve(current_user.customer_id)
  
@@ -215,11 +258,20 @@ module UsersHelper
       c.card = token
       c.save
 
-      #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
-      if has_not_trialed?
-      c.update_subscription(:plan => plan)
+      if !code.nil? && is_valid_sub_coupon(code) 
+               #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
+              if has_not_trialed?
+              c.update_subscription(:plan => plan, :coupon => code)
+              else #this shouldn't happen b/c in an upstream controller, set code to nil if has_trialed
+              c.update_subscription(:plan => plan, :trial_end => (Date.today + 1.day).to_time.to_i, :coupon => code)
+              end 
       else
-      c.update_subscription(:plan => plan, :trial_end => (Date.today + 1.day).to_time.to_i)
+             #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
+            if has_not_trialed?
+            c.update_subscription(:plan => plan)
+            else
+            c.update_subscription(:plan => plan, :trial_end => (Date.today + 1.day).to_time.to_i)
+            end 
       end 
 
        rescue Stripe::InvalidRequestError => e
@@ -239,19 +291,21 @@ module UsersHelper
 
   end  
 
-def existing_customer_purchase_events_existing_card(number)
+def existing_customer_purchase_events_existing_card(number, cost)
      
-     if number.to_i < 6 
-       @cost = number.to_i*35 
-     end 
+  @cost = cost
 
-     if number.to_i > 5 && number.to_i < 11 
-       @cost = number.to_i*30 
-     end 
+    # if number.to_i < 6 
+    #   @cost = number.to_i*35 
+    # end 
 
-     if number.to_i > 10 
-       @cost = number.to_i*25 
-     end
+    # if number.to_i > 5 && number.to_i < 11 
+   #    @cost = number.to_i*30 
+    # end 
+
+    # if number.to_i > 10 
+    #   @cost = number.to_i*25 
+    # end
 
        c = Stripe::Customer.retrieve(current_user.customer_id)
      
@@ -286,18 +340,20 @@ def existing_customer_purchase_events_existing_card(number)
 
 end 
 
-def update_card_and_purchase(token, number)
-     if number.to_i < 6 
-       @cost = number.to_i*35 
-     end 
+def update_card_and_purchase(token, number, cost)
 
-     if number.to_i > 5 && number.to_i < 11 
-       @cost = number.to_i*30 
-     end 
+  @cost = cost
+    # if number.to_i < 6 
+    #   @cost = number.to_i*35 
+    # end 
 
-     if number.to_i > 10 
-       @cost = number.to_i*25 
-     end
+    # if number.to_i > 5 && number.to_i < 11 
+   #    @cost = number.to_i*30 
+   #  end 
+
+   #  if number.to_i > 10 
+   #    @cost = number.to_i*25 
+   #  end
 
      #should be a customer_id b/c downstream from option in which user has an existing stripe customer id
       c = Stripe::Customer.retrieve(current_user.customer_id)
@@ -336,17 +392,19 @@ def update_card_and_purchase(token, number)
 
 end 
 
-def create_customer_and_purchase_existing_user(token, number)# this is almost like create_customer_purchase, except have flash.nows in that helper
+def create_customer_and_purchase_existing_user(token, number, cost)# this is almost like create_customer_purchase, except have flash.nows in that helper
 
-   if number.to_i < 6 
-       @cost = number.to_i*35 
-    end 
-    if number.to_i > 5 && number.to_i < 11 
-       @cost = number.to_i*30 
-    end 
-    if number.to_i > 10 
-       @cost = number.to_i*25 
-    end 
+  @cost = cost
+
+  # if number.to_i < 6 
+   #    @cost = number.to_i*35 
+  #  end 
+   # if number.to_i > 5 && number.to_i < 11 
+  #     @cost = number.to_i*30 
+  #  end 
+   # if number.to_i > 10 
+   #    @cost = number.to_i*25 
+  #  end 
         # create a Customer
         customer = Stripe::Customer.create(
           :card => token,

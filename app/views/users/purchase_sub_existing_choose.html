@@ -36,6 +36,9 @@
                                 <% if !@planobject.nil? && (@plan == 'basic' || @plan == 'gold' || @plan == 'pro' || @plan == 'silver' || @plan == 'platinum') %>
                                     
                                     <h4> <%= @planobject.name.titleize %> ($<%= (@planobject.monthly_cost_cents)/100 %>.00/month)  </h4> 
+                                    <% if !@coupon.nil? && !@new_price.nil? %>
+                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied: now only $<%= (@new_price)/100 %>.00/month! </em></h4>
+                                    <% end %>
                                     <br/>
                                     <h4><icon class="icon-ok-sign"></i> <%= @planobject.events_number %> Events / Year </h4>
                                     <h4><icon class="icon-ok-sign"> Unlimited Name Recordings </h4> 
@@ -69,11 +72,35 @@
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesub_existinguser_path) do |y| %>
                                                <%= y.select :plan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", "silver"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Platinum Plan (100 pages/yr, $85/mo", "platinum"] ]) %>
+                                               <%= y.hidden_field :code, :value => @code %>
                                                <%= y.submit "Choose This Plan", class: "btn btn-primary"  %> 
                                              <% end %>  
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange2 %>
                 </div><%# end accordigion group %>
+
+
+                 <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange3">
+                      <h5><span class="blue">Promo Code?</span></h5>
+                    </a>
+                  </div>
+                  <div id="collapsechange3" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                          
+                                   Enter code here:
+                                   <%= form_for(:sub, url: sub_coupon_existing_user_path) do |y| %>
+                                               <%= y.text_field :code %>
+                                               <%= y.hidden_field :plan, :value => @plan %>
+                                               <%= y.submit "Apply Coupon", class: "btn btn-primary"  %> 
+                                             <% end %>  
+                        
+                      </div><%# end accordion inner %>
+                  </div><%# end collapsechange3 %>
+                </div><%# end accordion group %>
+                                        
+            
                                         
             </div>   <%# end accordion%>
 
@@ -101,6 +128,7 @@
 
                           <%= form_for(:sub, url: purchase_sub_existing_card_path) do |y| %>
                                                <%= y.hidden_field :plan, :value => @plan %>
+                                               <%= y.hidden_field :code, :value => @code %>
                                                <%= y.hidden_field :events_number, :value => @events_number %>
                                                <%= y.submit "Purchase Subscription!", class: "btn btn-primary", disable_with: 'Processing'  %> 
                                              <% end %>  
@@ -129,6 +157,7 @@
                             
                             <form action="<%= purchase_sub_new_card_url %>" method="POST" id="payment-form">
                                 <input type="hidden" name="plan" value="<%= @plan %>">
+                                <input type="hidden" name="code" value="<%= @code %>">
                                 <input type="hidden" name="events_number" value="<%= @events_number %>">
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
@@ -163,6 +192,7 @@
                             
                             <form action="<%= purchase_sub_not_stripe_customer_url %>" method="POST" id="payment-form">
                                 <input type="hidden" name="plan" value="<%= @plan %>">
+                                <input type="hidden" name="code" value="<%= @code %>">
                                 <input type="hidden" name="events_number" value="<%= @events_number %>">
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"

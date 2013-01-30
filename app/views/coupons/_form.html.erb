@@ -1,0 +1,20 @@
+<%= simple_form_for(@coupon) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :percent_off %>
+    <%= f.input :max_redemptions %>
+    <%= f.input :duration %>
+    <%= f.input :duration_in_months %>
+    <%= f.input :redeem_by %>
+    <%= f.input :times_redeemed %>
+    <%= f.input :free_page_name %>
+    <%= f.input :free_page_user %>
+    <%= f.input :active %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

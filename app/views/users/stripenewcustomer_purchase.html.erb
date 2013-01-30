@@ -47,7 +47,7 @@
 
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange %>
-                </div><%# end accordigion group %>
+                </div><%# end accordion group %>
 
                 <div class="accordion-group">
                   <div class="accordion-heading">
@@ -67,7 +67,7 @@
                                   <li>
                                     Select number of events:
                                    <%= form_for(:pur, url: changepur_path) do |y| %>
-                                               <%= y.select :number, (1..24) %>
+                                               <%= y.select :number, (1..24), {:selected => "#{@number}"} %>
                                                <%= y.submit "Change Order", class: "btn btn-primary"  %> 
                                              <% end %>  
                                   </li>
@@ -78,9 +78,31 @@
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange2 %>
                 </div><%# end accordigion group %>
-                                        
-            </div>   <%# end accordion%>
 
+            <% if @number.to_i == 1 %>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange3">
+                      <h5><span class="blue">Promo Code?</span></h5>
+                    </a>
+                  </div>
+                  <div id="collapsechange3" class="accordion-body collapse">
+                      <div class="accordion-inner">
+                          
+                                   Enter code here:
+                                   <%= form_for(:coup, url: coupon_purchase_path) do |y| %>
+                                               <%= y.text_field :code %>
+                                               <%= y.hidden_field :number, :value => @number %>
+                                               <%= y.submit "Apply Coupon", class: "btn btn-primary"  %> 
+                                             <% end %>  
+                        
+                      </div><%# end accordion inner %>
+                  </div><%# end collapsechange3 %>
+                </div><%# end accordigion group %>
+             <% end %>  
+
+            </div>   <%# end accordion%>
+          
 
         <hr/>
   
@@ -88,7 +110,7 @@
      
 
         <br/>
-      <% if !@number.nil? && @number.to_i > 0 %> <%# so can't checkout if need to select a number of pages again (happens after a card processing error%>
+    <% if !@number.nil? && @number.to_i > 0 %> <%# so can't checkout if need to select a number of pages again (happens after a card processing error%>
 
            <%= label_tag :pay_with_card do %>
             <%= image_tag "visa.png" %>
@@ -101,7 +123,9 @@
               <br/>
               <form action="<%= stripereceiver_purchase_url %>" method="POST" id="payment-form">
                   <input type="hidden" name="number" value="<%= @number %>">
-                    
+                  <input type="hidden" name="coupon" value="<%= @coupon %>">
+                  <input type="hidden" name="cost" value="<%= @cost %>"><%# in dollars %> 
+
                     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                           data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-amount="<%= @cost.to_i*100 %>" data-name="NameCoach"
                       data-description="<%= @number %> Event Pages"

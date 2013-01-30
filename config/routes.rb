@@ -1,5 +1,7 @@
 App4::Application.routes.draw do
 
+  resources :coupons
+
   resources :plans
 
   get "password_resets/new"
@@ -175,6 +177,14 @@ App4::Application.routes.draw do
  match '/purchase_events_new_stripe_customer', to: 'users#purchase_events_new_stripe_customer'
 
  match '/plantest', to: 'static#plantest'
+
+ match '/coupon_purchase', to: 'users#coupon_purchase'
+
+ match '/existing_coupon_purchase', to: 'users#existing_coupon_purchase'
+
+ match '/sub_coupon', to: 'users#sub_coupon'
+
+ match 'sub_coupon_existing_user', to: 'users#sub_coupon_existing_user'
 
  #match '/events/assets/' => redirect('/assets')
 # match '/events/assets/etc' => redirect('/assets/%{etc}')

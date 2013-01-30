@@ -55,36 +55,70 @@ def change_subscription
 	#@plan = Plan.find_by_name(@s.plan_id) #this would be better for easily retrieving other associated plan info;  but could have just used @s.plan_id for the plan name
 	if !@s.plan_id.nil? # so that @plan isn't nil, which would cause problems in the view 
 	@plan = Plan.find_by_name(@s.plan_id)
+				#see if active subscription has a coupon associated with it
+				if !@s.coupon.nil? && Coupon.find_by_name(@s.coupon)
+					@coupon = Coupon.find_by_name(@s.coupon)
+					@code = @coupon.name
+					@new_price = @plan.monthly_cost_cents * (100 - @coupon.percent_off)/100
+				else
+					@coupon = nil 
+					@code = nil
+					@new_price = nil 
+				end 
 	else
-	@plan = 'this is nil' 
+		@plan = 'this is nil' 
+		@coupon = nil 
+		@code = nil 
+	    @new_price = nil 
 	end 
-
 
 end 
 
 def changesubscription_choose
 	@newplan = params[:sub][:newplan]
 	@currentplan = params[:sub][:currentplan]
+
+    @subs = current_user.subscriptions 
+	# users first (oldest) subscription, for displaying free trial information
+	@firstsub = @subs.first
+	@firstsub_end = @firstsub.created_at + 14.days
+
 	if !current_user.customer_id.blank?
 	 c = Stripe::Customer.retrieve(current_user.customer_id)
 	 @last4 = c.active_card.last4
 	 @cardtype = c.active_card.type
 	end 
+
 	if @newplan == @currentplan
 		flash[:error] = "You are already subscribed to the #{@currentplan.titleize} plan."
 		redirect_to change_subscription_path
+		#LEARNING NOTE:  had @nplan outside of this if-else-end, so Rails was executing the external code even though we made a redirect_call here.  IT DOES THAT. So if want to end the action, should have called return false
 	else
 	@nplan = Plan.find_by_name(@newplan)
 	@cplan = Plan.find_by_name(@currentplan)
 	# NEED TO CALCULATE THIS HERE, MAYBE USE A HELPER
 	@new_events_number = adjust_number(@nplan.events_number, @cplan.events_number)
 	@when_eligible = wheneligible(@nplan.events_number, @cplan.events_number)
+
+		 #see if active subscription has a coupon associated with it
+			if @subs && !@subs.active.blank?
+			@s = @subs.active.first
+				if !@s.coupon.nil? && Coupon.find_by_name(@s.coupon)
+					@coupon = Coupon.find_by_name(@s.coupon)
+					@code = @coupon.name
+					@new_price = @nplan.monthly_cost_cents * (100 - @coupon.percent_off)/100
+				else
+					@coupon = nil 
+					@code = nil
+					@new_price = nil 
+				end 
+			end 
 	end 
 
-	@subs = current_user.subscriptions 
-	# users first (oldest) subscription, for displaying free trial information
-	@firstsub = @subs.first
-	@firstsub_end = @firstsub.created_at + 14.days
+
+
+
+
 end
 
 #incoming from changesubscription_choose for new cc info; should only apply when someone has an active sub
@@ -92,7 +126,8 @@ def stripereceiver_existing
 	token = params[:stripeToken]
 	@newplan = params[:plan] 
 	@new_events_number = params[:new_events_number] #this should be the adjusted number as calculated changesubscription_choose
-	
+	@code = params[:code]
+
 	c = Stripe::Customer.retrieve(current_user.customer_id)
 	
 	if update_card_and_subscription(token, @newplan) #helper method in users_helper
@@ -106,6 +141,7 @@ def stripereceiver_existing
 			#create new subscription object in my database
 			@sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @newplan, :active => true)
 		    @sub.events_remaining = @new_events_number
+		    @sub.coupon = @code 
 		    @sub.save 
 
 			flash[:success] = "Your credit card details have been updated, and your subscription has now changed to the #{@newplan} plan!"
@@ -124,6 +160,7 @@ def existing_card_changesub
 	@newplan = params[:newsub][:newplan]
 	@new_events_number = params[:newsub][:new_events_number] #this should be the adjusted number as calculated changesubscription_choose
 	@nplan = Plan.find_by_name(@newplan)
+	@code = params[:newsub][:code]
 
 	# no need to use the stripe-rescue helper methods here because not trying a new card. still, can conditionalize the actions here on stripe successfully updating
 
@@ -145,6 +182,7 @@ def existing_card_changesub
 		#create new subscription object in my database
 		@sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @newplan, :active => true)
 	    @sub.events_remaining = @new_events_number
+	    @sub.coupon = @code 
 	    @sub.save 
 
 		flash[:success] = "Your subscription has now changed to the #{@newplan} plan!"
