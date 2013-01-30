@@ -15,19 +15,19 @@
  <br/>
  <br/>
  <div class="container">
-          
+
        <!--SILVER-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading">SILVER PLAN</div>
+          <div class="PlanBoxHeading"><%= @first_plan.name.upcase%> PLAN</div>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$35 Monthly</strong></li>
-              <li>25 Events / Year</li>
+              <li><strong>$<%= @first_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
+              <li><%= @first_plan.events_number%> Events / Year</li>
               <li>Unlimited Name Recordings </li>
               <li>Free 14 Day Trial</li>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                <%= y.hidden_field :plan, :value => 'silver' %>
+                <%= y.hidden_field :plan, :value => @first_plan.my_plan_id %>
                   <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>
@@ -37,16 +37,16 @@
 
         <!--Gold-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading">GOLD PLAN</div>
+          <div class="PlanBoxHeading"><%= @second_plan.name.upcase%> PLAN</div>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$55 Monthly</strong></li>
-              <li>50 Events / Year</li>
-              <li>Unlimited Name Recordings</li>
+              <li><strong>$<%= @second_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
+              <li><%= @second_plan.events_number%> Events / Year</li>
+              <li>Unlimited Name Recordings </li>
               <li>Free 14 Day Trial</li>
               <li>
-                <p class="PlanBoxSignUp">  <%= form_for(:snc, url: newcustomer_path) do |y| %>
-                  <%= y.hidden_field :plan, :value => 'gold' %>
+                <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
+                <%= y.hidden_field :plan, :value => @second_plan.my_plan_id %>
                   <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>
@@ -56,16 +56,16 @@
         
         <!--Platinum-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading">PLATINUM PLAN</div>
+          <div class="PlanBoxHeading"><%= @third_plan.name.upcase%> PLAN</div>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$85 Monthly</strong></li>
-              <li>100 Events/ Year</li>
-              <li>Unlimited Name Recordings</li>
+              <li><strong>$<%= @third_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
+              <li><%= @third_plan.events_number%> Events / Year</li>
+              <li>Unlimited Name Recordings </li>
               <li>Free 14 Day Trial</li>
               <li>
-                <p class="PlanBoxSignUp"> <%= form_for(:snc, url: newcustomer_path) do |y| %>
-                  <%= y.hidden_field :plan, :value => 'platinum' %>
+                <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
+                <%= y.hidden_field :plan, :value => @third_plan.my_plan_id %>
                   <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>

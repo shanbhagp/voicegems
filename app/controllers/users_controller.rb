@@ -557,13 +557,15 @@ end #admincodesignupcreate
 
 # for an existing user w/ no active sub (either never a customer, or canceled a sub, or just bought events) to purchase a subscription
 def purchase_sub_existing
- 
+  @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+  @second_plan = Plan.find_by_my_plan_id(plan_set_two)
+  @third_plan = Plan.find_by_my_plan_id(plan_set_three)
 end 
 
 #renders checkout page for existing users w/o active sub buying a subscription
 def purchase_sub_existing_choose
-  @plan = params[:sec][:plan]
-  @planobject = Plan.find_by_name(@plan)
+  @plan = params[:sec][:plan] #now this is an integer, my_plan_id
+  @planobject = Plan.find_by_my_plan_id(@plan)
   @events_number = @planobject.events_number 
   # if user is a stripe customer (even though no acticve sub), want to allow him to use existing card
    if !current_user.customer_id.blank?  
@@ -576,8 +578,8 @@ end
 
 #for changing subscription choice on existing user purchase subscription checkout
 def changesub_existinguser
-   @plan = params[:sub][:plan]
-   @planobject = Plan.find_by_name(@plan)
+   @plan = params[:sub][:plan]  # this is an integer corresponding to my_plan_id
+   @planobject = Plan.find_by_my_plan_id(@plan)
    @events_number = @planobject.events_number 
    @code = params[:sub][:code]
 
@@ -602,8 +604,8 @@ def changesub_existinguser
 end 
 
 def sub_coupon_existing_user
-  @plan = params[:sub][:plan]
-  @planobject = Plan.find_by_name(@plan)
+  @plan = params[:sub][:plan]  #this is an integer, corresponding to my_plan_id
+  @planobject = Plan.find_by_my_plan_id(@plan)
   @events_number = @planobject.events_number
   @code = params[:sub][:code]
 
@@ -632,7 +634,7 @@ end
 
 # charge stripe and create sub for existing user with no active sub purchasing a sub with existing cc details
 def purchase_sub_existing_card
-  @plan = params[:sub][:plan]
+  @plan = params[:sub][:plan]   #integer corresponding to my_plan_id
   @events_number = params[:sub][:events_number]
   @code = params[:sub][:code]
 
@@ -650,7 +652,7 @@ def purchase_sub_existing_card
           c.update_subscription(:plan => @plan, :trial_end => (Date.today + 1.day).to_time.to_i, :coupon => @code) 
       end 
       #create new subscription object in my database
-      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
+      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :my_plan_id => @plan, :plan_name => Plan.find_by_my_plan_id(@plan).name, :active => true)
       @sub.events_remaining = @events_number
       @sub.coupon = @code
       @sub.save 
@@ -662,13 +664,13 @@ def purchase_sub_existing_card
           c.update_subscription(:plan => @plan, :trial_end => (Date.today + 1.day).to_time.to_i) 
       end 
           #create new subscription object in my database
-      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
+      @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :my_plan_id => @plan, :plan_name => Plan.find_by_my_plan_id(@plan).name, :active => true)
       @sub.events_remaining = @events_number
       @sub.save 
   end 
 
 
-  flash[:success] = "Thank you! You are now subscribed to the #{@plan} plan!"
+  flash[:success] = "Thank you! You are now subscribed to the #{Plan.find_by_my_plan_id(@plan).name} plan!"
   redirect_to current_user
 
   #rescue Stripe::StripeError => e  # THIS CODE WORKS!!!  NEEED TO FIGURE OUT HOW EXACTLY
@@ -681,7 +683,7 @@ end
 # stripe receiver for new cc details when creating sub for existing user with no active sub purchasing a sub, when already a stripe customer 
 def purchase_sub_new_card
   token = params[:stripeToken]
-  @plan = params[:plan] 
+  @plan = params[:plan] #integer corresponding to my_plan_id
   @events_number = params[:events_number] 
   @code = params[:code]
 
@@ -689,12 +691,12 @@ def purchase_sub_new_card
     c = Stripe::Customer.retrieve(current_user.customer_id)
  
     #create new subscription object in my database
-    @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :plan_id => @plan, :active => true)
+    @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :my_plan_id => @plan, :plan_name => Plan.find_by_my_plan_id(@plan).name, :active => true)
     @sub.events_remaining = @events_number
     @sub.coupon = @code 
     @sub.save 
 
-    flash[:success] = "Thank you! You are now subscribed to the #{@plan} plan!"
+    flash[:success] = "Thank you! You are now subscribed to the #{Plan.find_by_my_plan_id(@plan).name} plan!"
     redirect_to current_user
 
   else
@@ -707,7 +709,7 @@ end
 # stripe receiver for new cc details when creating sub for existing user with no active sub purchasing a sub, when NOT already a stripe customer
 def purchase_sub_not_stripe_customer
   token = params[:stripeToken]
-  @plan = params[:plan] 
+  @plan = params[:plan] #integer corresponding to my_plan_id
   @events_number = params[:events_number]  #not being used right now because create_customer helper finds the events_number form the plan object via @plan argument
   @code = params[:code] 
 
@@ -717,6 +719,10 @@ def purchase_sub_not_stripe_customer
           
           redirect_to current_user
    else
+            @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+            @second_plan = Plan.find_by_my_plan_id(plan_set_two)
+            @third_plan = Plan.find_by_my_plan_id(plan_set_three)
+            #These above are required to properly render purchase_sub_existing. Not changing below to redirect because the create_customer helper is creating Flash.nows, not Flashs, and this helper also being used in for totally new customers/users
           render 'purchase_sub_existing'
    end 
 
@@ -728,7 +734,7 @@ end
 
 def newcustomer
   @user = User.new 
-  @plan = params[:snc][:plan]
+  @plan = params[:snc][:plan] #gives my_plan_id
 
   if signed_in?
     if customer_has_active_subscription?
@@ -749,8 +755,8 @@ def newcustomercreate
     @user.password_confirmation=params[:user][:password_confirmation]
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]
-    @plan = params[:user][:plan]  #this will pass in the @plan value into the stripenewcustomer page via the render 'stripenewcustomer' below (changed this from redirect, wasn't sure that would work)
-    @planobject = Plan.find_by_name(@plan)
+    @plan = params[:user][:plan]  #this will pass in the @plan value (my_plan_id) into the stripenewcustomer page via the render 'stripenewcustomer' below (changed this from redirect, wasn't sure that would work)
+    @planobject = Plan.find_by_my_plan_id(@plan)
     @events_number = @planobject.events_number 
 
     if @user.save
@@ -805,7 +811,7 @@ end
 #for changing subscription order on new customer checkout
 def changesub
   @plan = params[:sub][:plan]
-  @planobject = Plan.find_by_name(@plan)
+  @planobject = Plan.find_by_my_plan_id(@plan)
   @events_number = @planobject.events_number 
   @code = params[:sub][:code]
 
@@ -824,7 +830,7 @@ end
 
 def sub_coupon 
   @plan = params[:coup][:plan]
-  @planobject = Plan.find_by_name(@plan)
+  @planobject = Plan.find_by_my_plan_id(@plan)
   @events_number = @planobject.events_number
   @code = params[:coup][:code]
   

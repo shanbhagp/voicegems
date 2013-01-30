@@ -33,7 +33,7 @@
                   <div id="collapsechange" class="accordion-body collapse in">
                       <div class="accordion-inner">
 
-                                <% if !@planobject.nil? && (@plan == 'basic' || @plan == 'gold' || @plan == 'pro' || @plan == 'silver' || @plan == 'platinum') %>
+                                <% if !@planobject.nil?  %>
                                     
                                     <h4> <%= @planobject.name.titleize %> ($<%= (@planobject.monthly_cost_cents)/100 %>.00/month)  </h4> 
                                     <% if !@coupon.nil? && !@new_price.nil? %>
@@ -71,7 +71,7 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesub_existinguser_path) do |y| %>
-                                               <%= y.select :plan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", "silver"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Platinum Plan (100 pages/yr, $85/mo)", "platinum"] ]) %>
+                                               <%= y.select :plan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum Plan (100 pages/yr, $85/mo)", 3] ]) %>
                                                <%= y.hidden_field :code, :value => @code %>
                                                <%= y.submit "Choose This Plan", class: "btn btn-primary"  %> 
                                              <% end %>  
@@ -109,7 +109,7 @@
 
         <br/>
 
-     <% if !@planobject.nil? && (@plan == 'basic' || @plan == 'gold' || @plan == 'pro' || @plan == 'silver' || @plan == 'platinum') %>  <%# won't ever be used b/c currently redirecting to purchase_sub_existing upon cc failure; but here just in case%>
+     <% if !@planobject.nil? %>  <%# won't ever be used b/c currently redirecting to purchase_sub_existing upon cc failure; but here just in case%>
 
         <% if !current_user.customer_id.blank? %> 
 
@@ -162,7 +162,7 @@
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-panel-label="Purchase Subscription!" data-name="NameCoach" data-label="Enter New Card Details"
-                                    data-description="<%= @plan %> subscription"
+                                    data-description="<%= Plan.find_by_my_plan_id(@plan).name %> subscription"
                                     data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
                                 <br/>
                                 <br/>
@@ -197,7 +197,7 @@
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-panel-label="Purchase Subscription!" data-name="NameCoach" data-label="Pay with Card"
-                                    data-description="<%= @plan %> subscription"
+                                    data-description="<%= Plan.find_by_my_plan_id(@plan).name  %> subscription"
                                     data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
                                 <br/>
                                 <br/>

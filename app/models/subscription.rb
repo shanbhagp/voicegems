@@ -1,5 +1,5 @@
 class Subscription < ActiveRecord::Base
-  attr_accessible :active, :canceled_at, :customer_id, :email, :plan_id, :user_id, :explanation
+  attr_accessible :active, :canceled_at, :customer_id, :email, :plan_id, :user_id, :explanation, :my_plan_id, :plan_name
 
   belongs_to :user
 

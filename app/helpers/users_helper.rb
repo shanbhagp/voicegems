@@ -16,7 +16,7 @@ module UsersHelper
                                   text.scan(regex).join(zero_width_space)
     end
 
-    def create_customer(token, plan, code)
+    def create_customer(token, plan, code)  #plan is now a my_plan_id
 
         if !code.nil? && is_valid_sub_coupon(code) 
         
@@ -44,12 +44,12 @@ module UsersHelper
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
          # will have to change this to calculated adjusted ER's for when a customer canceled a previous subscription
          #except this is for new users, so probalby won't have to do this
-          if Plan.find_by_name(plan) #to prevent a nil problem
-            @er = Plan.find_by_name(plan).events_number
+          if Plan.find_by_my_plan_id(plan) #to prevent a nil problem
+            @er = Plan.find_by_my_plan_id(plan).events_number
           else 
             @er = 0 #just so @er not undefined - will probably need to change this if-else-end code to be more elegant
           end 
-          @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :plan_id => plan, :active => true)
+          @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
           @sub.coupon = code
           @sub.events_remaining = @er
           @sub.save 
@@ -220,7 +220,7 @@ module UsersHelper
 
 
     # for a customer changing their subscription (for stripereceiver_existing action)
-    def update_card_and_subscription(token, plan)
+    def update_card_and_subscription(token, plan) # plan is now a my_plan_id
       
       c = Stripe::Customer.retrieve(current_user.customer_id)  #have this in the enveloping controller action as well, because of the 'undefined variable c' error i was getting from the 4000000000000341 card test
 
@@ -249,7 +249,7 @@ module UsersHelper
    end 
 
 # for the purchase_sub_new_card action (stripe customer w/o active sub buying a sub)
-  def update_card_and_new_subscription(token, plan, code)
+  def update_card_and_new_subscription(token, plan, code) # plan is now a my_plan_id
       #should be a customer_id b/c downstream from option in which user has an existing stripe customer id
       c = Stripe::Customer.retrieve(current_user.customer_id)
  
@@ -448,5 +448,17 @@ def create_customer_and_purchase_existing_user(token, number, cost)# this is alm
 
 
 end 
+
+def plan_set_one
+    1  #this returns the integer 1
+end 
+def plan_set_two
+    2  #this returns the integer 1
+end 
+def plan_set_three
+    3  #this returns the integer 1
+end 
+
+
 
 end

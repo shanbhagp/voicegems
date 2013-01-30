@@ -65,13 +65,13 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesubscription_choose_path) do |y| %>
-                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", "silver"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Platinum (100 pages/yr, $85/mo)", "platinum"] ]) %>
-                                                <%= y.hidden_field :currentplan, :value => @plan.name %>
+                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum (100 pages/yr, $85/mo)", 3] ]) %>
+                                                <%= y.hidden_field :currentplan, :value => @plan.my_plan_id %>
                                                <%= y.submit "Go to Checkout", class: "btn btn-primary"  %> 
                                              <% end %>  
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange2 %>
-                </div><%# end accordigion group %>
+                </div><%# end accordion group %>
                                         
             </div>   <%# end accordion%>
 

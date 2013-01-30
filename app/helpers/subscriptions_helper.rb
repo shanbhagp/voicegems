@@ -11,7 +11,13 @@ module SubscriptionsHelper
 #
 #	[["Basic Plan (25 pages/yr, $35/mo)", "basic"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Pro Plan (100 pages/yr, $85/mo)", "pro"] ]
 #end 
-
+#def options
+#["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 1], ["Platinum Plan (100 pages/yr, $85/mo)", 3]
+#      option = '['
+ #     option+= '"Silver Plan"'
+ ##     option+= '1'
+ #     option+= ']'
+#end
 
 def adjust_number(newplannumber, oldplannumber)
 	@subs = current_user.subscriptions 

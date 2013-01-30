@@ -64,7 +64,7 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesubscription_choose_path) do |y| %>
-                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", "silver"], ["Gold Plan (50 pages/yr, $55/mo)", "gold"], ["Platinum Plan (100 pages/yr, $85/mo)", "platinum"] ]) %>
+                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum Plan (100 pages/yr, $85/mo)", 3] ]) %>
                                                 <%= y.hidden_field :currentplan, :value => @currentplan %>
                                                <%= y.submit "Go to Checkout", class: "btn btn-primary"  %> 
                                              <% end %>  
@@ -133,7 +133,7 @@
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-panel-label="Change Subscription!" data-name="NameCoach" data-label="Enter New Card Details"
-                                    data-description="<%= @newplan %> subscription"
+                                    data-description="<%= Plan.find_by_my_plan_id(@newplan).name %> subscription"
                                     data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
                                 <br/>
                                 <br/>
