@@ -1,5 +1,6 @@
 class SubscriptionsController < ApplicationController
-before_filter :signed_in_user
+before_filter :signed_in_user, only: [:cancel, :unsubscribe, :index, :change_subscription, :changesubscription_choose, 
+	:stripereceiver_existing, :existing_card_changesub]
 before_filter :owner, only: [:index]
 
 #shows the cancel subscription page

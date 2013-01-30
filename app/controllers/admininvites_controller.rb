@@ -1,4 +1,5 @@
 class AdmininvitesController < ApplicationController
+before_filter :signed_in_user, only: [:create]
 before_filter :owner, only: [:index]
 
 	def index
