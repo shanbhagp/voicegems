@@ -11,6 +11,7 @@
     <th>Active?</th>
     <th>Events Remaining</th>
     <th>Explanation</th>
+    <th>Coupon</th>
   </tr>
 
 <% @subs.each do |k| %>
@@ -24,6 +25,7 @@
     <td><%= k.active %></td>
     <td><%= k.events_remaining %></td>
     <td> <%= k.explanation %> </td>
+    <td> <%= k.coupon %> </td>
 <% end %>
 </table>
 

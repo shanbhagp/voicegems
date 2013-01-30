@@ -664,6 +664,11 @@ def purchase_sub_existing_card
   flash[:success] = "Thank you! You are now subscribed to the #{@plan} plan!"
   redirect_to current_user
 
+  #rescue Stripe::StripeError => e  # THIS CODE WORKS!!!  NEEED TO FIGURE OUT HOW EXACTLY
+  #       logger.error "Stripe error while creating subscription for existing user with card on file"
+  #       flash[:error] = "Something went wrong.  Please try again or contact us!"
+   #      redirect_to current_user
+
 end 
 
 # stripe receiver for new cc details when creating sub for existing user with no active sub purchasing a sub, when already a stripe customer 
@@ -955,6 +960,7 @@ end
 def coupon_purchase
     @coupon= params[:coup][:code]
     @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+
     if is_valid_single_use_coupon(@coupon)
           @price = '$35'
           @cost = 5  # IN DOLLARS
