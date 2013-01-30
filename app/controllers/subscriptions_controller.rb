@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+before_filter :signed_in_user
 before_filter :owner, only: [:index]
 
 #shows the cancel subscription page

@@ -1,7 +1,7 @@
 class PracticeobjectsController < ApplicationController
   # GET /practiceobjects
   # GET /practiceobjects.json
-
+  before_filter :signed_in_user
   before_filter :owner, only: [:index, :show]
   # destroy action modified to just hide the PO
 

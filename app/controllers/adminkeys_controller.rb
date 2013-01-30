@@ -1,5 +1,7 @@
 class AdminkeysController < ApplicationController
+before_filter :signed_in_user
 before_filter :owner, only: [:index, :destroy]
+
 
 	def index 
 		@keys = Adminkey.all
