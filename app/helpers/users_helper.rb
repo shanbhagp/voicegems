@@ -16,7 +16,7 @@ module UsersHelper
                                   text.scan(regex).join(zero_width_space)
     end
 
-    def create_customer(token, plan, code)  #plan is now a my_plan_id
+    def create_customer(token, plan, code, newprice)  #plan is now a my_plan_id
 
         if !code.nil? && is_valid_sub_coupon(code) 
         
@@ -49,11 +49,25 @@ module UsersHelper
           else 
             @er = 0 #just so @er not undefined - will probably need to change this if-else-end code to be more elegant
           end 
+          
+          #create subscription
           @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
           @sub.coupon = code
           @sub.events_remaining = @er
           @sub.save 
-          flash[:success] = "Thank you for subscribing!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+
+           #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+              :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+              :sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+              :sub_actual_monthly_cost_in_cents => newprice, :sub_coupon_name => @sub.coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.sub_receipt(current_user, @r).deliver
+
+
+          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -152,7 +166,7 @@ module UsersHelper
 
 
     # for non-subscription/by-the-event-page purchases
-    def create_customer_purchase(token, number, cost)
+    def create_customer_purchase(token, number, cost, coupon)
 
       @cost = cost 
 
@@ -193,6 +207,15 @@ module UsersHelper
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
           current_user.save
+
+          #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.purchase_receipt(current_user, @r).deliver
+
           flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
         else
           flash.now[:error] = "Something went wrong, please try again."
@@ -291,7 +314,7 @@ module UsersHelper
 
   end  
 
-def existing_customer_purchase_events_existing_card(number, cost)
+def existing_customer_purchase_events_existing_card(number, cost, coupon)
      
   @cost = cost
 
@@ -322,6 +345,13 @@ def existing_customer_purchase_events_existing_card(number, cost)
           current_user.purchased_events = @eventtotal
           current_user.save
          
+           #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.purchase_receipt(current_user, @r).deliver
         
         rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
@@ -340,7 +370,7 @@ def existing_customer_purchase_events_existing_card(number, cost)
 
 end 
 
-def update_card_and_purchase(token, number, cost)
+def update_card_and_purchase(token, number, cost, coupon)
 
   @cost = cost
     # if number.to_i < 6 
@@ -375,6 +405,14 @@ def update_card_and_purchase(token, number, cost)
           current_user.purchased_events = @eventtotal
           current_user.save
 
+            #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+ 
+            #mail receipt
+            UserMailer.purchase_receipt(current_user, @r).deliver
+
        rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
          flash[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
@@ -392,7 +430,7 @@ def update_card_and_purchase(token, number, cost)
 
 end 
 
-def create_customer_and_purchase_existing_user(token, number, cost)# this is almost like create_customer_purchase, except have flash.nows in that helper
+def create_customer_and_purchase_existing_user(token, number, cost, coupon)# this is almost like create_customer_purchase, except have flash.nows in that helper
 
   @cost = cost
 
@@ -425,6 +463,15 @@ def create_customer_and_purchase_existing_user(token, number, cost)# this is alm
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
           current_user.save
+
+           #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.purchase_receipt(current_user, @r).deliver
+
           flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
         else
           flash[:error] = "Something went wrong, please try again."

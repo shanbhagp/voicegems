@@ -1,5 +1,7 @@
 App4::Application.routes.draw do
 
+  resources :receipts
+
   resources :coupons
 
   resources :plans

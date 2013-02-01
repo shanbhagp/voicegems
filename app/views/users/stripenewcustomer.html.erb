@@ -40,7 +40,7 @@
                                     
                                     <h4> <%= @planobject.name.titleize %> ($<%= (@planobject.monthly_cost_cents)/100 %>.00/month)  </h4> 
                                     <% if !@coupon.nil? && !@new_price.nil? %>
-                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied: now only $<%= (@new_price)/100 %>.00/month! </em></h4>
+                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon.percent_off %>% off): now only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/month! </em></h4>
                                     <% end %>
                                     <br/>
                                     <h4><icon class="icon-ok-sign"></i> <%= @planobject.events_number %> Events / Year </h4>
@@ -128,6 +128,7 @@
             <form action="<%= stripereceiver_url %>" method="POST" id="payment-form">
                 <input type="hidden" name="plan" value="<%= @plan %>">
                 <input type="hidden" name="code" value="<%= @code %>"> 
+                <input type="hidden" name="new_price" value="<%= @new_price %>"> 
 
                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                         data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-panel-label="Subscribe!" data-name="NameCoach"

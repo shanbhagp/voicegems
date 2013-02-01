@@ -133,6 +133,7 @@ def stripereceiver_existing
 	@newplan = params[:plan] #this is an integer, corresponding to my_plan_id
 	@new_events_number = params[:new_events_number] #this should be the adjusted number as calculated changesubscription_choose
 	@code = params[:code]
+	@new_price = params[:new_price]
 
 	c = Stripe::Customer.retrieve(current_user.customer_id)
 	
@@ -145,10 +146,18 @@ def stripereceiver_existing
 			end
 
 			#create new subscription object in my database
-			@sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :my_plan_id => @newplan, :plan_name => Plan.find_by_my_plan_id(@newplan).name,:active => true)
+			@sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, 
+				:my_plan_id => @newplan, :plan_name => Plan.find_by_my_plan_id(@newplan).name,:active => true)
 		    @sub.events_remaining = @new_events_number
 		    @sub.coupon = @code 
 		    @sub.save 
+
+		    #create receipt
+		    @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+		    	:subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+		    	:sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+		    	:sub_actual_monthly_cost_in_cents => @new_price, :sub_coupon_name => @sub.coupon) 
+		    @r.save
 
 			flash[:success] = "Your credit card details have been updated, and your subscription has now changed to the #{Plan.find_by_my_plan_id(@newplan).name.titleize} plan!"
 			redirect_to current_user
@@ -167,6 +176,7 @@ def existing_card_changesub
 	@new_events_number = params[:newsub][:new_events_number] #this should be the adjusted number as calculated changesubscription_choose
 	@nplan = Plan.find_by_my_plan_id(@newplan)
 	@code = params[:newsub][:code]
+	@new_price = params[:newsub][:new_price]
 
 	# no need to use the stripe-rescue helper methods here because not trying a new card. still, can conditionalize the actions here on stripe successfully updating
 
@@ -190,6 +200,13 @@ def existing_card_changesub
 	    @sub.events_remaining = @new_events_number
 	    @sub.coupon = @code 
 	    @sub.save 
+
+	    #create receipt
+	    @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+	    	:subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+	    	:sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+	    	:sub_actual_monthly_cost_in_cents => @new_price, :sub_coupon_name => @sub.coupon) 
+	    @r.save
 
 		flash[:success] = "Your subscription has now changed to the #{Plan.find_by_my_plan_id(@newplan).name.titleize} plan!"
 		redirect_to current_user

@@ -36,7 +36,7 @@
 
                  <h4> <% if !@nplan.name.nil? %><%= @nplan.name.titleize %><% end %> ($<% if !@nplan.monthly_cost_cents.nil? %><%= @nplan.monthly_cost_cents/100 %><% end %>.00/month) </h4>
                   <% if !@new_price.nil?  %>
-                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discounted Price: only $<%= (@new_price)/100 %>.00/month! </em></h4>
+                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discounted Price (<%= @coupon.percent_off %>% off): only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/month! </em></h4>
                   <% end %>
                   <br/>
                   <h4><icon class="icon-ok-sign">&nbsp;<%= @nplan.events_number %> Events / Year  </h4>
@@ -101,6 +101,7 @@
                                                <%= y.hidden_field :newplan, :value => @newplan %>
                                                <%= y.hidden_field :new_events_number, :value => @new_events_number %>
                                                <%= y.hidden_field :code, :value => @code %>
+                                               <%= y.hidden_field :new_price, :value => @new_price %>
                                                <%= y.submit "Change Subscription!", class: "btn btn-primary", disable_with: 'Processing...'  %> 
                                              <% end %>  
                           
@@ -130,6 +131,7 @@
                                 <input type="hidden" name="plan" value="<%= @newplan %>">
                                 <input type="hidden" name="new_events_number" value="<%= @new_events_number %>">
                                 <input type="hidden" name="code" value="<%= @code %>"> 
+                                <input type="hidden" name="new_price" value="<%= @new_price %>">
 
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="pk_wLJXPbCWbzbWqjFCbvANNQ7cY2HaE" data-panel-label="Change Subscription!" data-name="NameCoach" data-label="Enter New Card Details"

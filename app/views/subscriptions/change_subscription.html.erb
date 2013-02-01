@@ -39,7 +39,7 @@
               
                   <h4> <% if !@plan.name.nil? %><%= @plan.name.titleize %><% end %> ($<% if !@plan.monthly_cost_cents.nil? %><%= @plan.monthly_cost_cents/100 %><% end %>.00/month) </h4>
                   <% if !@new_price.nil?  %>
-                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discounted Price: only $<%= (@new_price)/100 %>.00/month! </em></h4>
+                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discounted Price (<%= @coupon.percent_off %>% off): only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/month!</em></h4>
                   <% end %>
                   <br/>
                   <h4><icon class="icon-ok-sign">&nbsp;<%= @plan.events_number %> Events / Year  </h4>

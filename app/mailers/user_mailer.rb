@@ -24,4 +24,37 @@ def password_change(user, to)
   mail :to => to, :subject => "Password update for your NameCoach account"
 end 
 
+def sub_receipt(user, receipt)
+
+  @user = user
+  @r = receipt
+
+  mail :to => user.email, :subject => "NameCoach Subscription Receipt"
+
+end 
+
+def purchase_receipt(user, receipt)
+
+  @user = user
+  @r = receipt
+  @number = @r.events_number
+
+    if @number.to_i < 6 
+       @cost = @number.to_i*35
+       @price = '$35' 
+    end 
+    if @number.to_i > 5 && @number.to_i < 11 
+       @cost = @number.to_i*30
+       @price = '$30' 
+    end 
+    if @number.to_i > 10 
+       @cost = @number.to_i*25 
+       @price = '$25'
+    end 
+
+  mail :to => user.email, :subject => "NameCoach Receipt"
+
+end 
+
+
 end

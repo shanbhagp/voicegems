@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130130090505) do
+ActiveRecord::Schema.define(:version => 20130131081906) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -111,6 +111,25 @@ ActiveRecord::Schema.define(:version => 20130130090505) do
   add_index "practiceobjects", ["token"], :name => "index_practiceobjects_on_token"
   add_index "practiceobjects", ["user_id", "event_id"], :name => "index_practiceobjects_on_user_id_and_event_id", :unique => true
   add_index "practiceobjects", ["user_id"], :name => "index_practiceobjects_on_user_id"
+
+  create_table "receipts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "subscription_id"
+    t.integer  "sub_my_plan_id"
+    t.string   "sub_plan_name"
+    t.integer  "sub_events_number"
+    t.integer  "sub_reg_monthly_cost_in_cents"
+    t.integer  "sub_actual_monthly_cost_in_cents"
+    t.string   "sub_coupon_name"
+    t.integer  "events_number"
+    t.integer  "en_regular_cost_in_cents"
+    t.integer  "en_actual_cost_in_cents"
+    t.string   "en_coupon_name"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "email"
+    t.string   "customer_id"
+  end
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"

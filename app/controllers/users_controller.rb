@@ -637,6 +637,7 @@ def purchase_sub_existing_card
   @plan = params[:sub][:plan]   #integer corresponding to my_plan_id
   @events_number = params[:sub][:events_number]
   @code = params[:sub][:code]
+  @new_price = params[:sub][:new_price]
 
   # retrieve stripe customer object yet again
   if !current_user.customer_id.blank?
@@ -656,6 +657,17 @@ def purchase_sub_existing_card
       @sub.events_remaining = @events_number
       @sub.coupon = @code
       @sub.save 
+
+       #create receipt
+      @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+        :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+        :sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+        :sub_actual_monthly_cost_in_cents => @new_price, :sub_coupon_name => @sub.coupon) 
+      @r.save
+
+      #mail receipt
+      UserMailer.sub_receipt(current_user, @r).deliver
+
   else
       #create subscription for this customer in stripe (note that update_subscription creates a new subscription for this customer in this case)
       if has_not_trialed?
@@ -667,10 +679,20 @@ def purchase_sub_existing_card
       @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id, :my_plan_id => @plan, :plan_name => Plan.find_by_my_plan_id(@plan).name, :active => true)
       @sub.events_remaining = @events_number
       @sub.save 
+
+       #create receipt
+      @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+        :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+        :sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+        :sub_actual_monthly_cost_in_cents => @new_price, :sub_coupon_name => @sub.coupon) 
+      @r.save
+
+      #mail receipt
+      UserMailer.sub_receipt(current_user, @r).deliver
   end 
 
 
-  flash[:success] = "Thank you! You are now subscribed to the #{Plan.find_by_my_plan_id(@plan).name} plan!"
+  flash[:success] = "Thank you! You are now subscribed to the #{Plan.find_by_my_plan_id(@plan).name.titleize} plan!"
   redirect_to current_user
 
   #rescue Stripe::StripeError => e  # THIS CODE WORKS!!!  NEEED TO FIGURE OUT HOW EXACTLY
@@ -686,6 +708,7 @@ def purchase_sub_new_card
   @plan = params[:plan] #integer corresponding to my_plan_id
   @events_number = params[:events_number] 
   @code = params[:code]
+  @new_price = params[:new_price]
 
   if update_card_and_new_subscription(token, @plan, @code)
     c = Stripe::Customer.retrieve(current_user.customer_id)
@@ -696,7 +719,17 @@ def purchase_sub_new_card
     @sub.coupon = @code 
     @sub.save 
 
-    flash[:success] = "Thank you! You are now subscribed to the #{Plan.find_by_my_plan_id(@plan).name} plan!"
+      #create receipt
+      @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
+        :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+        :sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+        :sub_actual_monthly_cost_in_cents => @new_price, :sub_coupon_name => @sub.coupon) 
+      @r.save
+
+      #mail receipt
+      UserMailer.sub_receipt(current_user, @r).deliver
+
+    flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(@plan).name.titleize} plan!"
     redirect_to current_user
 
   else
@@ -712,8 +745,9 @@ def purchase_sub_not_stripe_customer
   @plan = params[:plan] #integer corresponding to my_plan_id
   @events_number = params[:events_number]  #not being used right now because create_customer helper finds the events_number form the plan object via @plan argument
   @code = params[:code] 
+  @new_price = params[:new_price]
 
-   if create_customer(token, @plan, @code)  #using the same helper as when a new user signs up as a customer
+   if create_customer(token, @plan, @code, @new_price)  #using the same helper as when a new user signs up as a customer
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
@@ -856,6 +890,7 @@ def stripereceiver  #incoming from stripenewcustomer form
     token = params[:stripeToken]
     plan = params[:plan]
     code = params[:code]
+    new_price = params[:new_price]
 
 
     #this needs to change to allow for canceled subs  
@@ -866,7 +901,7 @@ def stripereceiver  #incoming from stripenewcustomer form
 
     else #user not already a customer 
 
-        if create_customer(token, plan, code)
+        if create_customer(token, plan, code, new_price)
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
@@ -1006,12 +1041,12 @@ def stripereceiver_purchase  #incoming from stripenewcustomer form
   # get the credit card details submitted by the form
     token = params[:stripeToken]
     number = params[:number].to_i
-    coupon = params[:coupon]
+    coupon = params[:coupon] # this is the coupon code, a string
     cost = params[:cost]
 
     #this needs to change to allow for canceled subs - I think this is taken care of, no prior canceled subs for a true new customer(user)  
 
-        if create_customer_purchase(token, number, cost)
+        if create_customer_purchase(token, number, cost, coupon)
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
@@ -1131,13 +1166,13 @@ end
 def purchase_events_existing_card
 
   @number = params[:peu][:number]
-  coupon = params[:peu][:coupon]
+  coupon = params[:peu][:coupon] # this is the coupon name/code, a string
   cost = params[:peu][:cost]
 
   # retrieve stripe customer object (downstream from user having a customer_id)
   c = Stripe::Customer.retrieve(current_user.customer_id)
   
-  if existing_customer_purchase_events_existing_card(@number, cost)
+  if existing_customer_purchase_events_existing_card(@number, cost, coupon)
          #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
             if !coupon.blank?
               redeem_single_use_coupon(coupon)
@@ -1160,7 +1195,7 @@ def purchase_events_new_card
     coupon = params[:coupon]
     cost = params[:cost]
 
-        if update_card_and_purchase(token, @number, cost)
+        if update_card_and_purchase(token, @number, cost, coupon)
            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
             if !coupon.blank?
               redeem_single_use_coupon(coupon)
@@ -1179,7 +1214,7 @@ def purchase_events_new_stripe_customer
       coupon = params[:coupon]
       cost = params[:cost]
 
-        if create_customer_and_purchase_existing_user(token, @number, cost) # this is almost like create_customer_purchase, except have flash.nows in that helper
+        if create_customer_and_purchase_existing_user(token, @number, cost, coupon) # this is almost like create_customer_purchase, except have flash.nows in that helper
            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
             if !coupon.blank?
               redeem_single_use_coupon(coupon)
