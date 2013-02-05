@@ -2,9 +2,9 @@
 <div class="jumbotron">
       <h1>Customer Signup</h1>
       <br/>
-      <h3><i class="icon-share-alt icon-white"></i>&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 1: New User Registration</h3>
+      <h3><span class="deco">&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 1: New User Registration</span></h3>
      
-      <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Event Pages </h3>
+      <h3>&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Event Pages </h3>
   </div>
 
 <div class="container">
@@ -36,7 +36,7 @@
               <%= f.button :submit, "Register!", class: "btn btn-large btn-primary" %>
            
               </div>
-
+<h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
           <% end %>
 
       </div>

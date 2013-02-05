@@ -1,8 +1,8 @@
 <div class="jumbotron">
         <h1>Customer Signup</h1>
       <br/>
-      <h3>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-check icon-white"></i>&nbsp;Step 1: New User Registration</h3>
-      <h3><i class="icon-share-alt icon-white"></i>&nbsp;<% if current_user.customer_id.blank? %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Free Trial Subscription<% else %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Subscription<% end %></h3>
+      <h3><i class="icon-check icon-white"></i>&nbsp;Step 1: New User Registration</h3>
+      <h3><span class="deco">&nbsp;<% if current_user.customer_id.blank? %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Free Trial Subscription<% else %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Subscription<% end %></span></h3>
   </div>
                
 <!-- This is exactly the same as stripetest, except for the jumbotron stuff -->

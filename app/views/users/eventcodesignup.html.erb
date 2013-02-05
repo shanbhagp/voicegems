@@ -21,8 +21,8 @@
             </li> 
             <li> Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</li> <br/>
             <li> If you received a special invitation link via email, please instead click on that link.</li><br/>
-                    <li> If you have already registered on our site, please instead sign in under 'Already Registered on our Site?' below.</li> <br/>
-            <li> More questions? See our 'Help' page.<em> Thank you!</em> </li>
+                    <li> If you have previously registered on our site, please instead sign in under 'Already Registered on our Site?' below.</li> <br/>
+            <li> More questions? Please contact us below!<em> Thank you!</em> </li>
 
             </ul>
 
@@ -42,7 +42,7 @@
     <button type="button" class="close" data-dismiss="alert">×</button>
  
 
-              <h4> Asked to register your name? Voice-record your name for an upcoming event, so that someone announcing it can ensure they get it right! &nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h4>     
+              <h4>Voice-record your name for an upcoming event, so that someone announcing it can ensure they get it right!  <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h4>     
               
 </div>  
 
@@ -93,7 +93,7 @@
                                                                             <br/><br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Groupon' or 'last name pronounced uh-SEEF')" %>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                           <br/> <br/>
                                                                           <hr/>
                                                                          
@@ -120,9 +120,11 @@
 
                                                     <% end %>
                                                     </div><%# end main row %>
+                                                    <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                         </div>
                                       </div>
                                     </div>
+
                                         <div class="accordion-group bg-signup">
                                           <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo">

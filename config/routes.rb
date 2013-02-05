@@ -188,6 +188,8 @@ App4::Application.routes.draw do
 
  match 'sub_coupon_existing_user', to: 'users#sub_coupon_existing_user'
 
+ match '/terms', to: 'static#terms'
+
  #match '/events/assets/' => redirect('/assets')
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")

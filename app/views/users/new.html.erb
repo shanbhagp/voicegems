@@ -23,11 +23,11 @@
                   <li>Fill out your name and email. </li><br/> 
                    <li>Enter your name as you would like it announced at the event, and any notes to help with pronunciation.</li><br/>
                   <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes less than a minute. Just make sure to press 'Upload.' </li><br/>
-                  <li> Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event! </li><br/>
+                  <li><em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em></li><br/>
                  </ol>
-            </li>  <br/>
-            <li>If you have already registered on our site, please sign in under 'Already Registered on our Site? </li>
-            <li> More questions? See our 'Help' page. When you're ready to register, just click on the link in your invitation email again. <em> Thank you!</em> </li>
+            </li>  
+            <li> If you have previously registered on our site, please sign in under 'Already Registered on our Site?' </li><br/>
+            <li> More questions? Please contact us below. <em> Thank you!</em> </li>
             </ul>
 
             </div>
@@ -95,6 +95,7 @@
                                                                   <%= f.input :last_name, label: "Last Name" %>
                                                                   <%= f.input :email %>
 
+                                                                <hr/>    
                                                          </div>
                                                          <div class="well span3">         
                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
@@ -104,10 +105,9 @@
                                                                             <br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Groupon' or 'last name pronounced uh-SEEF')" %>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                          
-                                                                     
-
+                                                                     <hr/>
                                                           </div>
 
                                                           <div class="well span3">
@@ -121,14 +121,15 @@
                                                                  </div>
                                                                   
                                                                    <br/>
-                                                                <br/><br/><br/>
-                                                                
+                                                                <br/><br/>
+                                                                <hr/>
                                                             
 
                                                           </div> 
 
                                                     <% end %>
                                                     </div><%# end main row %>
+                                                     <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                         </div>
                                       </div>
                                     </div>

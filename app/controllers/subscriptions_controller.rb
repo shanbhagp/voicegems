@@ -72,7 +72,7 @@ def change_subscription
 					@new_price = nil 
 				end 
 	else
-		@plan = 'this is nil' 
+		@plan = nil
 		@coupon = nil 
 		@code = nil 
 	    @new_price = nil 
