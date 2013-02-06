@@ -345,8 +345,8 @@ def saveupload
        source_filename = path 
 
         AWS.config(
-          :access_key_id => 'AKIAJCTJ7WYDRGWUPFLA',
-          :secret_access_key => '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'
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
         )
 
         # Create the basic S3 object
@@ -369,7 +369,7 @@ def saveupload
        
         #transcode the file as a genuine mp3 via Zencoder
         Zencoder::Job.create({
-                      :api_key => '8ed73c17bb8e345b0c42a69fe02bab96',    
+                      :api_key => ENV['ZEN_API_KEY'],    
                       :test => true, 
                       :input => "s3://namewaves/#{current_user.id.to_s}.wav",
                       :outputs => [

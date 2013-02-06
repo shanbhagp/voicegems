@@ -62,4 +62,6 @@ ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env
 # comment this out to send email to actual email addresses
 #this makes useless lib/tasks/development_mail_interceptor 
 
+
+
 end
