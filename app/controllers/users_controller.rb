@@ -391,7 +391,9 @@ def saveupload
         current_user.update_attributes(recording: current_user.id)
           if current_user.practiceobjects.any? 
              current_user.practiceobjects.each do |x|
-             x.update_attributes(recording: current_user.recording)
+               if x.recording.blank?
+               x.update_attributes(recording: current_user.recording)
+               end 
              end    
           end 
 
