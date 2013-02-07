@@ -145,7 +145,7 @@
                                                   <%= form_for(:session, url: addpo_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
                                                   <%= f.hidden_field :token, :value => @user.invite_token %>
-                                                   <span class="blue"><em>If you've been invited for an event and have previously registered on our site, please sign in here:<em></span> <br/> <br/>
+                                                   <span class="blue"><em>If you've been invited for an event and have previously registered on our site, please sign in here:</em></span> <br/> <br/>
                                                   <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
