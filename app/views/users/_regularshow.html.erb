@@ -68,7 +68,7 @@
                     <table>
                      <tbody>
                       <tr>
-                      <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/namewaves/<%= f.recording %>.mp3" /> 
+                      <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= f.recording %>.mp3" /> 
                       </td>
                       <td> &nbsp;&nbsp;<strong><% if !f.phonetic.blank? %><%= f.phonetic %> <% else %><%= f.user.first_name %> <%= f.user.last_name %><% end %></strong>
                       </td>
@@ -329,7 +329,7 @@
                                 <table>
                                  <tbody>
                                   <tr>
-                                  <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/namewaves/<%= p.recording %>.mp3" /> 
+                                  <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= p.recording %>.mp3" /> 
                                   </td>
                                   <td> &nbsp;&nbsp;<strong><% if !p.phonetic.blank? %><%= p.phonetic %> <% else %><%= @user.first_name %> <%= @user.last_name %><% end %></strong>
                                   </td>
@@ -363,7 +363,7 @@
                                         <table>
                                          <tbody>
                                           <tr>
-                                          <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/namewaves/<%= @user.recording %>.mp3" /> 
+                                          <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= @user.recording %>.mp3" /> 
                                           </td>
                                           <td> &nbsp;&nbsp;<strong><% if !@user.phonetic.blank? %><%= @user.phonetic %> <% else %><%= @user.first_name %> <%= @user.last_name %><% end %></strong>
                                           </td>

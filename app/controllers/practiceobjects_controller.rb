@@ -125,7 +125,7 @@ def posaveupload
       File.open(path, "wb") { |f| f.write(request.body.read) }
 
       #upload to S3
-       bucket_name = 'namewaves'
+       bucket_name = ENV['BUCKET_NAME']
        source_filename = path 
 
         AWS.config(
@@ -155,10 +155,10 @@ def posaveupload
         Zencoder::Job.create({
                       :api_key => ENV['ZEN_API_KEY'],    
                       :test => true, 
-                      :input => "s3://namewaves/#{current_user.id.to_s}_#{@po.id.to_s}.wav",
+                      :input => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}_#{@po.id.to_s}.wav",
                       :outputs => [
                         {
-                          :url => "s3://namewaves/#{current_user.id.to_s}_#{@po.id.to_s}.mp3",
+                          :url => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}_#{@po.id.to_s}.mp3",
                           :audio_codec => "mp3",
                           :public => 1,
 
