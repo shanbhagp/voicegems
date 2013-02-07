@@ -144,6 +144,8 @@ before_filter :owner, only: [:console, :index, :destroy]
             else #couldn't find practice object by token
                   redirect_to new_step2_path(:token => @po.token), notice: 'There was an error.  Please sign out and try again.'
             end 
+
+            anchor_and_update_pos(@po)
     else  
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right; won't save becaues @user represents a User.new record here
               flash.now[:error] = "You have previously registered on our site. Please follow the link below ('Already Registered on our Site?') and sign in.  Click 'Reset Password' above if you haven't set a password yet." 
@@ -370,7 +372,6 @@ def saveupload
         #transcode the file as a genuine mp3 via Zencoder
         Zencoder::Job.create({
                       :api_key => ENV['ZEN_API_KEY'],    
-                      :test => true, 
                       :input => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}.wav",
                       :outputs => [
                         {
@@ -442,7 +443,8 @@ if !params[:user][:event_code].blank? #see if any code parameter is passed incom
                   # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
                   # themselves to that PO/event
                   if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
-                      @event.practiceobjects.find_by_email(@user.email).update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
+                      @po = @event.practiceobjects.find_by_email(@user.email)
+                      @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
                       flash[:info] = "Now just record your name for this event (#{@event.title}), and you're done!"
                       redirect_to eventcodesignup_step2_path
                   else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
@@ -454,7 +456,9 @@ if !params[:user][:event_code].blank? #see if any code parameter is passed incom
                           redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your event admin for #{@event.title} to see if they can view your NameGuide/recording. If they can't, please ask them to send you an email invitation to a different email."
                         end 
                   end 
-                    
+
+                anchor_and_update_pos(@po)    
+
             else # user already exists, or otherwise didn't validate as user
                   #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
                   # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
@@ -516,7 +520,8 @@ if !params[:user][:access_code].blank? #see if any code parameter is passed inco
                   # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
                   # themselves to that PO/event
                   if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
-                      @event.practiceobjects.find_by_email(@user.email).update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
+                      @po = @event.practiceobjects.find_by_email(@user.email)
+                      @po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
                       redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
                   else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
                         @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
@@ -526,6 +531,7 @@ if !params[:user][:access_code].blank? #see if any code parameter is passed inco
                           redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
                         end 
                   end 
+                  anchor_and_update_pos(@po) 
                     
             else # user already exists, or otherwise didn't validate as user
                   #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 

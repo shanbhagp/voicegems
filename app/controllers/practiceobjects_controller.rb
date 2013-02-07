@@ -154,7 +154,6 @@ def posaveupload
         #transcode the file as a genuine mp3 via Zencoder
         Zencoder::Job.create({
                       :api_key => ENV['ZEN_API_KEY'],    
-                      :test => true, 
                       :input => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}_#{@po.id.to_s}.wav",
                       :outputs => [
                         {

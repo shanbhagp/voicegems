@@ -158,7 +158,8 @@ def adminusercreate
 		            #add a PO for that event for that user(admin), for kicks and also so that we take care of the 'existing admin being invited as regular user for the same event' case (in which case the attempt to create a new PO will fail and it will say 'already registered for this event')
 		          	if  !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email) #check if PO exists for this event and em (floating PO)
 		          		#update floating PO for this event/em (anchor to new user)
-		          		@event.practiceobjects.find_by_email(@user.email).update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
+		          		@po = @event.practiceobjects.find_by_email(@user.email)
+		          		@po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
                         redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
 		          	else  #no PO exists for this event and em
 		          		#create a PO for this event and user
@@ -169,7 +170,7 @@ def adminusercreate
                           redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
                         end 
 		          	end 
-
+		         	anchor_and_update_pos(@po) 		
 		        else #couldn't find the ai by token
 		        	redirect_to @user, notice: 'There was an error. Invitation code was invalid. Please sign out and try again.'
 		        end 

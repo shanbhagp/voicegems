@@ -506,6 +506,24 @@ def plan_set_three
     3  #this returns the integer 1
 end 
 
+def anchor_and_update_pos(po)
+
+    @pos = Practiceobject.where(:email => po.email)
+     if @pos.any? 
+             @pos.each do |x|
+               if x.user_id.blank?
+                   x.user_id = current_user.id
+                   if x.save
+                   x.update_attributes(notes: current_user.notes, phonetic: current_user.phonetic)
+                   else
+                    return false
+                  end   
+               end 
+             end    
+          end 
+
+end 
+
 
 
 end
