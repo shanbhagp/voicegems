@@ -154,7 +154,7 @@ module UsersHelper
     def redeem_single_use_coupon(coupon)
        if Coupon.find_by_free_page_name(coupon)
         c = Coupon.find_by_free_page_name(coupon)
-        c.active = false 
+        #c.active = false 
         c.free_page_user = current_user.id
         c.save
       end  

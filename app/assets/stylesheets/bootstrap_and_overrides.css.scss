@@ -387,10 +387,7 @@ h3, h4 {
 } 
 
 
-/* this seems to center the first image, but not the other two */
-.carousel-inner { text-align: center; }
 
-.carousel .item > img { display: inline-block; }
 
 
 
@@ -453,7 +450,54 @@ h3, h4 {
    font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
 }
 
+.grabber2 {
+
+   font-size: 14px;
+
+}
+
 .deco {
   color:#CCCCFF;
  
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  max-width: 100%;
+}
+
+
+.carousel-caption {
+  position: relative;
+  right: 0;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.carousel-indicators {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 5;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel-indicators li {
+  display: block;
+  float: left;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+  text-indent: -999px;
+  background-color: #ccc;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+}
+
+.carousel-indicators .active {
+  background-color: #fff;
 }
