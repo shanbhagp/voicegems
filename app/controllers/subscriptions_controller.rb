@@ -135,6 +135,7 @@ def stripereceiver_existing
 	@code = params[:code]
 	@new_price = params[:new_price]
 
+	
 	c = Stripe::Customer.retrieve(current_user.customer_id)
 	
 	if update_card_and_subscription(token, @newplan) #helper method in users_helper

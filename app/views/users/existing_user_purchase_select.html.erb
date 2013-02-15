@@ -124,7 +124,12 @@
                                                <%= y.hidden_field :number, :value => @number %>
                                                <%= y.hidden_field :coupon, :value => @coupon %>
                                                <%= y.hidden_field :cost, :value => @cost %>
-                                               <%= y.submit "Confirm Purchase!", class: "btn btn-primary", disable_with: 'Processing'  %> 
+                                                      <% if current_user.email = 'startx@example.com' %>
+                                                      (disabled for demo account)
+                                                      <%= y.submit "Confirm Purchase!", class: "btn btn-primary", :disabled => true  %> 
+                                                      <% else %>
+                                                     <%= y.submit "Confirm Purchase!", class: "btn btn-primary", disable_with: 'Processing'  %> 
+                                                     <% end %>
                                                <span class='help-block'>(Your card will be charged $<%= @cost %>.00)</span>
                                              <% end %>  
                          
