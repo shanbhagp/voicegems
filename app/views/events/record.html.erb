@@ -1,7 +1,10 @@
+
+
+
 <div class="jumbotron">
-      <h1>Name Registration <% if !@po.nil? %><% if !@po.event.nil? %><% if @po.event.title %>for<em> <%= @po.event.title %> </em> <% end %> <% end %><% end %></h1>
+      <h1>Name Registration <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h1>
       <br/>
-      <h3>  <% if !@po.nil? %><% if !@po.event.nil? %><% if @po.event.date %><%= @po.event.date.strftime("%b %d, %Y")  %> <% end %> <% end %><% end %></h3>
+      <h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3>
   </div>
                                               
 
@@ -13,17 +16,18 @@
             <div class="modal-body">
             <ul>
             <li> This quick and easy service is FREE for you. </li> <br/>
-            <li> You've been asked to record your name in your own voice, so that someone who will announce your name at an upcoming event can make sure they pronounce it correctly.  (Someone involved in planning this event sent you the invitation email.) </li> <br/>
+            <li> You've been asked to record your name in your own voice, so that someone who will announce your name at an upcoming event can make sure they pronounce it perfectly. </li> <br/>
             <li> The process is simple!
                 <ol>
                   <br/>
-                  <li> On the registration page: fill out your name and email, and choose a password.<br/> (Or if you have already registered on our site, please sign in under 'Already Registered on our Site?') </li><br/>
-                  <li> Clicking 'Register!' will then direct you to a page on which you can record your name (through our online voice recorder).  Don't worry, this part is super-easy too.  </li><br/>
-                   <li> Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event! </li><br/>
+                  <li>Fill out your name and email. </li><br/> 
+                   <li>Enter your name as you would like it announced at the event, and any notes to help with pronunciation.</li><br/>
+                  <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds. Just make sure to press 'Upload.' </li><br/>
+                  <li><em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em></li><br/>
                  </ol>
-            </li> 
-           
-            <li> More questions? See our 'Help' page. When you're ready to register, just click on the link in your invitation email again. <em> Otherwise, please register now! Thank you!</em> </li>
+            </li>  
+            <li> If you have previously registered on our site, please sign in under 'Already Registered on our Site?' </li><br/>
+            <li> More questions? Please contact us below. <em> Thank you!</em> </li>
             </ul>
 
             </div>
@@ -40,20 +44,20 @@
 <div class="alert alert-block alert-info">
  
     <button type="button" class="close" data-dismiss="alert">×</button>
-              <% if !@po.nil? %>  
-           <% if !@po.event.nil? %> 
 
-              <h3> <% if !@po.first_name.blank? %> Hi <%= @po.first_name %>! <% end %> You've been invited to register and record your name for an upcoming event<% if !@po.event.title.blank? %>, <%= @po.event.title %><% end %>.&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>You've been invited to record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
 
-          <% end %>
-          <% end %>
+          
      
             
          
     </div>  
 
-<div class="container">
-    
+
+
+
+<div class="container">  
+<br/>
 <% flash.each do |key, value| %>
     <div class="alert alert-block alert-<%=key%>"> 
     <button type="button" class="close" data-dismiss="alert">×</button>
@@ -62,47 +66,44 @@
 <% end %>
 
 
-<br/>
-
-
                           <div class="accordion" id="accordion3">
-                                    <div class="accordion-group">
+                                    <div class="accordion-group bg-signup">
                                       <div class="accordion-heading">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
-                                         <h5 class="blue">New User Name Registration:</h5>
+                                         <h5 class="white">New Name Registration</h5>
                                         </a>
                                       </div>
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
                                                    <div class="row">
-                                                    <%= simple_form_for(@user, :html => {:class => 'form-inline'}) do |f| %>
+                                                     <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well span3 offset1">
-                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
+                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
                                                               
-                                                                <%= f.hidden_field :invite_token %>
+                                                                <%= f.hidden_field :event_code, :value => @event_code %>
 
 
                                                                   <%= f.input :first_name, label: "First Name" %>
                                                                   <%= f.input :last_name, label: "Last Name" %>
                                                                   <%= f.input :email %>
 
+                                                                <hr/>    
                                                          </div>
                                                          <div class="well span3">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> (optional) </h4> 
+                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                                                                             
                                                                             <br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
                                                                           <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                          
-                                                                     
-
+                                                                     <hr/>
                                                           </div>
 
                                                           <div class="well span3">
@@ -116,29 +117,31 @@
                                                                  </div>
                                                                   
                                                                    <br/>
-                                                                <br/><br/><br/>
-                                                                
+                                                                <br/><br/>
+                                                                <hr/>
                                                             
 
                                                           </div> 
 
                                                     <% end %>
                                                     </div><%# end main row %>
+                                                     <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                         </div>
                                       </div>
                                     </div>
-                                        <div class="accordion-group">
+                                        <div class="accordion-group bg-signup">
                                           <div class="accordion-heading">
                                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo">
-                                              <h5 class="blue">Already Registered on our Site?</h5>
+                                              <h5 class="white">Already Registered on our Site?</h5>
                                             </a>
                                           </div>
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
-                                                  <%= form_for(:session, url: addpo_path, :html => {:class => "form-horizontal"} ) do |f| %>
+                                              <div class="well span4 offset3">
+                                                  <%= form_for(:session, url: event_code_add_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
-                                                  <%= f.hidden_field :token, :value => @user.invite_token %>
-                                                   <span><em>If you've been invited for an event and have previously registered on our site, please sign in here:<em></span> <br/> <br/>
+                                                  <%= f.hidden_field :event_code, :value => @event_code %>
+                                                   <span class="blue"><em>If you have previously registered on our site, please sign in here:</em></span> <br/> <br/>
                                                   <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
@@ -152,6 +155,7 @@
                                                       <% end %>
 
                                                 <% end %>
+                                               </div>
                                                <br/>
                                             </div>
                                           </div>
@@ -162,3 +166,13 @@
 
 
 </div><%# end container %>
+
+
+
+
+
+
+
+
+
+

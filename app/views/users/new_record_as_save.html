@@ -43,8 +43,7 @@
 <div class="alert alert-block alert-info">
  
     <button type="button" class="close" data-dismiss="alert">×</button>
-              <% if !@po.nil? %>  <%# need to check this becauase was saying can't use title method on nil class; thrown when access new action without an incoming token. not even sure this is enough to prevent the errors%>
-           <%# note here that blank? checks to see if objet is nil (nil?) or contains whitespace (empty? on non-nil object) %>
+              <% if !@po.nil? %>  
            <% if !@po.event.nil? %> 
 
               <h3> <% if !@po.first_name.blank? %> Hi <%= @po.first_name %>! <% end %> You've been invited to register and record your name for an upcoming event<% if !@po.event.title.blank? %>, <%= @po.event.title %><% end %>.&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  

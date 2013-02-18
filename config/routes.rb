@@ -192,6 +192,16 @@ App4::Application.routes.draw do
 
  match '/cartest', to: 'static#cartest'
 
+match '/record/:event_code', to: 'events#record', as: '/record'
+match '/record', to: 'users#home'  #this is to get rid of the 'no route matches GET adminsignup' for hitting that page w/o an invite
+  #need to figure out why this is happening.  What does 'as' do? And why don't we have the same problem with users/new? probably because that's a restful resource
+
+match '/event_link_create', to: 'events#event_link_create'
+
+match '/event_code_add', to: 'events#event_code_add'
+
+match '/event_link_create_step2', to: 'events#event_link_create_step2'
+
  #match '/events/assets/' => redirect('/assets')
 # match '/events/assets/etc' => redirect('/assets/%{etc}')
 #match "/stories/:name" => redirect("/posts/%{name}")

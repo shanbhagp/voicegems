@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_filter :signed_in_user
+	before_filter :signed_in_user, only: [:create, :show, :index, :edit, :update, :destroy]
 	before_filter :correct_admin_or_user, only: [:show]
 	before_filter :correct_admin, only: [:edit]
 	before_filter :active_page_check, only: [:show]
@@ -147,6 +147,8 @@ class EventsController < ApplicationController
 		 @hiddenandregisteredpos  = @hiddenpos.registered
 		 @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
+		 @url = record_url(:event_code => @event.event_code)
+
     end
 
 	def index
@@ -204,5 +206,159 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+ def record
+ 	#if signed_in?
+ 	#	flash[:error] = "Since you are a registered user, you will have to register for this event under 'Already Registered on our Site?' below."
+ 	#end 
+ 		
+ 	@event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+
+ end
+
+def event_link_create  #for new users signing up from an event code link
+    @user = User.new
+    @user.email = params[:user][:email]
+    @pw = SecureRandom.urlsafe_base64
+    @user.password=@pw
+    @user.password_confirmation=@pw
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @user.phonetic = params[:user][:phonetic]
+    @user.notes = params[:user][:notes]
+    @user.event_code = params[:user][:event_code]
+    @event_code = params[:user][:event_code]
+          #moved this up here so that what user entered is left in tact when re-renders form, and can take out @user = User.new below 
+
+	if !params[:user][:event_code].blank? #see if any code parameter is passed incoming from the form - don't want to run this code if not, i.e., if user is signing up                from an inviation token
+	    if Event.find_by_event_code(params[:user][:event_code].upcase.delete(' ')) # see if the code entered is even a code for any event - params[:code] is coming in from the form
+	                          #but how to get code in from the form?    
+	      @event  = Event.find_by_event_code(params[:user][:event_code].upcase.delete(' '))
+	      #run code to sign up user for this event, first to try to save the user (validate his info)
+	      
+	            if @user.save
+	                UserMailer.welcome(@user).deliver
+	                sign_in @user
+	                # try to give user a PO for this event
+	                  # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
+	                  # themselves to that PO/event
+	                  if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
+	                      @po = @event.practiceobjects.find_by_email(@user.email)
+	                      @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
+	                      flash.now[:info] = "Now just record your name for this event (#{@event.title}), and you're done!"
+	                      render action: 'record_step2'
+	                  else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
+	                        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations}
+	                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
+	                           flash.now[:info] = "Now just record your name for this event (#{@event.title}), and you're done!"
+	                           render action: 'record_step2'
+	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
+	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your event admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
+	                        end 
+	                  end 
+
+	                anchor_and_update_pos(@po)    
+
+	            else # user already exists, or otherwise didn't validate as user
+	                  #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
+	                  # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
+	                    if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
+	                            flash.now[:error] = "You have previously registered on our site. Please sign in under 'Already Registered?' (below) to register for this event."
+	                             
+	                    end 
+	                      render action: 'record'
+	                    
+	                    
+	            end   
+	    else #code entered doesn't exist for any event
+	      #@user = User.new #for the re-rendering of the eventcodesignup view
+	      #render this action again, with the flash message
+	      flash.now[:error] = 'Something went wrong. Please contact NameCoach for support'
+	      render action: 'record'
+	    end 
+	else
+	  #@user = User.new #for the re-redering of the eventcodesignup view
+	  #run existing users#create code - maybe make this a helper method
+	  # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
+	  flash.now[:error] = 'Something went wrong.  Please contact NameCoach for support.'
+	  render action: 'record'
+	  
+	  
+	end
+
+end
+
+def record_step2
+	@user = current_user
+end
+
+
+def event_code_add  #this is for registering to record with an event link, for an existing user
+      user = User.find_by_email(params[:session][:email].downcase.strip)
+      @event_code = params[:session][:event_code]
+
+     if user && user.authenticate(params[:session][:password]) then
+        sign_in user
+        if Event.find_by_event_code(@event_code.upcase.delete(' '))  #find event
+             @event  = Event.find_by_event_code(@event_code.upcase.delete(' '))
+            if   !@event.practiceobjects.nil? && @event.practiceobjects.find_by_user_id(user.id) #see if there's already a PO for this user_id and event (which should be this @po, if there is one)  (this covers the case in which signs up with a code, then the invitation link)
+                  #trying to avoid no method on nil errors
+                  redirect_to user, notice: "It looks like you are already registered for #{@event.title}. Please ensure you've uploaded your name recording."
+
+            else #there's no PO for this user_id and event
+                 #forego checking for a floating PO with this user's em (x), and assume we already have it with @po. If there is a floating PO with users's em address(x), 
+                 #that's diffrent from the em of this @po (y), it's probably because the user got this invitation at an em address(y) that's different from
+                 # the one he chose when signing up (x).  That's fine, we want to stick to the PO's.  Plus, that email difference will be displayed in the practice page. 
+                       #@po.first_name = user.first_name  -- keep the names the admin entered when sent the invite
+                        #@po.last_name = user.last_name
+                        @po = Practiceobject.new
+                        @po.event_id = @event.id
+                        @po.user_id = user.id
+                        @po.first_name = user.first_name
+                        @po.last_name = user.last_name
+                        @po.email = user.email
+                        @po.recording = user.recording # need to default to user's recording if has a recording. !!! Need to update this when have multipler PO recordings for a user
+                        @po.notes = user.notes #default to user attribute
+                        @po.phonetic = user.phonetic # default to user attribute
+                        # we don't update @po.email with user.email b/c want to display where invitation was sent
+                          if  @po.save #save would fail if user already has a PO for this event;  NOTE: just relying on the unique pair index threw an exception; intead, adding a uniqueness validation in the model works (the save fails and redirects appropriately)
+                                       #but save can take an existing PO for this user, which he's already updated via signing up with a code, and reset it -
+                                       #admin invites user at email x, x signs up with code, x then signs in with invite link  - UPDATE: this is now fixed with code above
+                          redirect_to user, notice: "Thank you for registering as an attendee for #{@event.title}.  Please make sure to create or update your NameGuide for this event."
+                            # Sign the user in and redirect to the user's show page. 
+                          else #this applies to any user (admin or attendee) who already has a PO for that event; this case now already covered, i.e., PO should save
+                           redirect_to user, notice: "It looks like you are already registered for #{@event.title}. Please ensure you've uploaded your name recording."
+                            # Sign the user in and redirect to the user's show page.
+                         end
+                       # else here would apply if there's a bad or no token passed in when trying to sign-in to sign-up.
+                       # but note that by coming to users/new without a token or a valid token, new action will just say 'invalid token' already
+                       # if the user has no credentials to begin with, it will just say invalid password if he's invited with a token but tries the sign-in to sign-up.
+            end 
+
+        else #do we need an else statement in case can't find the PO by token?
+          redirect_to user, notice: "There was an error. Please sign out and try again, or contact NameCoach for support."
+        end  
+   
+    else #invalid email/pw
+      @user = User.new 
+      @event = Event.find_by_event_code(@event_code.upcase.delete(' '))
+      flash.now[:error] = 'Invalid email/password combination'
+      render action: 'record'
+    # Creates an error message and re-render the signin form.
+
+     end
+  end 
+
+
+
 
 end

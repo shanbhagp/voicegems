@@ -32,7 +32,7 @@
 
 <div class="row">
 
- 	 <div class="span9">
+ 	 <div class="span8">
 			
 				<div class="well">
 					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an event attendee to record their name: </h4>
@@ -42,10 +42,10 @@
 									
 						   <%= f.hidden_field :event_id %>
 															 									    
-						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span3" %>
+						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
 																			
 						  
-						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span3" %>
+						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
 						
 																 									    
 						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
@@ -58,27 +58,37 @@
 				
 				 </div> <%# end div well %>										           
 												          		
-	 </div> <%# end span 7 %>
+	 </div> <%# end span 9 %>
 
-	 <div class = "span2 offset1">
-
+	 <div class = "span4">
+	 		<div class="well">
 					 <div id="info-eventcode" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										              <h3 id="myModalLabel">Using the Event Code</h3>
+										              <h3 id="myModalLabel">Using the Event Link</h3>
 										            </div>
 										            <div class="modal-body">
 
-										            <p> Another way to get an event attendee to record their name for the Event Page is through the event code.  Just give the attendees the code, <strong><%= @event.event_code %></strong>, and ask them to register at <strong>www.name-coach.com</strong>. </p> 
+										            <p> Attendees can record their names for this event using either of these links:
+										            	<br/><br/>
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+										            
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+										              </p> 
 
-										        	 <p> When they enter this code, they will automatically be able to record their name for your event, <%= @event.title %>.  </p>
+										       		<p> Just copy and paste either link into the web page for your event (if you have one), or an email to your attendees. </p> 
+										       		<br/>
 
-										            <p>You can use the event code in addition to, or as an alternative to, inviting attendees by entering their email and pressing the 'Invite Attendee' button.  However, we <strong>highly recommend</strong> using the 'Invite Attendee' method, because it's a bit easier for your attendees to record their name that way, and you can keep track of who you've invited and whether they've responded.</p>
+										       		<h3>Suggested text for your web page or emails</h3>	 
+													
+													<p><strong><em>Just copy and paste the following:</em></strong><br/><hr/>
+													 <blockquote>We want to make sure everyones' names are announced perfectly at <%= @event.title %>. If you are in the wedding party, please <%= link_to "click here", @url, :target => "_blank"  %> (<%= @url %>). You'll be able to record your name so that the MC can hear it directly and get it down ahead of time... it's easy, and takes under a minute!  </blockquote> </p>
+
+														 <hr/>
+
+										            <p>NOTE: You can this link in addition to, or as an alternative to, inviting attendees by entering their individual emails and pressing the 'Invite Attendee' button.  However, we recommend using the 'Invite Attendee' method as well, so you can keep track of who you've invited and whether they've responded.</p>
 										 			
-										 			<h3>Suggestions if using the event code: </h3>	
-													<p> You can give the event attendees the code and web address in a mass email, or on the website for the wedding (if you have one).  You could say something like: </p>
-
-													<p> <blockquote> "We want to make sure everyones' name is announced correctly at <%= @event.title %>. If you are in the wedding party, please go to <strong>www.name-coach.com</strong> and register with the code <strong><%= @event.event_code %></strong>.  You can record your name so that the MC/DJ can hear it directly and get it right. It's easy, and takes under a minute!" </blockquote> </p>
+										 			
 
 										            </div>
 
@@ -88,10 +98,11 @@
 										        
 										              </div>
 					 </div> <%# end modal %>
-					 <br/>
-					 <br/>
-					 <h4>Event Code: <em><%= @event.event_code %> </em> 
-					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4>
+					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Event Link:  
+					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
+					 	<%= @url %> <br/><br/>
+					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+			</div>
 	 </div>
 	
 </div> <%# end row %>
