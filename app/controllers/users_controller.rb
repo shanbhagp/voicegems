@@ -1021,7 +1021,7 @@ def coupon_purchase
 
     if is_valid_single_use_coupon(@coupon)
           @price = '$35'
-          @cost = 5  # IN DOLLARS
+          @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripenewcustomer_purchase'
       
@@ -1148,7 +1148,7 @@ def existing_coupon_purchase
 
     if is_valid_single_use_coupon(@coupon)
           @price = '$35'
-          @cost = 5  # IN DOLLARS
+          @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'existing_user_purchase_select'
       

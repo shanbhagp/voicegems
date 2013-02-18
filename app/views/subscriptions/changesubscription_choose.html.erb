@@ -102,7 +102,7 @@
                                                <%= y.hidden_field :new_events_number, :value => @new_events_number %>
                                                <%= y.hidden_field :code, :value => @code %>
                                                <%= y.hidden_field :new_price, :value => @new_price %>
-                                                 <% if current_user.email = 'startx@example.com' %>
+                                                 <% if current_user.email == 'startx@example.com' %>
                                                  (disabled for demo account)
                                                  <%= y.submit "Change Subscription!", class: "btn btn-primary", :disabled => true  %> 
                                                  <% else %>

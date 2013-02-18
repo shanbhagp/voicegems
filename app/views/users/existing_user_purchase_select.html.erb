@@ -124,7 +124,7 @@
                                                <%= y.hidden_field :number, :value => @number %>
                                                <%= y.hidden_field :coupon, :value => @coupon %>
                                                <%= y.hidden_field :cost, :value => @cost %>
-                                                      <% if current_user.email = 'startx@example.com' %>
+                                                      <% if current_user.email == 'startx@example.com' %>
                                                       (disabled for demo account)
                                                       <%= y.submit "Confirm Purchase!", class: "btn btn-primary", :disabled => true  %> 
                                                       <% else %>
