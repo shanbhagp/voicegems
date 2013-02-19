@@ -14,8 +14,8 @@
 
 <div class="jumbotron">
 	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
-	<br/>
-	<h3>  <% if @event.date %><%= @event.date.strftime("%b %d, %Y")  %><% end %> </h3>
+	
+	<% if @event.date && !(@event.title == 'ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
 </div>
 
 <% flash.each do |key, value| %>

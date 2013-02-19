@@ -1,7 +1,7 @@
 <div class="jumbotron">
       <h1>Name Registration <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h1>
-      <br/>
-      <h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3>
+      
+      <% if !(@event.title == 'ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
   </div>
                                               
 
