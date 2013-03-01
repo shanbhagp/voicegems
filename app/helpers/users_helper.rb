@@ -587,11 +587,11 @@ end
 
 
 def bigdaddyevent
-  (User.find_by_email('bigdaddy@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy@example.com').id)) || (User.find_by_email('bigdaddy2@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy2@example.com').id))
+  (User.find_by_email('bigdaddy@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy@example.com').id)) || (User.find_by_email('bigdaddy2@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy2@example.com').id)) ||  (User.find_by_email('bigdaddy@bigdaddywalkerproductions.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy@bigdaddywalkerproductions.com').id))
 end
 
 def user_is_bigdaddy
-  @user.email == 'bigdaddy@example.com' || @user.email == 'bigdaddy2@example.com' 
+  @user.email == 'bigdaddy@example.com' || @user.email == 'bigdaddy2@example.com' || @user.email == 'bigdaddy@bigdaddywalkerproductions.com'
 end
 
 def bounce_free_account
