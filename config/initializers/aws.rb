@@ -4,4 +4,5 @@
 
 if Rails.env.development?
   ENV['BUCKET_NAME'] = "namewavesdev"
+  ENV['VG_BUCKET_NAME'] = "vgnamewavesdev"
 end

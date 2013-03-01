@@ -88,11 +88,55 @@ before_filter :owner, only: [:index]
 
 
 		    	
+	 def vg_admininvite
+	 	@ai = Admininvite.new
+	    @ai.recipient_email = params[:vgai][:recipient_email]
+	    @ai.first_name = params[:vgai][:first_name]
+	    @ai.last_name = params[:vgai][:last_name]
+	    @ai.event_id = params[:vgai][:event_id] 
+	    @ai.admin_id = current_user.id
+	    @event = @ai.event #make sure this code works, even though @ai has not been saved to db yet - checked in rails console, seems fine
+			 	if User.find_by_email(@ai.recipient_email)#email on @ai is that of an existing user
+			 		 u = User.find_by_email(@ai.recipient_email)
+			 		 if @event.adminkeys.find_by_user_id(u.id) #existing user is registered as an admin for this event - notice that user already registered as an admin for this event
+			 		 	 redirect_to @ai.event, notice: 'The person with this email address is already registered as an admin for this event.'
+			 		 else #existing user is not registered as an admin for this event - create adminkey for this user/event, 
+			 		 	  # notice that 'person with at email is a registered user on our site, and is now an admin for this event, and has been notified'
+			 		 	  # send email that has been registered as an admin for this event
+			 		 	  # set admin to true for this existing user 
+			 		 	  # try to give a PO for this user for this event, if doesn't already have one. 
+			 		 	    @ai.user_id = u.id
+			 		 	    @ai.save  #update the @ai with the user_id of the existing user, and save
+			 		 	    u.admin = true
+					        u.save #update the existing user to be an admin - !!!might want to wrap this/try this, to try to avoid an exception, there shouldn't be, except for the missing names in the DB issue 
+			 		 	 	@adminkey = Adminkey.new(event_id: @event.id, user_id: u.id)
+				            if @adminkey.save
+				            	adminvoicegem(u)
+				            	@to = @ai.recipient_email
+				            	startx
+				            	AdminInviteMailer.vg_admin_notify(@ai, root_url, @to).deliver 
+					            redirect_to @ai.event, notice: 'The person at this email address is already registered on our site, is now registered as an admin for this event, and will be notified. '
+				           
+				            else #only reason for adminkey not to save is if there's already an admin key for this user/event combo - a case we already covered, so this is throw-away I think- i.e., will never be a case
+				            	 redirect_to @ai.event, notice: 'The person at this email address is already registered as an admin for this event.'
+				            end 
+				      	  
 
 
-			     
-
-
+			 		 end 
+			 	else #email on @ai is not that of existing user - execute original code
+			 		if @ai.save  
+				     	#AdminInviteMailer.admin_invitation(@ai, new_user_url(:token => @practiceobject.token), @practiceobject).deliver 
+				     	@to = @ai.recipient_email
+	    				startx
+				     	AdminInviteMailer.vg_admin_invitation(@ai, adminsignup_url(:token => @ai.token), @to).deliver 
+				     	redirect_to @ai.event, notice: 'Admin has been invited for this event.'
+			 	 	else
+				 	 	redirect_to @ai.event, notice: 'Something went wrong - please make sure to enter valid email address'
+				 	 	# see if we can use render here (how to do that?) and thereby get the validation errors
+			 		 end
+			 	end 
+	 end 
 
 
 
@@ -135,7 +179,7 @@ before_filter :owner, only: [:index]
 	 # and adminkey object with user_id and event_i
 
 def adminusercreate
-	 	 @user = User.new
+	 	    @user = User.new
 		    @user.email = params[:user][:email]
 		    @user.password=params[:user][:password]
 		    @user.password_confirmation=params[:user][:password_confirmation]
@@ -155,22 +199,14 @@ def adminusercreate
 		            @adminkey.save
 		            #link the admin invite to the user just created
 		            @ai.update_attributes(user_id: @user.id)
-		            #add a PO for that event for that user(admin), for kicks and also so that we take care of the 'existing admin being invited as regular user for the same event' case (in which case the attempt to create a new PO will fail and it will say 'already registered for this event')
-		          	if  !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email) #check if PO exists for this event and em (floating PO)
-		          		#update floating PO for this event/em (anchor to new user)
-		          		@po = @event.practiceobjects.find_by_email(@user.email)
-		          		@po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
-                        redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
-		          	else  #no PO exists for this event and em
-		          		#create a PO for this event and user
-		          		@po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
-                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-                          redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
-                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
-                          redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
-                        end 
-		          	end 
-		         	anchor_and_update_pos(@po) 		
+		            
+		            if  bigdaddyevent
+						adminvoicegem(@user)
+						redirect_to @user, notice: "Welcome to NameCoach's new VoiceGem service, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
+				     else
+				     	adminpracticeobject
+				     	#templates (redirects) in this helper
+				     end  		
 		        else #couldn't find the ai by token
 		        	redirect_to @user, notice: 'There was an error. Invitation code was invalid. Please sign out and try again.'
 		        end 

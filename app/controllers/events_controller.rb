@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-	before_filter :signed_in_user, only: [:create, :show, :index, :edit, :update, :destroy]
-	before_filter :correct_admin_or_user, only: [:show]
+	before_filter :signed_in_user, only: [:create, :show, :index, :edit, :update, :destroy, :voicegems]
+	before_filter :correct_admin_or_user, only: [:show, :voicegems]
 	before_filter :correct_admin, only: [:edit]
 	before_filter :active_page_check, only: [:show]
 
@@ -137,19 +137,41 @@ class EventsController < ApplicationController
 	end
 
 	def show
+
 		 @event = Event.find(params[:id])
-		 @practiceobject = Practiceobject.new  
-		 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
-		 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
-		 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
-		 @unregisteredpos = @event.practiceobjects.unregistered.visible
-		 @hiddenpos = @event.practiceobjects.hidden
-		 @hiddenandregisteredpos  = @hiddenpos.registered
-		 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+		 
+		 if bigdaddyevent
+		 	
+		 	 @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
+			 @registeredandunrecordedvgs = @event.voicegems.registered.unrecorded.visible
+			 @unregisteredvgs = @event.voicegems.unregistered.visible
+			 @hiddenvgs = @event.voicegems.hidden
+			 @hiddenandregisteredvgs  = @hiddenvgs.registered
+			 @hiddenandunregisteredvgs = @hiddenvgs.unregistered  
 
-		 @url = record_url(:event_code => @event.event_code)
+			 @url = vgrecord_url(:event_code => @event.event_code)
 
+
+		 	render action: 'voicegems'
+		 else
+			 @practiceobject = Practiceobject.new  
+			 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+			 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+			 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+			 @unregisteredpos = @event.practiceobjects.unregistered.visible
+			 @hiddenpos = @event.practiceobjects.hidden
+			 @hiddenandregisteredpos  = @hiddenpos.registered
+			 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+			 @url = record_url(:event_code => @event.event_code)
+		end 
     end
+
+
+    #alternate event show page for bigdaddy;  instance variables already set in 'show' above
+    def voicegems
+    end 
+
 
 	def index
     @events = Event.all
@@ -224,6 +246,11 @@ class EventsController < ApplicationController
 
 
  end
+
+#def vgrecord
+# moved to voicegems controller
+#end 
+
 
 def event_link_create  #for new users signing up from an event code link
     @user = User.new

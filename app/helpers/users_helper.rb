@@ -525,5 +525,81 @@ def anchor_and_update_pos(po)
 end 
 
 
+def adminpracticeobject
+    #add a PO for that event for that user(admin), for kicks and also so that we take care of the 'existing admin being invited as regular user for the same event' case (in which case the attempt to create a new PO will fail and it will say 'already registered for this event')
+      if  !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email) #check if PO exists for this event and em (floating PO)
+        #update floating PO for this event/em (anchor to new user)
+        @po = @event.practiceobjects.find_by_email(@user.email)
+        @po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
+              redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+      else  #no PO exists for this event and em
+        #create a PO for this event and user
+        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
+              if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
+                redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+              else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
+                redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
+              end 
+      end 
+
+      anchor_and_update_pos(@po)
+end 
+
+def adminvoicegem(u)
+      if !@event.voicegems.find_by_email(u.email) #this email has no voicegem for this event
+        @vg = Voicegem.new(event_id: @event.id, user_id: u.id, first_name: u.first_name, last_name: u.last_name, email: u.email) 
+        @vg.save
+      end
+
+end
+
+
+def addvoicegem(u)
+      if !@event.voicegems.find_by_user_id(u.id) #this email has no voicegem for this event
+        @vg = Voicegem.new(event_id: @event.id, user_id: u.id, first_name: u.first_name, last_name: u.last_name, email: u.email) 
+        @vg.save
+      end
+end 
+
+def addadminpracticeobject
+    if  !@event.practiceobjects.nil? && @event.practiceobjects.find_by_user_id(user.id) #check to see if PO already exists for this event/user_id
+                                 redirect_to user, notice: "Thank you for registering as an admin for the event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                                  # thanks for signing up as admin
+    else #PO does not exist for this event/user_id
+        if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(user.email) #check to see if PO exists for this event/em (floating)
+            #anchor floating PO, default to user attributes
+            @event.practiceobjects.find_by_email(user.email).update_attributes(:user_id => user.id, :recording => user.recording, :notes => user.notes, :phonetic => user.phonetic)  #keeping any admin notes intact
+             #this update can't fail on account of the user.id b/c already checked to see if there's a PO with this user_id and event
+            redirect_to user, notice: "Thank you for registering as an admin for this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+           
+        else #PO does not exist for this event/em
+              #create new PO, with all default attributes
+              @po = Practiceobject.new(:user_id => user.id, :event_id => @event.id, :email => user.email, :recording => user.recording, :notes => user.notes, :phonetic => user.phonetic, :first_name => user.first_name, :last_name => user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
+                if @po.save  #should save, b/c already checked for a Po with this event and user id, and checking for PO's with this user's email (floating PO) solves the problem of and ADMIN ALSO having INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T REGISTERED for this event yet YET
+                  redirect_to user, notice: "Thanks for registering as an admin for this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                else #already a PO for this user_id and event, but this shouldn't happen since already checked for above
+                   redirect_to user, notice: "Thanks for registering. However, something may have gone wrong - please contact your event admin for #{@event.title}."
+                end 
+
+        end
+    end 
+end
+
+
+def bigdaddyevent
+  (User.find_by_email('bigdaddy@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy@example.com').id)) || (User.find_by_email('bigdaddy2@example.com') && @event.customerkeys.find_by_user_id(User.find_by_email('bigdaddy2@example.com').id))
+end
+
+def user_is_bigdaddy
+  @user.email == 'bigdaddy@example.com' || @user.email == 'bigdaddy2@example.com' 
+end
+
+def bounce_free_account
+  if current_user.customer_id.blank?
+      redirect_to current_user, notice: "You currently have a free account.  Please contact NameCoach if you wish to change anything."
+      return false 
+  end 
+end 
+
 
 end

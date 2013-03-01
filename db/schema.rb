@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218034205) do
+ActiveRecord::Schema.define(:version => 20130228041804) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -180,10 +180,41 @@ ActiveRecord::Schema.define(:version => 20130218034205) do
     t.string   "company"
     t.string   "customer_id"
     t.integer  "purchased_events",       :default => 0
+    t.text     "vg_notes"
+    t.string   "vg_request"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["password_reset_token"], :name => "index_users_on_password_reset_token"
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "vg_userinvites", :force => true do |t|
+    t.integer  "voicegem_id"
+    t.integer  "admin_id"
+    t.string   "recipient_email"
+    t.datetime "sent_at"
+    t.string   "invite_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "voicegems", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.text     "admin_notes"
+    t.integer  "vg_userinvite_id"
+    t.integer  "admin_id"
+    t.string   "token"
+    t.string   "recording"
+    t.string   "request"
+    t.text     "notes"
+    t.boolean  "hidden"
+    t.integer  "length"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
 end

@@ -84,32 +84,19 @@ class SessionsController < ApplicationController
                       user.update_attributes(:admin => true)
                       if !@event.adminkeys.nil? && @event.adminkeys.find_by_user_id(user.id) #check to see if adminkey exists for this event/user_id
                           #notice that already registered as an admin
-                           redirect_to user, notice: "It looks like you are already registered as an admin for this event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                           redirect_to user, notice: "It looks like you are already registered as an admin for this event, #{@event.title}."
                       else  #adminkey does not exist for this event/user_id
                             #create adminkey
                              @adminkey = Adminkey.new(event_id: @event.id, user_id: user.id)
                              @adminkey.save # this will save; we just checked to see if there's an adminkey for this event and user
-                            if  !@event.practiceobjects.nil? && @event.practiceobjects.find_by_user_id(user.id) #check to see if PO already exists for this event/user_id
-                                 redirect_to user, notice: "Thank you for registering as an admin for the event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
-                                  # thanks for signing up as admin
-                            else #PO does not exist for this event/user_id
-                                if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(user.email) #check to see if PO exists for this event/em (floating)
-                                    #anchor floating PO, default to user attributes
-                                    @event.practiceobjects.find_by_email(user.email).update_attributes(:user_id => user.id, :recording => user.recording, :notes => user.notes, :phonetic => user.phonetic)  #keeping any admin notes intact
-                                     #this update can't fail on account of the user.id b/c already checked to see if there's a PO with this user_id and event
-                                    redirect_to user, notice: "Thank you for registering as an admin for this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
-                                   
-                                else #PO does not exist for this event/em
-                                      #create new PO, with all default attributes
-                                      @po = Practiceobject.new(:user_id => user.id, :event_id => @event.id, :email => user.email, :recording => user.recording, :notes => user.notes, :phonetic => user.phonetic, :first_name => user.first_name, :last_name => user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
-                                        if @po.save  #should save, b/c already checked for a Po with this event and user id, and checking for PO's with this user's email (floating PO) solves the problem of and ADMIN ALSO having INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T REGISTERED for this event yet YET
-                                          redirect_to user, notice: "Thanks for registering as an admin for this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
-                                        else #already a PO for this user_id and event, but this shouldn't happen since already checked for above
-                                           redirect_to user, notice: "Thanks for registering. However, something may have gone wrong - please contact your event admin for #{@event.title}."
-                                        end 
-                     
-                                end
-                            end 
+                            
+                              if  bigdaddyevent 
+                                   adminvoicegem(user)
+                                   redirect_to user, notice: "Welcome to NameCoach's new VoiceGem service, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
+                              else
+                                addadminpracticeobject
+                              end
+
                       end
                     
               else  

@@ -214,13 +214,13 @@ end
             end 
 
           if params[:user][:password]  #I think this only occurs when user sets pw for the first time, when signing up.
-                 flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below."
+                 flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your recording below."
                  redirect_to @user
           else
             if params[:user][:email]
               redirect_to @user, notice: 'User update was successful.'
             else 
-             redirect_to @user, notice: 'Nameguide update was successful.  If you recorded your name, please wait a minute and refresh the page to see the changes take effect.' 
+             redirect_to @user, notice: 'Update was successful.  If you uploaded a recording, please wait a minute and refresh the page to see the changes take effect.' 
             end 
           end       
           
@@ -317,6 +317,8 @@ def test
   render :layout => nil
   # necessary b/c having the rendered header was causing problems on the test page
 end 
+
+
 
 # NOT BEING USED (I think)
 def upload

@@ -58,5 +58,16 @@ class UserInviteMailer < ActionMailer::Base
     userinvite.update_attribute(:sent_at, Time.now)
   end
 
+  def vg_rerecording_reminder (vg_userinvite, url, vg, to)
+    @vg = vg
+    @url = url
+    @vg_userinvite = vg_userinvite 
+    #subject  "Name registration for event: #{@po.event.title}" 
+    #body  :userinvite => userinvite, :url => url, :po => po
+    mail to: to, subject: "Please re-record your VoiceGem for event: #{@vg.event.title}"
+    #mail to: "to@example.org"
+    vg_userinvite.update_attributes(:sent_at => Time.now, :invite_type => "request to re-record")
+
+  end
 
 end

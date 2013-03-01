@@ -50,4 +50,6 @@ before_filter :owner, only: [:index]
 
 	end 
 
+
+
 end

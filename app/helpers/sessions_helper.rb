@@ -112,7 +112,7 @@ private
 
   def correct_admin_or_user
       @event = Event.find(params[:id])
-      unless @event.adminkeys.find_by_user_id(current_user.id) || @event.practiceobjects.find_by_user_id(current_user.id)
+      unless @event.adminkeys.find_by_user_id(current_user.id) || @event.practiceobjects.find_by_user_id(current_user.id) || @event.voicegems.find_by_user_id(current_user.id)
         redirect_to current_user
         flash[:notice] = "Sorry, not authorized for that page."
       end
@@ -141,6 +141,16 @@ end
 def correct_user_for_po
 @practiceobject = Practiceobject.find(params[:id])
        unless current_user?(@practiceobject.user)
+        redirect_to current_user
+        flash[:notice] = "Sorry, not authorized for that page."
+        #flash is not working here for root path, i think because @user is reset by the home action
+        # works with redirect to current_user
+       end
+end 
+
+def correct_user_for_vg
+@voicegem = Voicegem.find(params[:id])
+       unless current_user?(@voicegem.user)
         redirect_to current_user
         flash[:notice] = "Sorry, not authorized for that page."
         #flash is not working here for root path, i think because @user is reset by the home action

@@ -4,46 +4,7 @@ $(function() {
 });
 </script>
 
-<% if current_user.email == 'startx@example.com' %>
-<div class = "row">
-	<div class = "span4 offset4">
-			<div class="accordion" id="accordionstartx">
-                <div class="accordion-group bg-signup">
-                  <div class="accordion-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionstartx" href="#collapsestartx">
-                     <h4 class="white cent">Demo Notes for StartX Judges</h4>
-                    </a>
-                  </div>
-                  <div id="collapsestartx" class="accordion-body collapse">
-	                    <div class="accordion-inner">
-	             
-	                         <h5 class="white">This demo user account allows you to: </h5>
-	                        <span class="white">
-	                        <ul>
-	                        	<li> Create and administer an 'event page.' </li>
-	                        	<li> See and adminster a demo event page (the 'Jones-Ravenwood Wedding'). </li>
-	                        		<ul>
-	                        			<li>Listen to real and example name recordings.</li>
-	                        			<li>Invite people to record their name. </li>
-	                        			<li>Invite others to admin that page. </li>
-	                        		</ul>
-	                        	<li> Hear and update the name recording associated with startx@example.com (check out the voice recorder!) </li>
-	                        	<li> See the checkout pages for buying event pages/changing subscription (links under 'Account').</li>
-	                        	<li> <em>N.B.</em> checkout functionality is limited in this demo account. </li> 
-	                        	<li><em>N.B.</em> the email functionality is live. </li>
-	                        </ul>
-	                    	</span>
-	                         
-	 						
 
-	                    </div><%# end accordion inner %>
-                  </div><%# end collapsestartx %>
-                </div><%# end accordigion group %>
-                                        
-            </div>   <%# end accordion%>
-	</div>
-</div>
-<% end %>
 
 <br/>
 
@@ -160,19 +121,22 @@ $(function() {
 
 										            <div class="modal-body">
 
-										            <p> One way to get an event attendee to record their name for the Event Page is through the event code.  Just give the attendees the code, and ask them to register at <strong>www.name-coach.com</strong>. </p> 
+										             <p> Attendees can record their names for this event through a unique link, such as:
+										            	<br/><br/>
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.name-coach.com/record/ExampleEventCode<br/>
+										              </p> 
 
-										        	 <p> When they enter this code, they will automatically be able to record their name for your event.  </p>
+										       		<p> The link will be available once you create the Event Page, and you can just copy and paste the link into the web page for your event (if you have one), or an email to your attendees. </p> 
+										       		
 
-										            <p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the event page and pressing the 'Invite Attendee' button (the recommended method). </p>
-										 			
-										 			<h4>What You Should Do Now: </h4>	
-													<p> You can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+										       		<p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the Event Page and pressing the 'Invite Attendee' button. </p>	<br/>								
 
-													<p> If you leave the field blank, we will choose a unique 5-character code for you. </p>
+										 			<h4>So What's the Event Code? </h4>	<br/>
+													<p> It's the code that represents your event in the link.</p>
 
-													<h4>After That:</h4>
-													<p> Whether you choose one or we choose one for you, the code will displayed on the event page, visible only to you or anyone else you invite to be admin.  You don't need to use it, but you may choose to in order to avoid typing in email addresses of your attendees. However, we recommend using email addresses to make it a bit easier for attendees to record their name (they just need to follow a link in the email we send them.)
+													<p> If you want, you can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+
+													<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
 
 										            </div>
 

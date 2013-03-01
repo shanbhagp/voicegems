@@ -19,6 +19,11 @@ def welcome(user)
 	mail :to => user.email, :subject => "Welcome to NameCoach"
 end
 
+def vg_welcome(user)
+  @user = user
+  mail :to => user.email, :subject => "Welcome to VoiceGems (a NameCoach service)"
+end
+
 def password_change(user, to)
   @user = user
   mail :to => to, :subject => "Password update for your NameCoach account"

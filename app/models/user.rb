@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many :subscriptions
   #change this to has_one?  NO - want to allow a user to create many subscriptions, just one that's active at a time
 
+  has_many :voicegems
+  has_many :vgevents, through: :voicegems, source: :event
+
   before_save { self.email.downcase! }
   before_save { self.email.strip!}
   before_save :polish_names

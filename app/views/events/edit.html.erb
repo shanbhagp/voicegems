@@ -53,21 +53,41 @@ $(function() {
 										              <h3 id="myModalLabel">What's the Event Code?</h3>
 										            </div>
 										            <div class="modal-body">
+										             <% if bigdaddyevent %>
+										             	<p> Attendees can record VoiceGems for this event through a unique link, such as:
+										            	<br/><br/>
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.name-coach.com/record/ExampleEventCode<br/>
+										              	</p> 
 
-										            <p> One way to get an event attendee to record their name for the Name Practice Page is through the event code.  Just give the attendees the code, and ask them to register at <strong>www.name-coach.com</strong>. </p> 
+											       		<p> The link will be available once you create the Event Page, and you can just copy and paste the link into the web page for your event (if you have one), or an email to your attendees. </p> 
+											       		
 
-										        	 <p> When they enter this code, they will automatically be able to record their name for your event.  </p>
+											       		<p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the Event Page and pressing the 'Invite Attendee' button. </p>	<br/>								
 
-										            <p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the event page and pressing the 'Invite Attendee' button (the recommended method). </p>
-										 			
-										 			<h4>What You Should Do Now: </h4>	
-													<p> You can choose a new event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+											 			<h4>So What's the Event Code? </h4>	<br/>
+														<p> It's the code that represents your event in the link.</p>
 
-													<p> If you don't change the field, the event code will remain the same. </p>
+														<p> If you want, you can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
 
-													<h4>After That:</h4>
-													<p> The code will displayed on the event page, visible only to you or anyone else you invite to be admin.  You don't need to use it, but you may choose to in order to avoid typing in email addresses of your attendees. However, we recommend using email addresses to make it a bit easier for attendees to record their name (they just need to follow a link in the email we send them.)
+														<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
+										             <% else %>
+											             <p> Attendees can record their names for this event through a unique link, such as:
+											            	<br/><br/>
+											            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.name-coach.com/record/ExampleEventCode<br/>
+											              </p> 
 
+											       		<p> The link will be available once you create the Event Page, and you can just copy and paste the link into the web page for your event (if you have one), or an email to your attendees. </p> 
+											       		
+
+											       		<p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the Event Page and pressing the 'Invite Attendee' button. </p>	<br/>								
+
+											 			<h4>So What's the Event Code? </h4>	<br/>
+														<p> It's the code that represents your event in the link.</p>
+
+														<p> If you want, you can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
+
+														<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
+													<% end %>
 										            </div>
 
 										            <div class="modal-footer">

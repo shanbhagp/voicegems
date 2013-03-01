@@ -5,6 +5,8 @@ before_filter :owner, only: [:index]
 
 #shows the cancel subscription page
 def cancel
+bounce_free_account
+
 @subs = current_user.subscriptions 
 
 # users first (oldest) subscription, for displaying free trial information
@@ -44,6 +46,8 @@ end
 
 # for customers with active sub who are changing sub
 def change_subscription
+	bounce_free_account
+
 	@subs = current_user.subscriptions 
 	if @subs && !@subs.active.blank?
 	@s = @subs.active.first

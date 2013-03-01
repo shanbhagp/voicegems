@@ -13,6 +13,9 @@ class Event < ActiveRecord::Base
 
   has_many :admininvites 
 
+  has_many :voicegems
+  has_many :vgusers, through: :voicegems, source: :user
+
   validates :date, :presence => true
   validates :title, :presence => true, length: { maximum: 254 }
 
