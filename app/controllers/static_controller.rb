@@ -15,4 +15,7 @@ end
 def cartest
 end 
 
+def weddings
+end 
+
 end

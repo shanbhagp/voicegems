@@ -17,7 +17,6 @@
 //= require modernizr.custom.28468
 //= require jquery.cslider
 //= require jquery.flexslider-min
-//= require jquery.refineslide.min
 //= require jquery.carouFredSel-6.1.0-packed
 //= require best_in_place
 //= require bootstrap
