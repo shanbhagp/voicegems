@@ -225,7 +225,11 @@ match '/vgsaveupload', to: 'voicegems#vgsaveupload'
 
 match  '/vg_event_code_add', to: 'voicegems#vg_event_code_add'
 
+match '/macbeath', to: 'users#macbeath'
 
+match 'macbeathindex', to: 'users#macbeathindex'
+
+match 'login', to: 'users#login'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action

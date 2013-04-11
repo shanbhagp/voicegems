@@ -1239,6 +1239,16 @@ def purchase_events_new_stripe_customer
 end
 
 
+def macbeath
+   render :layout => nil
+end 
+
+def macbeathindex
+   render :layout => nil
+end 
+
+def login
+end 
 
 end
 

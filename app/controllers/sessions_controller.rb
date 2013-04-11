@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
     # Sign the user in and redirect to the user's show page.
     else
       @user = User.new  #so that home view can handle the signup form
-    	flash.now[:error] = 'Invalid email/password combination'
-    	render 'users/home'
+    	flash[:error] = 'Invalid email/password combination'
+    	render 'users/login'
     # Create an error message and re-render the signin form.
 
      end

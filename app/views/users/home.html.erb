@@ -6,141 +6,245 @@
               <%= value %> 
               </div>
             <% end %>
-<br/><br/>
-<div class="container">
-                 <script>
-                    // Load this when the DOM is ready
-                    $(function(){
-                      // You used .myCarousel here. 
-                      // That's the class selector not the id selector,
-                      // which is #myCarousel
-                      $('#myCarousel').carousel({
-                      interval: 10000,
-                     
-                    });
-                    });
-                    </script>
 
-                    <script>
-                      $('#myCarousel').hover(
-                              function() {
-                                  $(this).carousel('pause');
-                              },
-                              function() {
-                                  $(this).carousel('cycle');
-                              }
-                          );
-                    </script>
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit bg-purple">
-        
-          <h2 class="grabber"><em>When it needs to be <span>Perfect...</span></em> </h2> <br/>
-        
-          <div class="row">
-              <div class="span7">
-                   <h3 class="white"><span class="deco">NameCoach adds high-touch value to the service you provide as a Wedding Planner or DJ, setting you apart in one critical way... at <em>your</em> event, the names will be announced perfectly!</span> </h3> <br/>
-                   <div class="span4 offset1">
-                   <h4 class="white"><icon class="icon-caret-right"></i>&nbsp;Attendees voice-record their names on an event page where the MC/DJ can hear them, making spot-on pronunciation easier than ever:</h4> <br/>
-                   </div>
-                      <div class="well span4 offset1">                             
-                      
-                            <table>
-                             <tbody>
-                              <tr>
-                              <td class="rec-cell"> <audio src="https://s3-us-west-1.amazonaws.com/namewaves/rahul.mp3" preload="auto"> </audio> 
-                              </td>
-                              <td>&nbsp;&nbsp;</td>
-                              <td><strong><span class="black">Dr. Rahul Chaudhri</span></strong>
-                              </td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                              <td>
-                                <span class="black">sort of like 'cho-the-ree'</span> 
-                              </td>
-                              <tr>
-                             </tbody>
-                            </table> 
 
-                      
-                    </div>
-              </div> 
-              <div class="span3">
-                <br/>
-                <a href="<%= pricing_path %>" class="btn btn-primary btn-large span3"> <span class="grabber-style"><strong><em>TRY IT FREE TODAY!</em></strong>&nbsp;&nbsp;<i class="icon-chevron-right icon-white"></i><i class="icon-chevron-right icon-white"></i></span> </a> <br/>
-                
-                 <!-- <h4><a href="<%= pricing_path %>" class="span3 cent">Planning your own wedding? </a></h4> <br/>-->
-                
-                <br/> <br/> <br/> <br/> <br/> <br/>
-              
-                <a href="<%= eventcodesignup_path %>" class="btn btn-info span3"> Recording Your Name for an Event? <i class="icon-chevron-right icon-white"></i> </a> <br/> <br/>
-
-                <a href="<%= admincodesignup_path %>" class="btn btn-info span3"> Asked to Admin an Event? <i class="icon-chevron-right icon-white"></i> </a>
-              
-               
-               
-              </div>
-          </div>
-        </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4 offset1">
-          <h2 class="cent"><icon class="icon-magic"></i>&nbsp;What We Do</h2>
-          <br/>
-          <p><span class="grabber2">People naturally want their weddings to be <strong><em>perfect</em></strong>. Mangled wedding party names is a top fear of clients, but we all know pronouncing every name correctly can be... <em>tough</em>. <br/><br/>Friends and family might not say anything (and if they do, <a href="http://www.myweddingworkbookpro.com/blog/index.cfm/2011/7/27/DJ-threatened-by-mobster-for-mispronouncing-family-name--Wedisaster-Series-Pt-3" target="_blank">hopefully it's not this!</a>), but the collective dismay is always palpable. <br/><br/> Clients expect the best from wedding professionals, and <strong>NameCoach</strong> finally provides an <em><strong>easy</strong></em> way to deliver that high touch, leaving everyone more satisfied and even happier to rave about your services...</span></p>
-          <br/>
-          <p><a class="btn btn-primary bg-purple btn-large" href="<%= value_path %>">See What We Can Do for You <i class="icon-chevron-right icon-white"></i></a></p>
-        </div>
-
-        <div class="span5 offset1">
-          <h2 class="cent"><icon class="icon-cogs"></i>&nbsp;How it Works</h2>
-          <br/>
-
-              <div id="myCarousel" class="carousel slide">
-
-                <div class="carousel-inner">
-                  <div class="item active">
-                    
-                    <div class="carousel-caption">
-                      <h4>STEP 1: REQUEST NAMES</h4>
-                      <p>Just enter email addresses, or give out your event link. </p>
-                    </div>
-                    <%= image_tag("step1_6.png", alt: "Rails") %>
-                  </div>
-                  <div class="item">
-                    
-                    <div class="carousel-caption">
-                      <h4>STEP 2: ATTENDEES VOICE-RECORD THEIR NAMES</h4>
-                      <p>Our online voice-recorder is quick and easy to use.</p>
-                    </div>
-                    <%= image_tag("record_2_3.png", alt: "Rails") %>
-                  </div>
-                  <div class="item">
-                    
-                    <div class="carousel-caption">
-                      <h4>STEP 3: EVENT MC HEARS AND PRACTICES NAMES</h4>
-                      <p>Voice-recordings allow for perfectly easy, easily perfect pronunciations!</p>
-                    </div>
-                    <%= image_tag("event_page_22.png", alt: "Rails") %>
-                  </div>
+<!-- Slider starts -->
+  <div class="parallax-slider">
+          <!-- Slider (Parallax Slider) -->            
+            <div id="da-slider" class="da-slider">
+              <!-- Each slide should be enclosed inside "da-slide" class -->
+              <div class="da-slide">
+                <div class="slide-details">
+                  <!-- Heading -->
+                  <h2><span>When Saying it Right Really Matters.</span></h2>
+                  <!-- Para -->
+                  <p>Graduations. Weddings. Banner events at which every name, no matter how  difficult or deceptively easy, must be announced perfectly. <br/> Still dealing with low-fidelity phonetic spellings?</p>
+                  <!-- Read more link -->
+                 
+                  <!-- Image -->
+                  <div class="da-img"><img src="/assets/hand2.jpg" alt="image01" /></div>
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-
-
-
               </div>
+              <div class="da-slide">
+                <h2><span>NameCoach makes it Easy...</span></h2>
+                <p>Individuals voice-record their names on an Event Page, where the announcer can hear and practice them - <em>as they actually say it</em> - making spot-on pronunciation possible, easy, and hassle-free. </p>
+               
+                <div class="da-img"><img src="/assets/podium1.jpg" alt="image01" /></div>
+              </div>
+              <div class="da-slide">
+                <h2><span>Request Names</span></h2>
+                <p><br/>Just give out a link to your Event Page, all generated for you.</p>
+                <a href="#" class="da-link">Demo Link</a>
+                <div class="da-img"><img src="/assets/step1_6.png" alt="image01" class="vert-align"/></div>
+              </div>
+              <div class="da-slide">
+                <h2><span>Record Names</span></h2>
+                <p>One click goes to our quick and easy-to-use online audio recorder, where individuals voice-record their names for the Event Page.</p>
+                <a href="#" class="da-link">Recorder</a>
+                <div class="da-img"><img src="/assets/record_2_3.png" alt="image01" class="vert-align"/></div>
+              </div>
+              <div class="da-slide">
+                <h2><span>Hear and Practice Names</span></h2>
+                <p>The announcer can play recordings as needed before the event, allowing for perfectly easy, easily perfect pronunciations on the big day!</p>
+                <a href="#" class="da-link">Demo Page</a>
+                <div class="da-img"><img src="/assets/event_page_22.png" alt="image01" class="vert-align"/></div>
+              </div>
+              <nav class="da-arrows">
+                <span class="da-arrows-prev"></span>
+                <span class="da-arrows-next"></span>
+              </nav>
+             
+            </div>
+            
+  </div>
+  <div class="tp-bannershadow tp-shadow1"></div>
+<!-- Slider ends -->
 
-          <p><a class="btn btn-primary btn-large bg-purple" href="<%= works_path %>">See How Easily it Works <i class="icon-chevron-right icon-white"></i></a></p>
-        </div>
+<br/>
 
+<!-- Recent Posts Starts -->
+
+<div class="recent-posts">
+  <div class="container">
+    <div class="row">
+
+      <div class="span7">
+        <ul>
+            <!-- Recent posts #1 -->
+            <!-- Each carousel should be enclosed inside "li" tag -->
+            <li>
+                <div class="rp-item span3"> 
+                  <!-- Image. -->
+                  <div class="rp-image">        
+                    <a href="#"><img src="/assets/graduation_000_2.jpg" alt=""/></a>
+                  </div>
+                  <div class="rp-details">
+                    <!-- Title and para -->
+                    <h5><a href="#">Graduation Ceremonies </a></h5>
+
+                  </div>                
+                </div>        
+            </li>
+            <!-- Recent posts #2 -->
+            <li>
+                <div class="rp-item span3"> 
+                  <div class="rp-image">        
+                    <a href="#"><img src="/assets/wed2.jpeg" alt=""/></a>
+                  </div>
+                  <div class="rp-details">
+                    <h5><a href="#">Wedding Receptions</a></h5>
+                            
+                  </div>                
+                </div>        
+            </li>                                                                          
+        </ul>
       </div>
 
-      <hr>
+      <div class="span5 home-block">
+          <div class="grey-box hero-block-2">
+              <h2><a href="#">Graduation Season Offer</a></h2>
+              <p>The climax of their educational career. Get your graduands recording now to ensure the moment is perfect for them and their families! </p><br/>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Unlimited Recordings per Event</p>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Full Tech and Customer Support</p>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;100-day, 100% money-back guarantee. No hassles.</p>
+              <a href="#" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
+          </div>
+          <div class="tp-bannershadow tp-shadow3"></div>
+      </div>
 
-       
 
-            
-    </div> <!-- /container -->
+    </div>
 
-   
-  
+  </div>
+</div>
+
+<!-- Recent Posts ends -->
+<div class="sep"></div>
+<!-- How to 2 starts -->
+<div class="content process">
+  <div class="container">
+    <div class="row">
+
+        <h2> <i class="icon-cogs"></i>&nbsp;&nbsp;<span class="light-blue">How NameCoach Works</span></h2>
+        <div class="text-divider6">
+          <span></span>
+        </div> 
+        <br/>
+
+
+                        <div class="span6">
+                           <!-- Step 1 -->
+                           <div class="onethree-left">
+                             <div class="process-meta">
+                              <!-- Process number. Like one, two, three -->
+                                <span>1</span>
+                             </div>
+                           </div>
+                           <div class="onethree-right">
+                            <!-- Title and para -->
+                             <h3><i class="icon-edit"></i>&nbsp;Create an Event Page </h3>
+                             <p><span>Just enter a name (like 'The Harvard Quincy House Commencement'), and a date for the event.  You're Event Page is ready-to-go.</span></p>
+                            
+                           </div>
+                        </div>
+
+                        <div class="span6">
+                           <!-- Step 2 -->
+                           <div class="onethree-left">
+                             <div class="process-meta">
+                                <span>2</span>
+                             </div>
+                           </div>
+                           <div class="onethree-right">
+                             <h3><i class="icon-envelope"></i>&nbsp;Invite Other Admins&nbsp;<span class="muted">(optional)</span></h3>
+                               <p><span>You will be an 'Admin' for the Event Page: you can request and listen to name recordings, and make others Admins (just enter their email.) This is useful if an administrator is putting the recording-link in the commencement instructions webpage or email, and a dean will be announcing names.</span></p>
+                           </div>                        
+                        </div>
+     </div> 
+
+     <br/><br/>
+
+     <div class="row">                   
+                        <div class="span6">
+                           <!-- Step 3 -->
+                           <div class="onethree-left">
+                             <div class="process-meta">
+                                <span>3</span>
+                             </div>
+                           </div>
+                           <div class="onethree-right">
+                             <h3><i class="icon-link"></i>&nbsp;Invite Attendees to Record Names</h3>
+                              <p><span>Admins have two options for requesting names:</span></p><br/>
+                                <ol>
+                                  <li><span>Give out a unique link (generated for your event) with your general event instructions (e.g., your commencement webpage). We give you the link and suggested text, just copy and paste!</span></li><br/>
+                                  <li><span>Or, enter email addresses to send personal name requests with one click. </span></li>
+                                </ol>
+                           </div>                       
+                        </div> 
+
+                       
+
+                        <div class="span6">
+                           <!-- Step 4 -->
+                           <div class="onethree-left">
+                             <div class="process-meta">
+                                <span>4</span>
+                             </div>
+                           </div>
+                           <div class="onethree-right">
+                              <h3><i class="icon-volume-up"></i>&nbsp;Attendees Record their Names</h3>
+                              <p><span>Whichever method you use, attendees click a link to record their names using our online voice-recorder.  They can also enter exactly how they want to be announced (middle names, nicknames), and notes to help with pronounciation ('last name rhymes with.. ').</span></p>
+                           </div>
+                        </div>
+
+       </div>
+
+       <br/><br/>
+
+       <div class="row">
+                        <div class="span6">
+                           <!-- Step 5 -->
+                           <div class="onethree-left">
+                             <div class="process-meta">
+                                <span>5</span>
+                             </div>
+                           </div>
+                           <div class="onethree-right">
+                             <h3><i class="icon-play-circle"></i>&nbsp;Hear and Practice Names!</h3>
+                              <p><span>After an attendee records their name, Announcers/Admins can hear those names on the Event Page and see any attendees' pronunciation notes. They can also enter their own helpful notes.</span></p>   
+                           </div>                        
+                        </div>
+
+                        <div class="span6 home-block">
+
+                          <div class="grey-box hero-block-2">
+                              <h3 class="light-blue">We Make it Easy to Make Their Once-in-a-Lifetime Moments Perfect.  Try it Today!</h3>
+                              <a href="#" class="btn btn-primary">See Demo Event Page</a>&nbsp;&nbsp;<a href="#" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
+                          </div>
+                         <div class="tp-bannershadow tp-shadow1"></div>
+                      </div>
+
+
+    </div>
+    
+    <br/><br/>
+
+    <div class="row">
+      <div class="text-divider5">
+       <span></span>
+       </div>  
+    </div>
+
+  </div>
+</div>
+
+<!-- How to 2 ENDS -->
+
+
+
+
+
+
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 

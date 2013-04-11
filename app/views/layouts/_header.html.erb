@@ -1,10 +1,12 @@
- <header class="navbar navbar-fixed-top">
+ <header class="navbar">
    <div class="navbar-inner">
      <div class="container">
     
 
-         <%= link_to image_tag("combo2r4_2.png", alt: "Rails"), root_path, id: "logo" %>
+          <%= link_to image_tag("combo2r4_2.png", alt: "Rails"), root_path, id: "logo" %>
          <h5 class="logo">&nbsp;&nbsp;&nbsp;hear the name, say it right </h5>
+
+
       <nav>
         <ul class="nav pull-right">
 
@@ -12,34 +14,14 @@
           
 
           <% if !signed_in? %>
-                    <li>
-          <%= link_to "Plans & Pricing", pricing_path %>
-          </li>
-          <li>
-            <%= link_to "Reset Password", new_password_reset_path %>
-          </li>
-          <li>
-              <%= form_for(:session, url: sessions_path, :html => {:class => "navbar-form pull-right"} ) do |f| %>
-
-              
-              <%= f.text_field :email, :class => "span2", :placeholder => "Email" %>
-
-             
-              <%= f.password_field :password, :class => "span2", :placeholder => "Password" %>
-
-                  <%= button_tag(type: 'submit', class: "btn btn-primary btn-small") do %>
-                   Sign in <i class="icon-chevron-right icon-white"></i> 
-                  <% end %>
-
-            <% end %>
-       
-          </li>
+                    <li> <%= link_to "Plans & Pricing", pricing_path %> </li>
+          <li><%= link_to "Login", login_path %></li>
 
           <% end %>
 
            <% if signed_in? %>
             <li><%= link_to "Profile", current_user %></li>
-            <li id="fat-menu" class="dropdown">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
@@ -61,8 +43,13 @@
        </nav>
      </div>
    </div>
- </header>
 
+
+
+
+
+ </header>
+  <div class="sep"></div>
 
             
 
