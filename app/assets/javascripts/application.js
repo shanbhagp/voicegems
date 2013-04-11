@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.purr
+//= require modernizr.custom.28468
 //= require jquery.cslider
 //= require jquery.flexslider-min
 //= require jquery.refineslide.min
@@ -24,7 +25,6 @@
 //= require jquery.isotope
 //= require jquery.prettyPhoto
 //= require jquery.tweet
-//= require modernizr.custom.28468
 //= require best_in_place
 //= require bootstrap
 //= provide jrec
