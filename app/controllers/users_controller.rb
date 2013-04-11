@@ -1250,6 +1250,69 @@ end
 def login
 end 
 
+
+def grad_new_customer_purchase
+  @user = User.new 
+  @number = 1
+
+  if signed_in?
+    flash[:notice] = "Since you are already a registered user, please use this page to purchase Event Pages."
+    redirect_to existing_user_purchase_path
+  end 
+
+end 
+
+
+def grad_new_customer_create_purchase
+
+    @user = User.new
+    @user.email = params[:user][:email]
+    @user.password=params[:user][:password]
+    @user.password_confirmation=params[:user][:password_confirmation]
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @number = 1  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
+    @cost = 75
+    @price = '75$' 
+
+
+    if @user.save
+
+      sign_in @user
+      # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
+      # when creates an event, can invite himself (at that email) to create a PO for that event for himself
+      flash[:success] = "Thank you for registering.  Please fill in your payment details to finish subscribing."
+      if @user.email == 'shanbhagp@aol.com'
+          @user.customer = true
+          @user.save
+      end 
+      if @user.email == 'startx@example.com'
+          @user.customer = true
+          @user.save
+      end 
+      if @user.email == 'teststartx@example.com'
+          @user.customer = true
+          @user.save
+      end 
+      render 'stripe_grad_new_customer_purchase'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+    else
+
+          if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
+                        flash[:error] = "You are already registered on our site. Please sign in to purchase event pages under your Accounts tab."
+                         redirect_to root_path
+          else
+              render action: 'grad_new_customer_purchase'
+          end    
+
+    end 
+
+end
+
+def stripe_grad_new_customer_purchase
+   @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
+end 
+
+
 end
 
 

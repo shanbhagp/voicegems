@@ -17,6 +17,7 @@
 //= require jquery.cslider
 //= require jquery.flexslider-min
 //= require jquery.carouFredSel-6.1.0-packed
+//= require jquery.refineslide.min
 //= require best_in_place
 //= require bootstrap
 //= provide jrec

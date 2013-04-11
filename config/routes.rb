@@ -231,6 +231,10 @@ match 'macbeathindex', to: 'users#macbeathindex'
 
 match 'login', to: 'users#login'
 
+match 'grad_new_customer_purchase', to: 'users#grad_new_customer_purchase'
+
+match 'grad_new_customer_create_purchase', to: 'users#grad_new_customer_create_purchase'
+
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action
 
