@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.purr
+//= require jquery.cslider
+//= require jquery.flexslider-min
 //= require best_in_place
 //= require bootstrap
 //= provide jrec
