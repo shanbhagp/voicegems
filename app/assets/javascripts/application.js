@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.purr
+//= require jquery.ui.datepicker
 //= require modernizr.custom.28468
 //= require jquery.cslider
 //= require jquery.flexslider-min
