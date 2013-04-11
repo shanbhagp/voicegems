@@ -1312,6 +1312,31 @@ def stripe_grad_new_customer_purchase
    @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
 end 
 
+def grad_stripereceiver_purchase
+    #incoming from stripenewcustomer form
+  # get the credit card details submitted by the form
+    token = params[:stripeToken]
+    number = params[:number].to_i
+    coupon = params[:coupon] # this is the coupon code, a string
+    cost = params[:cost]
+
+    #this needs to change to allow for canceled subs - I think this is taken care of, no prior canceled subs for a true new customer(user)  
+
+        if grad_create_customer_purchase(token, number, cost, coupon)
+              #record stripe's (?) customer_id for this user
+              # this helper is in users helper
+          
+            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
+          redirect_to current_user
+        else
+          render 'stripe_grad_new_customer_purchase'
+        end 
+
+end
+
 
 end
 

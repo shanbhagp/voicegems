@@ -242,6 +242,84 @@ module UsersHelper
     end 
 
 
+    def grad_create_customer_purchase(token, number, cost, coupon)
+
+      @cost = cost 
+
+      # was passing in coupon here too
+    #if number.to_i < 6 
+    #   @cost = number.to_i*35 
+    #end 
+    #if number.to_i > 5 && number.to_i < 11 
+   #    @cost = number.to_i*30 
+    #end 
+   # if number.to_i > 10 
+   #    @cost = number.to_i*25 
+   # end 
+#
+   # if !coupon.blank?
+   #   if is_valid_single_use_coupon(coupon)
+    #    @cost = 0
+    #  end  
+    #end 
+
+        # create a Customer
+        customer = Stripe::Customer.create(
+          :card => token,
+          :description => "#{current_user.first_name} #{current_user.last_name}",
+          :email => current_user.email
+        )
+
+        # charge the Customer instead of the card
+        Stripe::Charge.create(
+            :amount => @cost.to_i*100, # in cents
+            :currency => "usd",
+            :customer => customer.id,
+            :description => "#{number} pages"
+        )
+
+        if !customer.nil?
+          current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
+          @eventtotal = current_user.purchased_events + number.to_i
+          current_user.purchased_events = @eventtotal
+          current_user.save
+
+          #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.grad_purchase_receipt(current_user, @r).deliver
+
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+        else
+          flash.now[:error] = "Something went wrong, please try again."
+          false 
+        end
+        
+        rescue Stripe::InvalidRequestError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+       
+        rescue Stripe::CardError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+
+         rescue Stripe::StripeError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}.  Please try again."
+         false
+
+         
+         
+    end 
+
+
+
+
     # for a customer changing their subscription (for stripereceiver_existing action)
     def update_card_and_subscription(token, plan) # plan is now a my_plan_id
       
