@@ -1312,6 +1312,29 @@ def stripe_grad_new_customer_purchase
    @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
 end 
 
+def grad_coupon_purchase 
+    @coupon= params[:coup][:code]
+    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+
+    if is_valid_single_use_coupon(@coupon)
+          @price = '$75'
+          @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'stripenewcustomer_purchase'
+      
+    else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+        
+             @cost = 75
+             @price = '$75'
+          
+      @coupon = nil 
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'stripe_grad_new_customer_purchase'
+    end
+
+end 
+
 def grad_stripereceiver_purchase
     #incoming from stripenewcustomer form
   # get the credit card details submitted by the form

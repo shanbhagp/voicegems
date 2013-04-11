@@ -237,6 +237,8 @@ match 'grad_new_customer_create_purchase', to: 'users#grad_new_customer_create_p
 
 match 'stripe_grad_new_customer_purchase', to: 'users#stripe_grad_new_customer_purchase'
 
+match 'grad_coupon_purchase', to: 'users#grad_coupon_purchase' 
+
 match 'grad_stripereceiver_purchase', to: 'users#grad_stripereceiver_purchase'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'

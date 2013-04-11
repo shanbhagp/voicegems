@@ -37,7 +37,7 @@
                   <div id="collapsechange" class="accordion-body collapse in">
                       <div class="accordion-inner">
                         <% if !@number.nil? && @number.to_i > 0 %>
-                                <%= @number %> Event Page<% if @number.to_i > 1 %>s<% end %> @ <%= @price %>/Event
+                                Service for <%= @number %> Event <% if @number.to_i > 1 %>s<% end %> @ <%= @price %> / Event
                                 <br/>
                                 <strong>Total: $<%= @cost %>.00</strong>
                         <% else %>
@@ -62,7 +62,7 @@
                       <div class="accordion-inner">
                           
                                    Enter code here:
-                                   <%= form_for(:coup, url: coupon_purchase_path) do |y| %>
+                                   <%= form_for(:coup, url: grad_coupon_purchase_path) do |y| %>
                                                <%= y.text_field :code %>
                                                <%= y.hidden_field :number, :value => @number %>
                                                <%= y.submit "Apply Coupon", class: "btn btn-primary"  %> 
