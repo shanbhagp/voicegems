@@ -18,7 +18,7 @@
 //= require jquery.flexslider-min
 //= require jquery.refineslide.min
 //= require jquery.carouFredSel-6.1.0-packed
-//= require jquery.custom.js
+//= require jquery.custom
 //= require jquery.filter
 //= require jquery.html5shim
 //= require jquery.isotope
