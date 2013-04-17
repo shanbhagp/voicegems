@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :access_code, :date, :event_code, :title, :purchase_type
+  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type
 
   has_many :customerkeys
   #has_one :customer, through: :customerkeys, source: :user
@@ -39,6 +39,8 @@ private
       end 
 
   end
+
+
 
 
 end 

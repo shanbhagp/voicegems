@@ -76,7 +76,11 @@ $(function() {
 						                         
 						                     
 				                        <br/>
+				                        <% if current_user.event_type == 'graduation' %>
+				                        <span class="help-block">(e.g., "The Harvard Quincy House Commencement")</span>
+				                        <% else %>
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
+				                        <% end %>
 				                 		 <br/> <hr/>
 				                         	<%= f.submit "Create Event Page", class: "btn btn-primary span4"  %> 
 				                        
@@ -179,7 +183,11 @@ $(function() {
 
 
 				                        <br/>
+				                         <% if current_user.event_type == 'graduation' %>
+				                        <span class="help-block">(e.g., "The Harvard Quincy House Commencement")</span>
+				                        <% else %>
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
+				                        <% end %>
 
 				                     <% end %>
 				                

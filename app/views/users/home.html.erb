@@ -28,25 +28,25 @@
               <div class="da-slide">
                 <h2><span>NameCoach makes it Easy...</span></h2>
                 <p>Individuals voice-record their names on an Event Page, where the announcer can hear and practice them - <em>as they actually say it</em> - making spot-on pronunciation possible, easy, and hassle-free. </p>
-               
+               <a href="<%= graduations_path%>.htm#why" class="da-link" target="_blank">The Value..</a>
                 <div class="da-img"><img src="/assets/podium1.jpg" alt="image01" /></div>
               </div>
               <div class="da-slide">
                 <h2><span>Request Names</span></h2>
                 <p><br/>Just give out a link to your Event Page, all generated for you.</p>
-                <a href="#" class="da-link">Demo Link</a>
+                <a href="<%= @url %>" target="_blank" class="da-link">Demo Link</a>
                 <div class="da-img"><img src="/assets/step1_6.png" alt="image01" class="vert-align"/></div>
               </div>
               <div class="da-slide">
                 <h2><span>Record Names</span></h2>
                 <p>One click goes to our quick and easy-to-use online audio recorder, where individuals voice-record their names for the Event Page.</p>
-                <a href="#" class="da-link">Recorder</a>
+                <a href="<%= @url %>" target="_blank" class="da-link">Recorder</a>
                 <div class="da-img"><img src="/assets/record_2_3.png" alt="image01" class="vert-align"/></div>
               </div>
               <div class="da-slide">
                 <h2><span>Hear and Practice Names</span></h2>
                 <p>The announcer can play recordings as needed before the event, allowing for perfectly easy, easily perfect pronunciations on the big day!</p>
-                <a href="#" class="da-link">Demo Page</a>
+                <a href="<%= demo_event_page_path %>" target="_blank" class="da-link">Demo Page</a>
                 <div class="da-img"><img src="/assets/event_page_22.png" alt="image01" class="vert-align"/></div>
               </div>
               <nav class="da-arrows">
@@ -102,7 +102,7 @@
 
       <div class="span5 home-block">
           <div class="grey-box hero-block-2">
-              <h2><a href="#">Graduation Season Offer</a></h2>
+              <h2><a href="<%= graduations_path %>">Graduation Season Offer</a></h2>
               <p>The climax of their educational career. Get your graduands recording now to ensure the moment is perfect for them and their families! </p><br/>
               <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Unlimited Recordings per Event</p>
               <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Full Tech and Customer Support</p>
@@ -157,7 +157,7 @@
                            </div>
                            <div class="onethree-right">
                              <h3><i class="icon-envelope"></i>&nbsp;Invite Other Admins&nbsp;<span class="muted">(optional)</span></h3>
-                               <p><span>You will be an 'Admin' for the Event Page: you can request and listen to name recordings, and make others Admins (just enter their email.) This is useful if an administrator is putting the recording-link in the commencement instructions webpage or email, and a dean will be announcing names.</span></p>
+                               <p><span>You will be an 'Admin' for the Event Page: you can request and listen to name recordings, and make others Admins (just enter their email.) This is useful if an administrator is putting the recording link with the commencement instructions in a web page or email, and a dean will be announcing names.</span></p>
                            </div>                        
                         </div>
      </div> 
@@ -174,7 +174,7 @@
                            </div>
                            <div class="onethree-right">
                              <h3><i class="icon-link"></i>&nbsp;Invite Attendees to Record Names</h3>
-                              <p><span>Admins have two options for requesting names:</span></p><br/>
+                              <p><span>Admins have two options for requesting names:</span></p>
                                 <ol>
                                   <li><span>Give out a unique link (generated for your event) with your general event instructions (e.g., your commencement webpage). We give you the link and suggested text, just copy and paste!</span></li><br/>
                                   <li><span>Or, enter email addresses to send personal name requests with one click. </span></li>
@@ -218,8 +218,8 @@
                         <div class="span6 home-block">
 
                           <div class="grey-box hero-block-2">
-                              <h3 class="light-blue">We Make it Easy to Make Their Once-in-a-Lifetime Moments Perfect.  Try it Today!</h3>
-                              <a href="#" class="btn btn-primary">See Demo Event Page</a>&nbsp;&nbsp;<a href="<%= grad_new_customer_purchase_path %>" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
+                              <h3 class="light-blue">We Make it Easy to Make their Once-in-a-Lifetime Moments Perfect.  Try it Today!</h3>
+                              <a href="<%= demo_event_page_path %>" target="_blank" class="btn btn-primary">Demo Event Page</a>&nbsp;&nbsp;<a href="<%= graduations_path%>.htm#why" class="btn btn-primary">Why Use NameCoach?</a>&nbsp;&nbsp;<a href="<%= grad_new_customer_purchase_path %>" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
                           </div>
                          <div class="tp-bannershadow tp-shadow1"></div>
                       </div>

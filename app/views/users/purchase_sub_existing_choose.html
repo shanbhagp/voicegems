@@ -165,7 +165,7 @@
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-panel-label="Purchase Subscription!" data-name="NameCoach" data-label="Enter New Card Details"
                                     data-description="<%= Plan.find_by_my_plan_id(@plan).name %> subscription"
-                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
+                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                                 <br/>
                                 <br/>
                                     
@@ -201,7 +201,7 @@
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-panel-label="Purchase Subscription!" data-name="NameCoach" data-label="Pay with Card"
                                     data-description="<%= Plan.find_by_my_plan_id(@plan).name  %> subscription"
-                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
+                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                                 <br/>
                                 <br/>
                                     

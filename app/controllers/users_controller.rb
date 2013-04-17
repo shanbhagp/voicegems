@@ -19,6 +19,20 @@ before_filter :owner, only: [:console, :index, :destroy]
     # check if signed_in and then display (you are currently signed in, view your profile)
     # automatically renders page 'users/home'
      @user = User.new
+
+     @event = Event.find(ENV['demopage'].to_i)
+
+     @practiceobject = Practiceobject.new  
+     @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+     @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+     @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+     @unregisteredpos = @event.practiceobjects.unregistered.visible
+     @hiddenpos = @event.practiceobjects.hidden
+     @hiddenandregisteredpos  = @hiddenpos.registered
+     @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+     @url = demo_record_url(:event_code => @event.event_code)
+
   end
 
   def index
@@ -1271,9 +1285,10 @@ def grad_new_customer_create_purchase
     @user.password_confirmation=params[:user][:password_confirmation]
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]
+    @user.event_type = 'graduation'
     @number = 1  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
     @cost = 75
-    @price = '75$' 
+    @price = '$75' 
 
 
     if @user.save
@@ -1359,6 +1374,13 @@ def grad_stripereceiver_purchase
         end 
 
 end
+
+
+def demo_recorder
+  @user = User.new
+  render :layout => nil
+  # necessary b/c having the rendered header was causing problems on the test page
+end 
 
 
 end

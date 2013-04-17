@@ -54,4 +54,10 @@ def active_page_check
     end 
 end 
 
+def assign_event_type(event)
+	if current_user.event_type == "graduation"
+	  event.event_type = "graduation"
+	end 
+end 
+
 end 

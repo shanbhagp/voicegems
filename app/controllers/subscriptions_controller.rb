@@ -56,6 +56,7 @@ def change_subscription
 	else #this should not happen - be careful to make sure every customer has a subscription; or at least if they have a 
 		# cancel subsciption link, there is an active subscription to be canceled. 
 	redirect_to current_user, notice: 'You have no active subscriptions.'
+	 # return false  is this line needed to end the action?
 	end 
 
 	# users first (oldest) subscription, for displaying free trial information

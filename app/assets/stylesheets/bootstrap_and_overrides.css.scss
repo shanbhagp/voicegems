@@ -28,6 +28,11 @@ $grayMediumLight: #eaeaea;
   }
 }
 
+#logo2 h1 {
+ font-size: 35px;
+ font-weight: 400;
+}
+
 .logo {
   float: left;
   margin-right: 10px;
@@ -623,4 +628,26 @@ h3, h4 {
 
 .light-blue {
   color: #5eb2d9;
+}
+
+.purple {
+   color: #660066;
+}
+
+.accordion h5 {
+  line-height: 18px;
+  color: #333;
+  font-size: 13px;
+}
+
+
+.accordion h5.white {
+
+  color: white;
+ 
+}
+
+.accordion h4 {
+  line-height: 18px;
+  font-size: 14px;
 }

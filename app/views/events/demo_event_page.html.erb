@@ -7,10 +7,6 @@
   jQuery(".best_in_place").best_in_place();
 });
 </script>
-<%# checks to see if the current user is an admin for this event; prevents users who are admins for one event to access another event page for which they are just registered but not admins.  cant use current-user method here because that is for controllers, has redirects and stuff in it.. %>
-<% if !@event.adminkeys.find_by_user_id(current_user.id) %>
-	<%= render 'events/nonadminshow' %> 
-<% else %>   
 
 <div class="jumbotron">
 	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
@@ -36,7 +32,8 @@
 			
 				<div class="well">
 					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an event attendee to record their name: </h4>
-					 <br />
+					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
+					 <hr/>
 					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
 
 									
@@ -51,7 +48,7 @@
 						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
 						
 						 									  
-						    <%= f.submit "Invite Attendee", class: "btn btn-info", disable_with: 'Inviting...' %>
+						    <%= f.submit "Invite Attendee", class: "btn btn-info", disabled: true %>
 						  
 
 					 <% end %>
@@ -155,7 +152,7 @@
 				</div>
 
 					<div class="span2">
-						<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
+						<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 														
 				</div>	
 				
@@ -233,7 +230,7 @@
                                 
                                          	 <%= form_for(:po, url: rerecord_path) do |y| %>
                                               	<%= y.hidden_field :x, :value => f.id %>
-                                               	<%= y.submit "Request Re-Recording", class: "btn-primary btn-large btn-modal", disable_with: 'sending request...' %>
+                                               	<%= y.submit "Request Re-Recording", class: "btn-primary btn-large btn-modal", disabled: true %>
                                              <% end %>  
 		                                     <br/>
 		                                     <br/>
@@ -296,7 +293,7 @@
                                          <h4> Please confirm you would like to delete this entry </h4> 
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
-                                         <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
+                                         <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
                                                 <i class="icon-trash icon-white"></i>&nbsp;Delete
                                          <% end %>
                                          <br/>
@@ -379,7 +376,7 @@
 				 </div>
 
 				 <div class="span2">
-					<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
+					<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 																		
 				 </div>	
 
@@ -457,7 +454,7 @@
 					                                
 					                 <%= form_for(:po, url: reminder_path) do |y| %>
                                           <%= y.hidden_field :x, :value => f.id %>
-                                           <%= y.submit "Request Recording", class: "btn-primary btn-large btn-modal", disable_with: 'sending request...' %>
+                                           <%= y.submit "Request Recording", class: "btn-primary btn-large btn-modal", disabled: true %>
 					                 <% end %>  
 
                                      <br/>
@@ -521,7 +518,7 @@
 			                         <h4> Please confirm you would like to delete this entry </h4> 
 			                         <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 			                         <hr/>
-			                         <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
+			                         <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
 			                             <i class="icon-trash icon-white"></i>&nbsp;Delete
 			                         <% end %>
 	                                 <br/>
@@ -580,13 +577,13 @@
 			 <caption><em>(attendees invited to register on this site who have not yet done so)<br/><br/></em></caption>
 			     <thead class="table-header">
 					 <tr>
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'first name' when inviting attendee. Click text field below to edit (this will change the greeting in reminder emails sent to attendee)."><h4>First Name</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'first name' when inviting attendee. Click text field below to edit (this will change the greeting in reminder emails sent to attendee)."><h4>First Name</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			 
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'last name' when inviting attendee. Click text field below to edit."><h4>Last Name</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'last name' when inviting attendee. Click text field below to edit."><h4>Last Name</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Email address to which attendee invitation sent. Click text field below to edit (will update address to which reminder emails to this attendee are sent)."><h4>Email</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Email address to which attendee invitation sent. Click text field below to edit (will update address to which reminder emails to this attendee are sent)."><h4>Email</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Your (or other admins') notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes (Your Notes)</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Your (or other admins') notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes (Your Notes)</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
 		    			 <td><h4>Actions</span></h4>&nbsp;</td>
 							    			
@@ -676,7 +673,7 @@
 	                                         <%= form_for(f.userinvites.build, url: userinvites_path) do |u| %>
 												<%= u.hidden_field :practiceobject_id %>
 												
-												<%= u.submit "Send Reminder", class: "btn-large btn-primary btn-modal", disable_with: 'Sending...' %>	
+												<%= u.submit "Send Reminder", class: "btn-large btn-primary btn-modal", disabled: true %>	
 
 											 <% end %>
 											 <br/>
@@ -703,7 +700,7 @@
                                              <h4> Please confirm you would like to delete this entry </h4> 
                                              <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 							                 <hr/>
-							                  <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
+							                  <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
 							                      <i class="icon-trash icon-white"></i>&nbsp;Delete
 							                  <% end %>
 			                                 <br/>
@@ -784,7 +781,7 @@
 					 </div>
 
 					 <div class="span3">
-						 <a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
+						 <a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 													
 					 </div>	
 
@@ -843,7 +840,7 @@
 
 											 <%= x.hidden_field :hidden, :value => false %>                    
 											 <%= x.hidden_field :po_id, :value => f.id %>
-											 <%= x.submit "Restore", class: "btn-primary btn-large btn-modal", disable_with: 'restoring...' %>
+											 <%= x.submit "Restore", class: "btn-primary btn-large btn-modal", disabled: true %>
 									     <% end %>
 	                                 	 <br/>
 	                                  	 <br/>
@@ -882,13 +879,13 @@
 				  <caption><em>(attendees invited to register on this site who have not yet done so)<br/><br/></em></caption>
 			     <thead class="table-header">
 					 <tr>
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'first name' when inviting attendee. Click text field below to edit (this will change the greeting in reminder emails sent to attendee)."><h4>First Name</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'first name' when inviting attendee. Click text field below to edit (this will change the greeting in reminder emails sent to attendee)."><h4>First Name</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			 
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'last name' when inviting attendee. Click text field below to edit."><h4>Last Name</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="What admin entered for 'last name' when inviting attendee. Click text field below to edit."><h4>Last Name</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Email address to which attendee invitation sent. Click text field below to edit (will update address to which reminder emails to this attendee are sent)."><h4>Email</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Email address to which attendee invitation sent. Click text field below to edit (will update address to which reminder emails to this attendee are sent)."><h4>Email</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
-		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Your (or other admins') notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes (Your Notes)</h4></a><em>(click on a field to edit)</em></td>
+		    			 <td><a href="#" rel="tooltip" data-placement="right" title="Your (or other admins') notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes (Your Notes)</h4></a><em>(click on a field to edit - disabled for demo)</em></td>
 		    			
 		    			 <td><h4>Actions</span></h4>&nbsp;</td>
 							    			
@@ -968,7 +965,7 @@
 		              <td> <%= a.first_name %> </td>
 		              <td> <%= a.last_name %> </td>
 		              <td> <%= a.email %> </td>
-		              <% if @event.customerkeys.find_by_user_id(current_user.id) %>
+		            
 		              <td> 
 		                 <div id="remove_admin<%= a.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -986,7 +983,7 @@
 		                                         <%= form_for(:a, url: removeadmin_path) do |x| %>                    
 		                                             <%= x.hidden_field :a_id, :value => a.id %>
 		                                             <%= x.hidden_field :event_id, :value => @event.id %>
-		                                             <%= x.submit "Remove Admin", class: "btn-danger btn-large btn-modal", disable_with: 'removing...' %>
+		                                             <%= x.submit "Remove Admin", class: "btn-danger btn-large btn-modal", disabled: true %>
 		                                         <% end %>
 		                                        <br/>
 		                                        <br/>
@@ -999,9 +996,9 @@
 
 		                 </div>  <%# END modal %>      
 
-		                 <% unless a.id == current_user.id %> <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="icon-ban-circle red"></i></a> <% end %>
+		                 <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="icon-ban-circle red"></i></a> 
 		              <td> 
-                      <% end %>  <%# end if-end wrapper for this td %>
+                      
                  </tr>
                  <script>  
                            $(function ()  
@@ -1018,10 +1015,10 @@
     	 	 <div class="well">
     	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this event: </h4>
 					 <br />	
-					 <%= form_for(@event.admininvites.build, :html => {:class => 'form-inline'}) do |f| %>
+					 <%= form_for(Admininvite.new, :html => {:class => 'form-inline'}) do |f| %>
 
 				
-					     <%= f.hidden_field :event_id %>
+					    
 														 									    
 					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span3" %>
 																		
@@ -1032,7 +1029,7 @@
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+						 <%= f.submit "Invite Admin", class: "btn btn-info", disabled: true, confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
 						  	
 
 				     <% end %>
@@ -1126,5 +1123,5 @@
 </div> <%# END container %>
 </div>
 
-<% end %> <%# END if proper admin else end %>
+
 

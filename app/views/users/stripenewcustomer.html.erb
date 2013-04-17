@@ -133,7 +133,7 @@
                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-panel-label="Subscribe!" data-name="NameCoach"
                     data-description="<%= @planobject.name %> subscription"
-                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe </span> 
+                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                 <br/>
                 <br/>
                     
