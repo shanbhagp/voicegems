@@ -76,11 +76,11 @@
                 <div class="rp-item span3"> 
                   <!-- Image. -->
                   <div class="rp-image">        
-                    <a href="#"><img src="/assets/graduation_000_2.jpg" alt=""/></a>
+                    <a href="<%= graduations_path %>"><img src="/assets/graduation_000_2.jpg" alt=""/></a>
                   </div>
                   <div class="rp-details">
                     <!-- Title and para -->
-                    <h5><a href="#">Graduation Ceremonies </a></h5>
+                    <h5><a href="<%= graduations_path %>">Graduation Ceremonies </a></h5>
 
                   </div>                
                 </div>        
@@ -143,7 +143,7 @@
                            <div class="onethree-right">
                             <!-- Title and para -->
                              <h3><i class="icon-edit"></i>&nbsp;Create an Event Page </h3>
-                             <p><span>Just enter a name (like 'The Harvard Quincy House Commencement'), and a date for the event.  You're Event Page is ready-to-go.</span></p>
+                             <p><span>Just enter a name (like 'The Harvard Quincy House Commencement'), and a date for the event.  Your Event Page is ready-to-go.</span></p>
                             
                            </div>
                         </div>
@@ -219,7 +219,7 @@
 
                           <div class="grey-box hero-block-2">
                               <h3 class="light-blue">We Make it Easy to Make Their Once-in-a-Lifetime Moments Perfect.  Try it Today!</h3>
-                              <a href="#" class="btn btn-primary">See Demo Event Page</a>&nbsp;&nbsp;<a href="#" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
+                              <a href="#" class="btn btn-primary">See Demo Event Page</a>&nbsp;&nbsp;<a href="<%= grad_new_customer_purchase_path %>" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $75</a>
                           </div>
                          <div class="tp-bannershadow tp-shadow1"></div>
                       </div>
@@ -246,5 +246,3 @@
 
 
 
-<!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 

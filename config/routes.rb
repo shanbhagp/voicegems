@@ -242,6 +242,7 @@ match 'grad_coupon_purchase', to: 'users#grad_coupon_purchase'
 match 'grad_stripereceiver_purchase', to: 'users#grad_stripereceiver_purchase'
 
 match 'weddings', to: "static#weddings"
+match 'graduations', to: "static#graduations"
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action
