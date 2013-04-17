@@ -293,9 +293,10 @@
                                          <h4> Please confirm you would like to delete this entry </h4> 
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
-                                         <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
-                                         <% end %>
+                                     
+
+                                         <button  href="#" class="btn btn-danger btn-large btn-modal" ><i class="icon-trash"></i>&nbsp;Delete (disabled)</button>
+
                                          <br/>
                                          <br/>
                                                                
@@ -314,7 +315,7 @@
 
                               		<button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small" ><i class="icon-trash"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -518,9 +519,8 @@
 			                         <h4> Please confirm you would like to delete this entry </h4> 
 			                         <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 			                         <hr/>
-			                         <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
-			                             <i class="icon-trash icon-white"></i>&nbsp;Delete
-			                         <% end %>
+			                         <button  href="#" class="btn btn-danger btn-large btn-modal" ><i class="icon-trash"></i>&nbsp;Delete (disabled)</button>
+
 	                                 <br/>
 	                                 <br/>
 			                     </div>
@@ -700,9 +700,7 @@
                                              <h4> Please confirm you would like to delete this entry </h4> 
                                              <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 							                 <hr/>
-							                  <%= link_to f, disabled: true, class: 'btn btn-danger btn-large btn-modal' do %>
-							                      <i class="icon-trash icon-white"></i>&nbsp;Delete
-							                  <% end %>
+							                 <button  href="#" class="btn btn-danger btn-large btn-modal" ><i class="icon-trash"></i>&nbsp;Delete (disabled)</button>
 			                                 <br/>
 			                                 <br/>
                                                                
