@@ -173,8 +173,8 @@
 				 <div class="well span12">
 					 <div class="span2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
-						(<%= f.user.email %>) <br/>
-						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
+						(<%= f.user.first_name %>@example.com) <br/>
+						
 					 </div>
 	
 
@@ -215,7 +215,7 @@
                                   
                                      <div class="modal-body left">
                                   
-                                         <h4> The following email will be sent to <%= f.email %>: </h4> <hr/>
+                                         <h4> The following email will be sent to <%= f.first_name %>@example.com: </h4> <hr/>
 
                                          <div class="well">
                                             <p> Hi there <% if !f.user.first_name.nil? %><%= f.user.first_name %> <% end %>! </p>
@@ -263,7 +263,7 @@
                                             	<tbody>
 		                                            <% f.userinvites.each do |a| %>
 		                                              <tr>
-		                                                <td> <%= a.recipient_email %> </td>
+		                                                <td> (example email) </td>
 		                                                <td> <% if !a.admin_id.blank? %><%= User.find_by_id(a.admin_id).email %><% end %> </td>
 		                                                <td> <%if !a.sent_at.nil? %><%= a.sent_at.strftime("%b %d, %Y") %><% end %> </td>
 		                                                <td> <%= a.invite_type %> </td>
@@ -285,7 +285,7 @@
 
                                     <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                         <h3>Delete Entry for <%= f.email %> </h3>
+                                         <h3>Delete Entry for (example email) </h3>
                                     </div>
                                                           
                                     <div class="modal-body left">
@@ -399,8 +399,8 @@
 									
 					 <div class="span2">
 						 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
-						 (<%= f.user.email %>) <br/>
-						 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
+						 (<%= f.user.first_name %>@example.com) <br/>
+						 
 					 </div>
 					
 
@@ -440,7 +440,7 @@
 					             </div>
 					                                  
 					             <div class="modal-body left">
-					                 <h4> The following email will be sent to <%= f.email %>: </h4> <hr/>
+					                 <h4> The following email will be sent to (example email): </h4> <hr/>
 									 
 									 <div class="well">
 	                                    <p> Hi there <% if !f.user.first_name.nil? %><%= f.user.first_name %> <% end %>! </p>
@@ -491,7 +491,7 @@
 	                                    <tbody>
 	                                    <% f.userinvites.each do |a| %>
 	                                      <tr>
-	                                        <td> <%= a.recipient_email %> </td>
+	                                        <td> (example email) </td>
 	                                        <td> <% if !a.admin_id.blank? %><%= User.find_by_id(a.admin_id).email %><% end %> </td>
 	                                        <td> <%if !a.sent_at.nil? %><%= a.sent_at.strftime("%b %d, %Y") %><% end %> </td>
 	                                        <td> <%= a.invite_type %> </td>
@@ -512,7 +512,7 @@
 
 	                             <div class="modal-header">
 	                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                                <h3>Delete Entry for <%= f.email %> </h3>
+	                                <h3>Delete Entry for (example email) </h3>
 	                             </div>
 			                                                          
 			                     <div class="modal-body left">
@@ -624,7 +624,7 @@
                                             	 <tbody>
 		                                            <% f.userinvites.each do |a| %>
 		                                              <tr>
-		                                                <td> <%= a.recipient_email %> </td>
+		                                                <td> (example email) </td>
 		                                                <td> <% if !a.admin_id.blank? %><%= User.find_by_id(a.admin_id).email %><% end %> </td>
 		                                                <td> <%if !a.sent_at.nil? %><%= a.sent_at.strftime("%b %d, %Y") %><% end %> </td>
 		                                                
@@ -652,7 +652,7 @@
                                                           
 	                                     <div class="modal-body left">
 	                                                          
-	                                         <h4> The following email will be sent to <%= f.email %>: </h4> <hr/>
+	                                         <h4> The following email will be sent to (example email): </h4> <hr/>
 
 											 <div class="well">
 											 	<p> Hi there <% if !f.first_name.blank? %><%= f.first_name %><% end %>! </p>
@@ -692,7 +692,7 @@
 
                                          <div class="modal-header">
                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                             <h3>Delete Entry for <%= f.email %> </h3>
+                                             <h3>Delete Entry for (example email)</h3>
                                          </div>
                                                           
                                          <div class="modal-body left">
@@ -797,8 +797,8 @@
 					 <div class="well span12">
 						 <div class="span2">
 							 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
-							 (<%= f.user.email %>) <br/>
-							 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
+							 (<%= f.user.first_name %>@example.com) <br/>
+							
 						 </div>
 											
 
@@ -827,7 +827,7 @@
 
 			                         <div class="modal-header">
 			                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			                             <h3>Restore Entry for <%= f.email %> </h3>
+			                             <h3>Restore Entry for (example email) </h3>
 			                         </div>
 			                                                          
 			                         <div class="modal-body left">
@@ -905,7 +905,7 @@
 
 	                                 <div class="modal-header">
 	                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                                     <h3>Restore Entry for <%= f.email %> </h3>
+	                                     <h3>Restore Entry for (example email) </h3>
 	                                 </div>
 	                                                          
 	                                 <div class="modal-body left">

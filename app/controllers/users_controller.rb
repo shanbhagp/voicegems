@@ -1335,7 +1335,7 @@ def grad_coupon_purchase
           @price = '$75'
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
-          render action: 'stripenewcustomer_purchase'
+          render action: 'stripe_grad_new_customer_purchase'
       
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)

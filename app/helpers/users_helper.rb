@@ -148,7 +148,7 @@ module UsersHelper
     end 
 
     def is_valid_single_use_coupon(coupon)
-        Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true
+        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true
     end 
 
     def redeem_single_use_coupon(coupon)
