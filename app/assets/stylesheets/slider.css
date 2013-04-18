@@ -70,7 +70,8 @@
 	color: #888;
 	font-size: 15px;
 	line-height: 26px;
-	height: 80px;
+	height: auto;
+	min-height: 80px;
 	overflow: hidden;
 	font-weight: 400;
 	font-style: italic;
