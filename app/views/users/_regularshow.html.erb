@@ -117,7 +117,7 @@
                                                   <td><em>Invited as attendee by: </em><% if !e.practiceobjects.find_by_user_id(current_user.id).admin_id.blank? %><%= User.find_by_id(e.practiceobjects.find_by_user_id(current_user.id).admin_id).first_name %>&nbsp;<%= User.find_by_id(e.practiceobjects.find_by_user_id(current_user.id).admin_id).last_name %>&nbsp;<% else %>  --<% end %>                                                        
                                                   </td>
                                                   <td>
-                                                          <div id="rs<%= e.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                          <div id="rs<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                             <div class="modal-header">
                                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                               <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
@@ -182,7 +182,7 @@
   <% else %>  <!-- has 0 or 1 practiceobject -->
 
 
-  <div id="recordmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="recordmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h3 id="myModalLabel"><em>Please record your name here</em></h3>
@@ -437,7 +437,7 @@
                                                   <td><em>Invited as attendee by: </em><% if !e.practiceobjects.find_by_user_id(current_user.id).admin_id.blank? %><%= User.find_by_id(e.practiceobjects.find_by_user_id(current_user.id).admin_id).first_name %>&nbsp;<%= User.find_by_id(e.practiceobjects.find_by_user_id(current_user.id).admin_id).last_name %>&nbsp;<% else %>  --<% end %>    
                                                   </td>
                                                   <td>
-                                                          <div id="rs2<%= e.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                          <div id="rs2<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                             <div class="modal-header">
                                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                               <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>

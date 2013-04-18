@@ -16,7 +16,7 @@ $(function() {
 </ul>
           
 <div id="myTabContent" class="tab-content">
-     <div class="tab-pane fade in active" id="ev">
+     <div class="tab-pane active" id="ev">
 
      		 <% if purch_and_sub_pages_left? %>
 
@@ -35,7 +35,7 @@ $(function() {
 				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "span2" %> &nbsp;&nbsp;
 
 				                        <%= f.text_field :event_code, :placeholder => 'Event Code (optional)', :class => "span2" %>
-				                        		 <div id="info-code" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                        		 <div id="info-code" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -116,7 +116,7 @@ $(function() {
 				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "span2" %> &nbsp;&nbsp;
 
 				                        <%= f.text_field :event_code, :placeholder => 'Event Code (optional)', :class => "span2" %>
-				                        		 <div id="info-code" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                        		 <div id="info-code" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -218,7 +218,7 @@ $(function() {
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
 						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit event</span></a>	 </td> 
 						                   <td> 
-				                  			 <div id="<%= e.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                  			 <div id="<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                           <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
@@ -273,7 +273,7 @@ $(function() {
 				      </div>
 
 	
-      <div class="tab-pane fade" id="nw">
+      <div class="tab-pane" id="nw">
 		 <%= render 'users/regularshow' %> 	               
      </div>
 

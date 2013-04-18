@@ -59,7 +59,7 @@
 
 	 <div class = "span4">
 	 		<div class="well">
-					 <div id="info-eventcode" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 										              <h3 id="myModalLabel">Using the Event Link</h3>
@@ -123,7 +123,7 @@
 <%# this first section uses @registeredpos and lists the registered practice objects %>	
 <div id="myTabContent" class="tab-content ">
 
-    <div class="tab-pane fade in active" id="reg">
+    <div class="tab-pane active" id="reg">
 								               
 
         <table class="table">
@@ -205,7 +205,7 @@
                         
 
                                                           
-                                 <div id="regrec_send_reminder<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="regrec_send_reminder<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                      <div class="modal-header">
 	                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -242,7 +242,7 @@
 
                            		 </div>   <%# end MODAL div id="regrec_send_reminder %>	
 
-                                 <div id="regrec_reminders_sent<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="regrec_reminders_sent<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                     <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -280,7 +280,7 @@
                                  </div> <%# end MODAL div id="regrec_reminders_sent %>	              
 
 
-                                 <div id="regrec_hide_entry<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="regrec_hide_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                     <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -347,9 +347,9 @@
 			   </div>
 		 <% end %>
 
-     </div> <%# END TAB PANE 1 div class="tab-pane fade in active" id="reg" %>	
+     </div> <%# END TAB PANE 1 div class="tab-pane fade active" id="reg" %>	
 
-     <div class="tab-pane fade" id="regunrec">
+     <div class="tab-pane" id="regunrec">
                 
 
 		 <table class="table">
@@ -431,7 +431,7 @@
 						 <div class="btn-group pull-right">
 
                                                                                   
-					         <div id="regunrec_send_reminder<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					         <div id="regunrec_send_reminder<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 					             <div class="modal-header">
 					                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -470,7 +470,7 @@
 					         </div> <%# END modal id="regunrec_send_reminder" %>       
 
 
-                             <div id="regunrec_reminders_sent<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                             <div id="regunrec_reminders_sent<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                  <div class="modal-header">
                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -507,7 +507,7 @@
                              </div> <%# END modal id="regunrec_reminders_sent %>               
 
 
-			                 <div id="regunrec_hide_entry<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                 <div id="regunrec_hide_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 	                             <div class="modal-header">
 	                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -571,7 +571,7 @@
 
      </div> <%# END tab 2 %>
 
-     <div class="tab-pane fade" id="unreg">
+     <div class="tab-pane" id="unreg">
 		 <table class="table  table-striped table-condensed event">
 			 <caption><em>(attendees invited to register on this site who have not yet done so)<br/><br/></em></caption>
 			     <thead class="table-header">
@@ -600,7 +600,7 @@
 						     <td>
 						     	 <div class="btn-group">
 
-									 <div id="reminders_sent<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									 <div id="reminders_sent<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                          <div class="modal-header">
                                         	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -642,7 +642,7 @@
                                      </div> <%# END modal id="reminders_sent %>
 
                                                           
-                                     <div id="send_reminder<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                     <div id="send_reminder<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 	                                     <div class="modal-header">
 	                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -687,7 +687,7 @@
                                      </div> <%# END modal  id="send_reminder" %>      
 
 
-                                     <div id="hide_entry<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                     <div id="hide_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
                                          <div class="modal-header">
                                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -755,7 +755,7 @@
 
 
  <% unless @hiddenpos.count == 0 %>  
-     <div class="tab-pane fade" id="deleted">
+     <div class="tab-pane" id="deleted">
 								               
          <% unless @hiddenandregisteredpos.count == 0 %>	
              <table class="table">
@@ -822,7 +822,7 @@
 
 						 <div class="span1">
 																
-								 <div id="hidden_reg_restore_entry<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								 <div id="hidden_reg_restore_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 			                         <div class="modal-header">
 			                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -900,7 +900,7 @@
 							 </td>
 
 						     <td>
-                                 <div id="hidden_unreg_restore_entry<%= f.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="hidden_unreg_restore_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 	                                 <div class="modal-header">
 	                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -954,7 +954,7 @@
  <% end %>  <%# END unless hiddenpos.count == 0 %>
 
 
-     <div class="tab-pane fade" id="admins">
+     <div class="tab-pane" id="admins">
     	 <table class="table  table-striped event">
        
              <% @event.admins.each do |a| %>
@@ -964,7 +964,7 @@
 		              <td> <%= a.first_name %>@example.com </td>
 		            
 		              <td> 
-		                 <div id="remove_admin<%= a.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		                 <div id="remove_admin<%= a.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 		                                     <div class="modal-header">
 		                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1033,7 +1033,7 @@
 			 </div> <%# end well %>
 			</div>
 			 <div class="span2">
-			 	     <div id="admins_invited" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			 	     <div id="admins_invited" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				         <div class="modal-header">
 				              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				              <h3 id="myModalLabel">Admin Invitations</h3>
@@ -1066,7 +1066,7 @@
 				         </div>
 				     </div> <%# end modal %>
 
-				     													    <div id="info-admincode" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				     													    <div id="info-admincode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 										              <h3 id="myModalLabel">Using the Admin Code</h3>
