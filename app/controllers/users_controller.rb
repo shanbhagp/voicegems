@@ -1331,15 +1331,20 @@ def grad_coupon_purchase
     @coupon= params[:coup][:code]
     @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
 
-    if is_valid_single_use_coupon(@coupon)
+    if is_valid_free_coupon(@coupon) #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+          create_grad_customer_without_stripe
+          flash[:success] = "Thank you for using NameCoach!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          redirect_to current_user
+
+    # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      
+    elsif is_valid_single_use_coupon(@coupon)
           @price = '$75'
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripe_grad_new_customer_purchase'
-      
-    else #could not find that coupon
-        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
-        
+
+    else
              @cost = 75
              @price = '$75'
           

@@ -148,7 +148,7 @@ module UsersHelper
     end 
 
     def is_valid_single_use_coupon(coupon)
-        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true
+        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "single_use"
     end 
 
     def redeem_single_use_coupon(coupon)
@@ -159,6 +159,11 @@ module UsersHelper
         c.save
       end  
     end 
+
+    def is_valid_free_coupon(coupon)
+        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "free"
+    end 
+
 
   def is_valid_sub_coupon(coupon)
       Coupon.find_by_name(coupon) && Coupon.find_by_name(coupon).active == true
@@ -317,8 +322,11 @@ module UsersHelper
          
     end 
 
-
-
+    def create_grad_customer_without_stripe
+          current_user.update_attributes(:customer => true, :admin => true)
+          current_user.purchased_events = 5
+          current_user.save
+    end 
 
     # for a customer changing their subscription (for stripereceiver_existing action)
     def update_card_and_subscription(token, plan) # plan is now a my_plan_id

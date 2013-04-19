@@ -280,7 +280,11 @@
               </div>
 
                <table class="table">
-                            <caption><em>(this is what will appear on the admin's event page, and will be used to practice your name)</em></caption>
+                            <% if current_user.customer? || current_user.admin? %>
+                              <caption><em>(this is what would appear on an admin's event page, and would be used to practice your name.  As a customer/admin, you probably needn't worry about your own NameGuide.)</em></caption>
+                            <% else %>
+                              <caption><em>(this is what will appear on the admin's event page, and will be used to practice your name)</em></caption>
+                            <% end %>
                            </table>
 
                  
