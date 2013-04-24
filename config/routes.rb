@@ -1,5 +1,7 @@
 App4::Application.routes.draw do
 
+  resources :emails
+
   resources :vg_userinvites
 
   resources :voicegems do

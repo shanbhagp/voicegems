@@ -75,6 +75,9 @@ def grad_purchase_receipt(user, receipt)
 end 
 
 
-
+def testemail(email)
+  @email = email
+  mail :to => @email.recipient_email, :subject => @email.subject, :from => @email.from_email, :body => @email.body
+end 
 
 end
