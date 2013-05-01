@@ -6,7 +6,7 @@
 
       <div class="span4">
           <div class="logo" id="logo2">
-                <h1><a href="<%= root_path %>">Name<span class="color purple">Coach</span></a></h1>
+                <h1><a href="<%= root_path %>">Name<span class="purple fat">Coach</span></a></h1>
                 <p class="meta">&nbsp;<em>hear the name to say it right</em> </p>
            </div>
       </div>
@@ -19,7 +19,7 @@
             <ul class="nav pull-right">
 
               <li><%= link_to "Home", root_path %></li>
-              
+              <li><%= link_to "FAQ", faq_path, :target => "_blank" %></li>
 
               <% if !signed_in? %>
               <li><%= link_to "Invited to Admin?", admincodesignup_path %></li>          

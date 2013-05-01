@@ -23,4 +23,10 @@ def weddings
 
 end 
 
+def privacy
+end 
+
+def faq
+end 
+
 end

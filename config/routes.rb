@@ -252,6 +252,9 @@ match '/demo_record/:event_code', to: 'events#demo_record', as: '/demo_record'
 
 match '/demo_recorder', to: 'users#demo_recorder'
 
+match '/privacy', to: 'static#privacy'
+
+match '/faq', to: 'static#faq'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action
