@@ -1,6 +1,10 @@
 class EmailsController < ApplicationController
   # GET /emails
   # GET /emails.json
+
+  before_filter :signed_in_user
+  before_filter :owner
+
   def index
     @emails = Email.all
 

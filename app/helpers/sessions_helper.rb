@@ -159,7 +159,7 @@ def correct_user_for_vg
 end 
 
 def owner
-  unless current_user.email == 'shanbhagp@aol.com'
+  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com'
     redirect_to current_user
     flash[:notice] = "Sorry, not authorized for that page."
   end 
