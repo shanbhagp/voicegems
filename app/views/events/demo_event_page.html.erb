@@ -9,7 +9,7 @@
 </script>
 
 <div class="jumbotron">
-	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
+	<h1> Demo Event Page: <em> <%= @event.title %> </em> </h1>
 	
 	<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
 </div>
@@ -28,36 +28,7 @@
 
 <div class="row">
 
- 	 <div class="span8">
-			
-				<div class="well">
-					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an event attendee to record their name: </h4>
-					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
-					 <hr/>
-					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
-
-									
-						   <%= f.hidden_field :event_id %>
-															 									    
-						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
-																			
-						  
-						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
-						
-																 									    
-						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
-						
-						 									  
-						    <%= f.submit "Invite Attendee", class: "btn btn-info", disabled: true %>
-						  
-
-					 <% end %>
-				
-				 </div> <%# end div well %>										           
-												          		
-	 </div> <%# end span 9 %>
-
-	 <div class = "span4">
+	<div class = "span4">
 	 		<div class="well">
 					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
@@ -104,8 +75,42 @@
 					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
 					 	<%= @url %> <br/><br/>
 					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+					 	
 			</div>
 	 </div>
+
+
+
+ 	 <div class="span8">
+			
+				<div class="well">
+					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an event attendee to record their name: </h4>
+					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
+					 <hr/>
+					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
+
+									
+						   <%= f.hidden_field :event_id %>
+															 									    
+						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
+																			
+						  
+						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
+						
+																 									    
+						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
+						
+						 									  
+						    <%= f.submit "Invite Attendee", class: "btn btn-info", disabled: true %>
+						  
+
+					 <% end %>
+				
+				 </div> <%# end div well %>										           
+												          		
+	 </div> <%# end span 9 %>
+
+	 
 	
 </div> <%# end row %>
 
