@@ -62,13 +62,13 @@ def purchase_receipt(user, receipt)
 end 
 
 
-def grad_purchase_receipt(user, receipt)
-
+def grad_purchase_receipt(user, receipt, cost)
+# cost in dollars
   @user = user
   @r = receipt
   @number = @r.events_number
-  @cost = 75
-  @price = '$75' 
+  @cost = cost
+  @price = '$150' 
 
   mail :to => user.email, :subject => "NameCoach Receipt"
 

@@ -1287,8 +1287,8 @@ def grad_new_customer_create_purchase
     @user.last_name = params[:user][:last_name]
     @user.event_type = 'graduation'
     @number = 1  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
-    @cost = 75
-    @price = '$75' 
+    @cost = 149
+    @price = '$149' 
 
 
     if @user.save
@@ -1313,8 +1313,8 @@ def grad_new_customer_create_purchase
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-                        flash[:error] = "You are already registered on our site. Please sign in to purchase event pages under your Accounts tab."
-                         redirect_to root_path
+                        flash[:error] = "You are already registered on our site. If not signed in already, please do so to purchase event pages under your Accounts tab."
+                         render 'stripe_grad_new_customer_purchase'
           else
               render action: 'grad_new_customer_purchase'
           end    
@@ -1339,14 +1339,14 @@ def grad_coupon_purchase
 
     # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      
     elsif is_valid_single_use_coupon(@coupon)
-          @price = '$75'
+          @price = '$149'
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripe_grad_new_customer_purchase'
 
     else
-             @cost = 75
-             @price = '$75'
+             @cost = 149
+             @price = '$149'
           
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."

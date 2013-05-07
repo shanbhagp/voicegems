@@ -295,7 +295,7 @@ module UsersHelper
             @r.save
 
             #mail receipt
-            UserMailer.grad_purchase_receipt(current_user, @r).deliver
+            UserMailer.grad_purchase_receipt(current_user, @r, @cost).deliver
 
           flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
         else
