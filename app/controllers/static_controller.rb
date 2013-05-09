@@ -29,4 +29,19 @@ end
 def faq
 end 
 
+def graduations
+	  @event = Event.find(ENV['demopage'].to_i)
+
+  	 @practiceobject = Practiceobject.new  
+	 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+	 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+	 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+	 @unregisteredpos = @event.practiceobjects.unregistered.visible
+	 @hiddenpos = @event.practiceobjects.hidden
+	 @hiddenandregisteredpos  = @hiddenpos.registered
+	 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+	 @url = demo_record_url(:event_code => @event.event_code)
+end 
+
 end

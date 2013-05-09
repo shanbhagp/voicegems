@@ -672,3 +672,21 @@ h3, h4 {
   font-weight: normal;
   line-height: 20px;
 }
+
+.ph1, .ph2, .ph3, .ph4, .ph5, .ph6{
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  padding: 1px 0px;
+  margin: 1px 0px;
+  font-weight: 600;
+  color: #666;
+}
+
+.ph4 {
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.ph3 {
+  font-size: 20px;
+  line-height: 30px;
+}

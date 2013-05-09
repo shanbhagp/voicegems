@@ -1,7 +1,15 @@
-<div class="jumbotron">
-        <h1>Use Our Service for Your Commencement Preparation!</h1>
-      
+<div class="page-head">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h2><span class="purple">Use Our Service for Your Commencement Preparation! </span></h2>
+      </div>
+    </div>
   </div>
+</div>
+
+<!-- Page Heading ends -->
+<br/>
                
              
              <% flash.each do |key, value| %>
@@ -41,7 +49,7 @@
 
  <div class="row" >
     <div class="span8 offset2 " id="why">
-      <h3>It's not an easy job. But with <em>NameCoach</em>, the commencement announcer can get name pronuncations straight from the source, conveniently hearing and practicing them as needed - allowing complete confidence that the names will be said right. &nbsp;&nbsp;<a href="<%= demo_event_page_path %>" target="_blank" class="btn btn-primary">See Demo</a> </h3>
+      <h3><em>It's not an easy job.</em>&nbsp;&nbsp;But with NameCoach, the commencement announcer can get name pronuncations straight from the source, conveniently hearing and practicing them as needed - and finally allowing complete confidence that the names will be said right. &nbsp;&nbsp;<a href="<%= demo_event_page_path %>" target="_blank" class="btn btn-primary">See Demo</a> </h3>
       
 
     </div>
@@ -63,12 +71,55 @@
 <div class="row biggertext">
     <div class="span7 offset1">
       <br/>
-      <p>With <em>NameCoach</em>, you are no longer limited to:</p><br/>
+      <h4>Until now, announcers have been limited to:</h4> <br/>
         <p><i class="icon-ban-circle"></i>&nbsp;Deciphering low-fidelity phonetic pronuciations - too often inaccurate, and insufficient to truly pronounce it correctly.</p><br/>
         <p><i class="icon-ban-circle"></i>&nbsp;Trying to nail down tough pronunciations from students just before the ceremony - not enough time, and things are crazy enough. </p><br/>
         <p><i class="icon-ban-circle"></i>&nbsp;Finding students to record their name into a smart-phone, setting up in-person meetings, or requesting and sifting through voicemails.</p>
         <br/>
-       <p> <h4><em>NameCoach</em> is designed to <strong>save time, avoid hassle, and truly ensure</strong> that each and every graduate will be happy with their moment!</h4></p>
+
+        <h4>Our Unique Solution:</h4>
+        <div class="content process biggertext">
+
+          <div class="row">
+             <div class="span6">
+                 <div class="process-meta fl-left">
+                   <span>1</span>
+                 </div>
+               
+                  <br/>
+                 <span class="ph3">&nbsp;&nbsp;&nbsp;Share a Link</span>&nbsp;&nbsp;
+                  <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %><br/>
+                  &nbsp;&nbsp;&nbsp;(or enter emails to request specific names)   
+              </div> 
+          </div>
+
+          <div class="row">
+             <div class="span6">
+                 <div class="process-meta fl-left">
+                   <span>2</span>
+                 </div>
+               
+                  <br/>
+                 <span class="ph3">&nbsp;&nbsp;&nbsp;Students Voice-Record Names Online</span>&nbsp;&nbsp;
+                
+              </div> 
+          </div>
+
+         <div class="row">
+             <div class="span6">
+                 <div class="process-meta fl-left">
+                   <span>3</span>
+                 </div>
+               
+                  <br/>
+                 <span class="ph3">&nbsp;&nbsp;&nbsp;Hear Names on your Event Page</span>&nbsp;&nbsp;
+                  <i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= demo_event_page_path %>" target="_blank" class="da-link">Demo Event Page</a>
+              </div> 
+          </div>
+
+
+        </div>
+       <p> <h4><em>NameCoach</em> is designed to save time, avoid hassle, and help you easily ensure that each and every graduate and family will be happy with their big moment!</h4></p>
     </div>
    
       <div class="rp-item span3"> <img src="/assets/podium1.jpg" class="fl-right" alt="image01" /></div>
@@ -100,7 +151,7 @@
     
     <div class="well well-small span3">
         <h4>A student recalls:</h4>
-        <blockquote><em>I still remember my high school graduation and how my vice principal butchered my name. He had no excuse, especially since he had the phonetic spelling written on a notecard AND we practiced the day before. He called my name and the only reason I know it was mine is because I was next in line.
+        <blockquote><em>I still remember my high school graduation and how my vice principal butchered my name. <strong>He had no excuse, especially since he had the phonetic spelling written on a notecard AND we practiced the day before.</strong> He called my name and the only reason I know it was mine is because I was next in line.
        </em></blockquote>
         <h6>- Yoruba Ajayi</h6>
       </div>
@@ -108,7 +159,7 @@
 
       <div class="well well-small span3">
         <h4>And another:</h4>
-        <blockquote><em>Graduating is one of those special moments that only happen in once a lifetime, and when it was my turn to walk -the announcer mispronounces my surname. All of my happy feelings disintegrated but I walked the stage with a fake smile on my face.
+        <blockquote><em>Graduating is one of those special moments that only happen in once a lifetime, and when it was my turn to walk -the announcer mispronounces my surname. <strong>All of my happy feelings disintegrated but I walked the stage with a fake smile on my face.</strong>
        </em></blockquote>
         <h6>- anonymous</h6>
       </div>
@@ -131,9 +182,9 @@
         <h4>An announcer sums up:</h4>
         <br/>
         <blockquote><em>...<strong>the puzzles occupy my time in the run-up to commencement.</strong> Is the surname "Couture," as in "haute couture," or as in "Koo-cher"? "Edel-stine," or "-steen"? Is a student's first name "Tar-a" or "Tear-a"? And so on.<br/>
-        <br/><strong>Often it's a matter of identity.</strong> One of our finest and best-known students surprised me with the revelation that she had stoically endured the mispronunciation of her name through four honor-filled years. Yet, because her French-Canadian roots were so meaningful to her, <strong>she appreciated being asked about her name so that her identity might be properly expressed as she walked across the platform.</strong><br/>
-        <br/><strong>That example could be multiplied many times.</strong> So I e-mail students and faculty, request voicemails, check with advisers, corner folks in the dining hall. I make phonetic notes on alphabetical lists of possible attendees and transpose them to the "walker" cards that students hand me before crossing the stage. <strong>Technology? Using it will have to await a future year. Right now the task is to try and get it right for the moment.</strong><br/>
-        <br/><strong>No doubt, many of you who are reading this take similar pains.</strong> The reason is not because it matters in some ultimate existential or intellectual sense, or because it is part of our job descriptions. We do so, rather, because <strong>what matters is to model painstaking preparation and hard work to our students and to make the academic ritual special for them and their families.</strong>
+        <br/><strong>Often it's a matter of identity.</strong> One of our finest and best-known students surprised me with the revelation that she had stoically endured the mispronunciation of her name through four honor-filled years. Yet, because her French-Canadian roots were so meaningful to her, she appreciated being asked about her name so that her identity might be properly expressed as she walked across the platform.<br/>
+        <br/>That example could be multiplied many times. <strong>So I e-mail students and faculty, request voicemails, check with advisers, corner folks in the dining hall.</strong> I make phonetic notes on alphabetical lists of possible attendees and transpose them to the "walker" cards that students hand me before crossing the stage. <strong>Technology? Using it will have to await a future year. Right now the task is to try and get it right for the moment.</strong><br/>
+        <br/><strong>No doubt, many of you who are reading this take similar pains.</strong> The reason is not because it matters in some ultimate existential or intellectual sense, or because it is part of our job descriptions. We do so, rather, because what matters is to model <strong>painstaking preparation and hard work</strong> to our students and <strong>to make the academic ritual special for them and their families.</strong>
 
        </em></blockquote>
         <h6>- Daniel Regan, Johnson State College <a href="http://chronicle.com/article/I-Now-Pronounce-You-Graduated/127939/" target="_blank">(Chronicle of Higher Education) </a></h6>
@@ -153,7 +204,7 @@
 
 <div class="row">
     <div class="span7 offset1">
-     <h3> Technology has finally caught up. <br/><br/> You share a link, they record their name, and you hear and practice.<br/><br/> <em>NameCoach</em> makes it simple, leveraging useful web advances to <strong>save time, avoid hassle, and gain confidence</strong> that each and every graduate and family will be happy with their big moment... </h3>
+     <h3> Technology has finally caught up. <br/><br/> You share a link, they record names, and you know how to say them.<br/><br/> <em>NameCoach</em> makes it simple, leveraging useful web advances to help you more easily ensure that each and every graduate and family will be happy with their big moment... </h3>
      </div>
      <div class="rp-item span3"> <img src="/assets/graduation_000_2.jpg" alt=""/></div>
 
