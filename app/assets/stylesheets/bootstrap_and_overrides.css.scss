@@ -663,8 +663,17 @@ h3, h4 {
   font-size: 14px;
 }
 
-.biggertext p {
+.biggertext, p {
   font-size: 14px;
+}
+
+.textsize3, p {
+  font-size: 16px;
+}
+
+.biggerlink {
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .mini {
@@ -689,4 +698,17 @@ h3, h4 {
 .ph3 {
   font-size: 20px;
   line-height: 30px;
+}
+
+
+.invis {
+  border: 0px;
+}
+
+.revis {
+  border: 1px solid #e5e5e5;
+}
+
+.black {
+  color:black;
 }
