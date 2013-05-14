@@ -44,4 +44,7 @@ def graduations
 	 @url = demo_record_url(:event_code => @event.event_code)
 end 
 
+def macfaq
+end
+
 end

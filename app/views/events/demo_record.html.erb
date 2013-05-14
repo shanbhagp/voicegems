@@ -21,8 +21,8 @@
                   <br/>
                   <li>Fill out your name and email. </li><br/> 
                    <li>Enter your name as you would like it announced at the event, and any notes to help with pronunciation.</li><br/>
-                  <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds. Just make sure to press 'Upload.' </li><br/>
-                  <li><em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em></li><br/>
+                  <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds. Just make sure to press 'Upload.' <br/><br/>
+                  <em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em></li><br/>
                  </ol>
             </li>  
             <li> More questions? Please contact us below. <em> Thank you!</em> </li>
@@ -43,7 +43,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>You've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
 
           
      
@@ -61,7 +61,7 @@
                         <div id="recordmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h3 id="myModalLabel"><em>Please voice-record your name here</em></h3>
+                              <h3 id="myModalLabel"><em>Please voice-record your name here (DEMO)</em></h3>
                             </div>
 
                             <div class="modal-body">
@@ -85,7 +85,7 @@
                                           <li> You will have 10 seconds maximum recording time. <strong>Please say your name clearly and slowly, then immediately press 'STOP'</strong>, to make it easier for the person hearing/practicing your name.</li> <br/>
                                           <li>Your recording will automatically play back to you:</li>
                                              <ul>
-                                                 <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
+                                                 <li>If it sounds good, <strong>press 'UPLOAD.'</strong>(disabled for demo)</li>  
                                                   <li>If you're not happy with it, press 'RECORD' to try again.</li>
                                               </ul>
                                           </ol> 
@@ -135,7 +135,7 @@
                              </div> <%# End modal body %> 
             
                              <div class="modal-footer">
-                                  <h5 class="right">(upload disabled for demo)</h5>
+                                  
                                  <button class="btn btn-primary" data-dismiss="modal">Done</button>
                                 
                              </div>
@@ -148,7 +148,7 @@
                                     <div class="accordion-group bg-signup">
                                       <div class="accordion-heading">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
-                                         <h5 class="white">New Name Registration</h5>
+                                         <h5 class="white">New Name Registration (DEMO)</h5>
                                         </a>
                                       </div>
                                       <div id="collapseOne" class="accordion-body collapse in">
@@ -157,25 +157,27 @@
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well span3 offset1">
-                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
+                                                          <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
                                                               <%= f.hidden_field :event_code, :value => @event_code %>
                                                                                                                                 
-                                                                  <%= f.input :first_name, label: "First Name" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
-
-                                                              <hr/> 
+                                                                  <%= f.input :first_name, label: "First Name", placeholder: 
+                                                                "Student's First Name" %>
+                                                                  <%= f.input :last_name, label: "Last Name", placeholder: 
+                                                                "Student's Last Name" %>
+                                                                  <%= f.input :email, placeholder: "Student's Email"%>
+                                                                  <span class="help-block"><em>(emails will not be given to any 3rd party)</em></span>
+                                                             <hr/>
 
                                                          </div>
                                                          <div class="well span3">         
-                                                             <h4><% if @user.phonetic.blank? && @user.notes.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
+                                                             <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
                                                                          <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
                                                                             
-                                                                            <br/>
+                                                                            <br/><br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
                                                                           <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
@@ -191,14 +193,20 @@
                                                                   <br/><br/><br/> <br/>
                                                                   <div class="row">
                                                                  
-                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name </button>
+                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name <span><em></em></span></button>
                                                                                                                                            
-                                                                     <br/>
+                                                                     <br/><br/>
+                                                                     <div class="cent">
+                                                                      <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Me!</em></span></h3>
+                                                                     </div>
+
+                                                                     
                                                                      
                                                                   
                                                                  </div>
 
-                                                                   <br/>
+
+                                                                   
                                                                 <br/><br/><hr/>
                                                                 
                                                             
@@ -213,6 +221,33 @@
                                   </div>  <%# end accordion %>
 
 
+    <div class="cta">
+  <div class="container">
+    <div class="row">
+      
+      <div class="span3 offset2">
+        
+         <a href="<%= demo_event_page_path %>" class="btn btn-primary btn-large">Back to Demo Event Page</a> 
+       
+      </div>
 
+      <div class="span3">
+        
+          <a href="<%= graduations_path %>.htm#why" target="_blank" class="btn btn-primary btn-large">Why Use NameCoach?</a>
+          
+        
+      </div>
+
+      <div class="span4">
+    
+          
+          <a href="<%= root_path %>#how" target="_blank" class="btn btn-primary btn-large">How to Get Started with NameCoach</a>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+                              
 
 </div><%# end container %>
