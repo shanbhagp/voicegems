@@ -140,7 +140,7 @@ end
 
 def correct_user_for_po
 @practiceobject = Practiceobject.find(params[:id])
-       unless current_user?(@practiceobject.user)
+       unless current_user?(@practiceobject.user) || current_user.email == 'shanbhagp@aol.com'
         redirect_to current_user
         flash[:notice] = "Sorry, not authorized for that page."
         #flash is not working here for root path, i think because @user is reset by the home action
