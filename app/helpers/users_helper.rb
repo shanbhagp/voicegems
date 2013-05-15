@@ -688,4 +688,8 @@ def bounce_free_account
 end 
 
 
+def iolani
+ (User.find_by_email('gradcust40@example.com') && @event.adminkeys.find_by_user_id(User.find_by_email('gradcust40@example.com').id)) || (User.find_by_email('tfleming@iolani.org') && @event.adminkeys.find_by_user_id(User.find_by_email('tfleming@iolani.org').id)) 
+end
+
 end

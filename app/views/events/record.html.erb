@@ -93,18 +93,45 @@
 
                                                                 <hr/>    
                                                          </div>
+
+                                                         <% if iolani %>
+
                                                          <div class="well span3">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
+                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"></span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
-                                                                            
+
+                                                                      
+                                                                        <%= f.input :phonetic, :class => "span3 fl-left", label: "Please enter your FULL NAME (first, middle, and last) to be announced:", placeholder: "e.g., Praveen Ramesh Shanbhag, Jr.)"  %>
+                                                                     
+                                                                  
+                                                                           
                                                                             <br/>
 
-                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation (OPTIONAL):" %>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" %>
                                                                          
                                                                      <hr/>
                                                           </div>
+
+                                                        <% else %>
+
+                                                         <div class="well span3">         
+                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
+                                                              <br/>      
+
+                                                                      
+                                                                    
+                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                           
+                                                                            <br/>
+
+                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" %>
+                                                                         
+                                                                     <hr/>
+                                                          </div>
+
+                                                        <% end %>  
 
                                                           <div class="well span3">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
