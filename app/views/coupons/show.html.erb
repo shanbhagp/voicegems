@@ -1,9 +1,29 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @coupon.name %>
+  <b>PROMO CODE:</b>
+  <%= @coupon.free_page_name %><br/>
 </p>
+
+
+<p>
+  <b>TYPE:</b>
+  <%= @coupon.name %><br/>
+  IF THIS IS A FREE CODE, this should read 'free'. <br/>
+  IF THIS IS A DISCOUNT CODE, this should read 'single_use'
+</p>
+
+<p>
+  <b>DISCOUNTED PRICE POINT:</b>
+  <%= @coupon.cost %> <br/>
+  THIS IS WHAT THE PROMO CODE WILL CHANGE THE CUSTOMER'S PRICE TO (will be blank if free)
+</p>
+<hr/>
+<p>
+  <strong> You can ignore everything below </strong>
+<p>
 
 <p>
   <b>Percent off:</b>
@@ -35,20 +55,13 @@
   <%= @coupon.times_redeemed %>
 </p>
 
-<p>
-  <b>Free page name:</b>
-  <%= @coupon.free_page_name %>
-</p>
 
 <p>
   <b>Free page user:</b>
   <%= @coupon.free_page_user %>
 </p>
 
-<p>
-  <b>Cost:</b>
-  <%= @coupon.cost %>
-</p>
+
 
 <p>
   <b>Active:</b>
@@ -57,4 +70,6 @@
 
 
 <%= link_to 'Edit', edit_coupon_path(@coupon) %> |
-<%= link_to 'Back', coupons_path %>
+<%= link_to 'LIST OF COUPONS', coupons_path %>
+
+</div>

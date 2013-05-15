@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424003641) do
+ActiveRecord::Schema.define(:version => 20130515075034) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20130424003641) do
     t.integer  "times_redeemed"
     t.string   "free_page_name"
     t.integer  "free_page_user"
-    t.boolean  "active"
+    t.boolean  "active",             :default => true
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.datetime "redeemed_on"

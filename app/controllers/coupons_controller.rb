@@ -1,6 +1,6 @@
 class CouponsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :owner
+  before_filter :owner_or_intern
 
   def index
     @coupons = Coupon.all

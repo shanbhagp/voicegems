@@ -47,4 +47,8 @@ end
 def macfaq
 end
 
+def flashtest
+	render :layout => nil
+end 
+
 end

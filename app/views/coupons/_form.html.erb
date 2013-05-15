@@ -1,21 +1,27 @@
-<%= simple_form_for(@coupon) do |f| %>
-  <%= f.error_notification %>
+<div class="container">
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :percent_off %>
-    <%= f.input :max_redemptions %>
-    <%= f.input :duration %>
-    <%= f.input :duration_in_months %>
-    <%= f.input :redeem_by %>
-    <%= f.input :times_redeemed %>
-    <%= f.input :free_page_name %>
-    <%= f.input :free_page_user %>
-    <%= f.input :cost %>
-    <%= f.input :active %>
+<%= form_for(@coupon) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :name, "TYPE OF PROMO CODE" %>
+    <%= f.select :name, [['FREE','free'],['LOWER PRICE','single_use']] %>
+  </div>
+<br />
+  <div class="field">
+  <%= f.label :free_page_name, "PROMO CODE (e.g., GRAD75 or DEVRY) - please use all caps" %>
+  <%= f.text_field :free_page_name %>
+  </div>
+<br />
+  <div class="field">
+  <%= f.label :cost, "DISCOUNTED PRICE POINT (e.g., 75) - LEAVE BLANK IF FREE" %>
+  <%= f.text_field :cost %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>
+
+</div>
