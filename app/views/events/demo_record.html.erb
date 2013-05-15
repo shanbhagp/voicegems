@@ -1,4 +1,11 @@
-                                   
+<% if mobile_device? %>   
+
+<div class="container">
+  <p> Mobile device detected.</p>
+</div>                                
+
+<% else %>
+
 
 <% flash.each do |key, value| %>
     <div class="alert alert-block alert-<%=key%>"> 
@@ -197,7 +204,7 @@
                                                                                                                                            
                                                                      <br/><br/>
                                                                      <div class="cent">
-                                                                      <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Me!</em></span></h3>
+                                                                      <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Demo!</em></span></h3>
                                                                      </div>
 
                                                                      
@@ -251,3 +258,6 @@
                               
 
 </div><%# end container %>
+
+
+<% end %>

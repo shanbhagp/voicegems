@@ -5,5 +5,11 @@ class ApplicationController < ActionController::Base
   include EventsHelper
   include SubscriptionsHelper
 
+private
+
+def mobile_device?
+	request.user_agent =~ /Mobile|webOS/
+end 
+helper_method :mobile_device?
 
 end
