@@ -8,7 +8,7 @@
 });
 </script>
 <%# checks to see if the current user is an admin for this event; prevents users who are admins for one event to access another event page for which they are just registered but not admins.  cant use current-user method here because that is for controllers, has redirects and stuff in it.. %>
-<% if !@event.adminkeys.find_by_user_id(current_user.id) && !current_user.email == 'shanbhagp@aol.com' %>
+<% if !@event.adminkeys.find_by_user_id(current_user.id) %>
 	<%= render 'events/nonadminshow' %> 
 <% else %>   
 
@@ -174,9 +174,9 @@
 		<% @registeredandrecordedpos.each do |f| %>					    	
 			 <div class="row">
 				 <div class="well span12">
-					 <div class="span2">
+					 <div class="span2 break">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
-						(<%= f.user.email %>) <br/>
+						<span>(<%= f.user.email %>)</span> <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
