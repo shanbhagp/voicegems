@@ -140,6 +140,9 @@ class EventsController < ApplicationController
 	def show
 
 		 @event = Event.find(params[:id])
+		 unless current_user.email == 'shanbhagp@aol.com'
+		 	@owner = false
+		 end 
 		 
 		 if bigdaddyevent
 		 	

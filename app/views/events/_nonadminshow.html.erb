@@ -68,7 +68,7 @@
 					
 						
 				<div class="span3 offset1">
-						<a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><h4>Attendee Name/Email</h4></a>
+						<a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><h4>Attendee Name</h4></a>
 					</div>
 						
 		
@@ -95,8 +95,7 @@
 				<div class="well span12">
 					<div class="span3 offset1">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
-						(<%= f.user.email %>) <br/>
-						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
+			
 					</div>
 	
 
@@ -147,7 +146,7 @@
 									
 										
 								<div class="span3 offset1">
-										<a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><h4>Attendee Name/Email</h4></a>
+										<a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><h4>Attendee Name</h4></a>
 									</div>
 										
 						
@@ -174,8 +173,7 @@
 									
 									<div class="span3 offset1">
 											<%= f.user.first_name %> <%= f.user.last_name %> <br/>
-											(<%= f.user.email %>) <br/>
-											<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
+										
 									</div>
 					
 
@@ -220,7 +218,7 @@
 						    		<tr>
 						    			<td><h4>First Name</h4></td>
 						    			<td><h4>Last Name</h4></td>
-						    			<td><h4>Email</h4></td>
+						    			
 						    
 						    			
 						   			 </tr>
@@ -231,7 +229,7 @@
 						    		<tr >
 						    			<td> <%= f.first_name %></td>
 						    			<td><%= f.last_name %></td>
-						    			<td><%= f.email %></td>
+						    			
 						    		 </tr>
 						    		<% end %>
 						    	</tbody>

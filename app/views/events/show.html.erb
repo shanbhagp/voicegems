@@ -8,7 +8,7 @@
 });
 </script>
 <%# checks to see if the current user is an admin for this event; prevents users who are admins for one event to access another event page for which they are just registered but not admins.  cant use current-user method here because that is for controllers, has redirects and stuff in it.. %>
-<% if !@event.adminkeys.find_by_user_id(current_user.id) %>
+<% if !@event.adminkeys.find_by_user_id(current_user.id) && @owner == false %>
 	<%= render 'events/nonadminshow' %> 
 <% else %>   
 
