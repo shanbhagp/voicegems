@@ -172,9 +172,9 @@
 
 
 		<% @registeredandrecordedpos.each do |f| %>					    	
-			 <div class="row">
+			 <div class="row break">
 				 <div class="well span12">
-					 <div class="span2 break">
+					 <div class="span2 ">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						<span>(<%= f.user.email %>)</span> <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
@@ -359,7 +359,7 @@
 			 <caption><em>(attendees registered on this site who have not yet recorded their name)</em></caption>
 		 </table>
 		
-		 <div class="row">
+		 <div class="row break">
 			 <div class="well span12 modal-header">
 									
 										
@@ -798,7 +798,7 @@
 
 
 			 <% @hiddenandregisteredpos.each do |f| %>					    	
-				 <div class="row">
+				 <div class="row break">
 					 <div class="well span12">
 						 <div class="span2">
 							 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
