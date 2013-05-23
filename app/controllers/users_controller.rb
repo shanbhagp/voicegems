@@ -45,8 +45,13 @@ before_filter :owner, only: [:console, :index, :destroy]
   end
 
   def skip
+    if is_haltom_user
+      flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+      redirect_to current_user
+    else 
     flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below."
     redirect_to current_user
+    end 
   end 
 
   # GET /users/1
@@ -228,8 +233,14 @@ end
             end 
 
           if params[:user][:password]  #I think this only occurs when user sets pw for the first time, when signing up.
-                 flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your recording below."
-                 redirect_to @user
+                 
+                    if is_haltom_user
+                      flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+                      redirect_to @user
+                    else 
+                       flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your recording below."
+                       redirect_to @user
+                    end
           else
             if params[:user][:email]
               redirect_to @user, notice: 'User update was successful.'
