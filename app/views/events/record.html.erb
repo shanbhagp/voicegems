@@ -19,14 +19,7 @@
 </div>
 
 <% else %>
-
-
-<div class="jumbotron">
-      <h1>Name Registration <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h1>
-      
-      <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
-  </div>
-                                              
+                                     
 
  <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
@@ -72,7 +65,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>You've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>. <br/> <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a><% if @event == Event.find(ENV['HALTOM']) %> &nbsp;&nbsp;&nbsp;HALTOM STUDENTS: Please remember to sign out when you're done! Thank you!<% end %> </h3>  
 
           
      
@@ -84,7 +77,7 @@
 
 
 <div class="container">  
-<br/>
+
 <% flash.each do |key, value| %>
     <div class="alert alert-block alert-<%=key%>"> 
     <button type="button" class="close" data-dismiss="alert">×</button>

@@ -45,6 +45,7 @@
                     <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
                   </ul>
                  </li>
+                 <% if is_haltom_user %>  <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> SIGN OUT <% end %></li> <% end %>
                <% end %>
 
              </ul>

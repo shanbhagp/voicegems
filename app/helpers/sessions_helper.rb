@@ -39,6 +39,32 @@ module SessionsHelper
     #token, as defined by current_user.  Sometimes (the second time current_user is called before a new request) 
     # it will return @current_user (and be true, since current_user not nil))
 
+  def is_haltom_user
+      h = Event.find(ENV['HALTOM'])
+      !h.nil? && !current_user.practiceevents.nil? && current_user.practiceevents.any? {|p| p == h }  
+  end 
+
+  def haltom_date_ok  #this was for some reason returning false when called in sessions#destroy, so NOT BEING USED
+      h = Event.find(ENV['HALTOM'])
+      !h.nil? && Date.today < h.created_at.to_date + 7.days
+  end 
+
+  def haltom_behavior #NOT USING THIS HELPER
+    h = Event.find(ENV['HALTOM'])
+    if !h.nil? #check that h returns an event
+        unless Date.today > h.created_at.to_date + 7.days
+        #unless it's 7 days after the Haltom page created (then no action executed)
+          
+          #execute refresh to recorder behavior
+          if is_haltom_user
+            sign_out
+            redirect_to record_url(:event_code => h.event_code) #haltom recording path
+            return false  #end the parent action, sessions#destroy, so don't have two redirects
+          end 
+
+        end 
+    end 
+  end 
 
   def sign_out
   	self.current_user = nil

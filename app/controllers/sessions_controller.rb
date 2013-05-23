@@ -216,8 +216,13 @@ class SessionsController < ApplicationController
 
 
   def destroy
-  	sign_out
-    redirect_to root_path
+    if is_haltom_user 
+        sign_out
+        redirect_to record_url(:event_code => Event.find(ENV['HALTOM']).event_code) #haltom recording path
+    else
+      	sign_out
+        redirect_to root_path
+    end 
   end
 
 
