@@ -260,6 +260,9 @@ match '/macfaq', to: 'static#macfaq'
 
 match '/flashtest', to: 'static#flashtest'
 
+match '/BioE', to: 'events#BioE'
+match '/bioe', to: 'events#BioE'
+
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action
 
