@@ -51,4 +51,8 @@ def flashtest
 	render :layout => nil
 end 
 
+def macbeathtestimonial
+	#render :layout => nil
+end 
+
 end

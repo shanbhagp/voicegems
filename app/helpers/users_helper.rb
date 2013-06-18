@@ -324,7 +324,7 @@ module UsersHelper
 
     def create_grad_customer_without_stripe
           current_user.update_attributes(:customer => true, :admin => true)
-          current_user.purchased_events = 5
+          current_user.purchased_events = 1
           current_user.save
     end 
 
