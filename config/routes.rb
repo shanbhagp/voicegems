@@ -39,7 +39,11 @@ App4::Application.routes.draw do
 
  # resources :events, :path => '/'
 #resources :posts, :path => "/admin/posts"
- resources :events
+ resources :events do
+ member do
+    get :locked
+  end
+end 
 
   resources :users do
     member do

@@ -436,4 +436,21 @@ def event_code_add  #this is for registering to record with an event link, for a
 	 @url = record_url(:event_code => @event.event_code)
  end
 
+
+def locked
+   @event = Event.find(params[:id])
+     @practiceobject = Practiceobject.new  
+	 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+	 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+	 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+	 @unregisteredpos = @event.practiceobjects.unregistered.visible
+	 @hiddenpos = @event.practiceobjects.hidden
+	 @hiddenandregisteredpos  = @hiddenpos.registered
+	 @hiddenandunregisteredpos = @hiddenpos.unregistered 
+	 @gradpos = @registeredandrecordedpos.where("admin_notes = ? OR admin_notes = ?", 'PhD', 'MS') 
+	 @undergradpos = @registeredandrecordedpos.where("admin_notes = ? OR admin_notes = ?", 'BS', 'BSH') 
+
+	 @url = record_url(:event_code => @event.event_code)
+end
+
 end
