@@ -258,7 +258,7 @@ class EventsController < ApplicationController
 
 def event_link_create  #for new users signing up from an event code link
     @user = User.new
-    @user.email = params[:user][:email]
+    @user.email = params[:user][:email] unless params[:user].nil?
     @pw = SecureRandom.urlsafe_base64
     @user.password=@pw
     @user.password_confirmation=@pw
