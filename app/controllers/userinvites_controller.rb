@@ -30,7 +30,9 @@ before_filter :owner, only: [:index]
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject
 	     @userinvite.save
 	     @to = @po.user.email
-	     startx  
+	     if Rails.env.staging?
+              startx
+          end
 	     UserInviteMailer.recording_reminder(@userinvite, root_url, @po, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email (to record name) sent.'
 
@@ -44,7 +46,9 @@ before_filter :owner, only: [:index]
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject
 	     @userinvite.save  
 	     @to = @po.user.email
-	     startx
+	     if Rails.env.staging?
+              startx
+         end
 	     UserInviteMailer.rerecording_reminder(@userinvite, root_url, @po, @to).deliver 
 	     redirect_to @userinvite.practiceobject.event, notice: 'Reminder email (to rerecord name) sent.'
 
