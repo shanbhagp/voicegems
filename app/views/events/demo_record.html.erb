@@ -181,7 +181,7 @@
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well span3 offset1">
-                                                          <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> </h4>
+                                                          <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> <span class="muted"> (required)</span> </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
@@ -224,7 +224,23 @@
                                                                       <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Demo!</em></span></h3>
                                                                      </div>
 
-                                                                     
+                                                                     <!--<script type='text/javascript' src='flashblock-detector.js'> -->
+                                                                     <script>
+                                                                      function callbackMethod(val) {
+                                                                        if (val > 0) {
+                                                                          alert(val == 1 ? 'Flash is not installed or is disabled on this browser. Please install and enable Flash before recording.' : 'Flash is being blocked on this browser. Please disable Flash blockers before recording.');
+                                                                        } 
+                                                                      }
+
+                                                                      $(window).load(function(){
+                                                                        flashBlockDetect(callbackMethod);
+                                                                      });
+                                                                    </script>
+
+
+                                                                    <div class="invisible">
+                                                                      <embed width="0" height="0" src="loader.swf" quality="high" pluginspage="http://www.adobe.com/go/getflashplayer" align="middle" play="true" loop="true" scale="showall" wmode="window" devicefont="false" bgcolor="#000000" name="loader" menu="true" allowfullscreen="false" allowscriptaccess="sameDomain" salign="" type="application/x-shockwave-flash"> 
+                                                                    </div>
                                                                      
                                                                   
                                                                  </div>
