@@ -20,6 +20,7 @@
 //= require jquery.carouFredSel-6.1.0-packed
 //= require best_in_place
 //= require bootstrap
+//= require flashblock-detector
 //= provide jrec
 //= provide aplayer
 //= require_tree .
