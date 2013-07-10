@@ -170,15 +170,15 @@ $(function() {
 				                          &nbsp;&nbsp; 
 
 						                          <% if only_purch_pages_left? %> 
-						                             	<span class="help-block">(<%= current_user.purchased_events %> pages remaining)</span>
+						                             	<span class="grey">(<%= current_user.purchased_events %> pages remaining)</span>
 						                          <% end %>  
 
 						                          <% if only_sub_pages_left? %> 
-						                                <span class="help-block">(<%= sub_pages_left %> pages remaining) </span>
+						                                <span class="grey">(<%= sub_pages_left %> pages remaining) </span>
 						                          <% end %> 
 
 						                          <% if no_pages_left? %> 
-						                                <span class="help-block">(0 pages remaining) </span>
+						                                <span class="grey">(0 pages remaining) </span>
 						                          <% end %> 	
 
 

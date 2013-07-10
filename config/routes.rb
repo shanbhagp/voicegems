@@ -247,7 +247,18 @@ match 'grad_coupon_purchase', to: 'users#grad_coupon_purchase'
 
 match 'grad_stripereceiver_purchase', to: 'users#grad_stripereceiver_purchase'
 
+match 'wed_new_customer_purchase', to: 'users#wed_new_customer_purchase'
+
+match 'wed_new_customer_create_purchase', to: 'users#wed_new_customer_create_purchase'
+
+match 'stripe_wed_new_customer_purchase', to: 'users#stripe_wed_new_customer_purchase'
+
+match 'wed_coupon_purchase', to: 'users#wed_coupon_purchase' 
+
+match 'wed_stripereceiver_purchase', to: 'users#wed_stripereceiver_purchase'
+
 match 'weddings', to: "static#weddings"
+match 'receptions', to: "static#receptions"
 match 'graduations', to: "static#graduations"
 
 match 'demo_event_page', to: 'events#demo_event_page'

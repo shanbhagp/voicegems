@@ -3,7 +3,7 @@ module UsersHelper
    #these two methods are copied from the sample app; the method is called in the views
   def wrap(content)
       unless content.nil?
-    	sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
+      sanitize(raw(content.split.map{ |s| wrap_long_string(s) }.join(' ')))
       end 
   end
 
@@ -169,6 +169,34 @@ module UsersHelper
       Coupon.find_by_name(coupon) && Coupon.find_by_name(coupon).active == true
   end 
 
+  def is_valid_free_sub(coupon)
+     !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "free_sub"
+  end 
+
+    def create_sub_customer_without_stripe(plan, code)
+          current_user.update_attributes(:customer => true, :admin => true)
+          if Plan.find_by_my_plan_id(plan) #to prevent a nil problem
+            @er = Plan.find_by_my_plan_id(plan).events_number
+          else 
+            @er = 0 #just so @er not undefined - will probably need to change this if-else-end code to be more elegant
+          end 
+
+          #create subscription
+          @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
+          @sub.coupon = code
+          @sub.events_remaining = @er
+          @sub.save 
+
+           #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email,
+              :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+              :sub_events_number => @sub.events_remaining, :sub_reg_monthly_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).monthly_cost_cents,
+              :sub_actual_monthly_cost_in_cents => 0, :sub_coupon_name => @sub.coupon) 
+            @r.save
+
+    end 
+
+
 
     # for non-subscription/by-the-event-page purchases
     def create_customer_purchase(token, number, cost, coupon)
@@ -327,6 +355,73 @@ module UsersHelper
           current_user.purchased_events = 1
           current_user.save
     end 
+
+    #---------------------------Wedding code---------------------------------------------------------------
+    def wed_create_customer_purchase(token, number, cost, coupon)
+
+      @cost = cost 
+
+        # create a Customer
+        customer = Stripe::Customer.create(
+          :card => token,
+          :description => "#{current_user.first_name} #{current_user.last_name}",
+          :email => current_user.email
+        )
+
+        # charge the Customer instead of the card
+        Stripe::Charge.create(
+            :amount => @cost.to_i*100, # in cents
+            :currency => "usd",
+            :customer => customer.id,
+            :description => "#{number} pages"
+        )
+
+        if !customer.nil?
+          current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
+          @eventtotal = current_user.purchased_events + number.to_i
+          current_user.purchased_events = @eventtotal
+          current_user.save
+
+          #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.wed_purchase_receipt(current_user, @r, @cost).deliver
+
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+        else
+          flash.now[:error] = "Something went wrong, please try again."
+          false 
+        end
+        
+        rescue Stripe::InvalidRequestError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+       
+        rescue Stripe::CardError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+
+         rescue Stripe::StripeError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}.  Please try again."
+         false
+
+         
+         
+    end 
+
+    def create_wed_customer_without_stripe
+          current_user.update_attributes(:customer => true, :admin => true)
+          current_user.purchased_events = 1
+          current_user.save
+    end 
+
+    #------------------------------------------------------------------------------------------------------
 
     # for a customer changing their subscription (for stripereceiver_existing action)
     def update_card_and_subscription(token, plan) # plan is now a my_plan_id
