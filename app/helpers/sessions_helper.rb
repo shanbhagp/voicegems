@@ -39,9 +39,9 @@ module SessionsHelper
     #token, as defined by current_user.  Sometimes (the second time current_user is called before a new request) 
     # it will return @current_user (and be true, since current_user not nil))
 
-  def is_haltom_user
+def is_haltom_user
       h = Event.find(ENV['HALTOM'])
-      !h.nil? && !current_user.practiceevents.nil? && current_user.practiceevents.any? {|p| p == h }  
+      !h.nil? &&  !current_user.nil? && !current_user.practiceevents.nil? && current_user.practiceevents.any? {|p| p == h }  
   end 
 
   def haltom_date_ok  #this was for some reason returning false when called in sessions#destroy, so NOT BEING USED
@@ -192,12 +192,19 @@ def owner
 end
 
 def owner_or_intern
-  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'charles@name-coach.com' || current_user.email == 'kenduy@name-coach.com'
+  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'sindura@name-coach.com' || current_user.email == 'kenduy@name-coach.com' || current_user.email == 'jychin@name-coach.com' || current_user.email == 'arshkit@name-coach.com' || current_user.email == 'domenighini@name-coach.com' 
 
     redirect_to current_user
     flash[:notice] = "Sorry, not authorized for that page."
   end 
 end
 
+def owner_or_webdev
+  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'jychin@name-coach.com' 
+
+    redirect_to current_user
+    flash[:notice] = "Sorry, not authorized for that page."
+  end 
+end
 
 end

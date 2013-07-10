@@ -1,6 +1,6 @@
 class PlansController < ApplicationController
   before_filter :signed_in_user
-  before_filter :owner
+  before_filter :owner_or_webdev
 
 
   def index

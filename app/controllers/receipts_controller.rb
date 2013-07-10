@@ -1,5 +1,5 @@
 class ReceiptsController < ApplicationController
-  before_filter :owner, only: [:index, :show]
+  before_filter :owner_or_webdev, only: [:index, :show]
 
   
   def index
