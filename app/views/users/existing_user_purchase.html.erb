@@ -39,9 +39,9 @@
                               <div class="PlanBoxHeading">Event Page Pricing </div>
                               <div class="PlanBoxContent">
                                 <ul>
-                                  <li><strong>1 to 5</strong> Events: <strong>$35 / Event</strong></li>
-                                  <li><strong>6 to 10</strong> Events: <strong>$30 / Event</strong></li>
-                                  <li><strong>11+</strong> Events: <strong>$25 / Event</strong></li>
+                                  <li><strong>1 to 5</strong> Events: <strong>$<%= tier_one_price %> / Event</strong></li>
+                                  <li><strong>6 to 10</strong> Events: <strong>$<%= tier_two_price %> / Event</strong></li>
+                                  <li><strong>11+</strong> Events: <strong>$<%= tier_three_price %> / Event</strong></li>
                                   <li>
                                     Select number of events:
                                         <%= form_for(:peu, url: existing_user_purchase_select_path) do |y| %>

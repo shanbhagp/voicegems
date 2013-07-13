@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130515075034) do
   create_table "coupons", :force => true do |t|
     t.string   "name",               :default => "single_use"
     t.integer  "percent_off"
-    t.integer  "max_redemptions"
+    t.integer  "max_redemptions" #now being used for number of events for a non-subscription promo code
     t.string   "duration"
     t.integer  "duration_in_months"
     t.datetime "redeem_by"

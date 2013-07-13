@@ -13,14 +13,15 @@
   <%= @coupon.name %><br/>
   IF THIS IS A FREE PAGE CODE, this should read 'free'. <br/>
   IF THIS IS A FREE SUBSCRIPTION CODE, this should read 'free_sub'. <br/>
-  IF THIS IS A DISCOUNT CODE, this should read 'single_use'
+  IF THIS IS A DISCOUNTED PAGE CODE, this should read 'single_use' <br/>
 </p>
 
 <p>
-  <b>DISCOUNTED PRICE POINT:</b>
+ DISCOUNTED PAGE PRICE POINT (in dollars):
   <%= @coupon.cost %> <br/>
   THIS IS WHAT THE PROMO CODE WILL CHANGE THE CUSTOMER'S PRICE TO (will be blank if free)
 </p>
+
 <hr/>
 <p>
   <strong> You can ignore everything below </strong>

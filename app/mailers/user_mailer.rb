@@ -38,23 +38,23 @@ def sub_receipt(user, receipt)
 
 end 
 
-def purchase_receipt(user, receipt)
+def purchase_receipt(user, receipt, t1, t2, t3)
 
   @user = user
   @r = receipt
   @number = @r.events_number
 
     if @number.to_i < 6 
-       @cost = @number.to_i*35
-       @price = '$35' 
+       @cost = @number.to_i*t1
+       @price = "$#{t1}" 
     end 
     if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*30
-       @price = '$30' 
+       @cost = @number.to_i*t2
+       @price = "$#{t2}"
     end 
     if @number.to_i > 10 
-       @cost = @number.to_i*25 
-       @price = '$25'
+       @cost = @number.to_i*t3
+       @price = "$#{t3}"
     end 
 
   mail :to => user.email, :subject => "NameCoach Receipt"
@@ -62,17 +62,30 @@ def purchase_receipt(user, receipt)
 end 
 
 
-def grad_purchase_receipt(user, receipt, cost)
+def grad_purchase_receipt(user, receipt, cost, price)
 # cost in dollars
   @user = user
   @r = receipt
   @number = @r.events_number
   @cost = cost
-  @price = '$150' 
+  @price = "$#{price}"
 
   mail :to => user.email, :subject => "NameCoach Receipt"
 
 end 
+
+def wed_purchase_receipt(user, receipt, cost, price)
+# cost in dollars
+  @user = user
+  @r = receipt
+  @number = @r.events_number
+  @cost = cost
+  @price = "$#{price}"
+
+  mail :to => user.email, :subject => "NameCoach Receipt"
+
+end 
+
 
 
 def testemail(email)

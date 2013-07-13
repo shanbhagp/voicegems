@@ -888,8 +888,9 @@ def changesub
   @events_number = @planobject.events_number 
   @code = params[:sub][:code]
 
+    # don't need to check the is_valid_free_sub, because customer is auto-created if that helper is successful in sub_coupon
     if is_valid_sub_coupon(@code) && !@planobject.nil?
-          @coupon = Coupon.find_by_name(@code)
+          @coupon = Coupon.find_by_free_page_name(@code)
           @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
           flash.now[:success] = "Your promo code has been applied!"
     else #could not find that coupon
@@ -909,10 +910,10 @@ def sub_coupon
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using NameCoach!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil?
-          @coupon = Coupon.find_by_name(@code)
+          @coupon = Coupon.find_by_free_page_name(@code)
           @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripenewcustomer'
@@ -980,16 +981,16 @@ def newcustomercreate_purchase
     @user.last_name = params[:user][:last_name]
     @number = params[:user][:number].to_i  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
     if @number.to_i < 6 
-       @cost = @number.to_i*49
-       @price = '$49' 
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}" 
     end 
     if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*44
-       @price = '$44' 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
     end 
     if @number.to_i > 10 
-       @cost = @number.to_i*39 
-       @price = '$39'
+       @cost = @number.to_i*tier_three_price 
+       @price = "$#{tier_three_price}"
     end 
 
 
@@ -1033,16 +1034,16 @@ def changepur
   # @cost in DOLLARS
   @number= params[:pur][:number].to_i
     if @number.to_i < 6 
-       @cost = @number.to_i*49 
-       @price = '$49'
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}"
     end 
     if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*44 
-       @price = '$44'
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
     end 
     if @number.to_i > 10 
-       @cost = @number.to_i*39 
-       @price = '$39'
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}"
     end 
    render action: 'stripenewcustomer_purchase'
 end 
@@ -1053,7 +1054,7 @@ def coupon_purchase
     @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
 
     if is_valid_single_use_coupon(@coupon)
-          @price = '$49'
+          @price = "$#{tier_one_price}"
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripenewcustomer_purchase'
@@ -1061,16 +1062,16 @@ def coupon_purchase
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
           if @number.to_i < 6 
-             @cost = @number.to_i*49 
-             @price = '$49'
+             @cost = @number.to_i*tier_one_price 
+             @price = "$#{tier_one_price}"
           end 
           if @number.to_i > 5 && @number.to_i < 11 
-             @cost = @number.to_i*44 
-             @price = '$44'
+             @cost = @number.to_i*tier_two_price 
+             @price = "$#{tier_two_price}"
           end 
           if @number.to_i > 10 
-             @cost = @number.to_i*39
-             @price = '$39'
+             @cost = @number.to_i*tier_three_price
+             @price = "$#{tier_three_price}"
           end 
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."
@@ -1119,17 +1120,17 @@ end
 def existing_user_purchase_select
   @number = params[:peu][:number].to_i
  
-    if @number.to_i < 6 
-       @cost = @number.to_i*49
-       @price = '$49' 
+    if @number.to_i < 6  
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}" 
     end 
     if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*44
-       @price = '$44' 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"  
     end 
     if @number.to_i > 10 
-       @cost = @number.to_i*39 
-       @price = '$39'
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}" 
     end 
 
     # if user is a stripe customer, want to allow him to use existing card
@@ -1144,16 +1145,16 @@ end
 def existing_changepur
   @number= params[:pur][:number].to_i
     if @number.to_i < 6 
-       @cost = @number.to_i*49 
-       @price = '$49'
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}" 
     end 
     if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*44 
-       @price = '$44'
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
     end 
     if @number.to_i > 10 
-       @cost = @number.to_i*39
-       @price = '$39'
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}" 
     end 
 
    # if user is a stripe customer, want to allow him to use existing card
@@ -1180,7 +1181,7 @@ def existing_coupon_purchase
 
 
     if is_valid_single_use_coupon(@coupon)
-          @price = '$49'
+          @price = "$#{tier_one_price}" 
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'existing_user_purchase_select'
@@ -1188,16 +1189,16 @@ def existing_coupon_purchase
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
           if @number.to_i < 6 
-             @cost = @number.to_i*49 
-             @price = '$49'
+             @cost = @number.to_i*tier_one_price 
+             @price = "$#{tier_one_price}" 
           end 
           if @number.to_i > 5 && @number.to_i < 11 
-             @cost = @number.to_i*44 
-             @price = '$44'
+             @cost = @number.to_i*tier_two_price
+             @price = "$#{tier_two_price}" 
           end 
           if @number.to_i > 10 
-             @cost = @number.to_i*39 
-             @price = '$39'
+             @cost = @number.to_i*tier_three_price
+             @price = "$#{tier_three_price}" 
           end 
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."
@@ -1303,9 +1304,9 @@ def grad_new_customer_create_purchase
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]
     @user.event_type = 'graduation'
-    @number = 1  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
-    @cost = 149
-    @price = '$149' 
+    @number = 1 
+    @cost = one_grad_price
+    @price = "$#{one_grad_price}" 
 
 
     if @user.save
@@ -1341,7 +1342,9 @@ def grad_new_customer_create_purchase
 end
 
 def stripe_grad_new_customer_purchase
-   @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
+   if @number.nil?
+        @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
+   end 
 end 
 
 def grad_coupon_purchase 
@@ -1350,20 +1353,26 @@ def grad_coupon_purchase
 
     if is_valid_free_coupon(@coupon) #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
-          create_grad_customer_without_stripe
-          flash[:success] = "Thank you for using NameCoach!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          create_grad_customer_without_stripe(@coupon)
+          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
 
     # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      
     elsif is_valid_single_use_coupon(@coupon)
-          @price = '$149'
+          @price = "$#{one_grad_price}" 
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
+                #max_redemptions is now being used for number of pages an promo code gets you when not defaulting to 1, like for Cecilia's sale
+                if !Coupon.find_by_free_page_name(@coupon).max_redemptions.blank?
+                  @number = Coupon.find_by_free_page_name(@coupon).max_redemptions
+                else
+                  @number = 1
+                end 
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripe_grad_new_customer_purchase'
 
     else
-             @cost = 149
-             @price = '$149'
+             @cost = one_grad_price
+             @price = "$#{one_grad_price}" 
           
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."
@@ -1420,8 +1429,8 @@ def wed_new_customer_create_purchase
     @user.last_name = params[:user][:last_name]
     @user.event_type = 'wedding'
     @number = 1  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
-    @cost = 149
-    @price = '$149' 
+    @cost = one_wed_price
+    @price = "$#{one_wed_price}"
 
 
     if @user.save
@@ -1467,19 +1476,19 @@ def wed_coupon_purchase
     if is_valid_free_coupon(@coupon) #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
           create_wed_customer_without_stripe
-          flash[:success] = "Thank you for using NameCoach!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
 
     # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      
     elsif is_valid_single_use_coupon(@coupon)
-          @price = '$149'
+          @price = "$#{one_wed_price}"
           @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripe_wed_new_customer_purchase'
 
     else
-             @cost = 149
-             @price = '$149'
+             @cost = one_wed_price
+             @price = "$#{one_wed_price}"
           
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."

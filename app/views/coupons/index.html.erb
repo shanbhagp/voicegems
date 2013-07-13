@@ -1,8 +1,10 @@
+<div class="container">
+
 <h1>Listing coupons</h1>
 
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
+    <th>Type (Name Attr)</th>
     <th>Percent off</th>
     <th>Max redemptions</th>
     <th>Duration</th>
@@ -40,4 +42,6 @@
 
 <br />
 
-<%= link_to 'New Coupon', new_coupon_path %>
+
+<a href="<%= new_coupon_path %>" class="btn btn-primary btn-large">CREATE NEW COUPON </a>
+</div>

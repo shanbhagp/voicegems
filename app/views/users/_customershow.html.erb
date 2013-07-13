@@ -170,7 +170,7 @@ $(function() {
 				                          &nbsp;&nbsp; 
 
 						                          <% if only_purch_pages_left? %> 
-						                             	<span class="grey">(<%= current_user.purchased_events %> pages remaining)</span>
+						                             	<span class="grey">(<%= current_user.purchased_events %> page<% if current_user.purchased_events > 1 %>s<% end %> remaining)</span>
 						                          <% end %>  
 
 						                          <% if only_sub_pages_left? %> 
@@ -178,7 +178,7 @@ $(function() {
 						                          <% end %> 
 
 						                          <% if no_pages_left? %> 
-						                                <span class="grey">(0 pages remaining) </span>
+						                                <span class="grey">(no pages remaining) </span>
 						                          <% end %> 	
 
 

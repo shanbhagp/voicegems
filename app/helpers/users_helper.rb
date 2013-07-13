@@ -67,7 +67,7 @@ module UsersHelper
             UserMailer.sub_receipt(current_user, @r).deliver
 
 
-          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -166,7 +166,7 @@ module UsersHelper
 
 
   def is_valid_sub_coupon(coupon)
-      Coupon.find_by_name(coupon) && Coupon.find_by_name(coupon).active == true
+      Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "sub_discount"
   end 
 
   def is_valid_free_sub(coupon)
@@ -247,9 +247,9 @@ module UsersHelper
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -323,9 +323,9 @@ module UsersHelper
             @r.save
 
             #mail receipt
-            UserMailer.grad_purchase_receipt(current_user, @r, @cost).deliver
+            UserMailer.grad_purchase_receipt(current_user, @r, @cost, one_grad_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -350,9 +350,15 @@ module UsersHelper
          
     end 
 
-    def create_grad_customer_without_stripe
+    def create_grad_customer_without_stripe(coupon)
           current_user.update_attributes(:customer => true, :admin => true)
-          current_user.purchased_events = 1
+            #max_redemptions is now being used for number of pages an promo code gets you when not defaulting to 1, like for Cecilia's sale
+            if !Coupon.find_by_free_page_name(coupon).max_redemptions.blank?
+              @number = Coupon.find_by_free_page_name(coupon).max_redemptions
+            else
+              @number = 1
+            end 
+          current_user.purchased_events = @number
           current_user.save
     end 
 
@@ -388,9 +394,9 @@ module UsersHelper
             @r.save
 
             #mail receipt
-            UserMailer.wed_purchase_receipt(current_user, @r, @cost).deliver
+            UserMailer.wed_purchase_receipt(current_user, @r, @cost, one_wed_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -532,7 +538,7 @@ def existing_customer_purchase_events_existing_card(number, cost, coupon)
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
         
         rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
@@ -592,7 +598,7 @@ def update_card_and_purchase(token, number, cost, coupon)
             @r.save
  
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
        rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
@@ -651,9 +657,9 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins."
+          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash[:error] = "Something went wrong, please try again."
           false 
@@ -685,6 +691,26 @@ def plan_set_two
 end 
 def plan_set_three
     3  #this returns the integer 1
+end 
+
+def one_wed_price
+  99
+end
+
+def one_grad_price
+  99
+end 
+
+def tier_one_price
+   75
+end  
+
+def tier_two_price
+  65
+end 
+
+def tier_three_price
+  55
 end 
 
 def anchor_and_update_pos(po)
