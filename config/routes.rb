@@ -262,8 +262,10 @@ match 'receptions', to: "static#receptions"
 match 'graduations', to: "static#graduations"
 
 match 'demo_event_page', to: 'events#demo_event_page'
+match 'demo_wedding_page', to: 'events#demo_wedding_page'
 
 match '/demo_record/:event_code', to: 'events#demo_record', as: '/demo_record'
+match '/demo_record_wedding/:event_code', to: 'events#demo_record_wedding', as: '/demo_record_wedding'
 
 match '/demo_recorder', to: 'users#demo_recorder'
 
@@ -279,6 +281,8 @@ match '/BioE', to: 'events#BioE'
 match '/bioe', to: 'events#BioE'
 
 match '/macbeathtestimonial', to: 'static#macbeathtestimonial'
+
+
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action

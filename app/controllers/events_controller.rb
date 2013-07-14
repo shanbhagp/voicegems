@@ -406,6 +406,24 @@ def event_code_add  #this is for registering to record with an event link, for a
 	 
   end
 
+  def demo_wedding_page
+  	@event = Event.find(ENV['demopage'].to_i)
+
+  	 @practiceobject = Practiceobject.new  
+	 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+	 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+	 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+	 @unregisteredpos = @event.practiceobjects.unregistered.visible
+	 @hiddenpos = @event.practiceobjects.hidden
+	 @hiddenandregisteredpos  = @hiddenpos.registered
+	 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+	 @url = demo_record_wedding_url(:event_code => @event.event_code)
+
+	 
+  end
+
+
   def demo_record
 
     @event_code = params[:event_code]
@@ -418,6 +436,20 @@ def event_code_add  #this is for registering to record with an event link, for a
  	end 
 
   end 
+
+  def demo_record_wedding
+
+    @event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+  end 
+
 
  def BioE
  	 @event = Event.find(ENV['BioE'].to_i)
