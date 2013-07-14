@@ -273,6 +273,8 @@ match '/privacy', to: 'static#privacy'
 
 match '/faq', to: 'static#faq'
 
+match '/team', to: 'static#team'
+
 match '/macfaq', to: 'static#macfaq'
 
 match '/flashtest', to: 'static#flashtest'
