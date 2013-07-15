@@ -698,7 +698,7 @@ def one_wed_price
 end
 
 def one_grad_price
-  149
+  99
 end 
 
 def tier_one_price
