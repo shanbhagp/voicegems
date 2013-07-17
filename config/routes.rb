@@ -284,6 +284,7 @@ match '/bioe', to: 'events#BioE'
 
 match '/macbeathtestimonial', to: 'static#macbeathtestimonial'
 
+match '/test5', to: 'users#test5'
 
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'

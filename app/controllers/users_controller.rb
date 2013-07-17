@@ -1531,6 +1531,13 @@ def demo_recorder
 end 
 
 
+def test5
+
+  render :layout => nil
+  # necessary b/c having the rendered header was causing problems on the test page
+end 
+
+
 end
 
 

@@ -21,6 +21,8 @@
 //= require best_in_place
 //= require bootstrap
 //= require flashblock-detector
+//= require recorderWorker
+//= require recorder
 //= provide jrec
 //= provide aplayer
 //= require_tree .
