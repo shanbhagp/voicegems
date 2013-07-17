@@ -14,6 +14,7 @@ gem 'stripe'
 gem 'pg'
 gem 'thin'
 gem 'exceptional'
+gem 'jquery-rails', '2.0.2'
 #gem 'letter_opener', :group => :development
 
 #gem "mail", "2.1.3"
@@ -33,7 +34,6 @@ end
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-gem 'jquery-rails'
 
 group :test, :development do
   gem 'rspec-rails', '2.10.0'
