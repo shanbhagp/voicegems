@@ -14,7 +14,7 @@ gem 'stripe'
 gem 'pg'
 gem 'thin'
 gem 'exceptional'
-gem 'jquery-rails', '2.0.2'
+gem 'jquery-rails', '2.0.1'
 #gem 'letter_opener', :group => :development
 
 #gem "mail", "2.1.3"
