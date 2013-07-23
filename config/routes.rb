@@ -286,6 +286,8 @@ match '/macbeathtestimonial', to: 'static#macbeathtestimonial'
 
 match '/test5', to: 'users#test5'
 
+match '/support_test', to: 'static#support_test'
+match '/search_test', to: 'static#search_test'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action

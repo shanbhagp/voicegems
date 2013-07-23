@@ -83,8 +83,15 @@ def flashtest
 	render :layout => nil
 end 
 
+def support_test
+	#render :layout => nil
+end 
+
 def macbeathtestimonial
 	#render :layout => nil
 end 
+
+def search_test
+end
 
 end
