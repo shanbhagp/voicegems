@@ -2485,3 +2485,23 @@ border-top-color: #30add1;
     display: none;
     visibility: hidden;
 }
+
+/* fancy quotes */
+.qstart {
+     float: left;
+     height: 45px;
+     margin-top: -20px;
+     padding-top: 45px;
+     margin-bottom: -50px;
+     font-size: 700%;
+     color: #73bcde;
+ }
+
+ .qend {
+     float: right;
+     height: 25px;
+     margin-top: 0px;
+     padding-top: 45px;
+     font-size: 700%;
+     color: #73bcde;
+ }
