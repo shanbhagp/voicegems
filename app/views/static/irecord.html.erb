@@ -25,7 +25,7 @@
         <div class="container">
             
             <div class="upload_form_cont">
-                <form id="upload_form" enctype="multipart/form-data" method="post" action="upload.php">
+                <form id="upload_form" enctype="multipart/form-data" method="post" action="<%= isave_url %>">
                     <div>
                         <div><label for="image_file">Begin recording into the video, then press Upload</label></div>
                         <div><input type="file" accept="video/*" name="image_file" id="image_file" onchange="fileSelected();" /></div>
