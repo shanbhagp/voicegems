@@ -94,4 +94,8 @@ end
 def search_test
 end
 
+def irecord
+render :layout => nil
+end 
+
 end
