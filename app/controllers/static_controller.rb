@@ -98,6 +98,7 @@ def irecord
 render :layout => nil
 end 
 
-
+def isave
+end 
 
 end
