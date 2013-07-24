@@ -13,7 +13,6 @@
 
 
   <%= stylesheet_link_tag "main", :media => "all" %>
-  <%= javascript_include_tag "application", "jRecorder"%>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -167,7 +166,7 @@ function startUploading() {
     oXHR.addEventListener('load', uploadFinish, false);
     oXHR.addEventListener('error', uploadError, false);
     oXHR.addEventListener('abort', uploadAbort, false);
-    oXHR.open('POST', 'upload.php');
+    oXHR.open('POST', '<%= isave_url %>');
     oXHR.send(vFD);
 
     // set inner timer

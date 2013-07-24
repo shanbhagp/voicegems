@@ -99,6 +99,80 @@ render :layout => nil
 end 
 
 def isave
-end 
+
+      directory = "app/assets/images"
+      # create the file path
+      path = File.join(directory, current_user.id.to_s)
+      path+='.mov'
+     # write the file to local images directory
+      File.open(path, "wb") { |f| f.write(request.body.read) }
+
+      #upload to S3
+       bucket_name = ENV['BUCKET_NAME']
+       source_filename = path 
+
+        AWS.config(
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+        )
+
+        # Create the basic S3 object
+        s3 = AWS::S3.new
+
+        # Load up the 'bucket' we want to store things in
+        bucket = s3.buckets[bucket_name]
+
+        # If the bucket doesn't exist, create it
+        unless bucket.exists?
+          puts "Need to make bucket #{bucket_name}.."
+          s3.buckets.create(bucket_name)
+        end
+
+        # Grab a reference to an object in the bucket with the name we require
+        object = bucket.objects[File.basename(source_filename)]
+
+        # Write a local file to the aforementioned object on S3
+        object.write(:file => source_filename)
+       
+        #transcode the file as a genuine mp3 via Zencoder
+        Zencoder::Job.create({
+                      :api_key => ENV['ZEN_API_KEY'],    
+                      :input => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}.mov",
+                      :outputs => [
+                        {
+                          :url => "s3://#{ENV['BUCKET_NAME']}/#{current_user.id.to_s}.mp3",
+                          :audio_codec => "mp3",
+                          :skip_video => true.
+                          :public => 1,
+
+                          }]
+
+                          })
+
+#{
+ # "input": "s3://zencoder-customer-ingest/uploads/2013-07-24/71268/58113/4c797080-f434-11e2-8421-47a170fadea2.mov",
+ # "output": [
+ #   {
+ #     "skip_video": true,
+ #     "audio_codec": "mp3"
+ ## ]
+#}
+
+        #update the recording path for the current user and the (first?) practice object; this is coped from the upload action, and 
+        # cleans up the code by using current_user
+        #this should really only happen for the users first(only) practiceobject, as after that they are forced to edit a PO through the PO update action.
+        #important to have it here so that as soon as the user first records, his PO's recording path gets a value
+        current_user.update_attributes(recording: current_user.id)
+          if current_user.practiceobjects.any? 
+             current_user.practiceobjects.each do |x|
+               if x.recording.blank?
+               x.update_attributes(recording: current_user.recording)
+               end 
+             end    
+          end 
+
+     
+
+  end
 
 end
