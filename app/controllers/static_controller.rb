@@ -171,7 +171,7 @@ def isave
              end    
           end 
 
-      false 
+      redirect_to current_user
 
   end
 
