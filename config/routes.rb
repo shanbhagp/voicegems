@@ -291,7 +291,6 @@ match '/search_test', to: 'static#search_test'
 
 
 match '/irecord', to: 'static#irecord'
-match '/isave', to: 'static#isave'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 #apparently this route is not needed since I'm only rendering the vgrecord_step2 action
