@@ -182,14 +182,6 @@
 <div id="form"></div>
 <div id="list">
 
-<%= form_for(:migration, url: migrate_pos_path) do |y| %>
-      <%= y.hidden_field :e, :value => @event.id %>
-      <% @registeredandrecordedpos.each do |f| %>
-      <%= f.user.first_name %> <%= f.user.last_name %>
-      <%= check_box_tag "po_ids[]", f.id %>
-      <% end %> 
-<%= y.submit "Migrate Entries", class: "btn-primary btn-large", disable_with: 'migrating...' %>
-<% end %><%# end migration/checkboxes form %>	
 
 <%= form_for(:migration, url: migrate_pos_path) do |y| %>
       <%= y.hidden_field :e, :value => @event.id %>
