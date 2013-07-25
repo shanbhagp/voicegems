@@ -171,6 +171,59 @@ class EventsController < ApplicationController
 		end 
     end
 
+def show_master
+
+		 @event = Event.find(params[:id])
+		 unless current_user.email == 'shanbhagp@aol.com'
+		 	@owner = false
+		 end 
+		 
+		 if bigdaddyevent
+		 	
+		 	 @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
+			 @registeredandunrecordedvgs = @event.voicegems.registered.unrecorded.visible
+			 @unregisteredvgs = @event.voicegems.unregistered.visible
+			 @hiddenvgs = @event.voicegems.hidden
+			 @hiddenandregisteredvgs  = @hiddenvgs.registered
+			 @hiddenandunregisteredvgs = @hiddenvgs.unregistered  
+
+			 @url = vgrecord_url(:event_code => @event.event_code)
+
+
+		 	render action: 'voicegems'
+		 else
+			 @practiceobject = Practiceobject.new  
+			 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+			 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+			 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+			 @unregisteredpos = @event.practiceobjects.unregistered.visible
+			 @hiddenpos = @event.practiceobjects.hidden
+			 @hiddenandregisteredpos  = @hiddenpos.registered
+			 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+			 @url = record_url(:event_code => @event.event_code)
+		end 
+    end
+
+
+def migrate_pos
+	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
+	generate_event_code(@event)
+	@event.save
+	
+	@pos = params[:po_ids]
+
+	@master_event = params[:migration][:e]
+
+	@pos.each do |id|
+	m = Practiceobject.find(id)
+	Practiceobject.create(:event_id => @event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	redirect_to @event
+
+end 
 
     #alternate event show page for bigdaddy;  instance variables already set in 'show' above
     def voicegems

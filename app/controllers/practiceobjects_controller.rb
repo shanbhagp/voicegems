@@ -107,6 +107,9 @@ def create
 
 end
 
+
+
+
 def porecording
   @po = Practiceobject.find(params[:id])
   render :layout => nil

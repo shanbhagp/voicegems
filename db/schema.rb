@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515075034) do
+ActiveRecord::Schema.define(:version => 20130725102901) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20130515075034) do
   create_table "coupons", :force => true do |t|
     t.string   "name",               :default => "single_use"
     t.integer  "percent_off"
-    t.integer  "max_redemptions" #now being used for number of events for a non-subscription promo code
+    t.integer  "max_redemptions"
     t.string   "duration"
     t.integer  "duration_in_months"
     t.datetime "redeem_by"
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20130515075034) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "my_plan_id"
+    t.integer  "annual_cost_cents"
   end
 
   create_table "practiceobjects", :force => true do |t|
