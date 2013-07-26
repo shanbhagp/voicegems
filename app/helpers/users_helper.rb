@@ -16,7 +16,7 @@ module UsersHelper
                                   text.scan(regex).join(zero_width_space)
     end
 
-    def create_customer(token, plan, code, newprice)  #plan is now a my_plan_id
+    def create_customer(token, plan, code, newprice, event_type)  #plan is now a my_plan_id
 
         if !code.nil? && is_valid_sub_coupon(code) 
         
@@ -44,17 +44,21 @@ module UsersHelper
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
          # will have to change this to calculated adjusted ER's for when a customer canceled a previous subscription
          #except this is for new users, so probalby won't have to do this
-          if Plan.find_by_my_plan_id(plan) #to prevent a nil problem
+          if Plan.find_by_my_plan_id(plan) #to prevent a nil problem 
             @er = Plan.find_by_my_plan_id(plan).events_number
+            @unlimited = Plan.find_by_my_plan_id(plan).unlimited
           else 
             @er = 0 #just so @er not undefined - will probably need to change this if-else-end code to be more elegant
           end 
           
-          #create subscription
-          @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
-          @sub.coupon = code
-          @sub.events_remaining = @er
-          @sub.save 
+         
+          if event_type == 'reception'
+            #create subscription
+            @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
+            @sub.coupon = code
+            @sub.events_remaining = @er
+            @sub.unlimited = @unlimited
+            @sub.save 
 
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
@@ -66,8 +70,28 @@ module UsersHelper
             #mail receipt
             UserMailer.sub_receipt(current_user, @r).deliver
 
+          else # event_type is an edu event type
 
-          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+            @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
+            @sub.coupon = code
+            @sub.events_remaining = @er
+            @sub.unlimited = @unlimited
+            @sub.save 
+
+           #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+              :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
+              :sub_events_number => @sub.events_remaining, :sub_reg_annual_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).annual_cost_cents,
+              :sub_actual_annual_cost_in_cents => newprice, :sub_coupon_name => @sub.coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.sub_receipt_edu(current_user, @r).deliver
+
+          end 
+
+
+          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create a name page, from which you can 1) request name recordings, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -93,10 +117,17 @@ module UsersHelper
     end 
 
 
+
+
     def temp_password(token)
        @user.password=token
        @user.password_confirmation= token
     end 
+
+
+    def customer_has_master_list?
+        current_user.customer == true && !current_user.adminevents.nil? && current_user.adminevents.any? {|s| s.master == true }  
+    end
 
 
     def customer_has_active_subscription?
@@ -112,8 +143,8 @@ module UsersHelper
     end 
 
     def active_sub_with_events_left?
-       customer_has_active_subscription? && current_user.subscriptions.select {|s| s.active == true}.first.events_remaining > 0 
-    end 
+       customer_has_active_subscription? && (current_user.subscriptions.select {|s| s.active == true}.first.unlimited == true || current_user.subscriptions.select {|s| s.active == true}.first.events_remaining > 0) 
+    end# note that for unlimited = true subs, the machine stops looking; if it kept looking, it would throw an error because > can't be called on nil, and events_remaining is nil for unlimited subs 
 
     def only_sub_pages_left?
       active_sub_with_events_left? && current_user.purchased_events <= 0
@@ -691,6 +722,15 @@ def plan_set_two
 end 
 def plan_set_three
     3  #this returns the integer 1
+end 
+def plan_set_seven
+    7  
+end 
+def plan_set_eight
+    8
+end 
+def plan_set_nine
+    9
 end 
 
 def one_wed_price

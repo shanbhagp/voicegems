@@ -11,24 +11,24 @@
   </div>
 
    <table class="table">
-                <caption><em>(this is what will appear on the respective event pages, and will be used to practice your name)</em></caption>
+                <caption><em>(this is what will appear on the respective name pages, and will be used to practice your name)</em></caption>
                </table>
         <div class="row">
           <div class="well span8 modal-header">
             
               
               <div class="span2">
-                  <a href="#" rel="tooltip" data-placement="right" title="Your registered name and email address."><h4>Attendee Name/Email</h4></a>
+                  <a href="#" rel="tooltip" data-placement="right" title="Your registered name and email address."><h4> Name/Email</h4></a>
                 </div>
                   
           
                   <div class="span2">
-                  <a href="#" rel="tooltip" data-placement="right" title="Any notes you think might help with pronouncing your name."><h4>Attendee's Notes</h4></a>
+                  <a href="#" rel="tooltip" data-placement="right" title="Any notes you think might help with pronouncing your name."><h4>Pronunciation Notes</h4></a>
                   </div>
             
 
                 <div class="span3">
-                  <a href="#" rel="tooltip" data-placement="right" title="This is how you would like your name announced at the event. Click the play button to hear your current recording for that event. If an 'x' appears rather than the play button, your name recording has not been made or processed yet."><h4>Name to be announced</h4></a>
+                  <a href="#" rel="tooltip" data-placement="right" title="This is how you would like your name announced or pronounced. Click the play button to hear your current recording for that event. If an 'x' appears rather than the play button, your name recording has not been made or processed yet."><h4>Name to be announced</h4></a>
                   <em>(press play button to hear)</em>
                 </div>
 
@@ -36,7 +36,7 @@
 
                 <div class="span2">
                   <br/>
-                  <a href="#" rel="tooltip" data-placement="right" title="Click on the buttons below to edit your recording, pronunciation notes, or how you would like your name announced at the given event."><span class="label label-purple">&nbsp;&nbsp;Edit Your NameGuide&nbsp;&nbsp;</span></a>
+                  <a href="#" rel="tooltip" data-placement="right" title="Click on the buttons below to edit your recording, pronunciation notes, or how you would like your name announced or pronounced."><span class="label label-purple">&nbsp;&nbsp;Edit Your NameGuide&nbsp;&nbsp;</span></a>
                                   
                 </div>  
 
@@ -99,11 +99,10 @@
   <div class="row">
       <div class="span12">
         <div class="well">
-            <h4><span class="blue"><i class="icon-list icon-white"></i></span><strong>&nbsp;&nbsp;Event pages in which your <em>NameGuide</em> appears: </strong></h4>
+            <h4><span class="blue"><i class="icon-list icon-white"></i></span><strong>&nbsp;&nbsp;Name pages in which your <em>NameGuide</em> appears: </strong></h4>
             <br/>
              <table class="table table-striped event ">
-                                  <caption><em>(these are the events you are attending in which your name may be announced)</em><br/><br/></caption>
-                                
+                            
 
                                   
                                         <% @user.practiceevents.each do |e| %>
@@ -153,7 +152,7 @@
 
                                                             
                                                              
-                                                                <a data-toggle="modal" href="#rs<%= e.id %>" class="btn btn-info btn-small">See All Event Admins</a>
+                                                                <a data-toggle="modal" href="#rs<%= e.id %>" class="btn btn-info btn-small">See All Admins</a>
                                                            
                                                            
                                                   </td>
@@ -281,9 +280,9 @@
 
                <table class="table">
                             <% if current_user.customer? || current_user.admin? %>
-                              <caption><em>(this is what would appear on an admin's event page, and would be used to practice your name.  As a customer/admin, you probably needn't worry about your own NameGuide.)</em></caption>
+                              <caption><em>(this is what would appear on an admin's name page, and would be used to practice your name.  As a customer/admin, you probably needn't worry about your own NameGuide.)</em></caption>
                             <% else %>
-                              <caption><em>(this is what will appear on the admin's event page, and will be used to practice your name)</em></caption>
+                              <caption><em>(this is what will appear on the admin's name page, and will be used to practice your name)</em></caption>
                             <% end %>
                            </table>
 
@@ -294,17 +293,17 @@
                         
                           
                           <div class="span3">
-                              <a href="#" rel="tooltip" data-placement="right" title="Your registered name and email address."><h4>Attendee Name/Email</h4></a>
+                              <a href="#" rel="tooltip" data-placement="right" title="Your registered name and email address."><h4>Name/Email</h4></a>
                             </div>
                               
                       
                               <div class="span4">
-                              <a href="#" rel="tooltip" data-placement="right" title="Any notes you think might help with pronouncing your name."><h4>Attendee's Notes</h4></a>
+                              <a href="#" rel="tooltip" data-placement="right" title="Any notes you think might help with pronouncing your name."><h4>Pronunciation Notes</h4></a>
                               </div>
                         
 
                             <div class="span3">
-                              <a href="#" rel="tooltip" data-placement="right" title="This is how you would like your name announced at the event. Click the play button to hear your current recording for that event. If an 'x' appears rather than the play button, your name recording has not been made or processed yet."><h4>Name To be announced</h4></a>
+                              <a href="#" rel="tooltip" data-placement="right" title="This is how you would like your name announced or pronounced. Click the play button to hear your current recording for this name page. If an 'x' appears rather than the play button, your name recording has not been made or processed yet."><h4>Name To be announced</h4></a>
                               <em>(press play button to hear)</em>
                             </div>
 
@@ -391,7 +390,7 @@
         <br/>
          <%= form_for(@user, :html => {:class => "form-vertical"}) do |f| %>
            <div class="span3">
-            <span class="label label-info">Step 1</span> <br/>Update your name as you would like it announced:<br/>
+            <span class="label label-info">Step 1</span> <br/>Update your name as you would like it said:<br/>
             <%= f.text_field :phonetic, :class => "span3" %>
              <span class="help-block">(e.g., 'Dr. Henry Jones, Jr.')</span>
            </div>
@@ -423,10 +422,10 @@
   <div class="row">
       <div class="span12 well">
         
-            <h4><span class="blue"><i class="icon-list icon-white"></i></span><strong> Event pages in which your <em>NameGuide</em> appears: </strong></h4>
+            <h4><span class="blue"><i class="icon-list icon-white"></i></span><strong> Name pages in which your <em>NameGuide</em> appears: </strong></h4>
             
              <table class="table table-striped event ">
-                                  <caption><em>(these are the events you are attending in which your name may be announced)</em><br/><br/></caption>
+                                 
                                 
 
                                   
@@ -477,7 +476,7 @@
 
                                                             
                                                              
-                                                                <a data-toggle="modal" href="#rs2<%= e.id %>" class="btn btn-info btn-small">See All Event Admins</a>
+                                                                <a data-toggle="modal" href="#rs2<%= e.id %>" class="btn btn-info btn-small">See All Admins</a>
                                                            
                                                            
                                                   </td>

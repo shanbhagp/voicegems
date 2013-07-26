@@ -54,12 +54,28 @@ def active_page_check
     end 
 end 
 
+#what is this doing? are we ever using the event's event_type?  YES - in event show pages
 def assign_event_type(event)
-	if current_user.event_type == "graduation"
-	  event.event_type = "graduation"
-	end 
+
+	  event.event_type = current_user.event_type
+	  if event.master == true
+	  	event.event_type = 'students'
+	  end 
+	
 end 
 
- 
+def student_event?
+	current_user.event_type == 'students' || current_user.event_type == 'graduation' || current_user.event_type == 
+	'commencement' || current_user.event_type == 'all_inclusive'
+end 
+
+def create_default_grad_page(event)
+	if event.master == true
+	 	@event = Event.new(:event_type => 'commencement', :tite => "Graduation: #{event.title}", :date => event.date)
+	 	generate_event_code(@event)
+	 	@event.save
+	 	#create and admin and customer key for this event
+	end 
+end 
 
 end 

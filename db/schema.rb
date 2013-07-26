@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725102901) do
+ActiveRecord::Schema.define(:version => 20130726091443) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130725102901) do
     t.datetime "updated_at",    :null => false
     t.string   "purchase_type"
     t.string   "event_type"
+    t.boolean  "master"
   end
 
   add_index "events", ["access_code"], :name => "index_events_on_access_code"
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20130725102901) do
     t.datetime "updated_at",         :null => false
     t.integer  "my_plan_id"
     t.integer  "annual_cost_cents"
+    t.boolean  "unlimited"
   end
 
   create_table "practiceobjects", :force => true do |t|
@@ -143,6 +145,9 @@ ActiveRecord::Schema.define(:version => 20130725102901) do
     t.datetime "updated_at",                       :null => false
     t.string   "email"
     t.string   "customer_id"
+    t.integer  "sub_reg_annual_cost_in_cents"
+    t.integer  "sub_actual_annual_cost_in_cents"
+    t.boolean  "unlimited"
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -160,6 +165,7 @@ ActiveRecord::Schema.define(:version => 20130725102901) do
     t.string   "coupon"
     t.integer  "my_plan_id"
     t.string   "plan_name"
+    t.boolean  "unlimited"
   end
 
   create_table "userinvites", :force => true do |t|

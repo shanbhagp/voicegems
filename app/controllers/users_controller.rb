@@ -850,7 +850,12 @@ def newcustomercreate
           @user.customer = true
           @user.save
       end 
-      render 'stripenewcustomer'
+        if @user.event_type == 'reception'
+          render 'stripenewcustomer'
+        else #users(customer's) event type is an edu type
+          render 'stripenewcustomer_edu'
+        end
+
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
@@ -866,6 +871,12 @@ end
 
 
 def stripenewcustomer 
+  #@plan = 'silver'  #just in case for some reason @plan is not defined in the view, will have default value of 'basic'.  Note that if there are card processing errors, for some reason the @plan value is not retained in the view
+  @coupon = nil #default when form first renders.  Won't be set by this line in the subsequent renderings of stripenewcustomer below
+  @code = nil 
+end 
+
+def stripenewcustomer_edu 
   #@plan = 'silver'  #just in case for some reason @plan is not defined in the view, will have default value of 'basic'.  Note that if there are card processing errors, for some reason the @plan value is not retained in the view
   @coupon = nil #default when form first renders.  Won't be set by this line in the subsequent renderings of stripenewcustomer below
   @code = nil 
@@ -898,8 +909,26 @@ def changesub
       @coupon = nil 
       @new_price = nil
     end
-
   render action: 'stripenewcustomer'
+end 
+
+def changesub_edu
+  @plan = params[:sub][:plan]
+  @planobject = Plan.find_by_my_plan_id(@plan)
+  @events_number = @planobject.events_number 
+  @code = params[:sub][:code]
+
+    # don't need to check the is_valid_free_sub, because customer is auto-created if that helper is successful in sub_coupon
+    if is_valid_sub_coupon(@code) && !@planobject.nil?
+          @coupon = Coupon.find_by_free_page_name(@code)
+          @new_price = @planobject.annual_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+    end
+  render action: 'stripenewcustomer_edu'
 end 
 
 def sub_coupon 
@@ -927,6 +956,31 @@ def sub_coupon
     end
 end 
 
+def sub_coupon_edu
+  @plan = params[:coup][:plan]
+  @planobject = Plan.find_by_my_plan_id(@plan)
+  @events_number = @planobject.events_number
+  @code = params[:coup][:code]
+  
+   if is_valid_free_sub(@code) && !@planobject.nil?
+          create_sub_customer_without_stripe(@plan, @code)
+          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          redirect_to current_user
+   elsif is_valid_sub_coupon(@code) && !@planobject.nil?
+          @coupon = Coupon.find_by_free_page_name(@code)
+          @new_price = @planobject.annual_cost_cents * (100 - @coupon.percent_off)/100
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'stripenewcustomer_edu'
+
+    else #could not find that coupon
+      @code = nil 
+      @coupon = nil 
+      @new_price = nil
+      flash.now[:error] = "Sorry, not a valid promo code."
+      render action: 'stripenewcustomer_edu'
+    end
+end 
+
 
 
 def stripereceiver  #incoming from stripenewcustomer form
@@ -935,6 +989,7 @@ def stripereceiver  #incoming from stripenewcustomer form
     plan = params[:plan]
     code = params[:code]
     new_price = params[:new_price]
+    event_type = params[:event_type]
 
 
     #this needs to change to allow for canceled subs  
@@ -945,13 +1000,17 @@ def stripereceiver  #incoming from stripenewcustomer form
 
     else #user not already a customer 
 
-        if create_customer(token, plan, code, new_price)
+        if create_customer(token, plan, code, new_price, event_type)
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
           redirect_to current_user
         else
-          render 'stripenewcustomer'
+          if event_type == "reception"
+            render 'stripenewcustomer'
+          else 
+            render 'stripenewcustomer_edu'
+          end 
         end 
 
     end    

@@ -9,6 +9,7 @@
     <th>access code</th>
     <th>event code</th>
     <th>event type</th>
+    <th>master?</th>
   </tr>
 
 <% @events.each do |event| %>
@@ -19,7 +20,7 @@
     <td><%= event.access_code %></td>
     <td><%= event.event_code %></td>
     <td><%= event.event_type %></td>
-   
+   <td><%= event.master %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

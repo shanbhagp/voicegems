@@ -82,7 +82,7 @@
                                                     <%= simple_form_for(@user, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well span3 offset1">
-                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
+                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>

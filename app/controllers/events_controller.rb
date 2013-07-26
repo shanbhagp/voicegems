@@ -18,6 +18,7 @@ class EventsController < ApplicationController
 
 	     if  @event.purchase_type == 's'
 	     	 if customer_has_active_subscription? && sub_pages_left > 0  #double-check to see if has some sub pages
+	     	 #maybe can take out, because can control for checking if has pages left in the customer_show view event creation well
 		     	 # RUN MODIFIED FOR subscription events EXISTING CODE
 	                 #generate the event_code 
 	                 if @event.event_code.blank?
@@ -30,20 +31,23 @@ class EventsController < ApplicationController
 					          if @s.save
 					          	 @event.customerkeys.create!(user_id: current_user.id)
 	                    		 @event.adminkeys.create!(user_id: current_user.id)
-	                     		 redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+	                     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
 					          else #should't happen because subscription should save
 					            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 					            redirect_to current_user
 					          end  
 					        # end try decrementing s
+
+					        #create default grad page if this is the master list
+					       # create_default_grad_page(@event)
 		                else
-		                  flash[:error] = 'Please enter a title and date for your event.'
+		                  flash[:error] = 'Please enter a title and date.'
 		                  redirect_to current_user
 		                end
 
 	                 else
 	                  if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
-	                         redirect_to current_user, notice: "This event code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+	                         redirect_to current_user, notice: "This code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
 	                  else 
 	                        e = @event.event_code.upcase.delete(' ')
 	                        @event.event_code = e 
@@ -55,22 +59,22 @@ class EventsController < ApplicationController
 						          if @s.save
 						          	 @event.customerkeys.create!(user_id: current_user.id)
 		                    		 @event.adminkeys.create!(user_id: current_user.id)
-		                     		 redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+		                     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
 						          else #should't happen because subscription should save
 						            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 						            redirect_to current_user
 						          end  
 						        # end try decrementing s
 	                      	else
-	                      	redirect_to current_user, notice: 'Please enter a title and date for your event.'
+	                      	redirect_to current_user, notice: 'Please enter a title and date.'
 	                      	end
 	                end 
 	              end 
 	             #END RUN MODIFIED for subscription events EXISTING CODE
 
 	     	 else #shouldn't happen because event creation well shouldn't allow incoming s event_type if no s pages are left
-	     	 	flash[:error] = 'No event pages remaining.  Please purchase more.'
-	     	 	redirect_to current_user
+	     	 	flash[:error] = 'No name pages remaining.  Please purchase more.'
+	     		redirect_to current_user
 	     	 end 
 	     else
 	     	if @event.purchase_type == 'p'
@@ -85,20 +89,20 @@ class EventsController < ApplicationController
            						 if @user.save
            						      @event.customerkeys.create!(user_id: current_user.id)
 		                     		  @event.adminkeys.create!(user_id: current_user.id)
-		                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+		                     		  redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
 								 else #shouldn't happen because @user should save
 					                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 					                  redirect_to current_user
            						 end 
            						 # END try decrementing p
 		                  else
-		                  flash[:error] = 'Please enter a title and date for your event.'
+		                  flash[:error] = 'Please enter a title and date.'
 		                  redirect_to current_user
 		                  end
 
 		                 else
 		                  if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
-		                         redirect_to current_user, notice: "This event code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+		                         redirect_to current_user, notice: "This  code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
 		                  else 
 		                        e = @event.event_code.upcase.delete(' ')
 		                        @event.event_code = e 
@@ -108,14 +112,14 @@ class EventsController < ApplicationController
 	           						 if @user.save
 	           						      @event.customerkeys.create!(user_id: current_user.id)
 			                     		  @event.adminkeys.create!(user_id: current_user.id)
-			                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
+			                     		  redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
 									 else #shouldn't happen because @user should save
 						                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 						                  redirect_to current_user
 	           						 end 
 	           						 # END try decrementing p
 		                      else
-		                      redirect_to current_user, notice: 'Please enter a title and date for your event.'
+		                      redirect_to current_user, notice: 'Please enter a title and date.'
 		                      end
 		                end 
 		              end 
@@ -124,7 +128,7 @@ class EventsController < ApplicationController
 
 	     			
 	     		else #shouldn't happen because event creation well shouldn't allow incoming p event_type if no p pages are left
-	     			flash[:error] = 'No event pages remaining.  Please purchase more.'
+	     			flash[:error] = 'No name pages remaining.  Please purchase more.'
 	     	 		redirect_to current_user
 	     		end
 	     	else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
@@ -140,8 +144,21 @@ class EventsController < ApplicationController
 	def show
 
 		 @event = Event.find(params[:id])
+
+		 if @event.master == true
+		 	redirect_to directory_event_path(@event)
+		 end 
+
 		 unless current_user.email == 'shanbhagp@aol.com'
 		 	@owner = false
+		 end 
+
+		 # for rendering different text in the view  
+		 # not currently using this if-else-end
+		 if student_event?
+		 	@person = "Student"
+		 else
+		 	@person = "Attendee"
 		 end 
 		 
 		 if bigdaddyevent
@@ -171,27 +188,13 @@ class EventsController < ApplicationController
 		end 
     end
 
-def show_master
+def directory
 
 		 @event = Event.find(params[:id])
 		 unless current_user.email == 'shanbhagp@aol.com'
 		 	@owner = false
-		 end 
-		 
-		 if bigdaddyevent
-		 	
-		 	 @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
-			 @registeredandunrecordedvgs = @event.voicegems.registered.unrecorded.visible
-			 @unregisteredvgs = @event.voicegems.unregistered.visible
-			 @hiddenvgs = @event.voicegems.hidden
-			 @hiddenandregisteredvgs  = @hiddenvgs.registered
-			 @hiddenandunregisteredvgs = @hiddenvgs.unregistered  
+		 end
 
-			 @url = vgrecord_url(:event_code => @event.event_code)
-
-
-		 	render action: 'voicegems'
-		 else
 			 @practiceobject = Practiceobject.new  
 			 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
 			 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
@@ -202,7 +205,7 @@ def show_master
 			 @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
 			 @url = record_url(:event_code => @event.event_code)
-		end 
+
     end
 
 
@@ -311,19 +314,19 @@ end
 
 def event_link_create  #for new users signing up from an event code link
     @user = User.new
-    @user.email = params[:user][:email] unless params[:user].nil?
+    @user.email = params[:user][:email] unless params[:user].nil? #don't retrieve if no user
     @pw = SecureRandom.urlsafe_base64
     @user.password=@pw
     @user.password_confirmation=@pw
-    @user.first_name = params[:user][:first_name]
-    @user.last_name = params[:user][:last_name]
-    @user.phonetic = params[:user][:phonetic]
-    @user.notes = params[:user][:notes]
-    @user.event_code = params[:user][:event_code]
-    @event_code = params[:user][:event_code]
+    @user.first_name = params[:user][:first_name] unless params[:user].nil?
+    @user.last_name = params[:user][:last_name] unless params[:user].nil?
+    @user.phonetic = params[:user][:phonetic] unless params[:user].nil?
+    @user.notes = params[:user][:notes] unless params[:user].nil?
+    @user.event_code = params[:user][:event_code] unless params[:user].nil?
+    @event_code = params[:user][:event_code] unless params[:user].nil?
           #moved this up here so that what user entered is left in tact when re-renders form, and can take out @user = User.new below 
 
-	if !params[:user][:event_code].blank? #see if any code parameter is passed incoming from the form - don't want to run this code if not, i.e., if user is signing up                from an inviation token
+	if !params[:user].nil? && !params[:user][:event_code].blank? #see if any code parameter is passed incoming from the form - don't want to run this code if not, i.e., if user is signing up                from an inviation token
 	    if Event.find_by_event_code(params[:user][:event_code].upcase.delete(' ')) # see if the code entered is even a code for any event - params[:code] is coming in from the form
 	                          #but how to get code in from the form?    
 	      @event  = Event.find_by_event_code(params[:user][:event_code].upcase.delete(' '))
@@ -373,7 +376,9 @@ def event_link_create  #for new users signing up from an event code link
 	  #@user = User.new #for the re-redering of the eventcodesignup view
 	  #run existing users#create code - maybe make this a helper method
 	  # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
-	  flash.now[:error] = 'Something went wrong.  Please contact NameCoach for support.'
+	  
+	  # problem: code ends here, user cannot retry. One solution is to redirect back to event link
+	  flash.now[:error] = 'Have you filled in all basic info? If problem persists, please contact support@name-coach.com'
 	  render action: 'record'
 	  
 	  

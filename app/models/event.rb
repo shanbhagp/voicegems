@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type
+  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type, :master
 
   has_many :customerkeys
   #has_one :customer, through: :customerkeys, source: :user

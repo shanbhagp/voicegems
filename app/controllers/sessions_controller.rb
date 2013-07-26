@@ -2,15 +2,15 @@ class SessionsController < ApplicationController
 
 
   def create
-  	user = User.find_by_email(params[:session][:email].downcase.strip)
+    user = User.find_by_email(params[:session][:email].downcase.strip)
      if user && user.authenticate(params[:session][:password]) then
       sign_in user
       redirect_back_or user
     # Sign the user in and redirect to the user's show page.
     else
       @user = User.new  #so that home view can handle the signup form
-    	flash[:error] = 'Invalid email/password combination'
-    	render 'users/login'
+      flash[:error] = 'Invalid email/password combination'
+      render 'users/login'
     # Create an error message and re-render the signin form.
 
      end
@@ -220,7 +220,7 @@ class SessionsController < ApplicationController
         sign_out
         redirect_to record_url(:event_code => Event.find(ENV['HALTOM']).event_code) #haltom recording path
     else
-      	sign_out
+        sign_out
         redirect_to root_path
     end 
   end

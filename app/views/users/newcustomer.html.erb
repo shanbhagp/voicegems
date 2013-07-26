@@ -6,7 +6,7 @@
       <h3><span class="deco"><i class="icon-check-empty icon-white"></i>&nbsp;Step 1: New User Registration</deco></h3>
       </div>
       <div class="row">
-      <h3><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Free Trial Subscription</h3>
+      <h3><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Subscription</h3>
       </div>
   </div>
 
@@ -25,7 +25,7 @@
               <%= f.input :first_name, label: "First Name*" %>
               <%= f.input :last_name, label: "Last Name*" %>
               <%= f.input :email, label: "Email*" %>
-              <%= f.input :company, label: "Company Name" %>
+              <%= f.input :company, label: "Company/School Name" %>
               <%= f.input :password, hint: "(minimum 6 characters)", label: "Create Password*" %>
               <%= f.input :password_confirmation, label: "Confirm Password*" %>
               <%= f.hidden_field :event_type, :value => @event_type %>

@@ -1,7 +1,7 @@
 module SessionsHelper
 
 
-	def sign_in(u)
+  def sign_in(u)
     cookies.permanent[:remember_token] = u.remember_token
     self.current_user = u
     #use when setting (Rather than getting, or setting instance variables)
@@ -67,7 +67,7 @@ def is_haltom_user
   end 
 
   def sign_out
-  	self.current_user = nil
+    self.current_user = nil
     cookies.delete(:remember_token)
   end
   # this deletes the remember_token on the browser (but leaves the remember_token in the user record) (I think),

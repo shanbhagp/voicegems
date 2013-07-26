@@ -15,8 +15,8 @@ def password_reset(user, url)
 end
 
 def welcome(user)
-	@user = user
-	mail :to => user.email, :subject => "Welcome to NameCoach"
+  @user = user
+  mail :to => user.email, :subject => "Welcome to NameCoach"
 end
 
 def vg_welcome(user)
@@ -30,6 +30,16 @@ def password_change(user, to)
 end 
 
 def sub_receipt(user, receipt)
+
+  @user = user
+  @r = receipt
+
+  mail :to => user.email, :subject => "NameCoach Subscription Receipt"
+
+end 
+
+
+def sub_receipt_edu(user, receipt)
 
   @user = user
   @r = receipt

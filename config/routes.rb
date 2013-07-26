@@ -42,8 +42,8 @@ App4::Application.routes.draw do
  resources :events do
  member do
     get :locked
-    get :show_master
-  end
+    get :directory
+  end 
 end 
 
   resources :users do
@@ -153,6 +153,8 @@ end
 
  match '/changesub', to: 'users#changesub'
 
+ match '/changesub_edu', to: 'users#changesub_edu'
+
  match '/newcustomer_purchase', to: 'users#newcustomer_purchase'
 
  match '/newcustomercreate_purchase', to: 'users#newcustomercreate_purchase'
@@ -200,6 +202,7 @@ end
  match '/existing_coupon_purchase', to: 'users#existing_coupon_purchase'
 
  match '/sub_coupon', to: 'users#sub_coupon'
+ match '/sub_coupon_edu', to: 'users#sub_coupon_edu'
 
  match '/sub_coupon_existing_user', to: 'users#sub_coupon_existing_user'
 
@@ -261,6 +264,8 @@ match 'wed_stripereceiver_purchase', to: 'users#wed_stripereceiver_purchase'
 match 'weddings', to: "static#weddings"
 match 'receptions', to: "static#receptions"
 match 'graduations', to: "static#graduations"
+match 'commencements', to: "static#commencements"
+match 'students', to: "static#students"
 
 match 'demo_event_page', to: 'events#demo_event_page'
 match 'demo_wedding_page', to: 'events#demo_wedding_page'
