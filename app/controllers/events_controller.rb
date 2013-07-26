@@ -543,4 +543,14 @@ def locked
 	 @url = record_url(:event_code => @event.event_code)
 end
 
+def master_set
+
+
+end 
+
+def master_set_input
+	@array = params[:grad_array][:years]
+	
+end 
+
 end

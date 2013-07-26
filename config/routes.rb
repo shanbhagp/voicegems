@@ -301,6 +301,9 @@ match '/isave', to: 'static#isave'
 
 match '/migrate_pos', to: 'events#migrate_pos'
 
+match '/master_set', to: 'events#master_set'
+match '/master_set_input', to: 'events#master_set_input'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
