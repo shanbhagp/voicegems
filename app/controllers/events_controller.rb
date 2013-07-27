@@ -31,7 +31,12 @@ class EventsController < ApplicationController
 					          if @s.save
 					          	 @event.customerkeys.create!(user_id: current_user.id)
 	                    		 @event.adminkeys.create!(user_id: current_user.id)
-	                     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+	                    		if @event.master == true
+	                    			flash[:success] = "You have created your Student Name Directory!"
+	                    			redirect_to master_set_path(:id => @event.id)
+	                    		else
+	                     		    redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+	                     		end 
 					          else #should't happen because subscription should save
 					            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 					            redirect_to current_user
@@ -544,13 +549,17 @@ def locked
 end
 
 def master_set
-
+   @event = Event.find(params[:id]) 
 
 end 
 
 def master_set_input
+	@event = Event.find(params[:ms][:event_id])
 	@array = params[:grad_array][:years]
-	
+		@array.reject! { |c| c.empty? }
+	@event.grad_array = @array
+	@event.save
+	@user = current_user
 end 
 
 end

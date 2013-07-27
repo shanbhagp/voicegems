@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726152629) do
+ActiveRecord::Schema.define(:version => 20130727014425) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20130726152629) do
     t.text     "vg_notes"
     t.string   "vg_request"
     t.string   "event_type"
+    t.string   "grad_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,5 +1,66 @@
+<div class="container">
+
 <%= @array %>
 
 <br/>
 
-<%= @array2 %>
+<%= @event.grad_array %>
+
+                                                     <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+
+                                                         <div class="well span3 offset1">
+                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
+                                                              
+                                                              <br/>
+                                                              <%= f.error_notification %>
+                                                              
+                                                                <%= f.hidden_field :event_code, :value => @event_code %>
+
+
+                                                                  <%= f.input :first_name, label: "First Name" %>
+                                                                  <%= f.input :last_name, label: "Last Name" %>
+                                                                  <%= f.input :email %>
+
+                                                                <hr/>    
+<% unless @event.grad_array.empty? %>
+<%= f.input :phonetic, collection: @event.grad_array, prompt: 'Please select your year of graduation', label: "Grad Year" %>
+<% end %>
+
+                                                         </div>
+
+                                                         
+                                                      
+
+
+                                                          <div class="well span3">
+                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
+                                                                  <br/><br/>
+                                                                  <div class="row">
+                                                                   <div class="span3">
+                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
+                                                                    <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
+                                                                   </div>
+                                                                 </div>
+                                                                  
+                                                      
+
+                                                             
+
+
+                                                          </div> 
+
+                                                    <% end %>
+
+
+ <%= form_for(:sub, url: changesubscription_choose_path) do |y| %>
+                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum Plan (100 pages/yr, $85/mo)", 3] ]) %>
+                                                <%= y.hidden_field :currentplan, :value => @currentplan %>
+                                               <%= y.submit "Go to Checkout", class: "btn btn-primary"  %> 
+                                             <% end %>  
+
+
+
+
+
+
+</div>

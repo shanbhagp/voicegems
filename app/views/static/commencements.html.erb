@@ -318,12 +318,18 @@
      <h3> Technology has finally caught up. <br/><br/> <em>NameCoach</em> makes it simple, using recent web advances to make a tough job easier and their banner moments truly special. </h3>
      </div>
      <div class="rp-item span3"> <img src="/assets/graduation_000_2.jpg" alt=""/></div>
+</div>
 
+<div class="row">
+  <div class="span9 offset1">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="light-blue cent">Commencement Special Offer:</h1>
+ </div>
 </div>
 
 <br/>
+
 <div class = "row">
-  <div class="span8 offset2">
+  <div class="span9 offset2">
        <!--SILVER-->
         <div class="fltlft PlanBoxGold">
           <div class="PlanBoxHeading"><strong><center>COMMENCEMENT</center></strong></div>
@@ -332,9 +338,9 @@
           <div class="PlanBoxContent">
             <ul>
               <li><strong>$<%= @seventh_plan.annual_cost_cents / 100 %> Yearly</strong></li>
-              <li>As many event pages as necessary</li>
-              <li>Unlimited Name Recordings </li>
-              <br/><br/><br/><br/><br/><br/>
+              <li>As many event pages as necessary for a successful commencement</li>
+              <li>Unlimited name recordings per event page</li>
+              <br/><br/><br/><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @seventh_plan.my_plan_id %>
@@ -355,9 +361,9 @@
             <ul>
               <li><strong>$<%= @eighth_plan.annual_cost_cents / 100 %> Yearly</strong></li>
               <li>Create a master list of all names </li>
-              <li>Use the search bar to look up your students’ name</li>
+              <li>Use a built-in search bar to look up your students’ name with ease</li>
               <li>Provides easy access to teachers and staff</li>
-              <br/><br/>
+              <br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @eighth_plan.my_plan_id %>
@@ -393,10 +399,11 @@
   </div>
 </div>
 
+
 <br/>
 <div class = "row">
   <div class="span7 offset2">
-    <p><h5>If you are interested in our products but have pressing budgetary constraints then please get in touch with us – we may be able to work with you on a case by case basis.</h5></p>
+    <center><p><h5>If you are interested in our products but have pressing budgetary constraints then please get in touch with us – we may be able to work with you on a case by case basis.</h5></p></center>
   </div>
 </div>
 
