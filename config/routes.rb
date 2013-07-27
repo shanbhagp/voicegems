@@ -299,10 +299,13 @@ match '/search_test', to: 'static#search_test'
 match '/irecord', to: 'static#irecord'
 match '/isave', to: 'static#isave'
 
-match '/migrate_pos', to: 'events#migrate_pos'
+match '/new_sublist', to: 'events#new_sublist'
+#match '/migrate_pos', to: 'events#migrate_pos'
 
 match '/master_set', to: 'events#master_set'
 match '/master_set_input', to: 'events#master_set_input'
+match '/default_grad', to: 'events#default_grad'
+match '/migrate_entries', to: 'events#migrate_entries'
 
 #match '/show_master', to: 'events#show_master'
 

@@ -58,17 +58,18 @@
 
 <div class="span10 offset2">
   <div class="row biggertext">
-    <div class="rp-item span5">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%= image_path('stock-photo-21085124-multi-ethnic-young-people-in-classroom.jpg')%>">
-      <div class="span4">
-        <center><p><h5>Teachers finally have a way to effectively address this problem.</h5></p></center>
-      </div>
+    <div class="rp-item span4">
+     <img src="<%= image_path('students.jpg')%>"> <br/>
+
+      
+        <center><p><h4>Teachers finally have a way to effectively address this problem.</h4></p></center>
+      
     </div>
-    <div class="rp-item span5">
-      <img src="<%= image_path('stock-photo-15780724-children-are-raised-hands-in-classroom.jpg')%>">
-      <div class="span4">
-        <center><p><h5>And students will feel more respected in a <br/>safe and inclusive learning environment.</h5></p></center>
-      </div>
+    <div class="rp-item span4 offset1">
+      <img src="<%= image_path('students_children.jpg')%>"><br/>
+
+        <center><p><h4>And students will feel more respected in a <br/>safe and inclusive learning environment.</h4></p></center>
+
     </div>
   </div>
 </div>
@@ -151,7 +152,7 @@
 <br/>
 <div class="row">
   <div class="span9 offset1">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="light-blue cent">Student Names Directory Special Offer:</h1>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="light-blue cent">Educational Settings Offer:</h1>
  </div>
 </div>
 
@@ -162,7 +163,7 @@
   <div class="span9 offset2">
        <!--SILVER-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading"><strong><center>COMMENCEMENT</center></strong></div>
+          <div class="PlanBoxHeading"><strong><center>COMMENCEMENT SERVICE</center></strong></div>
           <i><center>The culmination of their educational career. Get your graduates to record their names now to ensure the moment is perfect for them and their families!</center></i>
           <br/>
           <div class="PlanBoxContent">
@@ -184,7 +185,7 @@
 
         <!--Gold-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading"><strong><center>STUDENT'S NAMES DIRECTORY</center></strong></div>
+          <div class="PlanBoxHeading"><strong><center>STUDENT NAME DIRECTORY</center></strong></div>
           <i><center>Build a sense of personal uniqueness. Ask your students to record their names to ensure to start an amazing term with the correct pronunciation.</center></i>
           <br/>
           <div class="PlanBoxContent">
@@ -207,15 +208,15 @@
         
         <!--Platinum-->
         <div class="fltlft PlanBoxGold">
-          <div class="PlanBoxHeading"><strong><center>STUDENT'S NAMES DIRECTORY + COMMENCEMENT + ANYTHING ELSE!</center></strong></div>
-          <i><center>Want both? We can give you even more!</center></i>
+          <div class="PlanBoxHeading"><strong><center>STUDENT NAME DIRECTORY + COMMENCEMENT SERVICE + ANYTHING ELSE!</center></strong></div>
+          <i><center> (awards ceremonies, interview day, and any other event!)</center></i>
           <br/>
           <div class="PlanBoxContent">
             <ul>
               <li><strong>$<%= @ninth_plan.annual_cost_cents / 100 %> Yearly</strong></li>
               <li>Unlimited Name Pages</li>
-              <li>Default graduation page according to year of graduation and field of study</li>
-              <li>Teachers can create sub-lists for their own classes and also from the master list, and enter their own pronunciation notes. </li>
+              <li>Default graduation page according to year of graduation.</li>
+              <li>Teachers can create sub-lists for their own classes and also from the master list, and enter their own pronunciation notes. </li><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @ninth_plan.my_plan_id %>

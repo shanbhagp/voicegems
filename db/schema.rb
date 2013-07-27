@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727014425) do
+ActiveRecord::Schema.define(:version => 20130727044553) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130727014425) do
     t.string   "event_type"
     t.boolean  "master"
     t.text     "grad_array"
+    t.string   "grad_date"
   end
 
   add_index "events", ["access_code"], :name => "index_events_on_access_code"

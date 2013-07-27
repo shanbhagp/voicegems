@@ -151,6 +151,7 @@ class EventsController < ApplicationController
 		 @event = Event.find(params[:id])
 
 		 if @event.master == true
+		 	flash.keep
 		 	redirect_to directory_event_path(@event)
 		 end 
 
@@ -196,6 +197,30 @@ class EventsController < ApplicationController
 def directory
 
 		 @event = Event.find(params[:id])
+		 @adminevents = current_user.adminevents
+		
+		 #map to a titles array
+		#@admineventtitles = Array.new
+		 #@adminevents.each do |a|
+		 #	unless a.id == @event.id
+		 #		@admineventtitles.push a.title
+		 #	end 
+		 #end 
+
+		 @admineventsarray = Array.new
+		 #create array of array
+		  @adminevents.each do |a|
+		 	unless a.id == @event.id
+		 		@array = Array.new
+		 		@array.push a.id
+		 		@array.push a.title
+		 		@admineventsarray.push @array
+		 	end 
+		 end 
+
+		 #take out master list from this array
+		 #@adminevents.delete_if {|item| item == @event}
+
 		 unless current_user.email == 'shanbhagp@aol.com'
 		 	@owner = false
 		 end
@@ -213,25 +238,6 @@ def directory
 
     end
 
-
-def migrate_pos
-	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
-	generate_event_code(@event)
-	@event.save
-	
-	@pos = params[:po_ids]
-
-	@master_event = params[:migration][:e]
-
-	@pos.each do |id|
-	m = Practiceobject.find(id)
-	Practiceobject.create(:event_id => @event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
-	end 
-
-	flash[:success] = "Entries were successfully migrated."
-	redirect_to @event
-
-end 
 
     #alternate event show page for bigdaddy;  instance variables already set in 'show' above
     def voicegems
@@ -328,7 +334,11 @@ def event_link_create  #for new users signing up from an event code link
     @user.phonetic = params[:user][:phonetic] unless params[:user].nil?
     @user.notes = params[:user][:notes] unless params[:user].nil?
     @user.event_code = params[:user][:event_code] unless params[:user].nil?
+    @user.grad_date = params[:user][:grad_date] unless params[:user].nil?
+    @user.company = params[:user][:company] unless params[:user].nil?
+
     @event_code = params[:user][:event_code] unless params[:user].nil?
+
           #moved this up here so that what user entered is left in tact when re-renders form, and can take out @user = User.new below 
 
 	if !params[:user].nil? && !params[:user][:event_code].blank? #see if any code parameter is passed incoming from the form - don't want to run this code if not, i.e., if user is signing up                from an inviation token
@@ -563,5 +573,114 @@ def master_set_input
 
 	redirect_to @event
 end 
+
+def default_grad
+
+@event = Event.new(params[:event])
+@master_event_id = params[:master_event_id]
+
+@master_event = Event.find(@master_event_id)
+@user = current_user
+@event.event_type = 'commencement'
+generate_event_code(@event)
+
+	if @event.grad_date.blank? #didn't select a grad year to migrate
+	      flash[:error] = 'Please select a graduation year/class to create a default Commencement Name Page. None was selected.'
+	      redirect_to @master_event
+	else 
+	    if  @event.save  
+	          	 #@event.customerkeys.create!(user_id: current_user.id) 
+	          	 #do i want to creata customerkey? only if the user is in fact the customer?
+	          	 # .customerkeys being called to (1) allow current_user to remove an admin of has a customerkey for that event page
+					# so yes, create customerkey for the sake of (1); basically means that that admin created the default_grad page or sub_list
+				# (2) in the owner_has_active_subscription helper
+				  # ACTUALLY, NO.  This would have f'd up the helper.  Because that helper takes the first user for that event in the customer keys
+				  # table, and checks to see if that user has a subscription.  Some teachers/admins will not have a subscription, so don't 
+				  # want them to have an entry on the customer key table for this event. 
+	    		 @event.adminkeys.create!(user_id: current_user.id)
+	    		
+	    		 default_migrate_pos(@master_event, @event)
+
+	     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+	     		 
+	         
+
+	    else
+	      flash.keep[:error] = 'Please enter a title and date to create a default Commencement Name Page.'
+	      redirect_to @master_event
+	    end
+	end 
+
+end 
+
+def new_sublist
+	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
+	generate_event_code(@event)
+	@event.save
+	
+	@pos = params[:po_ids]
+
+	@master_event = params[:migration][:e]
+
+	@pos.each do |id|
+	m = Practiceobject.find(id)
+	Practiceobject.create(:event_id => @event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	redirect_to @event
+
+end 
+
+#migrate POs from master list to an existing page for this admin (current_user)
+def migrate_entries
+	@pos = params[:po_ids]
+	@master_event_id = params[:master_event_id]
+	@sub_page = params[:migration][:sub_page] #event id
+
+
+	@pos.each do |id|
+	m = Practiceobject.find(id)
+	Practiceobject.create(:event_id => @sub_page, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	redirect_to @sub_page
+
+end 
+
+def default_migrate_pos(master_event, sub_event) 
+	@pos = master_event.practiceobjects
+
+	@pos.each do |m|
+		if !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
+			Practiceobject.create(:event_id => sub_event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+		end 
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	
+end 
+
+#old action
+def migrate_pos
+	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
+	generate_event_code(@event)
+	@event.save
+	
+	@pos = params[:po_ids]
+
+	@master_event = params[:migration][:e]
+
+	@pos.each do |id|
+	m = Practiceobject.find(id)
+	Practiceobject.create(:event_id => @event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	redirect_to @event
+
+end 
+
 
 end

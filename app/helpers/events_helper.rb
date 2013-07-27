@@ -78,4 +78,21 @@ def create_default_grad_page(event)
 	end 
 end 
 
+def default_migrate_pos(master_event, sub_event) 
+	@pos = master_event.practiceobjects
+
+	@pos.each do |m|
+		if !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
+			Practiceobject.create(:event_id => sub_event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+		end 
+	end 
+
+	flash[:success] = "Entries were successfully migrated."
+	
+
+end 
+
+
+
+
 end 

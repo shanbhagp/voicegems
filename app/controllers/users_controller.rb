@@ -141,7 +141,8 @@ before_filter :owner, only: [:console, :index, :destroy]
     @user.last_name = params[:user][:last_name]
     @user.phonetic = params[:user][:phonetic]
     @user.notes = params[:user][:notes]
-
+    @user.grad_date = params[:user][:grad_date]
+    @user.company = params[:user][:company]
 
     if @user.save  then 
             UserMailer.welcome(@user).deliver

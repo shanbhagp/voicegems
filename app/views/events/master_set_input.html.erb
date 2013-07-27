@@ -23,7 +23,7 @@
 
                                                                 <hr/>    
 <% unless @event.grad_array.empty? %>
-<%= f.input :phonetic, collection: @event.grad_array, prompt: 'Please select your year of graduation', label: "Grad Year" %>
+<%= f.input :grad_date, collection: @event.grad_array, prompt: 'Please select your year of graduation', label: "Grad Year" %>
 <% end %>
 
                                                          </div>
