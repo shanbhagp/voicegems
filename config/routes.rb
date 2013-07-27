@@ -269,9 +269,11 @@ match 'students', to: "static#students"
 
 match 'demo_event_page', to: 'events#demo_event_page'
 match 'demo_wedding_page', to: 'events#demo_wedding_page'
+match 'demo_directory', to: 'events#demo_directory'
 
 match '/demo_record/:event_code', to: 'events#demo_record', as: '/demo_record'
 match '/demo_record_wedding/:event_code', to: 'events#demo_record_wedding', as: '/demo_record_wedding'
+match '/demo_record_directory/:event_code', to: 'events#demo_record_directory', as: '/demo_record_directory'
 
 match '/demo_recorder', to: 'users#demo_recorder'
 

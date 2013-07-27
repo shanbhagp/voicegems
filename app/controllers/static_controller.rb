@@ -69,7 +69,7 @@ def commencements
   @hiddenandregisteredpos  = @hiddenpos.registered
   @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
-  @url = demo_record_wedding_url(:event_code => @event.event_code)
+  @url = demo_record_url(:event_code => @event.event_code)
 
 end 
 
@@ -87,7 +87,7 @@ def students
   @hiddenandregisteredpos  = @hiddenpos.registered
   @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
-  @url = demo_record_wedding_url(:event_code => @event.event_code)
+  @url = demo_record_directory_url(:event_code => @event.event_code)
 
 end 
 

@@ -15,16 +15,16 @@
             <div class="modal-body">
             <ul>
             <li> This quick and easy service is FREE for you. </li> <br/>
-            <li> You've been asked to record your name in your own voice, so that someone who will announce your name at an upcoming event can make sure they pronounce it perfectly. </li> <br/>
+            <li> You've been asked to record your name in your own voice, so that the teachers and staff at your school can make sure they know how to pronounce it perfectly. </li> <br/>
             <li> The process is simple!
                 <ol>
                   <br/>
                   <li>Fill out your name and email. </li><br/> 
-                   <li>Enter your name as you would like it announced at the event, and any notes to help with pronunciation.</li><br/>
+                   <li>Enter your name as you like to be called, and any notes to help with pronunciation.</li><br/>
                   <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds. <strong>Just make sure to press 'Upload.'</strong> <br/><br/>
                     <strong> Note: Please record on a laptop or desktop with a mic.  You can check that <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">Adobe Flash Player is enabled</a> on your browser (if you have installed a Flash-blocker, temporarily disable it).</strong>
                     <br/><br/>
-                  <em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em> </li><br/>
+                  <em>Thanks to your help, your teachers will know how to pronounce your name perfectly!</em> </li><br/>
                  </ol>
             </li>  
             <li> More questions? Please contact us below. <em> Thank you!</em> </li>
@@ -45,7 +45,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for [Your School/Department].  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
 
           
      
@@ -178,7 +178,7 @@
                                                          <div class="well span3">         
                                                              <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you like to be called:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
                                                                             
                                                                             <br/><br/>
 
@@ -246,13 +246,13 @@
       
       <div class="span4 offset3">
         
-         <a href="<%= demo_event_page_path %>" class="btn btn-primary btn-large">Back to Demo Event Page</a> 
+         <a href="<%= demo_directory_path %>" class="btn btn-primary btn-large">Back to Demo Directory</a> 
        
       </div>
 
       <div class="span4">
         
-          <a href="<%= commencements_path %>" target="_blank" class="btn btn-primary btn-large">Why Use NameCoach?</a>
+          <a href="<%= students_path %>" target="_blank" class="btn btn-primary btn-large">Why Use NameCoach?</a>
           
         
       </div>

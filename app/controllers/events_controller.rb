@@ -198,7 +198,7 @@ def directory
 
 		 @event = Event.find(params[:id])
 		 @adminevents = current_user.adminevents
-		
+		 @adminevents.delete_if {|item| item == @event} #remove this event page (master list) from drop down for migration
 		 #map to a titles array
 		#@admineventtitles = Array.new
 		 #@adminevents.each do |a|
@@ -207,16 +207,16 @@ def directory
 		 #	end 
 		 #end 
 
-		 @admineventsarray = Array.new
+		 #@admineventsarray = Array.new
 		 #create array of array
-		  @adminevents.each do |a|
-		 	unless a.id == @event.id
-		 		@array = Array.new
-		 		@array.push a.id
-		 		@array.push a.title
-		 		@admineventsarray.push @array
-		 	end 
-		 end 
+		 # @adminevents.each do |a|
+		 	#unless a.id == @event.id
+		 	#	@array = Array.new
+		 	#	@array.push a.id
+		 	#	@array.push a.title
+		 	#	@admineventsarray.push @array
+		 #	#end 
+		# end 
 
 		 #take out master list from this array
 		 #@adminevents.delete_if {|item| item == @event}
@@ -496,6 +496,22 @@ def event_code_add  #this is for registering to record with an event link, for a
 	 
   end
 
+  def demo_directory
+  	@event = Event.find(ENV['demopage'].to_i)
+
+  	 @practiceobject = Practiceobject.new  
+	 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+	 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+	 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+	 @unregisteredpos = @event.practiceobjects.unregistered.visible
+	 @hiddenpos = @event.practiceobjects.hidden
+	 @hiddenandregisteredpos  = @hiddenpos.registered
+	 @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+	 @url = demo_record_directory_url(:event_code => @event.event_code)
+
+	 
+  end
 
   def demo_record
 
@@ -511,6 +527,20 @@ def event_code_add  #this is for registering to record with an event link, for a
   end 
 
   def demo_record_wedding
+
+    @event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+  end 
+
+
+  def demo_record_directory
 
     @event_code = params[:event_code]
  	if Event.find_by_event_code(@event_code)
@@ -633,21 +663,40 @@ def new_sublist
 end 
 
 #migrate POs from master list to an existing page for this admin (current_user)
+
+
+
 def migrate_entries
-	@pos = params[:po_ids]
-	@master_event_id = params[:master_event_id]
-	@sub_page = params[:migration][:sub_page] #event id
+		@pos = params[:po_ids]
+		@master_event_id = params[:migration][:master_event_id]
+		@sub_page = params[:migration][:sub_page] #event id
+		@master_event = Event.find(@master_event_id)
 
+	if params[:migration][:sub_page].blank?
+		flash[:error] = "No Name Page was selected to which to copy entries."
+		redirect_to @master_event
+	else
+		if  @pos.blank?
+					flash[:error] = "No entries were selected to copy."
+					redirect_to @master_event
+		else
+			@sub_event = Event.find(@sub_page)
 
-	@pos.each do |id|
-	m = Practiceobject.find(id)
-	Practiceobject.create(:event_id => @sub_page, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+			@pos.each do |id|
+			m = Practiceobject.find(id)
+			Practiceobject.create(:event_id => @sub_page, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+			end 
+
+			flash[:success] = "Entries were successfully copied to this Name Page."
+			redirect_to @sub_event
+		
+		end 
+	
 	end 
 
-	flash[:success] = "Entries were successfully migrated."
-	redirect_to @sub_page
-
 end 
+
+
 
 def default_migrate_pos(master_event, sub_event) 
 	@pos = master_event.practiceobjects
