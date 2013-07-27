@@ -3,12 +3,17 @@
 !binary "Zm9udGF3ZXNvbWUtd2ViZm9udC5zdmc=": fontawesome-webfont-4d19fdd70a080778557b652cb4868557.svg
 !binary "Zm9udGF3ZXNvbWUtd2ViZm9udC50dGY=": fontawesome-webfont-1e29be0bb354c9f664cbca7df9a966d8.ttf
 !binary "Zm9udGF3ZXNvbWUtd2ViZm9udC53b2Zm": fontawesome-webfont-9c0e35b95bf9cea29c77678ebf71a29d.woff
+!binary "MS5tb3Y=": 1-28814944a45550fbaf978737c5aef23e.mov
+!binary "MS53YXY=": 1-d7f20537df8a331e98ab2b2ba269d18e.wav
 !binary "MTg0Lndhdg==": 184-eafa885774666a98f98c53541ab0f51e.wav
 !binary "MTg1Lndhdg==": 185-f3909c1d6fb8164cb53fcc8495dda970.wav
 !binary "MTg3Lndhdg==": 187-21ae185121980dfb6023003910ac8653.wav
 !binary "MTkyLndhdg==": 192-e359385d856880143aab812b08788121.wav
 !binary "MTkzLndhdg==": 193-6575c52ace6ba9506ec6ca5578a5bde3.wav
 !binary "MTk0Lndhdg==": 194-2eb3f3ead1e20ec7047faa9546b7a02a.wav
+!binary "MjQxLndhdg==": 241-0a727e1cfdbc4e03066b6159b0ec0ade.wav
+!binary "MjQyLndhdg==": 242-44f2ae50634d896c6665de878ef921e1.wav
+!binary "MjQzLndhdg==": 243-30c8a4b4560bfb280896b0c27e393e26.wav
 !binary "TmV3IFBpY3R1cmUuYm1w": New Picture-eec275e95c4dd910b4d282aa4b65426c.bmp
 !binary "YWRtaW5fY29kZS5wbmc=": admin_code-76677aab02b14eabf5f9de8e14d3bb04.png
 !binary "YWRtaW5fY29kZV8yLnBuZw==": admin_code_2-84a0e81909d63c166cf123d4d0a2a064.png
@@ -240,11 +245,33 @@
 !binary "c2hhZG93MS5wbmc=": shadow1-c9d5d7dca5bbeaa8919d21a91e084945.png
 !binary "c2hhZG93Mi5wbmc=": shadow2-1d58f717557b603b8d25721df812b7ed.png
 !binary "c2hhZG93My5wbmc=": shadow3-eeec516a2002edc55ca9831070d1755f.png
+!binary "c2hvdXRlci1ndXkuanBn": shouter-guy-661cf69c9a39bf38f186dea13327cae7.jpg
+!binary "c2hvdXRlci1ndXkyLmpwZw==": shouter-guy2-1086fda8cfaf03f90ec17f35899b31fe.jpg
+!binary "c2hvdXRlci1ndXkzLmpwZw==": shouter-guy3-0e1842f28f6e1624acf93a7c31b76f7b.jpg
+!binary "c2hvdXRlci1ndXk0LmpwZw==": shouter-guy4-fbbd80fb9de127472da2d9dd2502498b.jpg
 !binary "c3BlYWtlcjEuanBn": speaker1-80c8d3dd82cdcb40957704a86fc3fa1b.jpg
+!binary "c3Bva2VzMS5qcGc=": spokes1-6c591648a49e0055f0c812f065920729.jpg
+!binary "c3Bva2VzMi5qcGc=": spokes2-1f18b11dd386a4ca55995bfe8d824c80.jpg
 !binary "c3RlcDFfMi5wbmc=": step1_2-3ee5da761cd518086cb614914738795b.png
 !binary "c3RlcDFfNC5wbmc=": step1_4-9a8f49b6cdbd924d7ad136919758520c.png
 !binary "c3RlcDFfNS5wbmc=": step1_5-6eabb606c950fbc98e2c786f29926f5b.png
 !binary "c3RlcDFfNi5wbmc=": step1_6-6f788b5a770a597d78be85796eda120a.png
+!binary "c3RvY2staWxsdXN0cmF0aW9uLTYwOTkxMDctc2hvdXRlci5qcGc=": stock-illustration-6099107-shouter-556c09ef2e18f789fc7e5c523357082f.jpg
+? !binary |-
+  c3RvY2stcGhvdG8tMTU3ODA3MjQtY2hpbGRyZW4tYXJlLXJhaXNlZC1oYW5k
+  cy1pbi1jbGFzc3Jvb20uanBn
+: stock-photo-15780724-children-are-raised-hands-in-classroom-8a963ceb2518ba635de1f3c3b213a231.jpg
+? !binary |-
+  c3RvY2stcGhvdG8tMTkzNzgxNzktZmVtYWxlLWhvbGRzLWhhbmQtZHJhd24t
+  bWVzc2FnZS1pLWFtLXdoYXQtaWFtLmpwZw==
+: stock-photo-19378179-female-holds-hand-drawn-message-i-am-what-iam-1d7a74b426aec8f386c7a6d274c27308.jpg
+? !binary |-
+  c3RvY2stcGhvdG8tMjEwODUxMjQtbXVsdGktZXRobmljLXlvdW5nLXBlb3Bs
+  ZS1pbi1jbGFzc3Jvb20uanBn
+: stock-photo-21085124-multi-ethnic-young-people-in-classroom-0317b8656a9896d8994b35eebb6c5f48.jpg
+!binary "c3R1ZGVudHMuanBn": students-3176604daede42315fbd3be81908365c.jpg
+!binary "c3R1ZGVudHNfY2hpbGRyZW4uanBn": students_children-436f5c63d2f4ceeae09ec21e11af6589.jpg
+!binary "dGVhY2hlci1wcm9tYmwtc3Bva2VzLmpwZw==": teacher-prombl-spokes-f3112b3065b42d18652ab265f8325d3f.jpg
 !binary "dGVzdC5naWY=": test-321e266b5d7faa6c513215d4de08ae3f.gif
 !binary "dmlzYS5wbmc=": visa-ce491e055117b63b3621284925d0234d.png
 !binary "d2VkMS5qcGVn": wed1-c97ccb25261ce482fc984a55a9368ec4.jpeg
@@ -255,7 +282,7 @@
 !binary "YXBsYXllci9hdWRpb2pzLnN3Zg==": aplayer/audiojs-015d31ed1f99798eee3c970137601c69.swf
 !binary "YXBwbGljYXRpb24uanM=": application-81f5770d220de16e0e229bac472cd0af.js
 !binary "anJlYy9qUmVjb3JkZXIuc3dm": jrec/jRecorder-66b07d55dc54e8df8561de1719dd7b99.swf
-!binary "YXBwbGljYXRpb24uY3Nz": application-6445b09f3ce479259cdaf8aaaa82c415.css
+!binary "YXBwbGljYXRpb24uY3Nz": application-013fe7f40fb9d43034957f143511bc63.css
 !binary "anF1ZXJ5LXVpL3VpLWJnX2ZsYXRfMF9hYWFhYWFfNDB4MTAwLnBuZw==": jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 !binary "anF1ZXJ5LXVpL3VpLWJnX2ZsYXRfNzVfZmZmZmZmXzQweDEwMC5wbmc=": jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png
 !binary "anF1ZXJ5LXVpL3VpLWJnX2dsYXNzXzU1X2ZiZjllZV8xeDQwMC5wbmc=": jquery-ui/ui-bg_glass_55_fbf9ee_1x400-bbb04adbe79f471d8c88a2bc691231b6.png
