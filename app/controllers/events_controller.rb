@@ -560,6 +560,8 @@ def master_set_input
 	@event.grad_array = @array
 	@event.save
 	@user = current_user
+
+	redirect_to @event
 end 
 
 end

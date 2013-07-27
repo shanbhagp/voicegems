@@ -52,11 +52,6 @@
                                                     <% end %>
 
 
- <%= form_for(:sub, url: changesubscription_choose_path) do |y| %>
-                                               <%= y.select :newplan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum Plan (100 pages/yr, $85/mo)", 3] ]) %>
-                                                <%= y.hidden_field :currentplan, :value => @currentplan %>
-                                               <%= y.submit "Go to Checkout", class: "btn btn-primary"  %> 
-                                             <% end %>  
 
 
 

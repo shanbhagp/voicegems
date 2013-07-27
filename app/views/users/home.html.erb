@@ -69,19 +69,31 @@
   <div class="container">
     <div class="row">
 
-      <div class="span7">
+      <div class="span10 offset1">
         <ul>
             <!-- Recent posts #1 -->
             <!-- Each carousel should be enclosed inside "li" tag -->
+            <!-- Recent posts #3 -->
+            <li>
+                <div class="rp-item span3"> 
+                  <div class="rp-image">        
+                    <a href="<%= students_path %>"><img src="/assets/stock-photo-15780724-children-are-raised-hands-in-classroom.jpg" alt=""/></a>
+                  </div>
+                  <div class="rp-details">
+                    <h5><a href="<%= students_path %>">Student Names Directory</a></h5>
+                            
+                  </div>                
+                </div>        
+            </li>    
             <li>
                 <div class="rp-item span3"> 
                   <!-- Image. -->
                   <div class="rp-image">        
-                    <a href="<%= graduations_path %>"><img src="/assets/graduation_000_2.jpg" alt=""/></a>
+                    <a href="<%= commencements_path %>"><img src="/assets/graduation_000_2.jpg" alt=""/></a>
                   </div>
                   <div class="rp-details">
                     <!-- Title and para -->
-                    <h5><a href="<%= graduations_path %>">Graduation Ceremonies </a></h5>
+                    <h5><a href="<%= commencements_path %>">Commencement </a></h5>
 
                   </div>                
                 </div>        
@@ -97,31 +109,9 @@
                             
                   </div>                
                 </div>        
-            </li>                                                                          
+            </li>                                                                         
         </ul>
       </div>
-
-      <div class="span5 home-block">
-          <div class="grey-box hero-block-2 biggertext">
-              <h2><a href="<%= graduations_path %>">Graduation Special Offer</a></h2>
-              <p>The climax of their educational career. Get your graduates recording now to ensure the moment is perfect for them and their families! </p><br/>
-              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Best-in-Class Interface, Easy for Students and Officials</p>
-              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Free <em>NamePro</em> Service for your Students&nbsp;<i class="icon-info-sign light-blue" id= "popover_namepro" rel="popover" data-placement="left" data-content="Any student who records on our site will be offered <strong>free lifetime access</strong> to our soon-to-be-released <em>NamePro</em> service.<br/><br/> <em>NamePro</em> allows individuals to embed their name recording in their email signatures and social media presence.<br/><br/>We want your students to enjoy hearing their names pronounced correctly everywhere, long after graduation!<br/><br/>" data-original-title="Lifetime <em>NamePro</em> Service"></i></p>
-              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;100-day, 100% money-back Satisfaction Guarantee</p>
-              <a href="<%= grad_new_customer_purchase_path %>" class="btn btn-warning"><i class="icon-shopping-cart"></i>Purchase Service for $<%= one_grad_price %></a>
-            <br/>
-              <span class="cent gray"><em></em></span>
-          </div>
-          <div class="tp-bannershadow tp-shadow3"></div>
-      </div>
-
-              <script>  
-                $(function ()  
-                { $("#popover_namepro").popover();  
-                });  
-               </script>
-
-    </div>
 
 
   </div>
