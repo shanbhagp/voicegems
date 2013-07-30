@@ -913,11 +913,14 @@ def changesub
   render action: 'stripenewcustomer'
 end 
 
+#addding event_type to plans so changes the user's event_type in this action
 def changesub_edu
   @plan = params[:sub][:plan]
   @planobject = Plan.find_by_my_plan_id(@plan)
   @events_number = @planobject.events_number 
   @code = params[:sub][:code]
+  current_user.update_attributes(:event_type => @planobject.event_type)
+
 
     # don't need to check the is_valid_free_sub, because customer is auto-created if that helper is successful in sub_coupon
     if is_valid_sub_coupon(@code) && !@planobject.nil?

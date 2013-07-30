@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type, :master, :grad_array, :grad_date
+  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type, :master, :grad_array, :grad_date, :event_type
   
   serialize :grad_array, Array
   

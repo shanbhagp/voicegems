@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727044553) do
+ActiveRecord::Schema.define(:version => 20130730192207) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20130727044553) do
     t.integer  "my_plan_id"
     t.integer  "annual_cost_cents"
     t.boolean  "unlimited"
+    t.string   "event_type"
   end
 
   create_table "practiceobjects", :force => true do |t|
