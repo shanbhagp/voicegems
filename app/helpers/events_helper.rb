@@ -64,6 +64,7 @@ def assign_event_type(event)
 	
 end 
 
+# not being used
 def student_event?
 	current_user.event_type == 'students' || current_user.event_type == 'graduation' || current_user.event_type == 
 	'commencement' || current_user.event_type == 'all_inclusive'
@@ -92,6 +93,22 @@ def default_migrate_pos(master_event, sub_event)
 
 end 
 
+# not being used
+def individual(event)
+	if event.event_type == 'graduation' || event.event_type == 'commencement' || event.event_type == 'all_inclusive' || @event.event_type == 'students'
+		'student'
+	elsif event.event_type == 'wedding'
+		'attendee'
+	else
+		'individual'
+	end 
+end 
+
+#def student_event?(event)
+#end
+
+def wed_event?(event)
+end
 
 
 

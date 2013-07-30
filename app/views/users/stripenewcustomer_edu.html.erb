@@ -66,7 +66,7 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesub_edu_path) do |y| %>
-                                               <%= y.select :plan,  options_for_select([["Names Directory ($99/yr)", 8], ["Commencement ($99/yr)", 7], ["All Inclusive ($149/yr)", 9] ]) %>
+                                               <%= y.select :plan,  options_for_select([["Student Name Directory ($99/yr)", 8], ["Commencement Service ($99/yr)", 7], ["All Inclusive Service ($149/yr)", 9] ]) %>
                                                <%= y.hidden_field :code, :value => @code %>
                                                <%= y.submit "Choose This Plan", class: "btn btn-primary"  %> 
                                              <% end %>  

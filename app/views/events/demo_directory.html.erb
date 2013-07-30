@@ -1022,7 +1022,7 @@
     	 </table>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="span9">
+    	 	<div class="span10">
     	 	 <div class="well">
     	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Directory: </h4>
 					 <br />	
@@ -1090,3 +1090,17 @@
 }(jQuery));
  
   </script> 
+
+<script>
+$(function(){
+  var hash = window.location.hash;
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  $('.nav-tabs a').click(function (e) {
+    $(this).tab('show');
+    var scrollmem = $('body').scrollTop();
+    window.location.hash = this.hash;
+    $('html,body').scrollTop(scrollmem);
+  });
+});
+</script>

@@ -119,10 +119,10 @@ $(function() {
 
 <ul id="myTab" class="nav nav-tabs ">
   <li class="active"><a href="#reg" data-toggle="tab"><strong>Recorded Names </strong></a></li>
-  <li><a href="#regunrec" data-toggle="tab"><strong>Registered but Unrecorded</strong></a></li>
+  <li><a href="#regunrec" data-toggle="tab"><strong>Unrecorded Names</strong></a></li>
   <li><a href="#unreg" data-toggle="tab"><strong>Names Requested</strong></a></li>
   <% unless @hiddenpos.count == 0 %><li><a href="#deleted" data-toggle="tab"><strong>Deleted Entries</strong></a> </li><% end %>
-  <li><a href="#admins" data-toggle="tab"><strong>Admins for this Name Page</strong></a></li>
+  <li><a href="#admins" data-toggle="tab"><strong>Admins</strong></a></li>
   <li><a href="#sublists" data-toggle="tab"><strong>Commencement Pages</strong></a></li>
 </ul>
 
@@ -1048,7 +1048,7 @@ $(function() {
     	 <div class="row">
     	 	<div class="span9">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this event: </h4>
+    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Page: </h4>
 					 <br />	
 					 <%= form_for(@event.admininvites.build, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -1064,7 +1064,7 @@ $(function() {
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Name Page.' %>
 						  	
 
 				     <% end %>
@@ -1111,15 +1111,15 @@ $(function() {
 										            </div>
 										            <div class="modal-body">
 
-										            <p> Another way to get someone to be an admin for this event is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.name-coach.com</strong>. </p> 
+										            <p> Another way to get someone to be an admin for this Name Page is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.name-coach.com</strong>. </p> 
 
-										        	 <p> When they enter this code and sign up, they will automatically become an admin for your event, <%= @event.title %>. </p>
+										        	 <p> When they enter this code and sign up, they will automatically become an admin for your Name Page (for <%= @event.title %>). </p>
 
 										            <p>You can use this in addition to, or as an alternative to, inviting admins by entering their email and pressing the 'Invite Admin' button.</p>
 
-										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin the event. </p>
+										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin this Name Page. </p>
 
-										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names (i.e., students). The admin code allows whoever signs up with it to become an admin for your event, so just give it directly to those people (e.g., the person who will be announcing names, or an event planner who is going to invite students to record their names). 
+										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names (i.e., students). The admin code allows whoever signs up with it to become an admin for your Name Page, so just give it directly to those people (e.g., teachers, or the announcer at an event, or an event planner who is going to invite students to record their names). 
 										 			
 										 		
 
@@ -1290,3 +1290,17 @@ $(function() {
 }(jQuery));
  
   </script> 
+
+<script>
+$(function(){
+  var hash = window.location.hash;
+  hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  $('.nav-tabs a').click(function (e) {
+    $(this).tab('show');
+    var scrollmem = $('body').scrollTop();
+    window.location.hash = this.hash;
+    $('html,body').scrollTop(scrollmem);
+  });
+});
+</script>

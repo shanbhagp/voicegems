@@ -78,7 +78,7 @@ class EventsController < ApplicationController
 	             #END RUN MODIFIED for subscription events EXISTING CODE
 
 	     	 else #shouldn't happen because event creation well shouldn't allow incoming s event_type if no s pages are left
-	     	 	flash[:error] = 'No name pages remaining.  Please purchase more.'
+	     	 	flash[:error] = 'No name pages remaining.  Please purchase more or upgrade your plan.'
 	     		redirect_to current_user
 	     	 end 
 	     else
@@ -133,7 +133,7 @@ class EventsController < ApplicationController
 
 	     			
 	     		else #shouldn't happen because event creation well shouldn't allow incoming p event_type if no p pages are left
-	     			flash[:error] = 'No name pages remaining.  Please purchase more.'
+	     			flash[:error] = 'No name pages remaining.  Please purchase more or upgrade your plan.'
 	     	 		redirect_to current_user
 	     		end
 	     	else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
@@ -149,6 +149,7 @@ class EventsController < ApplicationController
 	def show
 
 		 @event = Event.find(params[:id])
+		 @individual = individual(@event) # for setting the language in the show page
 
 		 if @event.master == true
 		 	flash.keep
@@ -643,6 +644,7 @@ generate_event_code(@event)
 
 end 
 
+#not being used
 def new_sublist
 	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
 	generate_event_code(@event)
@@ -663,9 +665,6 @@ def new_sublist
 end 
 
 #migrate POs from master list to an existing page for this admin (current_user)
-
-
-
 def migrate_entries
 		@pos = params[:po_ids]
 		@master_event_id = params[:migration][:master_event_id]
@@ -711,7 +710,7 @@ def default_migrate_pos(master_event, sub_event)
 	
 end 
 
-#old action
+#old action - not being used
 def migrate_pos
 	@event = Event.new(:date => Date.today, :title => "test migration#{Time.now}")
 	generate_event_code(@event)
