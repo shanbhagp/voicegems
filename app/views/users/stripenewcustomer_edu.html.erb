@@ -44,8 +44,8 @@
                                     <% if !@coupon.nil? && !@new_price.nil? %>
                                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon.percent_off %>% off): now only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/year! </em></h4>
                                     <% end %>
-                                    <br/>
-                                
+                                   
+                                    <h4>14-day Free Trial</h4>
                                 <% else %>
                                     Please choose a subscripton plan under 'Choose a Different Plan' below.
 
@@ -66,7 +66,7 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesub_edu_path) do |y| %>
-                                               <%= y.select :plan,  options_for_select([["Student Name Directory ($99/yr)", 8], ["Commencement Service ($99/yr)", 7], ["All Inclusive Service ($149/yr)", 9] ]) %>
+                                               <%= y.select :plan,  options_for_select([["Student Name Directory ($99/yr)", plan_set_students], ["Commencement Service ($99/yr)", plan_set_commencement], ["All Inclusive Service ($149/yr)", plan_set_all_inclusive] ]) %>
                                                <%= y.hidden_field :code, :value => @code %>
                                                <%= y.submit "Choose This Plan", class: "btn btn-primary"  %> 
                                              <% end %>  
@@ -126,7 +126,7 @@
                     data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                 <br/>
                 <br/>
-                  
+                <p> Your card will not be charged until the free trial period ends.  You may cancel your subscription any time.</p>
                
             </form>
 

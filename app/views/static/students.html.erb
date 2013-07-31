@@ -261,16 +261,16 @@
           <br/>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$<%= @seventh_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
-              <li>As many event pages as needed for a successful commencement</li>
+              <li><strong>$<%= @commencement_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
+              <li>As many Name Pages as needed for a successful commencement</li>
               <li>Different lists for different announcers, degree programs, etc.</li>
               <li>Unlimited name recordings</li>
               <br/><br/><br/><br/><br/><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                <%= y.hidden_field :plan, :value => @seventh_plan.my_plan_id %>
+                <%= y.hidden_field :plan, :value => @commencement_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'commencement' %>
-                  <%= y.submit "Subscribe Today!", class: "btn-primary btn-large" %>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>
             </ul>
@@ -284,16 +284,16 @@
           <br/>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$<%= @eighth_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
+              <li><strong>$<%= @students_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
               <li>Create a master list for all students, current and incoming </li> <br/>
               <li>Teachers and staff can use a built-in search bar to look up any student's name with ease</li>
               <li>Unlimited name recordings</li>
               <br/><br/><br/><br/><br/><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                <%= y.hidden_field :plan, :value => @eighth_plan.my_plan_id %>
+                <%= y.hidden_field :plan, :value => @students_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'students' %>
-                  <%= y.submit "Subscribe Today!", class: "btn-primary btn-large" %>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>
             </ul>
@@ -307,16 +307,16 @@
           <br/>
           <div class="PlanBoxContent">
             <ul>
-              <li><strong>$<%= @ninth_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
+              <li><strong>$<%= @all_inclusive_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
               <li>All Commencement Service and Student Name Directory features</li>
               <li>+ <em>Default commencement pages according to year of graduation</em></li>
               <li>+ <em>Teachers can create Name Pages for their classes, and/or copy entries from the Name Directory, and enter their own pronunciation notes</em></li>
               <li>+ <em>Unlimited Name Pages</em> (for any purpose)</li>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                <%= y.hidden_field :plan, :value => @ninth_plan.my_plan_id %>
+                <%= y.hidden_field :plan, :value => @all_inclusive_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'all_inclusive' %>
-                  <%= y.submit "Subscribe Today!", class: "btn-primary btn-large" %>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
                 <% end %>  </p>
               </li>
             </ul>

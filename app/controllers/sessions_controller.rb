@@ -82,6 +82,9 @@ class SessionsController < ApplicationController
                       @ai.update_attributes(user_id: user.id)
                       @event = @ai.event
                       user.update_attributes(:admin => true)
+
+                      make_master_admin(@event, user)  
+
                       if !@event.adminkeys.nil? && @event.adminkeys.find_by_user_id(user.id) #check to see if adminkey exists for this event/user_id
                           #notice that already registered as an admin
                            redirect_to user, notice: "It looks like you are already registered as an admin for this event, #{@event.title}."
@@ -170,6 +173,9 @@ class SessionsController < ApplicationController
                @event  = Event.find_by_access_code(params[:session][:access_code].upcase.delete(' '))
                sign_in user
                user.update_attributes(:admin => true)
+
+               make_master_admin(@event, user) 
+
                if  !@event.adminkeys.nil? && @event.adminkeys.find_by_user_id(user.id) #adminkey exists for this event/user_id?
                     redirect_to user, notice: "It looks like you are already registered as an admin for this event, #{@event.title}."
                   # notice that already registered as an admin for this event.  No need to check if has a PO for this event, b/c any time someone registers as admin for an event, we've made sure they have/get a PO for it

@@ -40,7 +40,7 @@ before_filter :owner, only: [:index]
 
 	#this action is called when admin asks the user to re-record
 	def rerecord
-    	 @po = Practiceobject.find_by_id(params[:po][:x])
+    	 @po = Practiceobject.find_by_id(params[:x])
 		 #find the associated practice object from the incoming practice object id hidden field (f.id)
 		 @userinvite = Userinvite.new(practiceobject_id: @po.id, recipient_email: @po.email, admin_id: current_user.id)
 		 #create an altogeher new :userinvite object, setting it's practiceobject_id to the id of that practiceobject

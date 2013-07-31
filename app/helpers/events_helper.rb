@@ -110,6 +110,16 @@ end
 def wed_event?(event)
 end
 
-
+def make_master_admin(sub_event, invited_admin)
+    c = sub_event.customerkeys.first.user 
+    #using model relationship has_one :customer; looking for who owns the event being passed in
+    #that model relationship did not work ( = sub_event.customer)
+    c.customerevents.each do |f|  # for each of customer's events 
+    	if f.master == true  # if that event is a master list
+    		#make the person being invited (an existing user) an admin for that (master) event
+    		@adminkey = Adminkey.create(event_id: f.id, user_id: invited_admin.id)
+    	end 
+    end
+end 
 
 end 

@@ -57,9 +57,9 @@ end
 
 def commencements
   @event = Event.find(ENV['demopage'].to_i)
-  @seventh_plan = Plan.find_by_my_plan_id(plan_set_seven) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
-  @eighth_plan = Plan.find_by_my_plan_id(plan_set_eight)
-  @ninth_plan = Plan.find_by_my_plan_id(plan_set_nine)
+  @commencement_plan = Plan.find_by_my_plan_id(plan_set_commencement) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+  @students_plan = Plan.find_by_my_plan_id(plan_set_students)
+  @all_inclusive_plan = Plan.find_by_my_plan_id(plan_set_all_inclusive)
   @practiceobject = Practiceobject.new  
   @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
   @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
@@ -75,9 +75,9 @@ end
 
 def students
   @event = Event.find(ENV['demopage'].to_i)
-  @seventh_plan = Plan.find_by_my_plan_id(plan_set_seven) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
-  @eighth_plan = Plan.find_by_my_plan_id(plan_set_eight)
-  @ninth_plan = Plan.find_by_my_plan_id(plan_set_nine)
+  @commencement_plan = Plan.find_by_my_plan_id(plan_set_commencement) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+  @students_plan = Plan.find_by_my_plan_id(plan_set_students)
+  @all_inclusive_plan = Plan.find_by_my_plan_id(plan_set_all_inclusive)
   @practiceobject = Practiceobject.new  
   @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
   @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible

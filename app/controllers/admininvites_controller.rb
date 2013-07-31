@@ -62,7 +62,9 @@ before_filter :owner, only: [:index]
 						            	end 
 				            		end 
 				            	end 
-				           
+				           		#if event's customer has a master list, give the invited admin a master list adminkey
+				           		# and forget about the PO nonsense above
+				           		make_master_admin(@event, u)	
 				            else #only reason for adminkey not to save is if there's already an admin key for this user/event combo - a case we already covered, so this is throw-away I think- i.e., will never be a case
 				            	 redirect_to @ai.event, notice: 'The person at this email address is already registered as an admin for this event.'
 				            end 
@@ -199,7 +201,9 @@ def adminusercreate
 		            @adminkey.save
 		            #link the admin invite to the user just created
 		            @ai.update_attributes(user_id: @user.id)
-		            
+
+		            make_master_admin(@event, @user)	
+
 		            if  bigdaddyevent
 						adminvoicegem(@user)
 						redirect_to @user, notice: "Welcome to NameCoach's new VoiceGem service, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."

@@ -544,6 +544,7 @@ if !params[:user][:access_code].blank? #see if any code parameter is passed inco
                 #create adminkey for this event/user_id - should work b/c the user is brand new, so don't worry about wrapping save in an if statement
                 @adminkey = Adminkey.new(event_id: @event.id, user_id: @user.id)
                 @adminkey.save 
+                make_master_admin(@event, @user)
                 # try to give user a PO for this event
                   # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
                   # themselves to that PO/event
@@ -945,7 +946,7 @@ def sub_coupon
           create_sub_customer_without_stripe(@plan, @code)
           flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
-   elsif is_valid_sub_coupon(@code) && !@planobject.nil?
+   elsif is_valid_sub_coupon(@code) && !@planobject.nil? 
           @coupon = Coupon.find_by_free_page_name(@code)
           @new_price = @planobject.monthly_cost_cents * (100 - @coupon.percent_off)/100
           flash.now[:success] = "Your promo code has been applied!"
@@ -968,7 +969,7 @@ def sub_coupon_edu
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create a Name Page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil?
           @coupon = Coupon.find_by_free_page_name(@code)

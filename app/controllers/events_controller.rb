@@ -222,6 +222,8 @@ def directory
 		 #take out master list from this array
 		 #@adminevents.delete_if {|item| item == @event}
 
+		  @individual = individual(@event) # for setting the language in the show page
+		 
 		 unless current_user.email == 'shanbhagp@aol.com'
 		 	@owner = false
 		 end

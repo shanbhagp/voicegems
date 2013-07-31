@@ -723,14 +723,14 @@ end
 def plan_set_three
     3  #this returns the integer 1
 end 
-def plan_set_seven
-    7  
+def plan_set_commencement
+    10  
 end 
-def plan_set_eight
-    8
+def plan_set_students
+    11
 end 
-def plan_set_nine
-    9
+def plan_set_all_inclusive
+    12
 end 
 
 def one_wed_price

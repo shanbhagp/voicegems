@@ -33,97 +33,15 @@ $(function() {
 <div class="container">
 
 
-<div class="row">
-
- 	 <div class="span8">
-			
-				<div class="well">
-					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an individual to record their name: </h4>
-					 <br />
-					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
-
-									
-						   <%= f.hidden_field :event_id %>
-															 									    
-						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
-																			
-						  
-						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
-						
-																 									    
-						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
-						
-						 									  
-						    <%= f.submit "Request Recording", class: "btn btn-info", disable_with: 'Inviting...' %>
-						  
-
-					 <% end %>
-				
-				 </div> <%# end div well %>										           
-												          		
-	 </div> <%# end span 9 %>
-
-	 <div class = "span4">
-	 		<div class="well">
-					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										            <div class="modal-header">
-										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										              <h3 id="myModalLabel">Using the Invite Link</h3>
-										            </div>
-										            <div class="modal-body">
-
-										            <p> Inviduals can record their names for this name page using either of these links:
-										            	<br/><br/>
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
-										            
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
-										              </p> 
-
-										       		<p> Just copy and paste either link into the web page for your event (if you have one), or an email to your students. </p> 
-										       		<br/>
-
-										       		<h3>Suggested text for your web page or emails</h3>	 
-													
-													
-											       		<p><strong><em>Just copy and paste the following:</em></strong><br/><hr/>
-														 <blockquote>We want to make sure every student's names is pronounced perfectly at our institution. Students, please <%= link_to "click here", @url, :target => "_blank"  %> (<%= @url %>). You'll be able to voice-record your name so that our faculty and staff can hear it directly and know it ahead of time... it's easy, and takes under a minute!  </blockquote> </p>	
-												 
-												
-
-														 <hr/>
-
-										            <p>NOTE: You can this link in addition to, or as an alternative to, requesting recordings by entering their individual emails and pressing the 'Request Recording' button.  However, we recommend using the 'Request Recording' method as well, so you can keep track of who you've invited to record and whether they've responded.</p>
-										 			
-										 			
-
-										            </div>
-
-										            <div class="modal-footer">
-										              <button class="btn" data-dismiss="modal">Close</button>
-										                
-										        
-										              </div>
-					 </div> <%# end modal %>
-					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Event Link:  
-					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
-					 	<%= @url %> <br/><br/>
-					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
-			</div>
-	 </div>
-	
-</div> <%# end row %>
-
-
-
-
 
 <ul id="myTab" class="nav nav-tabs ">
   <li class="active"><a href="#reg" data-toggle="tab"><strong>Recorded Names </strong></a></li>
   <li><a href="#regunrec" data-toggle="tab"><strong>Unrecorded Names</strong></a></li>
   <li><a href="#unreg" data-toggle="tab"><strong>Names Requested</strong></a></li>
-  <% unless @hiddenpos.count == 0 %><li><a href="#deleted" data-toggle="tab"><strong>Deleted Entries</strong></a> </li><% end %>
+  <li><a href="#invite" data-toggle="tab"><strong>Request Names/Your Link</strong></a></li>
   <li><a href="#admins" data-toggle="tab"><strong>Admins</strong></a></li>
   <li><a href="#sublists" data-toggle="tab"><strong>Commencement Pages</strong></a></li>
+  <% unless @hiddenpos.count == 0 %><li><a href="#deleted" data-toggle="tab"><strong>Deleted Entries</strong></a> </li><% end %>
 </ul>
 
 		  
@@ -249,6 +167,10 @@ $(function() {
                                             - The team at NameCoach
                                          </div>
                                 			
+
+	                                            <div class="fl-right">
+	                                         	 <%= link_to "Request Re-Recording", {:controller => "userinvites", :action => "rerecord", :x => f.id }, {:class => "btn btn-primary"}%>
+	                                            </div>
 		                                     <br/>
 		                                     <br/>
 
@@ -360,20 +282,22 @@ $(function() {
 
 		 <% end %> <%# @registeredandrecordedpos.each do |f| %>	
 
-		<%= y.select :sub_page, @adminevents.map {|u| [u.title,u.id]}, prompt: 'Select a Name Page' %>
-		<%= y.submit "Copy Selected Entries to this Name Page", class: "btn-primary btn-small", disable_with: 'copying...' %>
-		<% end %><%# end migration/checkboxes form %>
-
-
-</div>			    			
-
-		 <% if @registeredandrecordedpos.count == 0  %>
+ <% if @registeredandrecordedpos.count == 0  %>
 		 	   <div class="row">
 				<div class=" well span6 offset3 cent">
 					<h3> No entries in this category </h3>
 				</div>
 			   </div>
 		 <% end %>
+
+		<%= y.select :sub_page, @adminevents.map {|u| [u.title,u.id]}, prompt: 'Select a Name Page' %>
+		<%= y.submit "Copy Selected Entries to this Name Page", class: "btn-primary btn-small", disable_with: 'copying...' %>
+		<% end %><%# end migration/checkboxes form %>
+
+		
+</div>			    			
+
+
 
      </div> <%# END TAB PANE 1 div class="tab-pane fade active" id="reg" %>	
 
@@ -991,6 +915,98 @@ $(function() {
  <% end %>  <%# END unless hiddenpos.count == 0 %>
 
 
+<div class="tab-pane" id="invite">
+    	<br/>
+    	<div class="row">
+
+	<div class = "span4">
+	 		<div class="well">
+					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										            <div class="modal-header">
+										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+										              <h3 id="myModalLabel">Using the Recording Link</h3>
+										            </div>
+										            <div class="modal-body">
+
+										            <p> <%= @individual.pluralize.titleize %> can record their names for this Name Page using either of these links:
+										            	<br/><br/>
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+										            
+										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+										              </p> 
+
+										       		<p> Just give this link to all your your <%= @individual %>s. </p> 
+										       		<br/>
+
+										       		<h3>Suggested text for your web page or emails</h3>	 
+													
+													
+															<p><strong><em>Just copy and paste the following:</em></strong><br/><hr/>
+															 <blockquote>We want to make sure everyones' names are pronounced perfectly at <%= @event.title %>. Students, please <%= link_to "click here", @url, :target => "_blank"  %> (<%= @url %>). You'll be able to voice-record your name so that teachers and staff can hear it directly and know how to say it right... it's easy, and takes under a minute!  </blockquote> </p>	
+												
+														 <hr/>
+
+										            <p>NOTE: You can this link in addition to, or as an alternative to, requesting name recordings by entering their individual emails and pressing the 'Request Recording' button.  However, we recommend using the 'Request Recording' method as well, so you can keep track of who you've invited and whether they've responded.</p>
+										 			
+
+										            </div>
+
+										            <div class="modal-footer">
+										              <button class="btn" data-dismiss="modal">Close</button>
+										                
+										        
+										              </div>
+					 </div> <%# end modal %>
+					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Event Link:  
+					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
+					 	<%= @url %> <br/><br/>
+					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+					 	
+			</div>
+	 </div>
+
+
+
+ 	 <div class="span8">
+			
+				<div class="well">
+			
+			     <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite a student to record their name: </h4>
+												 	
+					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
+					 <hr/>
+					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
+
+									
+						   <%= f.hidden_field :event_id %>
+															 									    
+						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
+																			
+						  
+						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
+						
+																 									    
+						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
+						
+						 									  
+						     <%= f.submit "Request Recording", class: "btn btn-info", disable_with: 'Sending...' %>
+						  
+
+					 <% end %>
+				
+				 </div> <%# end div well %>										           
+												          		
+	 </div> <%# end span 9 %>
+
+	 
+	
+</div> <%# end row %>	 	
+    	 
+        
+ </div>  <%# end Invite tab pane %>
+
+
+
      <div class="tab-pane" id="admins">
      	<br/> 
     	 <table class="table  table-striped event">
@@ -1046,7 +1062,7 @@ $(function() {
     	 </table>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="span9">
+    	 	<div class="span10">
     	 	 <div class="well">
     	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Page: </h4>
 					 <br />	
@@ -1164,7 +1180,8 @@ $(function() {
 				 <%= simple_form_for(User.new, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
 						<% if @event.grad_array.empty? %>
-						You do not currently have a drop-down menu created for your students.
+						<p>This Student Name Directory does not currently have a drop-down menu created for your students (for selecting their graduation year/date when they register and record their names).</p>
+						<p><%= link_to "Create Drop-Down Menu", {:controller => "events", :action => "master_set", :id => @event.id }, {:class => "btn btn-primary"} %>  </p>  
 						<% else %> 
 						<h5>What your students will see when they register and record their names for your Student Name Directory:</h5> <br/>
 						<%= f.input :grad_date, collection: @event.grad_array, prompt: 'Please select your graduation date', label: "Your Graduation Date:" %>
@@ -1176,9 +1193,10 @@ $(function() {
 			</div>
 
 			<div class="well span8 ">
+				<h4>Create a Commencement Name Page for a Graduation Year/Class:</h4>
 				<% unless @event.grad_array.empty? %>
 
-				  <h4>Create a Commencement Name Page for a Graduation Year/Class:</h4> <br/>
+				   <br/>
 				<%= form_for(Event.new, url: default_grad_path, :html => {:class => "form-inline"}) do |f| %>
 								                      
                     
@@ -1203,10 +1221,11 @@ $(function() {
                      <% end %> <%# form for new event creation %>
                    
                    <br/>
-                   <p>Note: This action will copy all the entries (from your Student Name Directory) for students in the selected graduation year/class, into a new Name Page which can be used for Commencement. </p>  
-
+                   <p>Note: This action will copy all the entries (from your Student Name Directory) for students in the selected graduation year/class into a new Name Page which can be used by Commencement name announcers. </p>  
+               <% else %>
+                     <p>Default commencement pages require students to be able to select their graduation year/date when they register and record. </p>
 				<% end %> <%# end unless empty grad_array %>
-			 </div> <%# end span 2 %>
+			 </div> <%# end span 8 %>
 
     	 </div> <%# end row %>
         

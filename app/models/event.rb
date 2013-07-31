@@ -1,10 +1,10 @@
 class Event < ActiveRecord::Base
-  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type, :master, :grad_array, :grad_date, :event_type
+  attr_accessible :access_code, :date, :event_code, :title, :purchase_type, :event_type, :master, :grad_array, :grad_date
   
   serialize :grad_array, Array
   
   has_many :customerkeys
-  #has_one :customer, through: :customerkeys, source: :user
+ # has_one :customer, through: :customerkey, source: :user
   #check if this is the correct code
 
   has_many :adminkeys

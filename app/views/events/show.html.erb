@@ -158,11 +158,10 @@
                                             <p>Thank you!<p>
                                             - The team at NameCoach
                                          </div>
-                                
-                                         	 <%= form_for(:po, url: rerecord_path) do |y| %>
-                                              	<%= y.hidden_field :x, :value => f.id %>
-                                               	<%= y.submit "Request Re-Recording", class: "btn-primary btn-large btn-modal", disable_with: 'sending request...' %>
-                                             <% end %>  
+                                			
+                                			<div class="fl-right">
+                                         	 <%= link_to "Request Re-Recording", {:controller => "userinvites", :action => "rerecord", :x => f.id }, {:class => "btn btn-primary"}%>
+                                            </div>
 		                                     <br/>
 		                                     <br/>
 
