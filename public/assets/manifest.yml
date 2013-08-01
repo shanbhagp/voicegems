@@ -14,6 +14,11 @@
 !binary "MjQxLndhdg==": 241-0a727e1cfdbc4e03066b6159b0ec0ade.wav
 !binary "MjQyLndhdg==": 242-44f2ae50634d896c6665de878ef921e1.wav
 !binary "MjQzLndhdg==": 243-30c8a4b4560bfb280896b0c27e393e26.wav
+!binary "MjYwLndhdg==": 260-537282173ca6ec422fa3079afceadf94.wav
+!binary "MjYxLndhdg==": 261-12db54c2bc6889fc41b611379f75d8e7.wav
+!binary "MjYyLndhdg==": 262-081811fa68a139e9102125b08d699724.wav
+!binary "MjYzLndhdg==": 263-1a1e255524da67467396c2fb5809c43b.wav
+!binary "MjY0Lndhdg==": 264-8388a2889b9552147f05f93ca85c268a.wav
 !binary "TmV3IFBpY3R1cmUuYm1w": New Picture-eec275e95c4dd910b4d282aa4b65426c.bmp
 !binary "YWRtaW5fY29kZS5wbmc=": admin_code-76677aab02b14eabf5f9de8e14d3bb04.png
 !binary "YWRtaW5fY29kZV8yLnBuZw==": admin_code_2-84a0e81909d63c166cf123d4d0a2a064.png
@@ -249,7 +254,12 @@
 !binary "c2hvdXRlci1ndXkyLmpwZw==": shouter-guy2-1086fda8cfaf03f90ec17f35899b31fe.jpg
 !binary "c2hvdXRlci1ndXkzLmpwZw==": shouter-guy3-0e1842f28f6e1624acf93a7c31b76f7b.jpg
 !binary "c2hvdXRlci1ndXk0LmpwZw==": shouter-guy4-fbbd80fb9de127472da2d9dd2502498b.jpg
+!binary "c2hvdXRlci1sZWZ0LnBuZw==": shouter-left-0c245d0bdabda141ad074379f0240d3a.png
 !binary "c3BlYWtlcjEuanBn": speaker1-80c8d3dd82cdcb40957704a86fc3fa1b.jpg
+!binary "c3Bva2UzLXRyYW5zcC5wbmc=": spoke3-transp-76b3ed384ef7f0ed419e832458a9e78b.png
+!binary "c3Bva2U0LXRyYW5zcC1iaWctY2VudGVyLnBuZw==": spoke4-transp-big-center-a041b4e89df3189a811bf024dc85d5f3.png
+!binary "c3Bva2U0LXRyYW5zcC1saW5lLnBuZw==": spoke4-transp-line-71f45ceaa84ae2d8dfe4be2396e03609.png
+!binary "c3Bva2U0LXRyYW5zcC5wbmc=": spoke4-transp-c3d4c6335860dd9e7170c8249071efe9.png
 !binary "c3Bva2VzMS5qcGc=": spokes1-6c591648a49e0055f0c812f065920729.jpg
 !binary "c3Bva2VzMi5qcGc=": spokes2-1f18b11dd386a4ca55995bfe8d824c80.jpg
 !binary "c3RlcDFfMi5wbmc=": step1_2-3ee5da761cd518086cb614914738795b.png
@@ -269,6 +279,8 @@
   c3RvY2stcGhvdG8tMjEwODUxMjQtbXVsdGktZXRobmljLXlvdW5nLXBlb3Bs
   ZS1pbi1jbGFzc3Jvb20uanBn
 : stock-photo-21085124-multi-ethnic-young-people-in-classroom-0317b8656a9896d8994b35eebb6c5f48.jpg
+!binary "c3R1ZGVudC1jaGlsZHJlbi1saW5lLnBuZw==": student-children-line-5248848695944d01cd436339cdf71690.png
+!binary "c3R1ZGVudC1saW5lLnBuZw==": student-line-10b09923ac674a6ff771d21750c7be57.png
 !binary "c3R1ZGVudHMuanBn": students-3176604daede42315fbd3be81908365c.jpg
 !binary "c3R1ZGVudHNfY2hpbGRyZW4uanBn": students_children-436f5c63d2f4ceeae09ec21e11af6589.jpg
 !binary "dGVhY2hlci1wcm9tYmwtc3Bva2VzLmpwZw==": teacher-prombl-spokes-f3112b3065b42d18652ab265f8325d3f.jpg
@@ -282,7 +294,7 @@
 !binary "YXBsYXllci9hdWRpb2pzLnN3Zg==": aplayer/audiojs-015d31ed1f99798eee3c970137601c69.swf
 !binary "YXBwbGljYXRpb24uanM=": application-81f5770d220de16e0e229bac472cd0af.js
 !binary "anJlYy9qUmVjb3JkZXIuc3dm": jrec/jRecorder-66b07d55dc54e8df8561de1719dd7b99.swf
-!binary "YXBwbGljYXRpb24uY3Nz": application-013fe7f40fb9d43034957f143511bc63.css
+!binary "YXBwbGljYXRpb24uY3Nz": application-4ab978b596053092107bbcdfbca2ee12.css
 !binary "anF1ZXJ5LXVpL3VpLWJnX2ZsYXRfMF9hYWFhYWFfNDB4MTAwLnBuZw==": jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 !binary "anF1ZXJ5LXVpL3VpLWJnX2ZsYXRfNzVfZmZmZmZmXzQweDEwMC5wbmc=": jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png
 !binary "anF1ZXJ5LXVpL3VpLWJnX2dsYXNzXzU1X2ZiZjllZV8xeDQwMC5wbmc=": jquery-ui/ui-bg_glass_55_fbf9ee_1x400-bbb04adbe79f471d8c88a2bc691231b6.png
