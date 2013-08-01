@@ -2540,10 +2540,10 @@ border-top-color: #30add1;
  } 
 
 /* Student page text colors: purple(t) and blue (s) */
-.teacher {
+.purple {
 	color: #821f82;
 }
 
-.student {
+.blue {
 	color: #5a8f8d;
 }

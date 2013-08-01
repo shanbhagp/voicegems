@@ -266,6 +266,7 @@ match 'receptions', to: "static#receptions"
 match 'graduations', to: "static#graduations"
 match 'commencements', to: "static#commencements"
 match 'students', to: "static#students"
+match 'students_extra', to: "static#students_extra"
 
 match 'demo_event_page', to: 'events#demo_event_page'
 match 'demo_wedding_page', to: 'events#demo_wedding_page'

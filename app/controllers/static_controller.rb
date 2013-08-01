@@ -91,6 +91,25 @@ def students
 
 end 
 
+# FOR TESTING LAYOUT
+def students_extra 
+  @event = Event.find(ENV['demopage'].to_i)
+  @commencement_plan = Plan.find_by_my_plan_id(plan_set_commencement) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+  @students_plan = Plan.find_by_my_plan_id(plan_set_students)
+  @all_inclusive_plan = Plan.find_by_my_plan_id(plan_set_all_inclusive)
+  @practiceobject = Practiceobject.new  
+  @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+  @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+  @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+  @unregisteredpos = @event.practiceobjects.unregistered.visible
+  @hiddenpos = @event.practiceobjects.hidden
+  @hiddenandregisteredpos  = @hiddenpos.registered
+  @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+  @url = demo_record_directory_url(:event_code => @event.event_code)
+
+end 
+
 def privacy
 end 
 
