@@ -50,6 +50,8 @@ class SessionsController < ApplicationController
                        # else here would apply if there's a bad or no token passed in when trying to sign-in to sign-up.
                        # but note that by coming to users/new without a token or a valid token, new action will just say 'invalid token' already
                        # if the user has no credentials to begin with, it will just say invalid password if he's invited with a token but tries the sign-in to sign-up.
+            
+                      copy_to_master(@po, @po.event)
             end 
 
         else #do we need an else statement in case can't find the PO by token?

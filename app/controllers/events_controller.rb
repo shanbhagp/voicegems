@@ -371,7 +371,8 @@ def event_link_create  #for new users signing up from an event code link
 	                        end 
 	                  end 
 
-	                anchor_and_update_pos(@po)    
+	                anchor_and_update_pos(@po)  #for achoring PO's created by inviting people for other events, who haven't registered as users yet
+	                copy_to_master(@po, @event)  #for copying the new PO to the master list if the @event here is a sublist.
 
 	            else # user already exists, or otherwise didn't validate as user
 	                  #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
@@ -449,6 +450,8 @@ def event_code_add  #this is for registering to record with an event link, for a
                        # else here would apply if there's a bad or no token passed in when trying to sign-in to sign-up.
                        # but note that by coming to users/new without a token or a valid token, new action will just say 'invalid token' already
                        # if the user has no credentials to begin with, it will just say invalid password if he's invited with a token but tries the sign-in to sign-up.
+            
+                       copy_to_master(@po, @event)
             end 
 
         else #do we need an else statement in case can't find the PO by token?
@@ -631,7 +634,10 @@ generate_event_code(@event)
 				  # table, and checks to see if that user has a subscription.  Some teachers/admins will not have a subscription, so don't 
 				  # want them to have an entry on the customer key table for this event. 
 	    		 @event.adminkeys.create!(user_id: current_user.id)
-	    		
+
+	    		 @event.customerkeys.create(user_id: @master_event.customerkeys.first.user_id)  #needed this because couldn't find customerkey for default grad event in owner_has_active_sub
+	    		 @event.adminkeys.create(user_id: @master_event.customerkeys.first.user_id) #want customer to be an admin for the default grad event, in case a teacher invited to this master page sets up the default grad event page.
+
 	    		 default_migrate_pos(@master_event, @event)
 
 	     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
@@ -698,19 +704,19 @@ def migrate_entries
 end 
 
 
+#exaxct copy in events_helper
+#def default_migrate_pos(master_event, sub_event) 
+#	@pos = master_event.practiceobjects
 
-def default_migrate_pos(master_event, sub_event) 
-	@pos = master_event.practiceobjects
+#	@pos.each do |m|
+#		if !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
+#			Practiceobject.create(:event_id => sub_event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
+#	end 
+#	end 
 
-	@pos.each do |m|
-		if !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
-			Practiceobject.create(:event_id => sub_event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
-		end 
-	end 
-
-	flash[:success] = "Entries were successfully migrated."
+#	flash[:success] = "Entries were successfully migrated."
 	
-end 
+#end 
 
 #old action - not being used
 def migrate_pos

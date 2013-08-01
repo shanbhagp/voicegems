@@ -90,6 +90,7 @@ before_filter :owner, only: [:console, :index, :destroy]
                 if @po.last_name
                   @user.last_name = @po.last_name
                 end 
+                @event = @po.event
       #maybe check to see first if there is a token passed in: if params[:token].any? or something; or rather, if
       # the @user already has a :token attribute b/c rendered from a failed create attempt below
       #actually, it seems that users are still being appropriately assoaciated with their practice objects even when they mess up the invited 
@@ -161,11 +162,14 @@ before_filter :owner, only: [:console, :index, :destroy]
                 else
                   redirect_to new_step2_path(:token => @po.token)
                 end 
+                 anchor_and_update_pos(@po)
+                 copy_to_master(@po, @po.event)  #for copying the new PO to the master list if the @event here is a sublist.
+            
             else #couldn't find practice object by token
                   redirect_to new_step2_path(:token => @po.token), notice: 'There was an error.  Please sign out and try again.'
             end 
 
-            anchor_and_update_pos(@po)
+            
     else  
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right; won't save becaues @user represents a User.new record here
               flash.now[:error] = "You have previously registered on our site. Please follow the link below ('Already Registered on our Site?') and sign in.  Click 'Reset Password' above if you haven't set a password yet." 

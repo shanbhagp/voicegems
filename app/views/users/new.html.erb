@@ -93,7 +93,9 @@
                                                                   <%= f.input :first_name, label: "First Name" %>
                                                                   <%= f.input :last_name, label: "Last Name" %>
                                                                   <%= f.input :email %>
-
+                                                                    <% unless @event.grad_array.empty? %>  
+                                                                      <%= f.input :grad_date, collection: @event.grad_array, prompt: 'Please select your graduation date', label: "Graduation Date:" %> 
+                                                                  <% end %>
                                                                 <hr/>    
                                                          </div>
                                                          <div class="well span3">         

@@ -768,8 +768,28 @@ def anchor_and_update_pos(po)
                end 
              end    
           end 
-
+        # now that other PO's are anchored to a user, recording path for them gets updated in saveupload (after recordstep2)
 end 
+
+
+def copy_to_master(po, event) #event for which this po just created
+    c = event.customerkeys.first.user #get customer for this event
+    @user = current_user 
+    
+    c.customerevents.each do |f|  # for each of customer's events
+       if f.master == true && !(f == event) # if that event is a master list, and not the event for which a po was just created
+         # try to give user a PO for this event
+              # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
+              # themselves to that PO/event
+              if !f.practiceobjects.nil? && !f.practiceobjects.find_by_user_id(@user.id) && f.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating (not with a user_id - in which case, wouldn't want to update that anchored PO)
+                  @po = f.practiceobjects.find_by_email(@user.email)
+                  @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
+              else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
+                    @po = Practiceobject.create(:user_id => @user.id, :event_id => f.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations
+              end 
+       end 
+    end
+end
 
 
 def adminpracticeobject

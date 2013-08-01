@@ -33,7 +33,7 @@ end
 
 def owner_has_active_subscription?
     @event = Event.find(params[:id])
-    if !@event.customerkeys.nil?
+    if !@event.customerkeys.blank?
     		@customer = User.find_by_id(@event.customerkeys.first.user_id)
     		!@customer.subscriptions.nil? && @customer.subscriptions.any? {|s| s.active == true }  
     else
@@ -70,6 +70,7 @@ def student_event?
 	'commencement' || current_user.event_type == 'all_inclusive'
 end 
 
+#not being used - was for testing the default grad page migration
 def create_default_grad_page(event)
 	if event.master == true
 	 	@event = Event.new(:event_type => 'commencement', :tite => "Graduation: #{event.title}", :date => event.date)
@@ -83,7 +84,7 @@ def default_migrate_pos(master_event, sub_event)
 	@pos = master_event.practiceobjects
 
 	@pos.each do |m|
-		if !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
+		if m.user && !m.user.grad_date.nil? && m.user.grad_date == sub_event.grad_date 
 			Practiceobject.create(:event_id => sub_event.id, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
 		end 
 	end 

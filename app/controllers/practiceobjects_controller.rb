@@ -72,6 +72,7 @@ def create
                        end
                        UserInviteMailer.existing_user_invitation(@ui, root_url, @practiceobject, @to).deliver 
                        redirect_to @event, notice: 'Attendee with that email address is an existing user and is now registered for this event.'
+                       copy_to_master(@practiceobject, @practiceobject.event)
                     else
                       flash[:error] = 'Please enter a valid email address.'
                       redirect_to @event

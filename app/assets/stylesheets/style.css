@@ -2486,22 +2486,64 @@ border-top-color: #30add1;
     visibility: hidden;
 }
 
-/* fancy quotes */
+
+/* fancy quotes for Flexslider*/
 .qstart {
+	 font-family: Georgia;
      float: left;
      height: 45px;
-     margin-top: -20px;
-     padding-top: 45px;
+     margin-top: -30px;
+     padding-top: 40px;
+     padding-right: 8px;
      margin-bottom: -50px;
      font-size: 700%;
      color: #73bcde;
+     opacity:0.4;
  }
 
  .qend {
-     float: right;
-     height: 25px;
+ 	 font-family: Georgia;
+ 	 float: right; 
+     height: 25px; 
      margin-top: 0px;
-     padding-top: 45px;
+     padding-top: 35px;
+     padding-right: 23px;
      font-size: 700%;
      color: #73bcde;
+     opacity:0.4;
+ } 
+
+ /* fancy quotes smaller */
+.qstart-small {
+	 font-family: Georgia;
+     float: left;
+     height: 45px;
+     margin-top: -30px;
+     padding-top: 42px;
+     padding-right: 3px;
+     margin-bottom: -50px;
+     font-size: 440%;
+     color: #73bcde;
+     opacity:0.4;
  }
+
+ .qend-small {
+ 	 font-family: Georgia;
+ 	 float: right; 
+     height: 25px; 
+     margin-top: 0px;
+     padding-top: 26px;
+     padding-right: 3px;
+     font-size: 440%;
+     color: #73bcde;
+     opacity:0.4;
+ } 
+
+/* Student page text colors: purple(t) and blue (s) */
+.teacher {
+	color: #821f82;
+}
+
+.student {
+	color: #5a8f8d;
+}
