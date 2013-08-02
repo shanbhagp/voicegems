@@ -192,6 +192,7 @@ class EventsController < ApplicationController
 			 @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
 			 @url = record_url(:event_code => @event.event_code)
+			 @url2 = locked_event_url(@event)
 		end 
     end
 

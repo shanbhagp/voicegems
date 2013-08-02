@@ -957,12 +957,13 @@ $(function() {
 										        
 										              </div>
 					 </div> <%# end modal %>
-					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Event Link:  
+					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Recording Link:  
 					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
 					 	<%= @url %> <br/><br/>
 					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
 					 	
 			</div>
+			
 	 </div>
 
 
@@ -973,7 +974,7 @@ $(function() {
 			
 			     <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite a student to record their name: </h4>
 												 	
-					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
+					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the recording link.)</span>
 					 <hr/>
 					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
 

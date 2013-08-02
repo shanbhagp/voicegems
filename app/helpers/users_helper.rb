@@ -781,7 +781,7 @@ def copy_to_master(po, event) #event for which this po just created
          # try to give user a PO for this event
               # first check to see if an existing PO with this email for this event, and leave the other events/PO's alone; if floating  # PO's with this email for other events, will be caught by the sign-up level checks - user can just sign in then to anchor 
               # themselves to that PO/event
-              if !f.practiceobjects.nil? && !f.practiceobjects.find_by_user_id(@user.id) && f.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating (not with a user_id - in which case, wouldn't want to update that anchored PO)
+              if !f.practiceobjects.blank? && !f.practiceobjects.find_by_user_id(@user.id) && f.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating (not with a user_id - in which case, wouldn't want to update that anchored PO)
                   @po = f.practiceobjects.find_by_email(@user.email)
                   @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
               else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO

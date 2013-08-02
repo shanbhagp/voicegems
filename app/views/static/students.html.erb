@@ -8,6 +8,13 @@
               </div>
             <% end %>
 
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+      itemMargin: 50
+    });
+  });
+</script>
 
 <div class="sep"></div>
 <br/>
@@ -128,14 +135,33 @@
 
       <div class="row">
 
-       <div class="span6 offset2">
-         <!-- Testimonial #1 -->
-         <div class="test">
-            <strong><span class="qstart">&#8220;</span>NameCoach was a huge asset to the success of our graduation ceremony.  <span class="black">It's a simple, intuitive, and most importantly helpful tool </span> to make sure that each person hears their name pronounced correctly during their moment of honor. I look forward to continuing to use the service to make sure that students are respected and announced accurately at our future events.<span class="qend">&#8221;</span></strong> 
-         </div>
-         <div class="test-arrow"></div>
-         <div class="tauth"><i class="icon-user"></i> Mike Wilson, <span class="color">Haltom High School</span></div>
-      </div>
+          <div class="span6 offset2">
+
+            <!-- Slider (Flex Slider -->
+            <div class="flexslider">
+              <ul class="slides">
+                
+                <li> 
+                  <div class="test">
+                      <strong><span class="qstart">&#8220;</span>NameCoach was a huge asset to the success of our graduation ceremony.  <span class=" black">It's a simple, intuitive, and most importantly helpful tool </span> to make sure that each person hears their name pronounced correctly during their moment of honor. I look forward to continuing to use the service to make sure that students are respected and announced accurately at our future events.<span class="qend">&#8221;</span></strong>
+                  </div>
+                  <div class="test-arrow"></div>
+                  <div class="tauth"><i class="icon-user"></i> Mike Wilson, <span class="color">Faculty, Haltom High School</span></div>
+                </li>
+                
+                <li>
+                  <div class="test">
+                      <strong><span class="qstart">&#8220;</span><span class=" black">NameCoach was a wonderful resource for our faculty, staff and students for our Commencement ceremony.</span> Easy to use, and it was helpful to have our students record their name pronuciations for our faculty. It was one less thing we had to worry about! This is such an important event for our students, and using NameCoach certainly contributed to the success of our program. <span class=" black">Their customer service was exceptional</span> and they replied to our questions/concerns in a timely manner.  We will definitely be using their services again!<span class="qend">&#8221;</span></strong>
+                  </div>
+                  <div class="test-arrow"></div>
+                  <div class="tauth"><i class="icon-user"></i> Olgalydia Winegar, <span class="color">Student Services Manager, Stanford BioE Dept.</span></div>
+                </li>
+
+              </ul>
+            </div>  <!-- END Slider (Flex Slider -->
+
+
+          </div>  <!-- END SPAN FOR SLIDER -->
 
 
       <div class="recent-posts">
@@ -234,7 +260,7 @@
 <div class="sep"></div>
 
 
-<div class="row">
+<div class="row"id="free_trial">
   <div class="span9 offset1">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="light-blue cent"><em>Our Education Services:</em></h1>
  </div>
@@ -243,7 +269,7 @@
 <br/>
 
 
-<div class = "row">
+<div class = "row" >
   <div class="span9 offset2">
        <!--SILVER-->
         <div class="fltlft PlanBoxGold">
@@ -261,9 +287,11 @@
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @commencement_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'commencement' %>
-                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
-                <% end %>  </p>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %><h6>&nbsp;&nbsp;14-Day Free Trial</h6> 
+                <% end %> </p>
+
               </li>
+
             </ul>
           </div>
         </div>
@@ -284,7 +312,7 @@
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @students_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'students' %>
-                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %><h6>&nbsp;&nbsp;14-Day Free Trial</h6>
                 <% end %>  </p>
               </li>
             </ul>
@@ -300,14 +328,14 @@
             <ul>
               <li><strong>$<%= @all_inclusive_plan.annual_cost_cents / 100 %> Annual Subscription</strong></li>
               <li>All Commencement Service and Student Name Directory features</li>
-              <li>+ <em>Default commencement pages according to year of graduation</em></li>
+              <li>+ <em>Default commencement pages according to year of graduation/program</em></li>
               <li>+ <em>Teachers can create Name Pages for their classes, and/or copy entries from the Name Directory, and enter their own pronunciation notes</em></li>
               <li>+ <em>Unlimited Name Pages</em> (for any purpose)</li>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                 <%= y.hidden_field :plan, :value => @all_inclusive_plan.my_plan_id %>
                 <%= y.hidden_field :event_type, :value => 'all_inclusive' %>
-                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                  <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %><h6>&nbsp;&nbsp;14-Day Free Trial</h6>
                 <% end %>  </p>
               </li>
             </ul>
@@ -318,7 +346,7 @@
 
 <div class = "row">
   <div class="span7 offset2">
-    <center><p><h5>If you are interested in our products but have pressing budgetary constraints, please get in touch with us – we may be able to work with you on a case by case basis.</h5></p></center>
+    <center><p><h5>If you are interested in our services but have pressing budgetary constraints, please get in touch with us – we may be able to work with you on a case by case basis.</h5></p></center>
   </div>
 </div>
 

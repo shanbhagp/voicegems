@@ -816,11 +816,14 @@ def newcustomer
 
   if signed_in?
     if customer_has_active_subscription?
-    flash[:notice] = "Since you are already have an active subscription, please use this page to change your subscription."
-    redirect_to change_subscription_path
+    flash[:success] = "You have already subscribed to our service. If you wish to change your subscription, please contact us.  Thank you!."
+    redirect_to current_user
     else 
     flash[:notice] = "Since you are already a registered user, please use this page to purchase a subscription."
-    redirect_to purchase_sub_existing_path
+     @planobject = Plan.find_by_my_plan_id(@plan)
+     @events_number = @planobject.events_number 
+     @user = current_user
+    render 'stripenewcustomer_edu'
     end 
   end
 end 

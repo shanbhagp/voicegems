@@ -756,7 +756,7 @@
 										        
 										              </div>
 					 </div> <%# end modal %>
-					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Event Link:  
+					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Recording Link:  
 					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
 					 	<%= @url %> <br/><br/>
 					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
@@ -776,7 +776,7 @@
 													<% else %>
 															 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an individual to record their name: </h4>	
 													<% end %>
-					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the event link.)</span>
+					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the recording link.)</span>
 					 <hr/>
 					 <%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -802,7 +802,7 @@
 	 </div> <%# end span 9 %>
 
 	 
-	
+	<h4>Read-Only Name Page Link (no log-in required to view the Name Page): <%= link_to @url2, @url2, :target => "_blank" %></h4>
 </div> <%# end row %>	 	
     	 
         
