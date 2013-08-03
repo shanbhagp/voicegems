@@ -306,17 +306,20 @@ def directory
 
 
  def record
- 	#if signed_in?
- 	#	flash[:error] = "Since you are a registered user, you will have to register for this event under 'Already Registered on our Site?' below."
- 	#end 
+ 	if signed_in?
+ 		flash[:success] = "Trying to record your name or edit your NameGuide? Please do so below."
+ 		redirect_to current_user 
+ 	end 
  		
  	@event_code = params[:event_code]
+
  	if Event.find_by_event_code(@event_code)
  	 @event = Event.find_by_event_code(@event_code)
  	 @user = User.new
+
  	else
  	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
- 	redirect_to root_path 
+ 		redirect_to root_path 
  	end 
 
 
@@ -360,13 +363,13 @@ def event_link_create  #for new users signing up from an event code link
 	                  if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
 	                      @po = @event.practiceobjects.find_by_email(@user.email)
 	                      @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
-	                      flash.now[:info] = "Now just record your name for #{@event.title}, and you're done!"
-	                      render action: 'record_step2'
+	                      flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
+	                      redirect_to record_step2_path(:user => @user, :po => @po, :event => @event)
 	                  else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
 	                        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations}
 	                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-	                           flash.now[:info] = "Now just record your name for #{@event.title}, and you're done!"
-	                           render action: 'record_step2'
+	                           flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
+	                           redirect_to record_step2_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
 	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
 	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
 	                        end 
@@ -379,35 +382,66 @@ def event_link_create  #for new users signing up from an event code link
 	                  #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
 	                  # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
 	                    if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-	                            flash.now[:error] = "You have previously registered on our site. Please sign in under 'Already Registered?' (below) to register your name for this Name Page."
-	                             
+	                            
+								if signed_in? #perhaps pressing back button from record_step2 to change name or email?
+											#users may never get here because we check signed_in? in the record action
+									if !@user.recording.blank? #has already recorded.  Just take them to their profile page
+										flash[:error] = "If you wish to update your recording or NameGuide, please do so on this page."
+										redirect_to current_user	
+									else #has not recorded - so take them to the recording page (record_step2) again
+										flash[:error] = "Please record your name here. If you wish to edit your name, email, or NameGuide, please do so on your profile page after you record your name."
+										redirect_to record_step2_path(:user => @user, :event => @event, :event_code => @event_code)
+	                    			end 
+	                    		else #probably trying to register from record page with an existing email
+	                            	flash[:error] = "This email (#{@user.email}) is already registered on our site. Please sign in under 'Already Registered?' (below) to register for this Name Page. If you didn't set or forgot your password, please click 'Reset Password' above."
+	                                redirect_to record_path(:event_code => @event_code) 
+	                            end 
+	                    else #email not registered; so probably user info didn't validate - maybe forgot a field, or bad email address
+	                             flash[:error] = "Please be sure to enter your first name, last name, and valid email address.  If you are prompted to select a graduation date/program, please do so."
+	                    	     redirect_to record_path(:event_code => @event_code) 
 	                    end 
-	                      render action: 'record'
+
 	                    
 	                    
 	            end   
 	    else #code entered doesn't exist for any event
 	      #@user = User.new #for the re-rendering of the eventcodesignup view
 	      #render this action again, with the flash message
-	      flash.now[:error] = 'Something went wrong. Please contact NameCoach for support, or click on the link you received again.'
-	      render action: 'record'
+	      flash[:error] = 'Something went wrong. Please contact NameCoach for support, or click on the link you received again.'
+	      redirect_to record_path(:event_code => @event_code) 
 	    end 
-	else
+	else #no user parameters or no user event_code parameters
 	  #@user = User.new #for the re-redering of the eventcodesignup view
 	  #run existing users#create code - maybe make this a helper method
 	  # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
 	  
 	  # problem: code ends here, user cannot retry. One solution is to redirect back to event link
-	  flash.now[:error] = 'Have you filled in all basic info? If problem persists, please contact support@name-coach.com'
-	  render action: 'record'
+	  flash[:error] = 'Have you filled in all basic info? If problem persists, please contact support@name-coach.com'
+	  redirect_to record_path(:event_code => @event_code) 
 	  
 	  
 	end
 
 end
 
-def record_step2
+def record_step2  #should never be hit if user is not signed in - so maybe before filter this.
 	@user = current_user
+
+	#note that these incoming parameters are integers, not the model objects themselves - so can't set them to the model objects directly.
+	#@po = Practiceobject.find(params[:po]) #probably don't need this?
+
+	@event = Event.find(params[:event]) #probably don't need this either? DO need this for iolani helper called in record_step2 html, which uses @event intance originally coming directly from event_link_create action
+	# if don't need these last two, then don't need to have changed the renders to redirects to record_step2 in event_link_create?
+
+ 	 	#for settong @po if pressed back from record_step2 and then submits or presses forward
+ 	  	if !@event.practiceobjects.blank? && @event.practiceobjects.find_by_user_id(@user.id)  #there is an already a PO with user's em for this event, floating; in this
+ 	  		# case, probably b/c user pressed back button from record_step2  
+	         @po = @event.practiceobjects.find_by_user_id(@user.id)
+		end
+		#but probably don't need to set @po anyway - not used in record_step2 view or helpers called in the view
+
+	# just in case this is needed somehwere, since it's set in event_link_create as well
+	@event_code = params[:event_code]
 end
 
 

@@ -216,6 +216,8 @@ match '/record', to: 'users#home'  #this is to get rid of the 'no route matches 
 
 match '/event_link_create', to: 'events#event_link_create'
 
+match '/record_step2', to: 'events#record_step2'
+
 match '/event_code_add', to: 'events#event_code_add'
 
 match '/event_link_create_step2', to: 'events#event_link_create_step2'
