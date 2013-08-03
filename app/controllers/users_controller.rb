@@ -847,6 +847,7 @@ def newcustomercreate
     @plan = params[:user][:plan]  #this will pass in the @plan value (my_plan_id) into the stripenewcustomer page via the render 'stripenewcustomer' below (changed this from redirect, wasn't sure that would work)
     @planobject = Plan.find_by_my_plan_id(@plan)
     @events_number = @planobject.events_number 
+    @event_type = params[:user][:event_type]  #in case user does not save, need this passed back into the newcustomer form
 
     if @user.save
 
