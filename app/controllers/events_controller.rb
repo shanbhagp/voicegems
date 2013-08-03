@@ -360,15 +360,15 @@ def event_link_create  #for new users signing up from an event code link
 	                  if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
 	                      @po = @event.practiceobjects.find_by_email(@user.email)
 	                      @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
-	                      flash.now[:info] = "Now just record your name for this event (#{@event.title}), and you're done!"
+	                      flash.now[:info] = "Now just record your name for #{@event.title}, and you're done!"
 	                      render action: 'record_step2'
 	                  else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
 	                        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations}
 	                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-	                           flash.now[:info] = "Now just record your name for this event (#{@event.title}), and you're done!"
+	                           flash.now[:info] = "Now just record your name for #{@event.title}, and you're done!"
 	                           render action: 'record_step2'
 	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
-	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your event admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
+	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
 	                        end 
 	                  end 
 
@@ -379,7 +379,7 @@ def event_link_create  #for new users signing up from an event code link
 	                  #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
 	                  # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
 	                    if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-	                            flash.now[:error] = "You have previously registered on our site. Please sign in under 'Already Registered?' (below) to register for this event."
+	                            flash.now[:error] = "You have previously registered on our site. Please sign in under 'Already Registered?' (below) to register your name for this Name Page."
 	                             
 	                    end 
 	                      render action: 'record'

@@ -70,6 +70,11 @@ def student_event?
 	'commencement' || current_user.event_type == 'all_inclusive'
 end 
 
+def is_student_event?(event)
+	event.event_type == 'students' || event.event_type == 'graduation' || event.event_type == 
+	'commencement' || event.event_type == 'all_inclusive'
+end 
+
 #not being used - was for testing the default grad page migration
 def create_default_grad_page(event)
 	if event.master == true

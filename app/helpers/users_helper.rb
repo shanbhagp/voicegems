@@ -60,6 +60,9 @@ module UsersHelper
             @sub.unlimited = @unlimited
             @sub.save 
 
+            #update customer with subscription_id
+            current_user.update_attributes(:subscription_id => @sub.id)
+
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
               :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
@@ -77,6 +80,9 @@ module UsersHelper
             @sub.events_remaining = @er
             @sub.unlimited = @unlimited
             @sub.save 
+
+            #update customer with subscription_id
+            current_user.update_attributes(:subscription_id => @sub.id)
 
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
@@ -217,6 +223,9 @@ module UsersHelper
           @sub.coupon = code
           @sub.events_remaining = @er
           @sub.save 
+
+          #update customer with subscription_id
+          current_user.update_attributes(:subscription_id => @sub.id)
 
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email,

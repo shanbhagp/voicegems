@@ -159,7 +159,16 @@
                                                          <div class="well span3">         
                                                              <h4><% if @user.phonetic.blank? && @user.notes.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                        
+                                                                      <% if is_student_event?(@event) %>
+
+                                                                       <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it said (what you go by):", placeholder: "(e.g., a nickname or middle name)"  %>
+
+                                                                        <% else %>
+
+                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+
+                                                                      <% end %>
                                                                             
                                                                             <br/>
 
