@@ -1,7 +1,4 @@
-<div class="jumbotron">
-      <h1> Reset Password </h1>
-     
-  </div>
+
              <% flash.each do |key, value| %>
             	<div class="alert alert-block alert-<%=key%>"> 
             	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -25,7 +22,8 @@
 			    <%= text_field_tag :email, params[:email] %>
 			  </div>
 			  <hr/>
-			  <div class="actions"><%= submit_tag "Reset Password", class: "btn btn-info" %></div>
+			  <div class="actions"><%= submit_tag "Reset Password", class: "btn btn-info" %></div> 
+        <h5> Please check your email for a link to reset your password </h5>
 			<% end %>
 
 	</div>
