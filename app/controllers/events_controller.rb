@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-	before_filter :signed_in_user, only: [:create, :show, :index, :edit, :update, :destroy, :voicegems]
+	before_filter :signed_in_user, only: [:create, :show, :index, :edit, :update, :destroy, :voicegems, :directory]
 	before_filter :correct_admin_or_user, only: [:show, :voicegems]
 	before_filter :correct_admin, only: [:edit]
 	before_filter :active_page_check, only: [:show]
@@ -389,7 +389,7 @@ def event_link_create  #for new users signing up from an event code link
 	    else #code entered doesn't exist for any event
 	      #@user = User.new #for the re-rendering of the eventcodesignup view
 	      #render this action again, with the flash message
-	      flash.now[:error] = 'Something went wrong. Please contact NameCoach for support'
+	      flash.now[:error] = 'Something went wrong. Please contact NameCoach for support, or click on the link you received again.'
 	      render action: 'record'
 	    end 
 	else

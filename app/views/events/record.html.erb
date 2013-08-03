@@ -109,9 +109,11 @@
                                                                   <%= f.input :first_name, label: "First Name" %>
                                                                   <%= f.input :last_name, label: "Last Name" %>
                                                                   <%= f.input :email %>
+                                                                <% if !@event.blank? %>
                                                                  <% unless @event.grad_array.empty? %>  
                                                                       <%= f.input :grad_date, collection: @event.grad_array, prompt: 'Please select your graduation date', label: "Graduation Date:" %> 
                                                                   <% end %>
+                                                                <% end %>
                                                                 <hr/>    
                                                          </div>
 
