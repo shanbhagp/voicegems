@@ -430,18 +430,18 @@ def record_step2  #should never be hit if user is not signed in - so maybe befor
 	#note that these incoming parameters are integers, not the model objects themselves - so can't set them to the model objects directly.
 	#@po = Practiceobject.find(params[:po]) #probably don't need this?
 
-	@event = Event.find(params[:event]) #probably don't need this either? DO need this for iolani helper called in record_step2 html, which uses @event intance originally coming directly from event_link_create action
+	#@event = Event.find(params[:event]) #probably don't need this either? DO need this for iolani helper called in record_step2 html, which uses @event intance originally coming directly from event_link_create action
 	# if don't need these last two, then don't need to have changed the renders to redirects to record_step2 in event_link_create?
 
  	 	#for settong @po if pressed back from record_step2 and then submits or presses forward
- 	  	if !@event.practiceobjects.blank? && @event.practiceobjects.find_by_user_id(@user.id)  #there is an already a PO with user's em for this event, floating; in this
+ 	 # 	if !@event.practiceobjects.blank? && @event.practiceobjects.find_by_user_id(@user.id)  #there is an already a PO with user's em for this event, floating; in this
  	  		# case, probably b/c user pressed back button from record_step2  
-	         @po = @event.practiceobjects.find_by_user_id(@user.id)
-		end
+	 #        @po = @event.practiceobjects.find_by_user_id(@user.id)
+	#	end
 		#but probably don't need to set @po anyway - not used in record_step2 view or helpers called in the view
 
 	# just in case this is needed somehwere, since it's set in event_link_create as well
-	@event_code = params[:event_code]
+	#@event_code = params[:event_code]
 end
 
 

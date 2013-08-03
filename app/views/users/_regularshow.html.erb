@@ -11,7 +11,7 @@
   </div>
 
    <table class="table">
-                <caption><em>(this is what will appear on the respective name pages, and will be used to practice your name)</em></caption>
+                <caption><em>(this is what will appear on the respective name pages)</em></caption>
                </table>
         <div class="row">
           <div class="well span8 modal-header">
@@ -282,7 +282,7 @@
                             <% if current_user.customer? || current_user.admin? %>
                               <caption><em>(this is what would appear on an admin's name page, and would be used to practice your name.  As a customer/admin, you probably needn't worry about your own NameGuide.)</em></caption>
                             <% else %>
-                              <caption><em>(this is what will appear on the admin's name page, and will be used to practice your name)</em></caption>
+                              <caption><em>(this is what will appear on the admin's name page)</em></caption>
                             <% end %>
                            </table>
 
@@ -418,6 +418,7 @@
   <hr/>
   <br/>
 
+<div class="invisible">
   <% if @user.practiceevents.any? %>
   <div class="row">
       <div class="span12 well">
@@ -496,6 +497,7 @@
   </div>
 
   <% end %>
+</div>
 
   <br/>
   <br/>

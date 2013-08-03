@@ -68,7 +68,7 @@
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
                                              <hr/>
                                           <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? Please check and enable this site's microphone access for your broswer. If there is a small 'Allow Access' bar at the top of your browser, click allow and then try recording again. Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings.</h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please temporarily disable it (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
@@ -99,7 +99,7 @@
             
                              <div class="modal-footer">
                                   <h5 class="right">(click here after you upload your recording)</h5>
-                                  <%= link_to setpassword_user_path(current_user), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large span1' do %>
+                                  <%= link_to setpassword_user_path(current_user), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large span2' do %>
                                                   DONE&nbsp;<i class="icon-caret-right icon-white"></i>
                                          <% end %>
                                 
@@ -119,72 +119,9 @@
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
                                                    <div class="row">
-                                                     <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                     
 
-                                                         <div class="well span3 offset1">
-                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
-                                                              
-                                                              <br/>
-                                                              <%= f.error_notification %>
-                                                              <%= f.hidden_field :event_code, :value => @event_code %>
-                                                                                                                                
-                                                                  <%= f.input :first_name, label: "First Name" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
-
-                                                              <hr/> 
-
-                                                         </div>
-
-                                                        <% if iolani %>  
-
-                                                         <div class="well span3">         
-                                                             <h4><% if @user.phonetic.blank? && @user.notes.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: NameGuide Info</span> <span class="muted"></span> </h4> 
-                                                              <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Please enter your FULL NAME (first, middle, and last) to be announced:", placeholder: "e.g., Praveen Ramesh Shanbhag, Jr.)"   %>
-                                                                            
-                                                                            <br/>
-
-                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation (OPTIONAL):" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
-                                                                          
-                                                                          <hr/>
-                                                                         
-                                                                     
-
-                                                          </div>
-
-                                                          <% else %>
-
-                                                         <div class="well span3">         
-                                                             <h4><% if @user.phonetic.blank? && @user.notes.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
-                                                              <br/>      
-                                                                        
-                                                                      <% if is_student_event?(@event) %>
-
-                                                                       <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it said (what you go by):", placeholder: "(e.g., a nickname or middle name)"  %>
-
-                                                                        <% else %>
-
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
-
-                                                                      <% end %>
-                                                                            
-                                                                            <br/>
-
-                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
-                                                                          
-                                                                          <hr/>
-                                                                         
-                                                                     
-
-                                                          </div>
-
-
-                                                          <% end %>
-
-                                                          <div class="well span3">
+                                                          <div class="well span3 offset4">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/>
                                                                   <div class="row">
@@ -201,8 +138,15 @@
                                                             
 
                                                           </div> 
-                                                    <% end %>
+                                                        
+                                                                
+                                                      
+
                                                     </div><%# end row %>
+
+                                             
+                                                                 <%= link_to "Skip Recording", {:controller => "users", :action => "setpassword", :id => current_user.id, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
+
                                         </div>
                                       </div>
                                     </div>
