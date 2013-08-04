@@ -389,7 +389,7 @@ def event_link_create  #for new users signing up from an event code link
 										flash[:error] = "If you wish to update your recording or NameGuide, please do so on this page."
 										redirect_to current_user	
 									else #has not recorded - so take them to the recording page (record_step2) again
-										flash[:error] = "Please record your name here. If you wish to edit your name, email, or NameGuide, please do so on your profile page after you record your name."
+										flash[:error] = "Please record your name. If you wish to edit your name/email or NameGuide, do so on your profile page after you record your name."
 										redirect_to record_step2_path(:user => @user, :event => @event, :event_code => @event_code)
 	                    			end 
 	                    		else #probably trying to register from record page with an existing email
