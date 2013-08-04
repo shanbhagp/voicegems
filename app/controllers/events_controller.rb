@@ -363,12 +363,12 @@ def event_link_create  #for new users signing up from an event code link
 	                  if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
 	                      @po = @event.practiceobjects.find_by_email(@user.email)
 	                      @po.update_attributes(:user_id => @user.id, :phonetic => @user.phonetic, :notes => @user.notes) #this should validate b/c # user is new 
-	                      flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
+	                      #flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
 	                      redirect_to record_step2_path(:user => @user, :po => @po, :event => @event)
 	                  else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
 	                        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations}
 	                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-	                           flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
+	                           #flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
 	                           redirect_to record_step2_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
 	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
 	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
@@ -425,6 +425,7 @@ def event_link_create  #for new users signing up from an event code link
 end
 
 def record_step2  #should never be hit if user is not signed in - so maybe before filter this.
+	flash.keep
 	@user = current_user
 
 	#note that these incoming parameters are integers, not the model objects themselves - so can't set them to the model objects directly.

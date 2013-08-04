@@ -120,6 +120,7 @@ before_filter :owner, only: [:console, :index, :destroy]
     @user = User.find(params[:id])
     if @user.recording.blank? && params[:x].blank?
          flash[:error] = "No recording was uploaded.  Please try again, and make sure to press 'Upload' after you hear your recording play back."
+
          redirect_to record_step2_path
     else
       flash.now[:info] = "Thank you! You have been given a temporary password. You will need to set a password to access this account in the future."
@@ -350,6 +351,7 @@ end
 
 
 def test
+
   @user = User.find(params[:id])
   render :layout => nil
   # necessary b/c having the rendered header was causing problems on the test page
