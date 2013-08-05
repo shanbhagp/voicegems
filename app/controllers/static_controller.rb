@@ -149,6 +149,10 @@ end
 def search_test
 end
 
+def flashdetect
+ # render :layout => nil
+end 
+
 def irecord
 render :layout => nil
 end 

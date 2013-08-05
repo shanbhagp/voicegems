@@ -312,6 +312,8 @@ match '/master_set_input', to: 'events#master_set_input'
 match '/default_grad', to: 'events#default_grad'
 match '/migrate_entries', to: 'events#migrate_entries'
 
+match '/flashdetect', to: 'static#flashdetect'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
