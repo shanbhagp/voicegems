@@ -69,15 +69,15 @@
                                     </div>
                                     <div id="collapserec2" class="accordion-body collapse">
                                       <div class="accordion-inner">
-                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
                                           
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
                                              <hr/>
                                           <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please temporarily disable it (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
                                               <hr/>
                                           <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
@@ -93,7 +93,7 @@
 
                                   <div class="accordion-group">
                                     <div class="accordion-heading">
-                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="/flashissue" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
+                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
                                     </div>
                                   </div>      
 
@@ -133,7 +133,7 @@
                                                                   
                                                                  </div>
 
-                                                                  <hr/></p><span class="red">If the recorder does not work, you may need to ensure that <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">Flash is enabled</a> on your browser.</span></p>
+                                                                  <hr/></p><span class="red">If the recorder does not work, you may need to ensure that <a href="<%= flashissue_path %>.htm#collapseTwo" target="_blank">Flash is enabled</a> on your browser.</span></p>
                                                                 
                                                             
 

@@ -882,4 +882,12 @@ def iolani
  (User.find_by_email('gradcust40@example.com') && @event.adminkeys.find_by_user_id(User.find_by_email('gradcust40@example.com').id)) || (User.find_by_email('tfleming@iolani.org') && @event.adminkeys.find_by_user_id(User.find_by_email('tfleming@iolani.org').id)) 
 end
 
+
+def student_event_user?
+  current_user.event_type == 'students' || current_user.event_type == 'graduation' || current_user.event_type == 
+  'commencement' || current_user.event_type == 'all_inclusive'
+end 
+
+
+
 end

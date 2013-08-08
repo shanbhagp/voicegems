@@ -162,11 +162,11 @@ class EventsController < ApplicationController
 
 		 # for rendering different text in the view  
 		 # not currently using this if-else-end
-		 if student_event?
-		 	@person = "Student"
-		 else
-		 	@person = "Attendee"
-		 end 
+		# if student_event?  
+		 #	@person = "Student"
+		 #else
+		 #	@person = "Attendee"
+		# end 
 		 
 		 if bigdaddyevent
 		 	

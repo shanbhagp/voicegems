@@ -116,6 +116,8 @@ end
  match '/addcodeadmin', to: 'sessions#addcodeadmin'
 
  match '/purchase_sub_existing', to: 'users#purchase_sub_existing'  #this used to be called stripetest
+ match 'purchase_sub_existing_edu', to: 'users#purchase_sub_existing_edu'
+ match 'purchase_sub_existing_edu_bridge', to: 'users#purchase_sub_existing_edu_bridge'
 
  match '/stripereceiver', to: 'users#stripereceiver' #, via: :post 
 

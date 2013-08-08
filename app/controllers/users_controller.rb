@@ -614,6 +614,50 @@ def purchase_sub_existing
   @third_plan = Plan.find_by_my_plan_id(plan_set_three)
 end 
 
+#-------------------- Education Existing User Purchase -------------------------------------------------------------------------
+def purchase_sub_existing_edu #much copied from static#students , but much not needed  #in case use customer registers but then comes back later to finish purchasing
+      @event = Event.find(ENV['demopage'].to_i)
+      @commencement_plan = Plan.find_by_my_plan_id(plan_set_commencement) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+      @students_plan = Plan.find_by_my_plan_id(plan_set_students)
+      @all_inclusive_plan = Plan.find_by_my_plan_id(plan_set_all_inclusive)
+      @practiceobject = Practiceobject.new  
+      @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
+      @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
+      @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
+      @unregisteredpos = @event.practiceobjects.unregistered.visible
+      @hiddenpos = @event.practiceobjects.hidden
+      @hiddenandregisteredpos  = @hiddenpos.registered
+      @hiddenandunregisteredpos = @hiddenpos.unregistered  
+
+      @url = demo_record_directory_url(:event_code => @event.event_code)
+end 
+
+#incoming from purchase_sub_existing_edu view
+def purchase_sub_existing_edu_bridge #like newcustomer action  #channeling back to original checkout process
+  @user = current_user
+  @plan = params[:snc][:plan] #gives my_plan_id
+  @event_type = params[:snc][:event_type] #gives 'reception' or 'wedding' depending on the channel; actually, will just be 'reception', since wedding channel has it's own controller
+  
+  #re-set customer event type
+  @user.update_attributes(:event_type => @event_type)
+
+  if signed_in?
+    if customer_has_active_subscription?
+    flash[:success] = "You have already subscribed to our service. If you wish to change your subscription, please contact us.  Thank you!."
+    redirect_to current_user
+    else 
+     #flash[:notice] = "Since you are already a registered user, please use this page to purchase a subscription."
+     @planobject = Plan.find_by_my_plan_id(@plan)
+     @events_number = @planobject.events_number 
+     @user = current_user
+     render 'stripenewcustomer_edu'
+    end 
+  end
+
+end 
+
+#-------------------- Education Existing User Purchase Code Ends -------------------------------------------------------------------------
+
 #renders checkout page for existing users w/o active sub buying a subscription
 def purchase_sub_existing_choose
   @plan = params[:sec][:plan] #now this is an integer, my_plan_id
