@@ -888,6 +888,9 @@ def student_event_user?
   'commencement' || current_user.event_type == 'all_inclusive'
 end 
 
+def wed_event_user?
+  current_user.event_type == 'wedding' || current_user.event_type == 'reception'
+end 
 
 
 end

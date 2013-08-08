@@ -267,7 +267,7 @@ match 'wed_stripereceiver_purchase', to: 'users#wed_stripereceiver_purchase'
 
 match 'weddings', to: "static#weddings"
 match 'receptions', to: "static#receptions"
-match 'graduations', to: "static#graduations"
+match 'graduations', to: "static#commencements"
 match 'commencements', to: "static#commencements"
 match 'students', to: "static#students"
 match 'students_extra', to: "static#students_extra"
