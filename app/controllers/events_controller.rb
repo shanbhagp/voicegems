@@ -568,6 +568,20 @@ def event_code_add  #this is for registering to record with an event link, for a
 
   end 
 
+
+  def demo_record_temp
+
+    @event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+  end 
+
   def demo_record_wedding
 
     @event_code = params[:event_code]
