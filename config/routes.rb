@@ -316,7 +316,7 @@ match '/migrate_entries', to: 'events#migrate_entries'
 
 match '/flashdetect', to: 'static#flashdetect'
 
-match '/demo_record_temp', to: 'events#demo_record_temp', as: '/demo_record_temp'
+match '/demo_record_temp/:event_code', to: 'events#demo_record_temp', as: '/demo_record_temp'
 
 #match '/show_master', to: 'events#show_master'
 
