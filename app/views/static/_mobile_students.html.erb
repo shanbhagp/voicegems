@@ -1,6 +1,3 @@
-<% if mobile_device? %>
-  <%= render 'static/mobile_students' %>
-<% else %> 
 <div class="jumbotron">
       <h1>Start the School Year Right with Our Student Name Directory Service </h1>
   </div>
@@ -22,9 +19,11 @@
 <div class="sep"></div>
 <br/>
 
+<div class="container">
+
 <div class="row">
-    <div class="span8 offset3">
-      <center><h3>"As teachers, it is our responsibility to learn our students’ names and thus respect their identities and their cultures."</h3> &#8213; <a href="<%= "http://www.tolerance.org/blog/respect-little-q-your-class" %>" target="_blank">Ashley Lauren Samsa, "Respect the 'Little Q' in Your Class," <em>Teaching Tolerance</em></a> </center>
+    <div class="span12">
+      <center><h2>"As teachers, it is our responsibility to learn our students’ names and thus respect their identities and their cultures."</h2> <h4> &#8213;<a href="<%= "http://www.tolerance.org/blog/respect-little-q-your-class" %>" target="_blank">Ashley Lauren Samsa, "Respect the 'Little Q' in Your Class," <em>Teaching Tolerance</em></a></h4> </center>
       <hr/>
     </div>
 </div>
@@ -34,35 +33,34 @@
 <br/>
 
 <div class="row">
-  <div class="span8 offset3">
-    <p><h3><center>Without an easy and effective tool, meeting this challenge in schools has (understandably) been difficult, leading to a variety of negative effects.</center></h3><p>
+  <div class="span12">
+    <h2><center>Without an easy and effective tool, meeting this challenge in schools has (understandably) been difficult, leading to a variety of negative effects.</center></h2>
   </div>
 </div>
 
 <br/>
 
-<div class="row">
-<div class="span8 offset3">
-  <h4> <span class="black"><img src="<%= image_path('shouter-left.png') %>" align="right"></br><span class="qstart-small">&#8220;</span>Prolonged mispronunciation of names can lead to the development of anxiety and resentment. This may further lead to an interpretation by the person in question that his/her culture is not valued. When a student goes to school and their name is mispronounced or changed, it can negate the thought, care, and significance of the name, and thus the identity of the student.<span class="qend-small">&#8221;</span></h4><br/><h5>&#8213;&nbsp; <a href="http://www.academia.edu/192884/Kohli_R._and_Solorzano_D._2012_Teachers_please_learn_our_names_Racial_Microagressions_and_the_K-12_Classroom._Race_Ethnicity_and_Education" target="_blank">Kohli, R. & Solorzano, D. (2012), "Teachers, Please Learn Our Names!: Racial Microagressions in the K-12 Classroom," <em>Race, Ethnicity, and Education</em></a></h5></span>
+<div class="span12">
+  <h2> <span class="black"><img src="<%= image_path('shouter-left.png') %>" align="right"></br><span class="qstart-small">&#8220;</span>Prolonged mispronunciation of names can lead to the development of anxiety and resentment. This may further lead to an interpretation by the person in question that his/her culture is not valued. When a student goes to school and their name is mispronounced or changed, it can negate the thought, care, and significance of the name, and thus the identity of the student.<span class="qend-small">&#8221;</span></h2><br/><h3>&#8213;&nbsp; <a href="http://www.academia.edu/192884/Kohli_R._and_Solorzano_D._2012_Teachers_please_learn_our_names_Racial_Microagressions_and_the_K-12_Classroom._Race_Ethnicity_and_Education" target="_blank">Kohli, R. & Solorzano, D. (2012), "Teachers, Please Learn Our Names!: Racial Microagressions in the K-12 Classroom," <em>Race, Ethnicity, and Education</em></a></h3></span>
 <hr/>
 </div>
-</div>
+
 <br/>
 
 <div class="row">
-  <div class="span8 offset3">
-   <h2> <span class="black">Our <em>Student Name Directory</em> is a unique, easy-to-use solution</span>: </h2>
+  <div class="span12">
+   <h1> <span class="black">Our <em>Student Name Directory</em> is a unique, easy-to-use solution</span>: </h1>
   </div>
 </div>
 
  <div class="row biggertext">
-    <div class="span8 offset3">
+    <div class="span12">
 
         
         <div class="content process biggertext">
 
           <div class="row">
-             <div class="span8">
+             <div class="span12">
                  <div class="process-meta fl-left">
                    <span>1</span>
                  </div>
@@ -75,7 +73,7 @@
           </div>
 
           <div class="row">
-             <div class="span8">
+             <div class="span12">
                  <div class="process-meta fl-left">
                    <span>2</span>
                  </div>
@@ -89,7 +87,7 @@
           </div>
 
          <div class="row">
-             <div class="span8">
+             <div class="span12">
                  <div class="process-meta fl-left">
                    <span>3</span>
                  </div>
@@ -99,33 +97,31 @@
                   <i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= demo_directory_path %>" target="_blank" class="biggerlink">Demo Directory</a>
               </div> 
           </div>
-
         </div>
-
       </div>
-  </div>  
+    </div>  
 
 <div class="row">
-  <div class="span8 offset3">
-    <center><p><h2>With <em>NameCoach</em> services...&nbsp;</h2><p></center>
+  <div class="span12">
+    <center><p><h1>With <em>NameCoach</em> services...&nbsp;</h1><p></center>
   </div>
 </div>
 
 <br/>
 
-<div class="span10 offset2">
+<div class="span12">
   <div class="row biggertext">
-    <div class="rp-item span4">
+    <div class="rp-item span5">
      <img src="<%= image_path('student-line.png')%>">  <br/>
 
       
-        <center><p><h4><span class="purple">Teachers finally have an easy and effective way to help immediately establish good relationships.</span></h4></p></center>
+        <center><p><h2><span class="purple">Teachers finally have an easy and effective way to help immediately establish good relationships.</span></h2></p></center>
       
     </div>
-    <div class="rp-item span4 offset1">
+    <div class="rp-item span5 offset1">
        <img src="<%= image_path('student-children-line.png')%>">
 
-        <center><p><h4><span class="blue">And students feel more welcomed and respected in a safe and inclusive learning environment. </span></h4></p></center>
+        <center><p><h2><span class="blue">And students feel more welcomed and respected in a safe and inclusive learning environment. </span></h2></p></center>
 
     </div>
   </div>
@@ -133,15 +129,15 @@
 
    
   <div class="row">
-    <div class="span8 offset3">
+    <div class="span12">
       <hr/>
-      <center><p><h4><em>Curious about our other educational services? Click <a href="<%= commencements_path %>" class="cent">here</a> for more information on the commencement ceremony service!</em></h4></p></center>
+      <center><p><h2><em>Curious about our other educational services? Click <a href="<%= commencements_path %>" class="cent">here</a> for more information on the commencement ceremony service!</em></h2></p></center>
     </div>
   </div>
 
       <div class="row">
 
-          <div class="span6 offset2">
+          <div class="span12">
 
             <!-- Slider (Flex Slider -->
             <div class="flexslider">
@@ -149,35 +145,36 @@
                 
                 <li> 
                   <div class="test">
-                      <strong><span class="qstart">&#8220;</span>NameCoach was a huge asset to the success of our graduation ceremony.  <span class=" black">It's a simple, intuitive, and most importantly helpful tool </span> to make sure that each person hears their name pronounced correctly during their moment of honor. I look forward to continuing to use the service to make sure that students are respected and announced accurately at our future events.<span class="qend">&#8221;</span></strong>
+                      <h3><strong><span class="qstart">&#8220;</span>NameCoach was a huge asset to the success of our graduation ceremony.  <span class=" black">It's a simple, intuitive, and most importantly helpful tool </span> to make sure that each person hears their name pronounced correctly during their moment of honor. I look forward to continuing to use the service to make sure that students are respected and announced accurately at our future events.<span class="qend">&#8221;</span></strong></h3>
                   </div>
                   <div class="test-arrow"></div>
-                  <div class="tauth"><i class="icon-user"></i> Mike Wilson, <span class="color">Faculty, Haltom High School</span></div>
+                  <div class="tauth"><h4><i class="icon-user"></i> Mike Wilson, <span class="color">Faculty, Haltom High School</span></h4></div>
                 </li>
                 
                 <li>
                   <div class="test">
-                      <strong><span class="qstart">&#8220;</span><span class=" black">NameCoach was a wonderful resource for our faculty, staff and students for our Commencement ceremony.</span> Easy to use, and it was helpful to have our students record their name pronuciations for our faculty. It was one less thing we had to worry about! This is such an important event for our students, and using NameCoach certainly contributed to the success of our program. <span class=" black">Their customer service was exceptional</span> and they replied to our questions/concerns in a timely manner.  <span class=" black">We are excited to use the new Student Name Directory service for upcoming orientation and recruitment events!</span> <span class="qend">&#8221;</span></strong>
+                      <h3><strong><span class="qstart">&#8220;</span><span class=" black">NameCoach was a wonderful resource for our faculty, staff and students for our Commencement ceremony.</span> Easy to use, and it was helpful to have our students record their name pronuciations for our faculty. It was one less thing we had to worry about! This is such an important event for our students, and using NameCoach certainly contributed to the success of our program. <span class=" black">Their customer service was exceptional</span> and they replied to our questions/concerns in a timely manner.  <span class=" black">We are excited to use the new Student Name Directory service for upcoming orientation and recruitment events!</span> <span class="qend">&#8221;</span></strong></h3>
                   </div>
                   <div class="test-arrow"></div>
-                  <div class="tauth"><i class="icon-user"></i> Olgalydia Winegar, <span class="color">Student Services Manager, Stanford BioE Dept.</span></div>
+                  <div class="tauth"><h4><i class="icon-user"></i> Olgalydia Winegar, <span class="color">Student Services Manager, Stanford BioE Dept.</span></h4></div>
                 </li>
 
                 <li>
                   <div class="test">
-                      <strong><span class="qstart">&#8220;</span>The Commencement Service is a very nice program. But  <span class=" black">it's one thing to have your name mispronounced at Graduation; it's another to have your name mispronounced every day in class.</span> I look forward to inviting all of my students to use the resource in anticipation of the first day of school.  <span class=" black">My teachers will be asked to review their class rosters and if they come across a name they feel would be hard to pronounce, they can listen to the name before the student even enters class!</span>  This, I feel, would go a long way to helping to create an inclusive, safe learning environment.<span class="qend">&#8221;</span></strong>
+                      <h3><strong><span class="qstart">&#8220;</span>The Commencement Service is a very nice program. But  <span class=" black">it's one thing to have your name mispronounced at Graduation; it's another to have your name mispronounced every day in class.</span> I look forward to inviting all of my students to use the resource in anticipation of the first day of school.  <span class=" black">My teachers will be asked to review their class rosters and if they come across a name they feel would be hard to pronounce, they can listen to the name before the student even enters class!</span>  This, I feel, would go a long way to helping to create an inclusive, safe learning environment.<span class="qend">&#8221;</span></strong></h3>
                   </div>
                   <div class="test-arrow"></div>
-                  <div class="tauth"><i class="icon-user"></i> Greg Louie, <span class="color">Principal, Santa Teresa High School</span></div>
+                  <div class="tauth"><h4><i class="icon-user"></i> Greg Louie, <span class="color">Principal, Santa Teresa High School</span></h4></div>
                 </li>
                 
-                <li>
+              <li>
                   <div class="test">
-                      <strong><span class="qstart">&#8220;</span>A creative way to address a very real (all-too-real) problem.<span class="qend">&#8221;</span></strong>
+                      <h3><strong><span class="qstart">&#8220;</span>A creative way to address a very real (all-too-real) problem.<span class="qend">&#8221;</span></strong></h3>
                  </div>
                  <div class="test-arrow"></div>
-                 <div class="tauth"><i class="icon-user"></i> Daniel Regan, <span class="color">Faculty, Johnson State College </span></div>               
+                 <div class="tauth"><h4><i class="icon-user"></i> Daniel Regan, <span class="color">Faculty, Johnson State College </span></h4></div>               
                 </li>
+
 
               </ul>
             </div>  <!-- END Slider (Flex Slider -->
@@ -185,12 +182,15 @@
 
           </div>  <!-- END SPAN FOR SLIDER -->
 
+<div>
+
+<div class="row">
 
       <div class="recent-posts">
 
 
-      <div class="span4">
-        <strong><em><span class="help-block">Some NameCoach Users:</span></em></strong>
+      <div class="span12">
+        <h3><strong><em><span class="help-block">Some NameCoach Users:</span></em></strong></h3>
         <div class="clearfix"></div>
         <ul class="rps-carousel">
             <!-- Recent posts #1 -->
@@ -201,7 +201,7 @@
                
                   <div class="rp-details">
                     <!-- Title and para -->
-                    <h5>Stanford University</h5>
+                    <h3>Stanford University</h3>
                     <p>Department of BioEngineering</p>         
                   </div>                
                 </div>        
@@ -211,7 +211,7 @@
                 <div class="rp-item"> 
     
                   <div class="rp-details">
-                    <h5>Haltom High School</h5>
+                    <h3>Haltom High School</h3>
                     <p>Fort Worth, Texas</p>         
                   </div>                
                 </div>        
@@ -221,7 +221,7 @@
                 <div class="rp-item"> 
   
                   <div class="rp-details">
-                    <h5> University of Southern California </h5>
+                    <h3> University of Southern California </h3>
                     <p>Leventhal School</p>         
                   </div>                
                 </div>        
@@ -231,7 +231,7 @@
                 <div class="rp-item"> 
 
                   <div class="rp-details">
-                    <h5>Iolani High School </h5>
+                    <h3>Iolani High School </h3>
                     <p>Honolulu, Hawaii</p>         
                   </div>                
                 </div>        
@@ -241,7 +241,7 @@
                 <div class="rp-item"> 
 
                   <div class="rp-details">
-                    <h5>Stanford Univeristy </h5>
+                    <h3>Stanford Univeristy </h3>
                     <p>Department of Statistics</p>         
                   </div>                
                 </div>        
@@ -251,7 +251,7 @@
                 <div class="rp-item"> 
 
                   <div class="rp-details">
-                    <h5>Santa Teresa High School </h5>
+                    <h3>Santa Teresa High School </h3>
                     <p>San Jose, California</p>         
                   </div>                
                 </div>        
@@ -277,7 +277,7 @@
 </div>
 
 
-<div class="container">
+
 <br/>
 <div class="sep"></div>
 
@@ -285,7 +285,7 @@
 <div class="row"id="free_trial">
   <div class="span9 offset1">
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h1 class="light-blue cent"><em>Back-to-School Season Offer:</em></h1>
-   <center> <h4> 10% off any subscription with code BTS13 at checkout (through August 21st) </h4> </center>
+   <center> <h2> 10% off any subscription with code BTS13 at checkout (through August 21st) </h2> </center>
  </div>
 </div>
 
@@ -309,7 +309,7 @@
               <li>As many Name Pages as needed for a successful commencement</li>
               <li>Different lists for different announcers, degree programs, etc.</li>
               <li>Unlimited name recordings</li>
-             <li>Free <em>Audentity</em> Service for your Students&nbsp;<i class="icon-info-sign light-blue" id= "popover_audentity" rel="popover" data-placement="left" data-content="Any student who records on our site will be offered <strong>free lifetime access</strong> to our soon-to-be-released <em>Audentity</em> service.<br/><br/> <em>Audentity</em> allows individuals to embed their name recording in their email signatures and social media presence.<br/><br/>We want your students to enjoy hearing their names pronounced correctly everywhere, long after they graduate!<br/><br/>" data-original-title="Lifetime <em>Audentity</em> Service"></i></li>
+             <li>Free <em>Audentity</em> Service for your Students</li>
               <br/><br/><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
@@ -327,7 +327,7 @@
         <!--Gold-->
         <div class="fltlft PlanBoxGold">
           <div class="PlanBoxHeading"><strong><center>STUDENT NAME DIRECTORY</center></strong></div>
-          <i><center>Build an environment of respect and inclusion from the first day of class by ensuring that every student's name is said perfectly. </center></i>
+          <i><center>Build an environment of respect and inclusion from the first day of class by ensuring that every student's name is said perfectly.</center></i>
           <br/>
           <div class="PlanBoxContent">
             <ul>
@@ -335,7 +335,7 @@
               <li>Create a master list for all students, current and incoming </li> <br/>
               <li>Teachers and staff can use a built-in search bar to look up any student's name with ease</li>
               <li>Unlimited name recordings</li>
-              <li>Free <em>Audentity</em> Service for your Students&nbsp;<i class="icon-info-sign light-blue" id= "popover_audentity_2" rel="popover" data-placement="left" data-content="Any student who records on our site will be offered <strong>free lifetime access</strong> to our soon-to-be-released <em>Audentity</em> service.<br/><br/> <em>Audentity</em> allows individuals to embed their name recording in their email signatures and social media presence.<br/><br/>We want your students to enjoy hearing their names pronounced correctly everywhere, long after they graduate!<br/><br/>" data-original-title="Lifetime <em>Audentity</em> Service"></i></li>
+              <li>Free <em>Audentity</em> Service for your Students</li>
               <br/><br/><br/>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
@@ -396,4 +396,6 @@
 
 </div>
 
-<% end %>
+</div>
+
+</div>
