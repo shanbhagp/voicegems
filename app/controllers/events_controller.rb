@@ -642,6 +642,8 @@ def locked
 	 @undergradpos = @registeredandrecordedpos.where("admin_notes = ? OR admin_notes = ?", 'BS', 'BSH') 
 
 	 @url = record_url(:event_code => @event.event_code)
+
+	 @individual = individual(@event) # for setting the language in the show page
 end
 
 def master_set
