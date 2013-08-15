@@ -1,4 +1,28 @@
+<script>
+$(document).ready( function() {
+  repositionContentContainer();
+});
 
+function repositionContentContainer() {
+  // this routine is a complete hack to work around the flash "Allow" button bug
+  if ( $("#content").length > 0 ) {
+
+    //Adjust the #content left-margin, since by default it likely isn't an int
+    setLeftMargin();
+    //If the User resizes the window, adjust the #content left-margin
+    $(window).bind("resize", function() { setLeftMargin(); });
+  }
+}
+
+function setLeftMargin() {
+  var newWindowWidth = $(window).width();
+  var mainWellWidth = $("#content").width();
+  // create an integer based left_offset number
+  var left_offset = parseInt((newWindowWidth - mainWellWidth)/2.0);
+  if (left_offset < 0) { left_offset = 0; }
+  $("#content").css("margin-left", left_offset);
+}
+</script>
 
 <% flash.each do |key, value| %>
     <div class="alert alert-block alert-<%=key%>"> 
@@ -69,7 +93,15 @@
                             <div class="modal-body">
             
             
-                                <iframe src='<%= demo_recorder_path%>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
+                                <script>
+                                  function reloadPage() {
+                                    document.getElementById('recorder').contentWindow.location.reload();
+                                  }
+                                </script>
+            
+                                <input type="image" src="/assets/refresh-recorder.png" onclick="reloadPage()"> 
+
+                                <iframe iframe id="recorder" name="recorder"src='<%= demo_recorder_path%>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
             
                                 <div class="accordion" id="accordionrec">
 
@@ -146,7 +178,20 @@
 
                          </div> <%# end modal %>
 
-
+              <div class="row">
+                           <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
+                           <div class="span8 offset2">
+                            <h4 id="chrome"></h4>
+                            <script type='text/javascript'>
+                              var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+                              if (is_chrome) {
+                                $('#chrome').html('Using Chrome? Please allow NameCoach to access your microphone (ABOVE) before recording.');
+                                $('#chrome').attr("class","red");;
+                              }
+                            </script> 
+                            <br/>
+                           </div>
+              </div>
 
                           <div class="accordion" id="accordion3">
                                     <div class="accordion-group bg-signup">
@@ -194,24 +239,42 @@
 
                                                           <div class="well span3">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
-                                                                  <br/><br/><br/> <br/>
+                                                                  <br/>
                                                                   <div class="row">
                                                                  
                                                                      <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name <span><em></em></span></button>
                                                                                                                                            
-                                                                     <br/><br/>
+                                                                     <br/>
                                                                      <div class="cent">
                                                                       <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Demo!</em></span></h3>
                                                                      </div>
+
+
+                                                                     <br/>
+
+
+                                                                     <div class="span3">
+
+                                                                      <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
+                                                                          <h4> Can you see the animation below? </h4>
+                                                                          
+
+                                                                         <embed src="<%= asset_path('ncflash.swf') %>" width="270" height="130"/>
+
+                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseTwo" target="_blank">check that Flash is enabled and Flash-blockers are disabled.</a> before recording.</h5> 
+                                                                          
+                                                                      </div>
+
+                                                                     <!-- BELOW: method to trigger permission dialogue to use microphone and video. Doesn't seem to work for our cause as it doesn't add site to Chrome's Media exceptions list--> 
 
                                                                      <script>
                                                                       var onFail = function(e) {
                                                                         console.log('Fail', e);
                                                                       };
-                                                                      navigator.webkitGetUserMedia({audio: true}, onFail);
+                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
                                                                      </script> 
 
-                                                                     <!--<script type='text/javascript' src='flashblock-detector.js'> -->
+
                                                                      <script>
                                                                       function callbackMethod(val) {
                                                                         if (val > 0) {
@@ -234,7 +297,7 @@
 
 
                                                                    
-                                                                <br/><br/><hr/>
+                                                               
                                                                 
                                                             
 
