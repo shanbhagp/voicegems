@@ -12,6 +12,7 @@ before_filter :correct_user, only: [:show, :edit, :update, :account, :setpasswor
 # before_filter :not_customer, only: [:stripetest] #now allowing for purchasing a sub even if already is a customer
 before_filter :customer_has_no_active_subscription, only: [:purchase_sub_existing] #purchase_sub_existing is the path from the 'purchase sub' link
 before_filter :owner, only: [:console, :index, :destroy]
+before_filter :set_cache_buster, only: [:show]
 
 
 
@@ -57,7 +58,7 @@ before_filter :owner, only: [:console, :index, :destroy]
   # GET /users/1
   # GET /users/1.json
   def show
-    expires_now 
+    expires_now #because refresh of user show was not giving updated recordings; must have been caching the mp3
     @user = User.find(params[:id])
     #@user.password = BCrypt::Password.new(@user.password_digest)
     #@user.password_confirmation = @user.password
