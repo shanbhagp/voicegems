@@ -57,6 +57,7 @@ before_filter :owner, only: [:console, :index, :destroy]
   # GET /users/1
   # GET /users/1.json
   def show
+    expires_now 
     @user = User.find(params[:id])
     #@user.password = BCrypt::Password.new(@user.password_digest)
     #@user.password_confirmation = @user.password
@@ -117,11 +118,18 @@ before_filter :owner, only: [:console, :index, :destroy]
 
   def setpassword
     
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) unless params[:id].blank?
+    @event = Event.find(params[:event]) unless params[:event].blank?
+    @event_code = params[:event_code] unless params[:event_code].blank?
+    @vg = params[:vg] unless params[:vg].blank?
+    
     if @user.recording.blank? && params[:x].blank?
          flash[:error] = "No recording was uploaded.  Please try again, and make sure to press 'Upload' after you hear your recording play back."
-
+         if bigdaddyevent
+          redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+         else
          redirect_to record_step2_path
+         end 
     else
       flash.now[:info] = "Thank you! You have been given a temporary password. You will need to set a password to access this account in the future."
     end 
@@ -357,6 +365,13 @@ def test
   # necessary b/c having the rendered header was causing problems on the test page
 end 
 
+
+def autotest
+
+  @user = User.find(params[:id])
+  render :layout => nil
+  # necessary b/c having the rendered header was causing problems on the test page
+end 
 
 
 # NOT BEING USED (I think)

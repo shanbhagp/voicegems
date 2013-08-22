@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730192207) do
+ActiveRecord::Schema.define(:version => 20130815111129) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -117,12 +117,17 @@ ActiveRecord::Schema.define(:version => 20130730192207) do
     t.integer  "userinvite_id"
     t.integer  "admin_id"
     t.string   "token"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "recording"
     t.string   "phonetic"
     t.text     "notes"
     t.boolean  "hidden"
+    t.string   "rec_file_name"
+    t.string   "rec_content_type"
+    t.integer  "rec_file_size"
+    t.datetime "rec_updated_at"
+    t.string   "vidrec"
   end
 
   add_index "practiceobjects", ["email"], :name => "index_practiceobjects_on_email"

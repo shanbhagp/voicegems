@@ -5,20 +5,28 @@ before_filter :correct_user_for_vg, only: [:edit]
 
 def vgrecord
 
+  if signed_in?
+    flash[:success] = "Trying to record your VoiceGem? Please do so below."
+    redirect_to current_user 
+  end 
+    
   @event_code = params[:event_code]
+
   if Event.find_by_event_code(@event_code)
    @event = Event.find_by_event_code(@event_code)
    @user = User.new
+
   else
   flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
-  redirect_to root_path 
+    redirect_to root_path 
   end 
+
 
 end 
 
 def vg_event_link_create
 
-  @user = User.new
+    @user = User.new
     @user.email = params[:user][:email]
     @pw = SecureRandom.urlsafe_base64
     @user.password=@pw
@@ -46,8 +54,8 @@ def vg_event_link_create
 
                     @vg = Voicegem.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :notes => @user.vg_notes, :request => @user.vg_request)
                     if @vg.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-                             flash.now[:info] = "Now just record your VoiceGem for this event (#{@event.title}), and you're done!"
-                             render action: 'vgrecord_step2'
+                            # flash[:info] = "Now just record your VoiceGem for this event (#{@event.title}), and you're done!"
+                             redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
                     else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
                       redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact NameCoach for support."
                     end 
@@ -58,25 +66,38 @@ def vg_event_link_create
                     #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
                     # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
                       if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-                              flash.now[:error] = "You have previously registered on our site. Please sign in under 'Already Registered?' (below) to record a VoiceGem for this event."
-                               
+                              if signed_in? #perhaps pressing back button from record_step2 to change name or email?
+                                      #users may never get here because we check signed_in? in the record action
+                                      if !@user.recording.blank? #has already recorded.  Just take them to their profile page
+                                        flash[:error] = "If you wish to update your VoiceGem or anything else, please do so on this page."
+                                        redirect_to current_user  
+                                     else #has not recorded - so take them to the recording page (record_step2) again
+                                      flash[:error] = "Please record your VoiceGem. If you wish to edit your name/email or notes to the MC/DJ, do so on your profile page after you record your name."
+                                      @vg = current_user.voicegems.find_by_event_id(@event.id).first
+                                      redirect_to vgrecord_step2_path(:user => @user, :event => @event, :event_code => @event_code, :vg => @vg)
+                                      end 
+                              else #probably trying to register from record page with an existing email
+                                    flash[:error] = "This email (#{@user.email}) is already registered on our site. Please sign in under 'Already Registered?' (below) to record a VoiceGem for this event. If you didn't set or forgot your password, please click 'Reset Password' above."
+                                      redirect_to vgrecord_path(:event_code => @event_code) 
+                              end 
+                      else
+                         flash[:error] = "Please be sure to enter your first name, last name, and valid email address."         
+                          redirect_to vgrecord_path(:event_code => @event_code) 
                       end 
-                        render action: 'vgrecord'
-                      
-                      
+                                          
               end   
       else #code entered doesn't exist for any event
         #@user = User.new #for the re-rendering of the eventcodesignup view
         #render this action again, with the flash message
-        flash.now[:error] = 'Something went wrong. Please contact NameCoach for support'
-        render action: 'vgrecord'
+        flash[:error] = 'Something went wrong. Please contact NameCoach for support'
+        redirect_to vgrecord_path(:event_code => @event_code)  
       end 
   else
     #@user = User.new #for the re-redering of the eventcodesignup view
     #run existing users#create code - maybe make this a helper method
     # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
-    flash.now[:error] = 'Something went wrong.  Please contact NameCoach for support.'
-    render action: 'vgrecord'
+    flash[:error] = 'Something went wrong.  Please contact NameCoach for support.'
+    redirect_to vgrecord_path(:event_code => @event_code)  
     
     
   end
@@ -86,6 +107,12 @@ end
 
 
 def vgrecord_step2
+  @event = Event.find(params[:event])
+  @event_code = params[:event_code]
+  @vg = params[:vg]
+
+  flash.keep
+  @user = current_user
 #  @user = current_user this can't be being set if just rendering this page 
 #@vg and @user must be being set in the vg_event_link_create action (which mediates vgrecord and vgrecord_step2)
 end 
@@ -152,7 +179,7 @@ def vgsaveupload
 
 
     @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}")
-      
+    current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}")
 
       false 
 

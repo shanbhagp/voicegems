@@ -1,7 +1,7 @@
 <div class="jumbotron">
       <h1>VoiceGem Recording <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h1>
       
-      <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
+      <% if !@event.nil? %><% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %><% end %>
   </div>                                
 
 <% flash.each do |key, value| %>
@@ -32,8 +32,21 @@
 
                             <div class="modal-body">
             
+                              <script>
+                                  function reloadPage() {
+                                    document.getElementById('recorder').contentWindow.location.reload();
+                                  }
+                                </script>
             
-                                <iframe src='<%= vgtest_voicegem_path(@vg) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
+                                <input type="image" src="/assets/refresh-recorder.png" onclick="reloadPage()"> 
+                                
+                                <iframe id="recorder" src='<%= vgtest_voicegem_path(@vg) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
+
+                                <div class="modal-footer">
+                                 <div class="right"><strong>(click 'SAVE' after you click 'UPLOAD')</strong> <%= link_to setpassword_path(:id => current_user.id, :event => @event, :event_code => @event_code, :vg => @vg), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary span2' do %> SAVE&nbsp;<i class="icon-caret-right icon-white"></i>
+                                  <% end %></div> 
+                                  
+                                </div>
             
                                 <div class="accordion" id="accordionrec">
 
@@ -67,14 +80,15 @@
                                     </div>
                                     <div id="collapserec2" class="accordion-body collapse">
                                       <div class="accordion-inner">
-                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
                                           
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
                                              <hr/>
                                           <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
-                                          
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
+                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
                                               <hr/>
                                           <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
@@ -90,7 +104,7 @@
 
                                   <div class="accordion-group">
                                     <div class="accordion-heading">
-                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="/flashissue" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
+                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
                                     </div>
                                   </div>      
 
@@ -99,14 +113,7 @@
              
 
                              </div> <%# End modal body %> 
-            
-                             <div class="modal-footer">
-                                  <h5 class="right">(click here after you upload your recording)</h5>
-                                  <%= link_to setpassword_user_path(current_user), confirm: 'Did you remember to Upload your recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large span1' do %>
-                                                  DONE&nbsp;<i class="icon-caret-right icon-white"></i>
-                                         <% end %>
-                                
-                             </div>
+
 
                          </div> <%# end modal %>
 
@@ -122,40 +129,9 @@
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
                                                    <div class="row">
-                                                     <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                     
 
-                                                         <div class="well span3 offset1">
-                                                          <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
-                                                              
-                                                              <br/>
-                                                              <%= f.error_notification %>
-                                                              <%= f.hidden_field :event_code, :value => @event_code %>
-                                                                                                                                
-                                                                  <%= f.input :first_name, label: "First Name" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
-
-                                                              <hr/> 
-
-                                                         </div>
-                                                         <div class="well span3">         
-                                                             <h4><% if @user.vg_notes.blank? && @user.vg_request.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: Notes/Request</span> <span class="muted">(optional)</span> </h4> 
-                                                              <br/>      
-
-                                                                         <span class="textarea2">
-                                                                         <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
-                                                                           </span> 
-                                                                           
-
-                                                                          
-                                                                        
-                                                                         
-                                                                     <hr/>
-                                                                     
-
-                                                          </div>
-
-                                                          <div class="well span3">
+                                                          <div class="well span3 offset4">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
                                                                   <br/><br/><br/> <br/>
                                                                   <div class="row">
@@ -173,8 +149,9 @@
                                                             
 
                                                           </div> 
-                                                    <% end %>
+                                                  
                                                     </div><%# end row %>
+                                                    <%= link_to "Skip to Profile Page", {:controller => "users", :action => "setpassword", :id => current_user.id, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
                                         </div>
                                       </div>
                                     </div>

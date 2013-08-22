@@ -153,6 +153,15 @@ def flashdetect
  # render :layout => nil
 end 
 
+def precord
+ # if params[:ZenId]
+  #@ZenId = params[:ZenId]
+ # else
+ # @ZenId = 4 
+ # end  
+  @practiceobject = current_user.practiceobjects.first
+end
+
 def irecord
 render :layout => nil
 end 

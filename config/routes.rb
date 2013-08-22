@@ -51,8 +51,8 @@ end
       get :account
       put :post_account
       get :test
+      get :autotest
       post :hide
-      get :setpassword
     end
   end
 
@@ -232,6 +232,7 @@ match '/vg_admininvite', to: 'admininvites#vg_admininvite'
 
 match '/vgrecord/:event_code', to: 'voicegems#vgrecord', as: '/vgrecord'
 match '/vgrecord', to: 'users#home'
+match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
 
 match '/vg_event_link_create', to: 'voicegems#vg_event_link_create'
 
@@ -317,6 +318,10 @@ match '/migrate_entries', to: 'events#migrate_entries'
 match '/flashdetect', to: 'static#flashdetect'
 
 match '/demo_record_temp/:event_code', to: 'events#demo_record_temp', as: '/demo_record_temp'
+
+match '/precord', to: 'static#precord'
+
+match 'setpassword', to: 'users#setpassword'
 
 #match '/show_master', to: 'events#show_master'
 

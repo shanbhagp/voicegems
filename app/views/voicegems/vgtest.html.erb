@@ -60,7 +60,7 @@
           &nbsp;<span class="red">MIC LEVEL</span> 
         </p>
         <p>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elapsed Time: <span id="time">00</span>/30 seconds 
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elapsed Time: <span id="time">0</span> seconds 
        </p>
         
        
@@ -68,7 +68,7 @@
 
       
           
-          <div class = "span4 well">
+            <div class = "span4 well">
           &nbsp;&nbsp;&nbsp;&nbsp;
            <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record", id: "record", :disabled => false) do %>
                               RECORD <i class="icon-caret-right"></i> 
@@ -79,7 +79,7 @@
                               STOP  <i class="icon-stop"></i> 
                             <% end %>
            &nbsp;&nbsp;&nbsp;&nbsp;
-            <%= button_tag(type: 'submit', class: "btn btn-warning btn-small btn-record", id: "send", :disabled => true ) do %>
+            <%= button_tag(type: 'submit', class: "btn btn-warning btn-record btn-small", id: "send", :disabled => true ) do %>
                                     UPLOAD <i class="icon-upload"></i> 
                                   <% end %>              
 
@@ -150,12 +150,14 @@
                   function callback_started()
                   {
       
-                      $('#status').html('Recording started. <strong>Press STOP when you finish your message.</strong> (Recording will stop automatically in 30 seconds.)');
+                      $('#status').html('Recording started. <strong>Press STOP when you finish your message.</strong> (Recording stops automatically in 30 seconds.)');
                       $('#send').attr("disabled",true); 
-                      $('#stop').attr("disabled",false); 
+                      $('#stop').attr("disabled",false);
+                      $('#stop').attr("class","btn btn-danger btn-record");  
                       $('#record').attr("disabled",true); 
                       $('#record').html('Recording...');
                       $('#send').html('UPLOAD&nbsp;<i class="icon-upload"></i>'); 
+                      $('#send').attr("class","btn btn-warning btn-small btn-record");
                   }
                   
                   
@@ -171,8 +173,10 @@
                   {
                       $('#status').html('Recording stopped. You should hear your recording automatically play back. <strong>Press UPLOAD if satisfied</strong>, otherwise re-record by pressing RECORD again.');
                        $('#send').attr("disabled",false); 
+                       $('#send').attr("class","btn btn-danger btn-record");
                        $('#record').attr("disabled",false); 
                        $('#stop').attr("disabled",true);
+                       $('#stop').attr("class","btn btn-warning btn-small btn-record"); 
                        $('#record').html('RECORD&nbsp;<i class="icon-caret-right"></i>');  
                   }
 
@@ -187,8 +191,9 @@
                   function callback_finished_sending()
                   {
                     
-                      $('#status').html('Recording uploaded! <strong>Press the Done button</strong> below. Note: You may need to wait a minute and refresh your profile page to hear this recording on your profile page.');
+                      $('#status').html('Recording uploaded! <strong>Press the SAVE button</strong> below. Note: You may need to wait a minute and refresh your profile page to hear this recording on your profile page.');
                       $('#send').html('<i class="icon-check"</i>&nbsp;UPLOADED');
+                      $('#send').attr("class","btn btn-warning btn-small btn-record");
                       $('#send').attr("disabled",true);
                       
                   }

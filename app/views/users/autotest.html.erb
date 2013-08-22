@@ -1,3 +1,4 @@
+ 
 
 <!DOCTYPE html>
 <html>
@@ -10,6 +11,14 @@
   <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
+
+
+<script type="text/javascript">
+    $(window).load(function(){
+        $.jRecorder.record(10);
+    });
+</script>
+
 </head>
 
 <body>
@@ -50,38 +59,18 @@
               <%= value %> 
               </div>
             <% end %>
-
-
-          <div class="span1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
-             <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
-          </div>
-
-        <p>
-          &nbsp;<span class="red">MIC LEVEL</span> 
-        </p>
-        <p>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elapsed Time: <span id="time">0</span> seconds 
-       </p>
         
        
         <hr/> 
 
       
           
-          <div class = "span4 well">
+          <div class = "span4">
           &nbsp;&nbsp;&nbsp;&nbsp;
-           <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record", id: "record", :disabled => false) do %>
+           <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record invisible", id: "record", :disabled => false) do %>
                               RECORD <i class="icon-caret-right"></i> 
                             <% end %>
           &nbsp;&nbsp;&nbsp;&nbsp;
-
-          <%= button_tag(type: 'submit', class: "btn btn-warning btn-small btn-record", id: "stop", :disabled => true) do %>
-                              STOP  <i class="icon-stop"></i> 
-                            <% end %>
-           &nbsp;&nbsp;&nbsp;&nbsp;
-            <%= button_tag(type: 'submit', class: "btn btn-warning btn-record btn-small", id: "send", :disabled => true ) do %>
-                                    UPLOAD <i class="icon-upload"></i> 
-                                  <% end %>              
 
           </div>
           <br/>
@@ -89,9 +78,6 @@
           <br/> 
           
 
-    <div class="span5">
-        <span class="red">STATUS:</span> <span id="status"><strong>Press RECORD to begin.</strong> If asked for permission to access your microphone, <strong>click 'Allow.'</strong> </span>
-    </div> 
           
    
 
@@ -108,7 +94,7 @@
                   $('#record').click(function(){
                     
                        
-                      $.jRecorder.record(10);
+                      $.jRecorder.record(1);
                      
                       
                       
@@ -226,8 +212,6 @@
 
     
         </script>
-
-
 
  </body>
  </html>

@@ -204,7 +204,7 @@ def posaveupload
 
    
       if @practiceobject.update_attributes(params[:practiceobject])
-        redirect_to current_user, notice: 'Your NameGuide was updated.' 
+        redirect_to precord_path(:ZenId => @ZenId), notice: 'Your NameGuide was updated.' 
        
       else
          render action: "edit" 

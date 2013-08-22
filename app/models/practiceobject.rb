@@ -1,12 +1,14 @@
 class Practiceobject < ActiveRecord::Base
-  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :last_name, :token, :user_id, :userinvite_id, :recording, :phonetic, :notes, :hidden
+  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :last_name, :token, :user_id, :userinvite_id, :recording, :phonetic, :notes, :hidden, :rec, :vidrec
 
   
+
   belongs_to :event 
   belongs_to :user 
 
   has_many :userinvites 
 
+  mount_uploader :vidrec, VidrecUploader
 
   before_save { self.email.downcase! }
   before_save { self.email.strip!}

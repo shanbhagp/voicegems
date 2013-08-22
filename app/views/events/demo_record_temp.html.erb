@@ -178,15 +178,26 @@ function setLeftMargin() {
 
                          </div> <%# end modal %>
 
+<div class="alert alert-block alert-warning invisible" id="chrome">
+ 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+
+       
+            <h3 class="red">Using Chrome? Please allow NameCoach to access your microphone before proceeding (see above, under the Chrome address bar).</h3>
+             <h4>Note: only the mic will be activated.</h4>
+             <h4>Don't see the 'Allow/Deny' dialog box above? <a href="<%= flashissue_path %>.htm#collapseSix" target="_blank">click here</a> </h4>
+        
+    </div>  
+
               <div class="row">
                            <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
                            <div class="span8 offset2">
-                            <h4 id="chrome"></h4>
+                            
                             <script type='text/javascript'>
                               var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
                               if (is_chrome) {
-                                $('#chrome').html('Using Chrome? Please allow NameCoach to access your microphone (ABOVE) before recording.');
-                                $('#chrome').attr("class","red");;
+                   
+                                $('#chrome').attr("class","alert alert-block alert-error");;
                               }
                             </script> 
                             <br/>
@@ -261,7 +272,7 @@ function setLeftMargin() {
 
                                                                          <embed src="<%= asset_path('ncflash.swf') %>" width="270" height="130"/>
 
-                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseTwo" target="_blank">check that Flash is enabled and Flash-blockers are disabled.</a> before recording.</h5> 
+                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
                                                                           
                                                                       </div>
 
