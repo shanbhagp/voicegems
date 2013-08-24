@@ -298,7 +298,8 @@ def vgsaveupload
     @voicegem = Voicegem.find(params[:id])
 
       if @voicegem.update_attributes(params[:voicegem])
-        redirect_to current_user, flash[:info] 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
+        flash[:info] = 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
+        redirect_to current_user 
        
       else
          render action: "edit" 
