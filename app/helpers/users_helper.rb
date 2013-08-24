@@ -894,12 +894,19 @@ end
 
 
 
-
+#not being used - was an attempt to stop FF from loading old mp3's in users/show
   def set_cache_buster
         headers["Pragma"] = "no-cache"
         headers["Cache-Control"] = "must-revalidate"   
         headers["Cache-Control"] = "no-cache"   
         headers["Cache-Control"] = "no-store"      
   end
+
+def vgfilter
+  unless signed_in? && current_user.email == 'shanbhagp@aol.com'
+    redirect_to voicegems_info_path
+  end 
+
+end 
 
 end

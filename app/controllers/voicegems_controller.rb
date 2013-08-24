@@ -1,7 +1,9 @@
 class VoicegemsController < ApplicationController
+before_filter :vgfilter, only: [:index]
 before_filter :signed_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 before_filter :owner, only: [:index, :show, :new, :create]
 before_filter :correct_user_for_vg, only: [:edit] 
+
 
 def vgrecord
 
@@ -117,6 +119,7 @@ def vgrecord_step2
 #@vg and @user must be being set in the vg_event_link_create action (which mediates vgrecord and vgrecord_step2)
 end 
 
+
 def vgtest
   @vg = Voicegem.find(params[:id])
   render :layout => nil
@@ -126,12 +129,15 @@ end
 def vgsaveupload
 
       @vg = Voicegem.find_by_id(params[:x])
+      @time = Digest::SHA1.hexdigest([Time.now, rand].join)[4..8].upcase.to_s
 
       directory = "app/assets/images"
       # create the file path
       path = File.join(directory, current_user.id.to_s)
       path+= '_'
       path+= @vg.id.to_s
+      path+= '_'
+      path+= @time
       path+='.wav'
      # write the file to local images directory
       File.open(path, "wb") { |f| f.write(request.body.read) }
@@ -166,10 +172,10 @@ def vgsaveupload
         #transcode the file as a genuine mp3 via Zencoder
         Zencoder::Job.create({
                       :api_key => ENV['ZEN_API_KEY'],    
-                      :input => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}.wav",
+                      :input => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}.wav",
                       :outputs => [
                         {
-                          :url => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}.mp3",
+                          :url => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}.mp3",
                           :audio_codec => "mp3",
                           :public => 1,
 
@@ -178,12 +184,25 @@ def vgsaveupload
                           })
 
 
-    @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}")
-    current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}")
+    @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
+    current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
 
       false 
 
   end
+
+  def demo_record_vg
+     @event = Event.find(ENV['demopage'].to_i)
+    
+     @event_code = @event.event_code
+    
+     @vg = Voicegem.new
+
+      flash.keep
+     @user = User.new
+  end 
+
+
 
   def vg_event_code_add
       user = User.find_by_email(params[:session][:email].downcase.strip)
@@ -210,6 +229,12 @@ def vgsaveupload
      end
 
 
+  end 
+
+  def voicegems_info
+     @event = Event.find(ENV['demopage'].to_i)
+     @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
   end 
 
   def index
@@ -247,6 +272,7 @@ def vgsaveupload
   # GET /voicegems/1/edit
   def edit
     @voicegem = Voicegem.find(params[:id])
+    @vg = Voicegem.find(params[:id]) # need this to pass in right voicegem id into vgsaveupload via vgtest render
   end
 
   # POST /voicegems
@@ -272,7 +298,7 @@ def vgsaveupload
     @voicegem = Voicegem.find(params[:id])
 
       if @voicegem.update_attributes(params[:voicegem])
-        redirect_to current_user, notice: 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
+        redirect_to current_user, flash[:info] 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
        
       else
          render action: "edit" 

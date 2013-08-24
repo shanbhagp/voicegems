@@ -1,4 +1,6 @@
 
+
+
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +9,8 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application", "jRecorder" %>
   <%= csrf_meta_tags %>
+
+  <!-- TEST PAGE THAT WORKS WELL FOR CLICKING ALLOW IN FIREFOX (also has wmode = direct in jrecorder.js-->
   <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -85,30 +89,23 @@ function setLeftMargin() {
               </div>
             <% end %>
 
-<div class="row">
-  <div class="well span5 bg-white">
-       
-     
-          <span class="red">&nbsp;&nbsp;MIC LEVEL</span> 
- 
 
           <div class="span1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
           </div>
 
+        <p>
+          &nbsp;<span class="red">MIC LEVEL</span> 
+        </p>
+        <p>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elapsed Time: <span id="time">0</span> seconds 
+       </p>
+        
        
-            <br/>
+        <br/>
 
-       <div class="span3">
-            <span class="black">Elapsed Time: <span id="time">0</span> seconds </span> 
-      </div>
-   
- </div>
-</div>   
-
-
-
-<div class="row">
+      
+          
           <div class = "span4 well">
           &nbsp;&nbsp;&nbsp;&nbsp;
            <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record", id: "record", :disabled => false) do %>
@@ -125,14 +122,16 @@ function setLeftMargin() {
                                   <% end %>              
 
           </div>
-  </div>       
+          <br/>
+                   
+          <br/> 
+          
 
-<div class="row">
-    <div class="span5 well bg-white">
-        <span class="red">STATUS:</span> <span id="status" class="black"><strong>Press RECORD to begin.</strong> If asked for permission to access your microphone, <strong>click 'Allow.'</strong> </span>
+    <div class="span5">
+        <span class="red">STATUS:</span> <span id="status"><strong>Press RECORD to begin.</strong> If asked for permission to access your microphone, <strong>click 'Allow.'</strong> </span>
     </div> 
           
-  </div>
+   
 
 
 </div>
