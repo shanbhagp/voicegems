@@ -442,6 +442,13 @@ h3, h4 {
 
 }
 
+.grabber3 {
+
+   font-size: 18px;
+   font-weight: bold;
+
+}
+
 .grabber-style {
   color:white; 
    font-size: 18px;
@@ -608,10 +615,16 @@ h3, h4 {
     float: right;
     margin: 0 0 0 25px;
 }
+
 .hero-block-2 .btn {
     margin: 17px auto 5px;
     font-weight: bold;
     font-size: 16px;
+
+.noweight {
+font-weight: normal;  
+}
+
 }
 .hero-block3 .btn {
     font-size: 16px;

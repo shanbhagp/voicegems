@@ -272,6 +272,8 @@ match 'graduations', to: "static#commencements"
 match 'commencements', to: "static#commencements"
 match 'students', to: "static#students"
 match 'students_extra', to: "static#students_extra"
+match 'students_naspa', to: 'static#students_naspa'
+match 'students_naesp', to: 'static#students_naesp'
 
 match 'demo_event_page', to: 'events#demo_event_page'
 match 'demo_wedding_page', to: 'events#demo_wedding_page'
