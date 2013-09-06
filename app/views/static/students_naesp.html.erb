@@ -1,9 +1,39 @@
 <% if mobile_device? %>
-  <%= render 'static/mobile_students' %>
+  <%= render 'static/mobile_students_naesp' %>
 <% else %> 
+
 <div class="jumbotron">
-      <h1>Start the School Year Right with Our Student Name Directory Service </h1>
+<div class="row">
+  <div class="span10 offset1">
+      <h2 class="white">Try our Student Name Directory to help teachers pronounce students' names perfectly - a critical (but overlooked) aspect of reinforcing a child's sense of identity and building confidence in the classroom. </h2>
   </div>
+<div class="span2">
+
+       <img src="<%= image_path('student-children-line.png')%>">
+
+
+</div>
+
+  </div>
+<br/>
+  <div class="row">
+<div class="span10 offset2 home-block">
+          <div class="grey-box hero-block-2 biggertext">
+            
+            <span class="purple grabber3">NAESP Members: use code NAESP at checkout for 25% off any subscription (valid through 9/30)</span><br/> <a href="#testimonials" class="btn btn-info"><span class="noweight">See What Others are Saying!</span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#free_trial" class="btn btn-info">Get Your Free Trial&nbsp;&nbsp;<i class="icon-chevron-right icon-white"></i></a> <br/>
+            <h4><em><span class="blue">Please learn about our Student Name Directory and other educational services below.</span></em></h4>
+
+          </div>
+      </div>
+
+   
+</div> 
+    
+</div>
+  <div class="tp-bannershadow tp-shadow1"></div>
+
+ 
+
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 
               <button type="button" class="close" data-dismiss="alert">×</button>
@@ -19,7 +49,6 @@
   });
 </script>
 
-<div class="sep"></div>
 <br/>
 
 <div class="row">
@@ -28,17 +57,8 @@
       
     </div>
 </div>
+<br/>
 
-
-<div class="row">
-    <div class="span10 offset2">
-        
-        <div class="text-divider6">
-          <br/>
-          <span></span>
-        </div>
-    </div>
-</div>
 
 
 <center><img src="<%= image_path('spokes4-transp-no-border.png')%>"></center>
@@ -98,8 +118,8 @@
                  </div>
                
                   <br/>
-                 <span class="ph3">&nbsp;&nbsp;&nbsp;Faculty Hear and Learn Names Correctly Even Before Class Begins!</span>&nbsp;&nbsp;
-                  <i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= demo_directory_path %>" target="_blank" class="biggerlink">Demo Directory</a>
+                 <span class="ph3">&nbsp;&nbsp;&nbsp;Faculty Hear and Learn Names Correctly Even Before Class Begins!</span><br/>&nbsp;&nbsp;
+                  <i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= demo_directory_path %>" target="_blank" class="biggerlink">Demo Name Page</a>
               </div> 
           </div>
 
@@ -109,12 +129,6 @@
   </div>  
 
 
-  <div class="row">
-    <div class="span7 offset4">
-      <a href="#free_trial" class="btn btn-info span4 btn-large"><strong>Get Started Today <div class="fl-right"><i class="icon-chevron-right icon-white"></div></i></strong></a> 
-
-    </div>
-</div>
 
 <div class="row">
     <div class="span10 offset2">
@@ -184,7 +198,7 @@
     </div>
   </div>
 
-      <div class="row">
+      <div class="row" id="testimonials">
 
           <div class="span6 offset2">
 
