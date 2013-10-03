@@ -84,6 +84,31 @@
     </div>
 <% end %>
 
+<div class="alert alert-block alert-warning invisible" id="chrome">
+ 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+
+       
+            <h3 class="red"><i class="icon-warning-sign"></i>&nbsp;Using Chrome? Please allow NameCoach to access your microphone before proceeding (see above, under the Chrome address bar).</h3>
+             <h4>Note: only the mic will be activated.</h4>
+             <h4>Don't see the 'Allow/Deny' dialog box above? <a href="<%= flashissue_path %>.htm#collapseSix" target="_blank">click here</a> </h4>
+        
+    </div>  
+
+            <div class="row">
+                           <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
+                           <div class="span8 offset2">
+                            
+                            <script type='text/javascript'>
+                              var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+                              if (is_chrome) {
+                   
+                                $('#chrome').attr("class","alert alert-block alert-error");;
+                              }
+                            </script> 
+                            <br/>
+                           </div>
+              </div>
 
                           <div class="accordion" id="accordion3">
                                     <div class="accordion-group bg-signup">
@@ -164,7 +189,7 @@
 
                                                           <div class="well span3">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
-                                                                  <br/><br/>
+                                                                  <br/>
                                                                   <div class="row">
                                                                    <div class="span3">
                                                                     <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
@@ -172,36 +197,25 @@
                                                                    </div>
                                                                  </div>
                                                                   
-                                                                 
-                                                               <hr/></p><span class="red">If you can't record, you may need to ensure that <a href="<%= flashissue_path %>.htm#collapseTwo" target="_blank">Flash is enabled</a> on your browser.</span></p> 
-                                                      
-                                                              <!--<script type='text/javascript'
-                                                                src='//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'> </script>
+                                                                 <hr/>
+                                                               
+                                                                      <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
+                                                                          <h4> Can you see the animation below? </h4>
+                                                                          
 
-                                                              <script type='text/javascript'>
-                                                                var isFlashExists = swfobject.hasFlashPlayerVersion('1') ? true : false ;
-                                                                if ( !isFlashExists) {
-                                                                  alert ('No Flash detected. Please enable or download Flash in order to record your name.');
-                                                                }
-                                                              </script>  -->
+                                                                    
+                                                                         <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
 
-                                                              <script>
-                                                              function callbackMethod(val) {
-                                                                if (val > 0) {
-                                                                  alert(val == 1 ? 'Flash may not be  installed or may be disabled on this browser. Please ensure Flash is installed or enabled to record.' : 'Flash is likely being blocked on this browser. Please ensure blash blockers are disabled to record.');
-                                                                } 
-                                                              }
 
-                                                              $(window).load(function(){
-                                                                flashBlockDetect(callbackMethod);
-                                                              });
-                                                              </script>
-
-                                                              <div class="invisible">
-                                                                <embed width="0" height="0" src="loader.swf" quality="high" pluginspage="http://www.adobe.com/go/getflashplayer" align="middle" play="true" loop="true" scale="showall" wmode="window" devicefont="false" bgcolor="#000000" name="loader" menu="true" allowfullscreen="false" allowscriptaccess="sameDomain" salign="" type="application/x-shockwave-flash"> 
-                                                              </div>
-
-                                                             
+                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
+                                                                          
+                                                                         
+                                                                    <script>
+                                                                      var onFail = function(e) {
+                                                                        console.log('Fail', e);
+                                                                      };
+                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
+                                                                     </script> 
 
 
                                                           </div> 

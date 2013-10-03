@@ -32,7 +32,7 @@
                                 <iframe src='<%= test_user_path(current_user) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
 
                                <div class="modal-footer">
-                                 <div class="right"><strong>(click 'SAVE' after you click 'UPLOAD')</strong> <%= link_to setpassword_path(:id => current_user.id), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary span2' do %> SAVE&nbsp;<i class="icon-caret-right icon-white"></i>
+                                 <div class="right"><strong>(click 'SAVE' after you click 'UPLOAD')</strong> <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary span2' do %> SAVE&nbsp;<i class="icon-caret-right icon-white"></i>
                                   <% end %></div> 
                                   
                                 </div>
@@ -123,18 +123,34 @@
 
                                                           <div class="well span3 offset4">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
-                                                                  <br/><br/>
-                                                                  <div class="row">
-                                                                 
-                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name </button>
-                                                                                                                                           
-                                                                     <br/><br/> <br/> <br/>
-                                                                     
+                                                              <br/>
                                                                   
-                                                                 </div>
-
-                                                                  <hr/></p><span class="red">If the recorder does not work, you may need to ensure that <a href="<%= flashissue_path %>.htm#collapseTwo" target="_blank">Flash is enabled</a> on your browser.</span></p>
                                                                 
+                                                                   <div class="row">
+                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name </button>
+                                                                   </div>
+                                                                 
+                                                                     <hr/>
+
+                                                                    <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
+                                                                          <h4> Can you see the animation below? </h4>
+                                                                          
+
+                                                                    
+                                                                         <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
+
+
+                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
+                                                                          
+                                                                         
+                                                                    <script>
+                                                                      var onFail = function(e) {
+                                                                        console.log('Fail', e);
+                                                                      };
+                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
+                                                                     </script> 
+
+                                                           
                                                             
 
                                                           </div> 

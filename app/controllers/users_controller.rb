@@ -129,7 +129,7 @@ before_filter :owner, only: [:console, :index, :destroy]
          if bigdaddyevent
           redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
          else
-         redirect_to record_step2_path
+         redirect_to record_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
          end 
     else
       flash.now[:info] = "Thank you! You have been given a temporary password. You will need to set a password to access this account in the future."
