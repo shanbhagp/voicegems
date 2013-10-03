@@ -192,7 +192,7 @@ def owner
 end
 
 def owner_or_intern
-  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'sindura@name-coach.com' || current_user.email == 'kenduy@name-coach.com' || current_user.email == 'jychin@name-coach.com' || current_user.email == 'arshkit@name-coach.com' || current_user.email == 'domenighini@name-coach.com' || current_user.email == 'lgkauffman@yahoo.com'
+  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'sindura@name-coach.com' || current_user.email == 'kenduy@name-coach.com' || current_user.email == 'jychin@name-coach.com' || current_user.email == 'arshkit@name-coach.com' || current_user.email == 'domenighini@name-coach.com' 
 
     redirect_to current_user
     flash[:notice] = "Sorry, not authorized for that page."
