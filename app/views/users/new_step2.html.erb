@@ -1,6 +1,6 @@
 
 
-<div class="jumbotron">
+ <div class="jumbotron">
       <h1>Name Registration <% if !@po.nil? %><% if !@po.event.nil? %><% if @po.event.title %>for<em> <%= @po.event.title %> </em> <% end %> <% end %><% end %></h1>
       <br/>
       <h3>  <% if !@po.nil? %><% if !@po.event.nil? %><% if @po.event.date %><%= @po.event.date.strftime("%b %d, %Y")  %> <% end %> <% end %><% end %></h3>
