@@ -69,7 +69,7 @@ class VidrecUploader < CarrierWave::Uploader::Base
 
                           })
 
-   @model.rec_file_size = zencoder_response.body['id'] 
+   @model.rec_file_size = zencoder_response.body['id']  #saves the Zencoder job ID to the rec_file_size column of the practice object
    @model.save
 
   end

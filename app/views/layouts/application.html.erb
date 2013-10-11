@@ -7,7 +7,6 @@
 
      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-
   <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
@@ -50,7 +49,11 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 		
 			<%= render 'layouts/header' %>
 		 
-
+<% if mobile_device? %>
+    <%= link_to "Full Site", :mobile => 0 %>
+  <% else %>
+    <%= link_to "Mobile Site", :mobile => 1 %>
+  <% end %>
 
 			<%= yield %>
       <!-- Scroll to top -->

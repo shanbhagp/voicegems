@@ -34,6 +34,13 @@ before_filter :owner, only: [:console, :index, :destroy]
 
      @url = demo_record_url(:event_code => @event.event_code)
 
+# can use code below to go for mobile version for specific actions, if mobile.
+     #request.format = :mobile if mobile_device?
+     respond_to do |format|
+       format.html
+       format.mobile
+     end 
+
   end
 
   def index
@@ -114,6 +121,7 @@ before_filter :owner, only: [:console, :index, :destroy]
    def new_step2
       @user = current_user
       @po = Practiceobject.find_by_token(params[:token])
+      @event = @po.event
    end 
 
 

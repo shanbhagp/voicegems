@@ -161,7 +161,7 @@
                                                     </div><%# end row %>
 
                                              
-                                                                 <%= link_to "Skip Recording", {:controller => "users", :action => "setpassword", :id => current_user.id, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
+                                                                 <%= link_to "Skip Recording", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
 
                                         </div>
                                       </div>

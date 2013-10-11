@@ -151,7 +151,7 @@
                                                           </div> 
                                                   
                                                     </div><%# end row %>
-                                                    <%= link_to "Skip to Profile Page", {:controller => "users", :action => "setpassword", :id => current_user.id, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
+                                                    <%= link_to "Skip to Profile Page", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event, :x => "skip" }, {:class => "btn btn-primary btn-small span2 fl-right"}%>
                                         </div>
                                       </div>
                                     </div>

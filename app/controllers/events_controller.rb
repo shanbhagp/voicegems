@@ -309,19 +309,30 @@ def directory
  	if signed_in?
  		flash[:success] = "Trying to record your name or edit your NameGuide? Please do so below."
  		redirect_to current_user 
- 	end 
+
+ 	else 
  		
- 	@event_code = params[:event_code]
+		 	@event_code = params[:event_code]
 
- 	if Event.find_by_event_code(@event_code)
- 	 @event = Event.find_by_event_code(@event_code)
- 	 @user = User.new
+		 	if Event.find_by_event_code(@event_code)
+		 	 @event = Event.find_by_event_code(@event_code)
+		 	 @user = User.new
 
- 	else
- 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
- 		redirect_to root_path 
+		 	      request.format = :mobile if mobile_device?
+				     respond_to do |format|
+				       format.html
+				       format.mobile
+				     end 
+
+
+
+		 	else
+		 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+		 		redirect_to root_path 
+		 	end 
+	
  	end 
-
+ 	
 
  end
 

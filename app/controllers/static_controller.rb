@@ -198,6 +198,14 @@ def precord
  # @ZenId = 4 
  # end  
   @practiceobject = current_user.practiceobjects.first
+
+     request.format = :mobile if mobile_device?
+     respond_to do |format|
+       format.html
+       format.mobile
+     end 
+
+
 end
 
 def irecord
