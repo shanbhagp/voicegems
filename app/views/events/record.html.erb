@@ -1,4 +1,24 @@
+<% if mobile_device? %>   
 
+<div class="container">
+<div class="row">
+  <div class="span8">
+      <h1> Mobile device detected.</h1>
+      <hr/>
+      <h1> Adobe Flash is not supported on many mobile devices.</h1> <br/>
+      <h1>Please click the link you received and record your name on non-mobile device (e.g., your laptop). </h1>
+      <hr/>
+       <h2> Look out for our soon to be released iPhone and Android Apps!</h2>
+    </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="span8">
+  </div>
+</div>
+
+<% else %>
                          
 
  <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -235,7 +255,7 @@
 </div><%# end container %>
 
 
-
+<% end %>
 
 
 
