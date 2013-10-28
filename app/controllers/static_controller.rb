@@ -199,6 +199,7 @@ def precord
  # end  
   #@practiceobject = current_user.practiceobjects.first
   @practiceobject = Practiceobject.find(params[:po])
+   @event = @practiceobject.event
   render :layout => nil
  
 

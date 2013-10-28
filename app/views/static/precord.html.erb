@@ -90,18 +90,20 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
   <p> 
 
 <span class="nextbutton invisible">
-<%= button_tag(:type => 'submit', :class => 'btn btn-info pull-right', :disable_with => 'please wait...')  do %>
+<%= button_tag(:type => 'submit', :class => 'btn btn-info btn-large pull-right', :disable_with => 'please wait...')  do %>
 NEXT&nbsp;<i class="icon-caret-right icon-white"></i>
 <% end %>
 </span>
 
 
                   </p>
+
     </div>
  </div>
                 <% end %>
 <hr/>
                 
+<h5>If you are not able to record on your mobile device, please <%= link_to "click here", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => ""} %>, set a password, and then log in on a laptop.</h5>
 
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 

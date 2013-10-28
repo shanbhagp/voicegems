@@ -410,7 +410,7 @@ def event_link_create  #for new users signing up from an event code link
 										redirect_to record_step2_path(:user => @user, :event => @event, :event_code => @event_code)
 	                    			end 
 	                    		else #probably trying to register from record page with an existing email
-	                            	flash[:error] = "This email (#{@user.email}) is already registered on our site. Please sign in under 'Already Registered?' (below) to register for this Name Page. If you didn't set or forgot your password, please click 'Reset Password' above."
+	                            	flash[:error] = "This email (#{@user.email}) is already registered on our site."
 	                                redirect_to record_path(:event_code => @event_code) 
 	                                #NEED TO MAKE THIS MOBILE
 	                            end 
