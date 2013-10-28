@@ -197,16 +197,21 @@ def precord
  # else
  # @ZenId = 4 
  # end  
-  @practiceobject = current_user.practiceobjects.first
-
-     request.format = :mobile if mobile_device?
-     respond_to do |format|
-       format.html
-       format.mobile
-     end 
+  #@practiceobject = current_user.practiceobjects.first
+  @practiceobject = Practiceobject.find(params[:po])
+  render :layout => nil
+ 
 
 
 end
+
+def precord2
+  # @practiceobject = current_user.practiceobjects.first
+  @practiceobject = Practiceobject.find(params[:po]) 
+  @event = @practiceobject.event
+  render :layout => nil
+end 
+
 
 def irecord
 render :layout => nil

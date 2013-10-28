@@ -759,3 +759,73 @@ font-weight: normal;
   background-color: white;
   color: white;
 }
+
+.btn-largest {
+   line-height: 100px;
+    font-size: 70px;
+    margin-top: 50px;
+}
+
+.btn-larger {
+   line-height: 70px;
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+label.filebutton {
+
+    height:80px;
+    overflow:hidden;
+    position:relative;
+    background-color:#ccc;
+    font-size: 60px;
+    text-align: center;
+
+     background-color: hsl(0, 69%, 22%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#b42121", endColorstr="#5e1111");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#b42121), to(#5e1111));
+  background-image: -moz-linear-gradient(top, #b42121, #5e1111);
+  background-image: -ms-linear-gradient(top, #b42121, #5e1111);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #b42121), color-stop(100%, #5e1111));
+  background-image: -webkit-linear-gradient(top, #b42121, #5e1111);
+  background-image: -o-linear-gradient(top, #b42121, #5e1111);
+  background-image: linear-gradient(#b42121, #5e1111);
+  border-color: #5e1111 #5e1111 hsl(0, 69%, 17%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  -webkit-font-smoothing: antialiased;
+}
+
+label span input {
+
+    line-height: 0;
+    font-size: 100px;
+    position: center;
+    opacity: 0;
+    filter: alpha(opacity = 1);
+    -ms-filter: "alpha(opacity=0)";
+    cursor: pointer;
+    _cursor: hand;
+    margin: 0;
+    padding:0;
+}
+
+
+.rectext {
+ height:80px;
+position:absolute; 
+top:50%; 
+ margin-top:-20px;
+}
+
+
+#mob input[type=text], #mob input[type=url], #mob input[type=email], #mob input[type=password], #mob input[type=tel] {
+  -webkit-appearance: none; -moz-appearance: none;
+  display: block;
+  margin: 0;
+  width: 100%; height: 50px;
+  line-height: 50px; font-size: 25px;
+  border: 1px solid #bbb;
+}
+

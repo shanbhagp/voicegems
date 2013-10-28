@@ -202,15 +202,25 @@ def posaveupload
   def update
     @practiceobject = Practiceobject.find(params[:id])
 
-   
+   logger.warn "UPDATING YEAH"
       if @practiceobject.update_attributes(params[:practiceobject])
-        redirect_to precord_path(:ZenId => @ZenId), notice: 'Your NameGuide was updated.' 
-       
+        if params[:practiceobject][:x] == 'prec'
+         @hid2 = params[:practiceobject][:x]
+
+       redirect_to precord2_path(:ZenId => @ZenId, :po => @practiceobject.id)  
+    
+     else
+      redirect_to current_user
+      end 
       else
          render action: "edit" 
        
       end
    
+  end
+
+
+  def showparams
   end
 
   def unhide

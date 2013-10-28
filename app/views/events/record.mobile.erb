@@ -1,60 +1,14 @@
-                          
 
- <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 id="myModalLabel"><em>What's going on here?</em></h3>
-            </div>
-            <div class="modal-body">
-            <ul>
-            <li> This quick and easy service is FREE for you. </li> <br/>
-            <li> You've been asked to record your name in your own voice, so that teachers and staff at your school can know how to pronounce it perfectly, in class, around school, and at graduation. </li> <br/>
-            <li> The process is simple!
-                <ol>
-                  <br/>
-                  <li>Fill out your name and email (REQUIRED). If prompted, please select your graduation date or program. </li><br/> 
-                  <% if iolani %>
-                   <li>Enter your <strong>FULL NAME (first, middle, last)</strong> to be announced at the event (REQUIRED), and any notes to help with pronunciation (OPTIONAL).</li><br/>
-                  <% else %>
-                  <li>Enter your name as you would like it said (what you go by), and any notes to help with pronunciation. (OPTIONAL)</li><br/>
-                   <% end %>
-                  <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds. <strong>Just make sure to press 'Upload.'</strong> <br/><br/>
-                    <strong> Note: Please record on a laptop or desktop with a mic.  You can check that <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">Adobe Flash Player is enabled</a> on your browser (if you have a Flash-blocker installed, temporarily disable it).</strong>
-                    <br/><br/>
-                  <em>Thanks to your help, your teachers can now hear your recording and make sure it's pronounced correctly ahead of time!</em> </li><br/>
-                  
-                 </ol>
-            </li>  
-            <li> If you have previously registered on our site, please sign in under 'Already Registered on our Site?' </li><br/>
-            <li> More questions? Please contact us below. <em> Thank you!</em> </li>
-            </ul>
-
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-primary" data-dismiss="modal">Done</button>
-                
-               
-
-             
-            </div>
-          </div>
-
-
-<div class="alert alert-block alert-info">
- 
-    <button type="button" class="close" data-dismiss="alert">×</button>
-
-              <h3>Dear Student, you've been invited to voice-record your name for <% if !@event.nil? %><% if !@event.title.blank? %><%= @event.title %><% end %><% end %>. <br/> <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a><% if @event == Event.find(ENV['HALTOM']) %> &nbsp;&nbsp;&nbsp;HALTOM STUDENTS: Please remember to sign out when you're done! Thank you!<% end %> </h3>  
-
-          
-     
-            
-         
-    </div>  
 
 
 
 <div class="container">  
+
+
+
+
+
+
 
 <% flash.each do |key, value| %>
     <div class="alert alert-block alert-<%=key%>"> 
@@ -63,42 +17,10 @@
     </div>
 <% end %>
 
-<div class="alert alert-block alert-warning invisible" id="chrome">
- 
-    <button type="button" class="close" data-dismiss="alert">×</button>
 
-       
-            <h3 class="red"><i class="icon-warning-sign"></i>&nbsp;Using Chrome? Please allow NameCoach to access your microphone before proceeding (see above, under the Chrome address bar).</h3>
-             <h4>Note: only the mic will be activated.</h4>
-             <h4>Don't see the 'Allow/Deny' dialog box above? <a href="<%= flashissue_path %>.htm#collapseSix" target="_blank">click here</a> </h4>
-        
-    </div>  
 
-            <div class="row">
-                           <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
-                           <div class="span8 offset2">
-                            
-                            <script type='text/javascript'>
-                              var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-                              if (is_chrome) {
-                   
-                                $('#chrome').attr("class","alert alert-block alert-error");;
-                              }
-                            </script> 
-                            <br/>
-                           </div>
-              </div>
 
-                          <div class="accordion" id="accordion3">
-                                    <div class="accordion-group bg-signup">
-                                      <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
-                                         <h5 class="white">New Name Registration</h5>
-                                        </a>
-                                      </div>
-                                      <div id="collapseOne" class="accordion-body collapse in">
-                                        <div class="accordion-inner">
-                                                   <div class="row">
+         
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well span3 offset1">
@@ -121,26 +43,6 @@
                                                                 <hr/>    
                                                          </div>
 
-                                                         <% if iolani %>
-
-                                                         <div class="well span3">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"></span> <span class="muted"> (required)</span> </h4> 
-                                                              <br/>      
-
-                                                                      
-                                                                        <%= f.input :phonetic, :class => "span3 fl-left", label: "Please enter your FULL NAME (first, middle, and last) to be announced:", placeholder: "e.g., Praveen Ramesh Shanbhag, Jr.)"  %>
-                                                                     
-                                                                  
-                                                                           
-                                                                            <br/>
-
-                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation (OPTIONAL):" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" %>
-                                                                         
-                                                                     <hr/>
-                                                          </div>
-
-                                                        <% else %>
 
                                                          <div class="well span3">         
                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
@@ -164,89 +66,45 @@
                                                                      <hr/>
                                                           </div>
 
-                                                        <% end %>  
+                                                       <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
 
-                                                          <div class="well span3">
-                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
-                                                                  <br/>
-                                                                  <div class="row">
-                                                                   <div class="span3">
-                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
-                                                                    <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
-                                                                   </div>
-                                                                 </div>
-                                                                  
-                                                                 <hr/>
-                                                               
-                                                                      <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
-                                                                          <h4> Can you see the animation below? </h4>
-                                                                          
-
-                                                                    
-                                                                         <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
-
-
-                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
-                                                                          
-                                                                         
-                                                                    <script>
-                                                                      var onFail = function(e) {
-                                                                        console.log('Fail', e);
-                                                                      };
-                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
-                                                                     </script> 
-
-
-                                                          </div> 
 
                                                     <% end %>
-                                                    </div><%# end main row %>
-                                                     <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                        <div class="accordion-group bg-signup">
-                                          <div class="accordion-heading">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo">
-                                              <h5 class="white">Already Registered on our Site?</h5>
-                                            </a>
-                                          </div>
-                                          <div id="collapseTwo" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                              <div class="well span4 offset3">
-                                                  <%= form_for(:session, url: event_code_add_path, :html => {:class => "form-horizontal"} ) do |f| %>
-
-                                                  <%= f.hidden_field :event_code, :value => @event_code %>
-                                                   <span class="blue"><em>If you have previously registered on our site, please sign in here:</em></span> <br/> <br/>
-                                                  <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
-                                                  <br/>
-                                                  <br/>
-
-                                                  <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
-
-                                                    <br/>
-                                                    <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small span2") do %>
-                                                       Sign In <i class="icon-chevron-right icon-white"></i> 
-                                                      <% end %>
-
-                                                <% end %>
-                                               </div>
-                                               <br/>
-                                            </div>
-                                          </div>
-                                        </div>
-                                  </div>  
+                                      
 
 
+<form  action="/event_link_create"  id="new_user" method="post" >
+  <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
 
+  <ul>
+    <li><input id="user_first_name" name="user[first_name]"  placeholder="First Name" type="text" /></li>
+    <hr/>
+    <li><input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" /></li>
+    <hr/>
+    <li><input id="user_email" name="user[email]" placeholder="Email Address"type="email" /></li>
+    <hr/>
+     <h2>(OPTIONAL) Enter your name as you would like it announced:</h2>
+    <li><input id="user_phonetic" name="user[phonetic]" placeholder="example: 'Dr. Henry Jones, Jr.'" type="text"/></li>
+    <hr/>
+    <h2>(OPTIONAL) Enter any notes to aid in pronunciation:</h2>
+     <li><textarea id="user_notes" name="user[notes]" placeholder="examples: 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" >
+</textarea> </li>
+    </hr>
+
+    <li><input  data-disable-with="please wait..." name="commit" type="submit" value="REGISTER" /></li>
+  </ul>
+
+</form>
 
 </div><%# end container %>
 
 
 
 
-
+<script>
+$.jQTouch({
+});
+</script>
 
 
 

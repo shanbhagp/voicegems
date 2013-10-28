@@ -4,7 +4,7 @@
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
   <%= stylesheet_link_tag "jqtouch" %>
-   <%= javascript_include_tag "zepto.min.js", "jqtouch.min.js", "mobile" %>
+   <%= javascript_include_tag "zepto.min.js", "jqtouch.min.js" %>
     <%= yield(:head) %>
   </head>
   <body>

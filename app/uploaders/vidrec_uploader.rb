@@ -24,6 +24,7 @@ class VidrecUploader < CarrierWave::Uploader::Base
  
   # so that stores directly in S3 bucket
  def store_dir
+ 
  end
 
  #def store_dir
@@ -52,14 +53,16 @@ class VidrecUploader < CarrierWave::Uploader::Base
 
 
   def zencode(args)
+        Rails.logger.warn "zencoding"
+        #b/c not a M/V/C, use this instead of logger.warn
 
             #transcode the file as a genuine mp3 via Zencoder
         zencoder_response = Zencoder::Job.create({
                       :api_key => ENV['ZEN_API_KEY'],    
-                      :input => "s3://#{ENV['BUCKET_NAME']}/#{model.id.to_s}.mov",
+                      :input => "s3://#{ENV['BUCKET_NAME']}/#{model.user_id.to_s}_#{model.id.to_s}.mov",
                       :outputs => [
                         {
-                          :url => "s3://#{ENV['BUCKET_NAME']}/#{model.id.to_s}.mp3",
+                          :url => "s3://#{ENV['BUCKET_NAME']}/#{model.user_id.to_s}_#{model.id.to_s}.mp3",
                           :skip_video => true,
                           #:clip_length => "10",
                           :audio_codec => "mp3",
@@ -70,7 +73,10 @@ class VidrecUploader < CarrierWave::Uploader::Base
                           })
 
    @model.rec_file_size = zencoder_response.body['id']  #saves the Zencoder job ID to the rec_file_size column of the practice object
+   @model.recording = "#{model.user_id.to_s}_#{model.id.to_s}"
    @model.save
+
+   @model.user.update_attributes(recording: "#{model.user_id.to_s}_#{model.id.to_s}")
 
   end
 
@@ -104,7 +110,7 @@ class VidrecUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
    def filename
-    "#{model.id.to_s}.mov" if original_filename
+    "#{model.user_id.to_s}_#{model.id.to_s}.mov" if original_filename
    end
 
 end

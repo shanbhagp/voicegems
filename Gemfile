@@ -48,6 +48,7 @@ group :test, :development do
 end
 
 gem 'annotate', '~> 2.4.1.beta', group: :development
+gem 'quiet_assets', group: :development
 
 group :test do
   gem 'capybara', '1.1.2'

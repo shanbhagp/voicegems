@@ -1,7 +1,7 @@
 class Practiceobject < ActiveRecord::Base
-  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :last_name, :token, :user_id, :userinvite_id, :recording, :phonetic, :notes, :hidden, :rec, :vidrec
-
-  
+  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :last_name, :token, :user_id, :userinvite_id, :recording, :phonetic, :notes, :hidden, :rec, :vidrec, :x
+   attr_accessor :x
+  # added :x to attr_accessor and attr_accesssible so that could use it in update action (incoming from precord)
 
   belongs_to :event 
   belongs_to :user 

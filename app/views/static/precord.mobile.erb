@@ -1,31 +1,62 @@
-                    <div class="container">
-                          <%= form_for @practiceobject, :html => {:multipart => true} do |f| %>
+                    
+ 
+ 
+                
+<div class="progress progress-striped active span7">
+   <div class="bar" style="width: 0;"></div>
+</div>
+<br/>
+        
+
+
+     
+                              <%= form_for @practiceobject, :html => {:multipart => true} do |f| %>
+
+                        <p>
+
+<ul>
+  <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file"  />
+ <%= f.hidden_field :x, :value => 'prec' %>      
+
+
+  </p>
+ 
+  <p> <li><%= f.submit "NEXT", class: "whiteButton",  disable_with: 'please wait...'  %></li>
+                  </p>
+                <% end %>    
+
+  </ul>                
+     <%= @practiceobject.rec_file_size %> 
+     tttt<%= @hid.to_s %>
+<%= @hid2.to_s %>    
+     <hr/>    
+
+ <%= form_for @practiceobject, :html => {:multipart => true} do |f| %>
 
                         <p>
 
 
     <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file"  />
+ <%= f.hidden_field :x, :value => 'prec' %>      
 
 
   </p>
  
   <p> <%= f.submit "CONVERT VIDEO TO AUDIO RECORDING", class: "btn btn-info btn-large span8", disable_with: 'please wait...'  %>
-  						  	</p>
-							  <% end %>
+                  </p>
+                <% end %>
 
-							  
-<div class="progress progress-striped active span7">
-   <div class="bar" style="width: 0;"></div>
-</div>
-<br/>
-<%= @practiceobject.rec_file_size %>
-<table>
-	<tr>
- <td class="rec-cell invisible"> <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= @practiceobject.id %>.mp3" /> 
-                                    </td>
-  </tr>
-</table>
-                    </div>
+ 
+  <div id="english">
+    <audio id="audio"></audio>
+
+    <a href="#" class="whiteButton rec-cell" id="audio1">Play Name Recording</a>
+   
+  </div>
+
+
+
+
 <script>
 
 var jobId = "<%= @practiceobject.rec_file_size %>";
@@ -39,9 +70,11 @@ function poll() {
       //dataType: 'json',
       success: function(data) {
         parseResponse(data);
+        console.log("?f??");
+        console.log(data);
       },
       error: function(data) {
-        console.log(data)
+        console.log(data);
       }
     });
   }, 3000);
@@ -79,6 +112,7 @@ function parseResponse(data) {
   }
 }
 </script>
+
 <script>
 $(document).ready(function(){
 
@@ -88,7 +122,19 @@ $(document).ready(function(){
 
 </script>
 
-<script>
-$.jQTouch({
-});
-</script>
+
+<script type="text/javascript" charset="utf-8">
+      $.jQTouch({
+          icon: 'tower_logo.png',
+          statusBar: 'black'
+      });
+      $(document).ready(function () {
+             var audio = $('#audio');
+             $('#audio1').tap(function() {audio.attr('src', 'https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= @practiceobject.id %>.mp3')[0].play()});
+                 
+     });
+  </script>
+
+
+
+  

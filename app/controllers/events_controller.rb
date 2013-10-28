@@ -318,13 +318,11 @@ def directory
 		 	 @event = Event.find_by_event_code(@event_code)
 		 	 @user = User.new
 
-		 	      request.format = :mobile if mobile_device?
-				     respond_to do |format|
-				       format.html
-				       format.mobile
-				     end 
-
-
+		 	 if mobile_device?
+		 	 	 render action: 'mobile_record', :layout => nil
+		 	 else 
+		 	 	 render action: 'record'
+		 	 end 
 
 		 	else
 		 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
@@ -335,6 +333,9 @@ def directory
  	
 
  end
+
+ def mobile_record
+ end 
 
 #def vgrecord
 # moved to voicegems controller
@@ -380,14 +381,19 @@ def event_link_create  #for new users signing up from an event code link
 	                        @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :phonetic => @user.phonetic, :notes => @user.notes) #needed to add email to PO to make sure PO saves, b/c of PO validations}
 	                        if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
 	                           #flash[:success] = "Now just record your name for #{@event.title}, and you're done!"
-	                           redirect_to record_step2_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
+	                           
+	                           if  params[:user][:x] == 'prec'
+	                           	 redirect_to precord_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
+	                           else
+	                      	     redirect_to record_step2_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
+							   end 			                        
 	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
 	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
 	                        end 
 	                  end 
 
 	                anchor_and_update_pos(@po)  #for achoring PO's created by inviting people for other events, who haven't registered as users yet
-	                copy_to_master(@po, @event)  #for copying the new PO to the master list if the @event here is a sublist.
+	                #copy_to_master(@po, @event)  #for copying the new PO to the master list if the @event here is a sublist.
 
 	            else # user already exists, or otherwise didn't validate as user
 	                  #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
@@ -406,9 +412,10 @@ def event_link_create  #for new users signing up from an event code link
 	                    		else #probably trying to register from record page with an existing email
 	                            	flash[:error] = "This email (#{@user.email}) is already registered on our site. Please sign in under 'Already Registered?' (below) to register for this Name Page. If you didn't set or forgot your password, please click 'Reset Password' above."
 	                                redirect_to record_path(:event_code => @event_code) 
+	                                #NEED TO MAKE THIS MOBILE
 	                            end 
 	                    else #email not registered; so probably user info didn't validate - maybe forgot a field, or bad email address
-	                             flash[:error] = "Please be sure to enter your first name, last name, and valid email address.  If you are prompted to select a graduation date/program, please do so."
+	                             flash[:error] = "Please be sure to enter your first name, last name, and valid email address."
 	                    	     redirect_to record_path(:event_code => @event_code) 
 	                    end 
 

@@ -20,6 +20,8 @@
     });
 </script>
 
+
+
                         <div id="recordmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
                               
@@ -143,12 +145,7 @@
                                                                        <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
                                                                           
                                                                          
-                                                                    <script>
-                                                                      var onFail = function(e) {
-                                                                        console.log('Fail', e);
-                                                                      };
-                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
-                                                                     </script> 
+
 
                                                            
                                                             

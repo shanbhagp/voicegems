@@ -1,32 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NameCoach</title>
+  <meta name="google-site-verification" content="_SjMEoyfWLW3D-TwVkSfFtLVkGoUXmKQbf2dKLm-o90" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <link rel="icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+ <script type="text/javascript" src="<%= asset_path('aplayer/audio.min.js') %>"></script>
+
+ <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-38323450-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</head>
+
+  <body>
+
                     <div class="container">
+
+
                           <%= form_for @practiceobject, :html => {:multipart => true} do |f| %>
 
-                        <p>
+<hr/>
+
+<ol>
+  <h3><li>Click record.</li></h3><br/>
+  <h3><li>Record your name clearly into the video (only the audio will be saved).</li></h3><br/>
+  <h3><li>Click next.</li></h3> <br/>
+</ol>
+
+<p>
 
 
-    <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file"  />
+  <label class="filebutton">
+<span class="rectext">&nbsp;RECORD&nbsp;</span>
+<span> <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file" class="btn-largest span12" /></span>
+</label>
 
+<span class="filename"></span>
 
+ <%= f.hidden_field :x, :value => 'prec' %>      
   </p>
- 
-  <p> <%= f.submit "CONVERT VIDEO TO AUDIO RECORDING", class: "btn btn-info btn-large span8", disable_with: 'please wait...'  %>
-  						  	</p>
-							  <% end %>
 
-							  
-<div class="progress progress-striped active span7">
-   <div class="bar" style="width: 0;"></div>
-</div>
-<br/>
-<%= @practiceobject.rec_file_size %>
-<table>
-	<tr>
- <td class="rec-cell invisible"> <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['BUCKET_NAME'] %>/<%= @practiceobject.id %>.mp3" /> 
-                                    </td>
-  </tr>
-</table>
+<hr/>
+
+ <div class="row">
+    <div class="span10 offset2">
+  <p> 
+
+<span class="nextbutton invisible">
+<%= button_tag(:type => 'submit', :class => 'btn btn-info pull-right', :disable_with => 'please wait...')  do %>
+NEXT&nbsp;<i class="icon-caret-right icon-white"></i>
+<% end %>
+</span>
+
+
+                  </p>
+    </div>
+ </div>
+                <% end %>
+<hr/>
+                
+
+             <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
                     </div>
+
+
+
+
 <script>
+
+
+
 
 var jobId = "<%= @practiceobject.rec_file_size %>";
 
@@ -88,3 +167,24 @@ $(document).ready(function(){
 
 </script>
 
+<script type="text/javascript">
+  $(function() {
+     $("input:file").change(function (){
+       var fileName = $(this).val();
+       $(".filename").html('Recording Selected');
+     });
+  });
+</script>
+
+
+<script type="text/javascript">
+  $(function() {
+     $("input:file").change(function (){
+       var nextbutton = $(this).val();
+       $(".nextbutton").attr("class","");
+     });
+  });
+</script>
+
+  </body>
+</html>

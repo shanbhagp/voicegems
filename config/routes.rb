@@ -324,10 +324,13 @@ match '/migrate_entries', to: 'events#migrate_entries'
 match '/flashdetect', to: 'static#flashdetect'
 
 match '/precord', to: 'static#precord'
+match '/precord2', to: 'static#precord2'
 
 match 'setpassword', to: 'users#setpassword'
 
 match 'voicegems_info', to: 'voicegems#voicegems_info'
+
+match 'showparams', to: 'practiceobjects#showparams'
 
 
 
