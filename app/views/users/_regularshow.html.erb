@@ -389,24 +389,20 @@
         <h4><span class="blue"><i class="icon-edit icon-white"></i></span>&nbsp;<strong>Edit your <em>NameGuide</em>:</strong> </h4>
         <br/>
          <%= form_for(@user, :html => {:class => "form-vertical"}) do |f| %>
+
            <div class="span3">
-            <span class="label label-info">Step 1</span> <br/>Update your name as you would like it said:<br/>
-            <%= f.text_field :phonetic, :class => "span3" %>
-             <span class="help-block">(e.g., 'Dr. Henry Jones, Jr.')</span>
-           </div>
-           <div class="span3">
-            <span class="label label-info">Step 2</span><br/>Update any notes to help with correct pronunciation:</br>
+            <span class="label label-info">Step 1</span><br/>Update any notes to help with correct pronunciation:</br>
             <%= f.text_area :notes, :class => "span3", :placeholder => "(you can leave this blank if you wish)" %>
              <span class="help-block">(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')</span>
            </div>
          
            <div class="span3">
-            <span class="label label-important">Step 3</span><br/>Record your name: <br/><br/>
+            <span class="label label-important">Step 2</span><br/>Record your name: <br/><br/>
              <a data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="icon-caret-right icon-white"></i> </a>
            </div>
 
            <div class="span2">
-            <span class="label label-info">Step 4</span><br/>Save any changes:<br/><br/>
+            <span class="label label-info">Step 3</span><br/>Save any changes:<br/><br/>
             <%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
            </div>
 
