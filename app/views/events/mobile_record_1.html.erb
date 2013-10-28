@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+  <%= stylesheet_link_tag "jqtouch" %>
+   <%= javascript_include_tag "zepto.min.js", "jqtouch.min.js" %>
+    <%= yield(:head) %>
+  </head>
+  <body id="jqt">
+    <div class="current">
+     
+      <div class="toolbar">
+        <%= link_to "Back", nil, :class => "back" unless current_page? root_path %>
+        <h1><%=h yield(:title) %></h1>
+        <%= link_to "Full Site", root_url(:mobile => 0), :class => "button", :rel => "external" %>
+        <%= yield(:toolbar) %>
+      </div>
+  
+      
+      <% unless flash.empty? %>
+        <div class="info">
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+        </div>
+      <% end %>
+
+
+<div class="container">  
+
+
+
+
+
+
+
+<% flash.each do |key, value| %>
+    <div class="alert alert-block alert-<%=key%>"> 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %> 
+    </div>
+<% end %>
+
+
+
+
+         
+                                                     <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+
+                                                         <div class="well span3 offset1">
+                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
+                                                              
+                                                              <br/>
+                                                              <%= f.error_notification %>
+                                                              
+                                                                <%= f.hidden_field :event_code, :value => @event_code %>
+
+
+                                                                  <%= f.input :first_name, label: "First Name" %>
+                                                                  <%= f.input :last_name, label: "Last Name" %>
+                                                                  <%= f.input :email %>
+                                                                <% if !@event.blank? %>
+                                                                 <% unless @event.grad_array.empty? %>  
+                                                                      <%= f.input :grad_date, collection: @event.grad_array, prompt: 'Please select your graduation date', label: "Graduation Date:" %> 
+                                                                  <% end %>
+                                                                <% end %>
+                                                                <hr/>    
+                                                         </div>
+
+
+                                                         <div class="well span3">         
+                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
+                                                              <br/>      
+
+                                                                      <% if is_student_event?(@event)%>
+
+                                                                       <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it said (what you go by):", placeholder: "(e.g., a nickname or middle name)"  %>
+
+                                                                        <% else %>
+
+                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+
+                                                                      <% end %>
+
+                                                                            <br/>
+
+                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" %>
+                                                                         
+                                                                     <hr/>
+                                                          </div>
+
+                                                       <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
+
+
+                                                    <% end %>
+                                      
+
+
+<form  action="/event_link_create"  id="new_user" method="post" >
+  <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
+  <input id="user_x" name="user[x]" type="hidden" value="prec" />
+  <ul>
+    <li><input id="user_first_name" name="user[first_name]"  placeholder="First Name" type="text" /></li>
+    <hr/>
+    <li><input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" /></li>
+    <hr/>
+    <li><input id="user_email" name="user[email]" placeholder="Email Address"type="email" /></li>
+    <hr/>
+     <h2>(OPTIONAL) Enter your name as you would like it announced:</h2>
+    <li><input id="user_phonetic" name="user[phonetic]" placeholder="example: 'Dr. Henry Jones, Jr.'" type="text"/></li>
+    <hr/>
+    <h2>(OPTIONAL) Enter any notes to aid in pronunciation:</h2>
+     <li><textarea id="user_notes" name="user[notes]" placeholder="examples: 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" >
+</textarea> </li>
+    </hr>
+
+
+  </ul>
+<input name="commit" type="submit" value="REGISTER" />
+</form>
+
+</div><%# end container %>
+
+
+
+  </div>
+
+
+
+  </body>
+</html>
+  
+
+
+

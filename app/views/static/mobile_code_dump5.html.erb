@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+  <%= stylesheet_link_tag "bootstrap_and_overrides", :media => "all" %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+    <%= yield(:head) %>
+  </head>
+  <body>
+  
+
+
+
+
+                                      
+<div class="container">
+
+<div class="form-group">
+<form  action="/event_link_create"  id="new_user" method="post" >
+  <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
+  <input id="user_x" name="user[x]" type="hidden" value="prec" />
+<input id="user_first_name" name="user[first_name]"  placeholder="First Name" type="text" class="form-control" />
+
+<input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" />
+    <hr/>
+    <input id="user_email" name="user[email]" placeholder="Email Address"type="email" />
+    <hr/>
+     <h2>(OPTIONAL) Enter your name as you would like it announced:</h2>
+    <input id="user_phonetic" name="user[phonetic]" placeholder="example: 'Dr. Henry Jones, Jr.'" type="text"/>
+    <hr/>
+    <h2>(OPTIONAL) Enter any notes to aid in pronunciation:</h2>
+ <textarea id="user_notes" name="user[notes]" placeholder="examples: 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" >
+</textarea> 
+    </hr>
+<input name="commit" type="submit" value="REGISTER" />
+
+
+
+</form>
+</div>
+
+<form role="form">
+ <div class="form-group">
+    <label for="first_name">First Name</label>
+    <input type="email" class="form-control" id="first_name" placeholder="First Name">
+  </div>
+ <div class="form-group">
+    <label for="last_name">Last Name</label>
+    <input type="email" class="form-control" id="last_name" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label for="input_email">Email Address</label>
+    <input type="email" class="form-control" id="input_email" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+    <div class="col-lg-10">
+      <input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
+    <div class="col-lg-10">
+      <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+
+</div>
+
+  </body>
+</html>
+  
+
+
+

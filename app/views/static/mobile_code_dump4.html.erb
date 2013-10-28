@@ -1,0 +1,78 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+  <%= stylesheet_link_tag "bootstrap_and_overrides" %>
+    <%= yield(:head) %>
+  </head>
+  <body>
+    <div class="current">
+     
+      <div class="toolbar">
+        <%= link_to "Back", nil, :class => "back" unless current_page? root_path %>
+        <h1><%=h yield(:title) %></h1>
+        <%= link_to "Full Site", root_url(:mobile => 0), :class => "button", :rel => "external" %>
+        <%= yield(:toolbar) %>
+      </div>
+  
+      
+      <% unless flash.empty? %>
+        <div class="info">
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+        </div>
+
+<div id="mob">  
+
+
+
+
+
+
+
+<% flash.each do |key, value| %>
+    <div class="alert alert-block alert-<%=key%>"> 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %> 
+    </div>
+<% end %>
+
+
+
+
+<div class="form-group">
+<form  action="/event_link_create"  id="new_user" method="post" >
+  <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
+  <input id="user_x" name="user[x]" type="hidden" value="prec" />
+<input id="user_first_name" name="user[first_name]"  placeholder="First Name" type="text" class="form-control" />
+
+<input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" />
+    <hr/>
+    <input id="user_email" name="user[email]" placeholder="Email Address"type="email" />
+    <hr/>
+     <h2>(OPTIONAL) Enter your name as you would like it announced:</h2>
+    <input id="user_phonetic" name="user[phonetic]" placeholder="example: 'Dr. Henry Jones, Jr.'" type="text"/>
+    <hr/>
+    <h2>(OPTIONAL) Enter any notes to aid in pronunciation:</h2>
+ <textarea id="user_notes" name="user[notes]" placeholder="examples: 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" >
+</textarea> 
+    </hr>
+<input name="commit" type="submit" value="REGISTER" />
+
+
+
+</form>
+</div>
+
+</div><%# end container %>
+
+
+
+
+
+  </body>
+</html>
+  

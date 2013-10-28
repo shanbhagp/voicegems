@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+  <%= stylesheet_link_tag "bootstrap_and_overrides", :media => "all" %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <%= csrf_meta_tags %>
+
+    <%= yield(:head) %>
+  </head>
+  <body>
+  
+
+
+
+
+                                      
+<div class="container" id="mob">
+
+
+<form role="form" action="/event_link_create"  id="new_user" method="post">
+ <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
+  <input id="user_x" name="user[x]" type="hidden" value="prec" />
+ <div class="form-group">
+    <label for="user_first_name">First Name</label>
+    <input id="user_first_name" name="user[first_name]"  type="text" class="form-control" placeholder="First Name">
+  </div>
+ <div class="form-group">
+    <label for="user_last_name">Last Name</label>
+    <input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" class="form-control" placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label for="user_email">Email Address</label>
+    <input type="email" class="form-control" placeholder="Enter email" id="user_email" name="user[email]">
+  </div>
+
+     <hr/>
+  <div class="form-group">
+     <label for="user_phonetic">(OPTIONAL) Enter your name as you would like it announced:</label>
+    <input id="user_phonetic" name="user[phonetic]" placeholder='example: Dr. Henry Jones, Jr.' type="text"/>
+ </div>
+ </br>
+   <div class="form-group">
+ <label for="user_notes">(OPTIONAL) Enter any notes to aid in pronunciation:</label>
+ <textarea id="user_notes" name="user[notes]" placeholder="examples: 'first name sounds like Ravine' or 'last name pronounced GLI-cough'" >
+</textarea> 
+</div>
+   
+
+
+  <button type="submit" class="btn btn-primary pull-right btn-large">NEXT</button>
+
+
+</form>
+
+<br/>
+
+
+</div>
+
+  </body>
+</html>
+  
+
+
+

@@ -1,0 +1,11 @@
+<form action="/practiceobjects/<%= @practiceobject.id %>" class="edit_practiceobject" enctype="multipart/form-data" id="edit_practiceobject_<%= @practiceobject.id %>" method="post">
+
+  <input id="practiceobject_x" name="practiceobject[x]" type="hidden" value="prec" />   
+
+  <ul>
+  <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file"   />
+ 
+     <li><input  data-disable-with="please wait..." name="commit" type="submit" value="NEXT" class="whiteButton" /></li>    
+  </ul>
+
+</form>
