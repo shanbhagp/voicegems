@@ -141,8 +141,21 @@ before_filter :owner, only: [:console, :index, :destroy]
          end 
     else
       flash.now[:info] = "Thank you! You have been given a temporary password. You will need to set a password to access this account in the future."
+   
+
+       if mobile_device?
+         render action: 'mobile_setpassword', :layout => nil
+       else 
+         render action: 'setpassword'
+       end 
+
     end 
 
+
+
+  end 
+
+  def mobile_setpassword
   end 
 
   #UNUSED (I think)  
@@ -282,7 +295,11 @@ end
      
       else
           if params[:user][:password]
-              render action: "setpassword" 
+                     if mobile_device?
+                       render action: 'mobile_setpassword', :layout => nil
+                     else 
+                       render action: 'setpassword'
+                      end 
           else
                   if params[:user][:email]
                     render action: "edit"

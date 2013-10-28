@@ -327,6 +327,7 @@ match '/precord', to: 'static#precord'
 match '/precord2', to: 'static#precord2'
 
 match 'setpassword', to: 'users#setpassword'
+match 'mobile_setpassword', to: 'users#mobile_setpassword'
 
 match 'voicegems_info', to: 'voicegems#voicegems_info'
 
