@@ -61,9 +61,13 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <hr/>
  <div id="processing">
  <h3> Processing (please wait...) </h3>
+
  </div>               
 <div class="progress progress-striped active">
    <div class="bar " style="width: 0;"></div>
+</div>
+<div id="refresh_warning">
+ <h6>If the progress bar freezes, please refresh the browser</h6>
 </div>
 
 <div id="english" class="span2 offset1 invisible">
@@ -94,7 +98,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <hr/>
 
  <div id="next" class="invisible">
-         <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait..', class: 'btn btn-info' do %>NEXT&nbsp;<i class="icon-caret-right icon-white"></i>  <% end %>
+         <span>If satisfied with your recording, click next to continue &nbsp;&nbsp;&nbsp;&nbsp;</span><%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait..', class: 'btn btn-info btn-large pull-right' do %>NEXT&nbsp;<i class="icon-caret-right icon-white"></i>  <% end %>
     </div>
 
 </div>
@@ -147,6 +151,7 @@ function parseResponse(data) {
       $('#record_again').attr("class","");
       $('#next').attr("class","pull-right");
       $('#processing').html("Processing Finished");
+      $('#refresh_warning').attr("class","invisible");
       break;
     case 'failed':
       console.log('Failed');

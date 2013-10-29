@@ -63,9 +63,10 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 
 <hr/>
 
+<div class="first_part">
 <ol>
   <h3><li>Click record.</li></h3><br/>
-  <h3><li>Record your name clearly into the video (only the audio will be saved).</li></h3>
+  <h3><li>Create a video recording and say your name clearly (only the audio will be saved).</li></h3>
   <h5><em>Please limit your recording to a maximum of 10 seconds.</em> </h5><br/>
   <h3><li>Click next.</li></h3> <br/>
 </ol>
@@ -78,11 +79,13 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <span> <input id="practiceobject_vidrec" accept="video/*" name="practiceobject[vidrec]" type="file" class="btn-largest span12" /></span>
 </label>
 
-<span class="filename"></span>
+
 
  <%= f.hidden_field :x, :value => 'prec' %>      
   </p>
 
+</div>
+<h3><span class="filename"></span></h3>
 <hr/>
 
  <div class="row">
@@ -186,7 +189,7 @@ $(document).ready(function(){
   $(function() {
      $("input:file").change(function (){
        var fileName = $(this).val();
-       $(".filename").html('Recording Selected. Click Next to continue.');
+       $(".filename").html('Recording Selected. Click Next to review and save.');
      });
   });
 </script>
@@ -197,6 +200,7 @@ $(document).ready(function(){
      $("input:file").change(function (){
        var nextbutton = $(this).val();
        $(".nextbutton").attr("class","");
+       $(".first_part").attr("class","invisible");
      });
   });
 </script>
