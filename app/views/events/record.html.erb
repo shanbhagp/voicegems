@@ -64,31 +64,9 @@
     </div>
 <% end %>
 
-<div class="alert alert-block alert-warning invisible" id="chrome">
- 
-    <button type="button" class="close" data-dismiss="alert">×</button>
 
-       
-            <h3 class="red"><i class="icon-warning-sign"></i>&nbsp;Using Chrome? Please allow NameCoach to access your microphone before proceeding (see above, under the Chrome address bar).</h3>
-             <h4>Note: only the mic will be activated.</h4>
-             <h4>Don't see the 'Allow/Deny' dialog box above? <a href="<%= flashissue_path %>.htm#collapseSix" target="_blank">click here</a> </h4>
-        
-    </div>  
 
-            <div class="row">
-                           <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
-                           <div class="span8 offset2">
-                            
-                            <script type='text/javascript'>
-                              var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-                              if (is_chrome) {
-                   
-                                $('#chrome').attr("class","alert alert-block alert-error");;
-                              }
-                            </script> 
-                            <br/>
-                           </div>
-              </div>
+
 
                           <div class="accordion" id="accordion3">
                                     <div class="accordion-group bg-signup">
@@ -179,13 +157,7 @@
 
                                                                        <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
                                                                           
-                                                                         
-                                                                    <script>
-                                                                      var onFail = function(e) {
-                                                                        console.log('Fail', e);
-                                                                      };
-                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
-                                                                     </script> 
+
 
 
                                                           </div> 

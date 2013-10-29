@@ -443,7 +443,6 @@ def event_link_create  #for new users signing up from an event code link
 end
 
 def record_step2  #should never be hit if user is not signed in - so maybe before filter this.
-	flash.keep
 	@user = current_user
 
 	#note that these incoming parameters are integers, not the model objects themselves - so can't set them to the model objects directly.
