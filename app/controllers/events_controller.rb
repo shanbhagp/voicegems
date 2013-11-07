@@ -434,7 +434,7 @@ def event_link_create  #for new users signing up from an event code link
 	  # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
 	  
 	  # problem: code ends here, user cannot retry. One solution is to redirect back to event link
-	  flash[:error] = 'Have you filled in all basic info? If problem persists, please contact support@name-coach.com'
+	  flash[:error] = 'Have you filled in all basic info? If problem persists, please contact support@voicegems.com'
 	  redirect_to record_path(:event_code => @event_code) 
 	  
 	  

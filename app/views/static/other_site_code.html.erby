@@ -36,7 +36,7 @@
 
 <div class="row">
 			<div class="span3 offset1"><img src="<%= image_path('bio_cecilia_cr.jpg')%>"> </div> 
-			<div class="span6 offset1"><h4>Cecilia Domenighini, <em>Marketing & Customer Relations</em></h4>Cecilia is pursuing BA International Business and Marketing at London Metropolitan University. After an entire year abroad (she spent the Fall semester '12 at San Francisco State, in which she was involved in a student non-profit organization called IEEC, and the Spring semester '13 at University of Cyprus), she uses her multi-cultural power to enter the European Market and infecting all corners of the world with the Silicon Valley service mania. She helps Name-Coach to connect with the right people and keep great relationships with customers. When she is not on duty, you can find her in line in a second-hand shop or listening to music in a bar with friends. </div> 
+			<div class="span6 offset1"><h4>Cecilia Domenighini, <em>Marketing & Customer Relations</em></h4>Cecilia is pursuing BA International Business and Marketing at London Metropolitan University. After an entire year abroad (she spent the Fall semester '12 at San Francisco State, in which she was involved in a student non-profit organization called IEEC, and the Spring semester '13 at University of Cyprus), she uses her multi-cultural power to enter the European Market and infecting all corners of the world with the Silicon Valley service mania. She helps voicegems to connect with the right people and keep great relationships with customers. When she is not on duty, you can find her in line in a second-hand shop or listening to music in a bar with friends. </div> 
 </div>
 	<hr/>
 
