@@ -333,6 +333,8 @@ match 'voicegems_info', to: 'voicegems#voicegems_info'
 
 match 'showparams', to: 'practiceobjects#showparams'
 
+match 'googlefb56f1f53f35d6fa', to: 'static#googlev'
+
 
 
 

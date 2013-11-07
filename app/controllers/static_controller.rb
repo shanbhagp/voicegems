@@ -296,5 +296,9 @@ def isave
   end
 
 
+def googlev
+  render :layout => nil
+end
+
 
 end
