@@ -2,8 +2,7 @@
 
       <div class="span4">
           <div class="logo" id="logo2">
-                <h1><a href="<%= root_path %>">Voice<span class="purple fat">Gems</span></a></h1>
-                <p class="meta">&nbsp;<em>hear the name, say it right</em> </p>
+                <img src="/assets/VoiceGems-logo-bare2.png" alt=""/>   
            </div>
       </div>
 
@@ -15,18 +14,6 @@
             <ul class="nav pull-right">
 
               <li><%= link_to "Home", root_path %></li>
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Our Services <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><%= link_to students_path do %> Student Name Directory <% end%> </li>
-                    <li><%= link_to commencements_path do %> Commencement Service <% end%> </li>
-                    <li><%= link_to weddings_path do %> Wedding Receptions <% end%> </li>
-                  </ul>
-              </li>
-
-              <li><%= link_to "About", team_path %></li>
-              <li><%= link_to "FAQ", faq_path, :target => "_blank" %></li>
 
               <% if !signed_in? %>
               <li><%= link_to "Invited to Admin?", admincodesignup_path %></li>     

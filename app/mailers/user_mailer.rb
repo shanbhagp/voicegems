@@ -16,17 +16,17 @@ end
 
 def welcome(user)
   @user = user
-  mail :to => user.email, :subject => "Welcome to NameCoach"
+  mail :to => user.email, :subject => "Welcome to VoiceGems"
 end
 
 def vg_welcome(user)
   @user = user
-  mail :to => user.email, :subject => "Welcome to VoiceGems (a NameCoach service)"
+  mail :to => user.email, :subject => "Welcome to VoiceGems (a VoiceGems service)"
 end
 
 def password_change(user, to)
   @user = user
-  mail :to => to, :subject => "Password update for your NameCoach account"
+  mail :to => to, :subject => "Password update for your VoiceGems account"
 end 
 
 def sub_receipt(user, receipt)
@@ -34,7 +34,7 @@ def sub_receipt(user, receipt)
   @user = user
   @r = receipt
 
-  mail :to => user.email, :subject => "NameCoach Subscription Receipt"
+  mail :to => user.email, :subject => "VoiceGems Subscription Receipt"
 
 end 
 
@@ -44,7 +44,7 @@ def sub_receipt_edu(user, receipt)
   @user = user
   @r = receipt
 
-  mail :to => user.email, :subject => "NameCoach Subscription Receipt"
+  mail :to => user.email, :subject => "VoiceGems Subscription Receipt"
 
 end 
 
@@ -67,7 +67,7 @@ def purchase_receipt(user, receipt, t1, t2, t3)
        @price = "$#{t3}"
     end 
 
-  mail :to => user.email, :subject => "NameCoach Receipt"
+  mail :to => user.email, :subject => "VoiceGems Receipt"
 
 end 
 
@@ -80,7 +80,7 @@ def grad_purchase_receipt(user, receipt, cost, price)
   @cost = cost
   @price = "$#{price}"
 
-  mail :to => user.email, :subject => "NameCoach Receipt"
+  mail :to => user.email, :subject => "VoiceGems Receipt"
 
 end 
 
@@ -92,7 +92,7 @@ def wed_purchase_receipt(user, receipt, cost, price)
   @cost = cost
   @price = "$#{price}"
 
-  mail :to => user.email, :subject => "NameCoach Receipt"
+  mail :to => user.email, :subject => "VoiceGems Receipt"
 
 end 
 

@@ -325,7 +325,7 @@ def directory
 		 	 end 
 
 		 	else
-		 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+		 	flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
 		 		redirect_to root_path 
 		 	end 
 	
@@ -388,7 +388,7 @@ def event_link_create  #for new users signing up from an event code link
 	                      	     redirect_to record_step2_path(:user => @user, :po => @po, :event => @event, :event_code => @event_code)
 							   end 			                        
 	                        else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
-	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact NameCoach for support."
+	                          redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact your admin for #{@event.title} to see if they can view your NameGuide/recording. Otherwise, please contact VoiceGems for support."
 	                        end 
 	                  end 
 
@@ -425,7 +425,7 @@ def event_link_create  #for new users signing up from an event code link
 	    else #code entered doesn't exist for any event
 	      #@user = User.new #for the re-rendering of the eventcodesignup view
 	      #render this action again, with the flash message
-	      flash[:error] = 'Something went wrong. Please contact NameCoach for support, or click on the link you received again.'
+	      flash[:error] = 'Something went wrong. Please contact VoiceGems for support, or click on the link you received again.'
 	      redirect_to record_path(:event_code => @event_code) 
 	    end 
 	else #no user parameters or no user event_code parameters
@@ -508,7 +508,7 @@ def event_code_add  #this is for registering to record with an event link, for a
             end 
 
         else #do we need an else statement in case can't find the PO by token?
-          redirect_to user, notice: "There was an error. Please sign out and try again, or contact NameCoach for support."
+          redirect_to user, notice: "There was an error. Please sign out and try again, or contact VoiceGems for support."
         end  
    
     else #invalid email/pw
@@ -596,7 +596,7 @@ puts @url
  	 @event = Event.find_by_event_code(@event_code)
  	 @user = User.new
  	else
- 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
  	redirect_to root_path 
  	end 
 
@@ -610,7 +610,7 @@ puts @url
  	 @event = Event.find_by_event_code(@event_code)
  	 @user = User.new
  	else
- 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
  	redirect_to root_path 
  	end 
 
@@ -623,7 +623,7 @@ puts @url
  	 @event = Event.find_by_event_code(@event_code)
  	 @user = User.new
  	else
- 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
  	redirect_to root_path 
  	end 
 
@@ -637,7 +637,7 @@ puts @url
  	 @event = Event.find_by_event_code(@event_code)
  	 @user = User.new
  	else
- 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
  	redirect_to root_path 
  	end 
 

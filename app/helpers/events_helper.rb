@@ -50,7 +50,7 @@ end
 def active_page_check
 	unless current_user.email == 'shanbhagp@aol.com' || page_is_active?
 	  redirect_to current_user
-      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact NameCoach or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
+      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact VoiceGems or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
     end 
 end 
 

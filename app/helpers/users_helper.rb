@@ -807,12 +807,12 @@ def adminpracticeobject
         #update floating PO for this event/em (anchor to new user)
         @po = @event.practiceobjects.find_by_email(@user.email)
         @po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
-              redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+              redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
       else  #no PO exists for this event and em
         #create a PO for this event and user
         @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
               if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-                redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
               else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
                 redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
               end 
@@ -872,7 +872,7 @@ end
 
 def bounce_free_account
   if current_user.customer_id.blank?
-      redirect_to current_user, notice: "You currently have a free account.  Please contact NameCoach if you wish to change anything."
+      redirect_to current_user, notice: "You currently have a free account.  Please contact VoiceGems if you wish to change anything."
       return false 
   end 
 end 

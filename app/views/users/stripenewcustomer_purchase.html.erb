@@ -127,7 +127,7 @@
                   <input type="hidden" name="cost" value="<%= @cost %>"><%# in dollars %> 
 
                     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-                          data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-amount="<%= @cost.to_i*100 %>" data-name="NameCoach"
+                          data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
                       data-description="<%= @number %> Event Page<% if @number > 1 %>s<% end %>"
                       data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                   <br/>

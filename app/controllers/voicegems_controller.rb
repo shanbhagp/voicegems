@@ -19,7 +19,7 @@ def vgrecord
    @user = User.new
 
   else
-  flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+  flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
     redirect_to root_path 
   end 
 
@@ -59,7 +59,7 @@ def vg_event_link_create
                             # flash[:info] = "Now just record your VoiceGem for this event (#{@event.title}), and you're done!"
                              redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
                     else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
-                      redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact NameCoach for support."
+                      redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact VoiceGems for support."
                     end 
 
                   
@@ -91,14 +91,14 @@ def vg_event_link_create
       else #code entered doesn't exist for any event
         #@user = User.new #for the re-rendering of the eventcodesignup view
         #render this action again, with the flash message
-        flash[:error] = 'Something went wrong. Please contact NameCoach for support'
+        flash[:error] = 'Something went wrong. Please contact VoiceGems for support'
         redirect_to vgrecord_path(:event_code => @event_code)  
       end 
   else
     #@user = User.new #for the re-redering of the eventcodesignup view
     #run existing users#create code - maybe make this a helper method
     # or make this whole code a separate controller action, and just redirect to the form saying no code was entered
-    flash[:error] = 'Something went wrong.  Please contact NameCoach for support.'
+    flash[:error] = 'Something went wrong.  Please contact VoiceGems for support.'
     redirect_to vgrecord_path(:event_code => @event_code)  
     
     
@@ -216,7 +216,7 @@ def vgsaveupload
              redirect_to user, notice: "Thank you for registering as an attendee for #{@event.title}.  Please make sure to create or update your VoiceGem for this event."
 
         else #do we need an else statement in case can't find the PO by token?
-          redirect_to user, notice: "There was an error. Please sign out and try again, or contact NameCoach for support."
+          redirect_to user, notice: "There was an error. Please sign out and try again, or contact VoiceGems for support."
         end  
    
     else #invalid email/pw

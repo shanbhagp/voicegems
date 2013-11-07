@@ -97,7 +97,7 @@ class SessionsController < ApplicationController
                             
                               if  bigdaddyevent 
                                    adminvoicegem(user)
-                                   redirect_to user, notice: "Welcome to NameCoach's new VoiceGem service, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
+                                   redirect_to user, notice: "Welcome to VoiceGems's new VoiceGem service, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
                               else
                                 addadminpracticeobject
                               end

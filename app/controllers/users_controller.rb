@@ -19,27 +19,9 @@ before_filter :owner, only: [:console, :index, :destroy]
   def home
     # check if signed_in and then display (you are currently signed in, view your profile)
     # automatically renders page 'users/home'
-     @user = User.new
-
      @event = Event.find(ENV['demopage'].to_i)
-
-     @practiceobject = Practiceobject.new  
-     @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
-     @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
-     @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
-     @unregisteredpos = @event.practiceobjects.unregistered.visible
-     @hiddenpos = @event.practiceobjects.hidden
-     @hiddenandregisteredpos  = @hiddenpos.registered
-     @hiddenandunregisteredpos = @hiddenpos.unregistered  
-
-     @url = demo_record_url(:event_code => @event.event_code)
-
-# can use code below to go for mobile version for specific actions, if mobile.
-     #request.format = :mobile if mobile_device?
-     respond_to do |format|
-       format.html
-       format.mobile
-     end 
+     @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
 
   end
 
@@ -54,10 +36,10 @@ before_filter :owner, only: [:console, :index, :destroy]
 
   def skip
     if is_haltom_user
-      flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+      flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
       redirect_to current_user
     else 
-    flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below."
+    flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below."
     redirect_to current_user
     end 
   end 
@@ -245,7 +227,7 @@ end
 
     if @user.save  
         sign_in @user     
-        redirect_to @user, notice: 'Welcome to NameCoach! From here, you can edit your NameGuide, or sign up for a free trial to use our NameCoach service.'
+        redirect_to @user, notice: 'Welcome to VoiceGems! From here, you can edit your NameGuide, or sign up for a free trial to use our VoiceGems service.'
     else
         render action: 'home'  #this is causing a problem: render 'new' wont' work bc the view requires the controller to set @po, but when coming from the 
                                       # home page, we bypass setting @po.
@@ -278,10 +260,10 @@ end
           if params[:user][:password]  #I think this only occurs when user sets pw for the first time, when signing up.
                  
                     if is_haltom_user
-                      flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+                      flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
                       redirect_to @user
                     else 
-                       flash[:info] = "Welcome to your NameCoach profile page! You may need to wait a minute and refresh the page to hear your recording below."
+                       flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your recording below."
                        redirect_to @user
                     end
           else
@@ -605,11 +587,11 @@ if !params[:user][:access_code].blank? #see if any code parameter is passed inco
                   if !@event.practiceobjects.nil? && @event.practiceobjects.find_by_email(@user.email)  #there is an already a PO with user's em for this event, floating
                       @po = @event.practiceobjects.find_by_email(@user.email)
                       @po.update_attributes(:user_id => @user.id) #this should validate b/c # user is new 
-                      redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                      redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}. Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
                   else #no floating PO's associated with this email for this event (from an 'invite attendee' invitation), so give a new PO
                         @po = Practiceobject.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name) #needed to add email to PO to make sure PO saves, b/c of PO validations}
                         if @po.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
-                          redirect_to @user, notice: "Welcome to NameCoach, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
+                          redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}.  Click on your event to invite people to record their names and practice recorded names. Also check out your own NameGuide to create or update it."
                         else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
                           redirect_to @user, notice: "Thanks for registering as an admin for this event. However, something may have gone wrong - please contact your event admin for #{@event.title}."
                         end 
@@ -1046,7 +1028,7 @@ def sub_coupon
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil? 
           @coupon = Coupon.find_by_free_page_name(@code)
@@ -1071,7 +1053,7 @@ def sub_coupon_edu
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create a Name Page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create a Name Page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil?
           @coupon = Coupon.find_by_free_page_name(@code)
@@ -1520,7 +1502,7 @@ def grad_coupon_purchase
     if is_valid_free_coupon(@coupon) #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
           create_grad_customer_without_stripe(@coupon)
-          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
 
     # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      
@@ -1642,7 +1624,7 @@ def wed_coupon_purchase
     if is_valid_free_coupon(@coupon) #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
           create_wed_customer_without_stripe
-          flash[:success] = "Thank you for using NameCoach! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
           redirect_to current_user
 
     # ORDER IMPORTANT HERE BC is_valid_free_coupon checks that coupon.name == 'free' but is_valid_single_use_coupon does not check coupon.name      

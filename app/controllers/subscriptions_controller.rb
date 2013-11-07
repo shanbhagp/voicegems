@@ -218,7 +218,7 @@ def existing_card_changesub
 		redirect_to current_user
 
 	else  #this shouldn't happen - don't know why Stripe wouldn't properly update the subscription
-		flash[:error] = "Something went wrong. Please try again or contact NameCoach customer service."
+		flash[:error] = "Something went wrong. Please try again or contact VoiceGems customer service."
 		redirect_to change_subscription_path
 	end 
 
