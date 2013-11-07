@@ -535,7 +535,24 @@ def event_code_add  #this is for registering to record with an event link, for a
 
 	 @url = demo_record_url(:event_code => @event.event_code)
 
-	 
+	 @pofirst = @registeredandrecordedpos.first
+
+	 s3 = AWS::S3.new
+  bucket = s3.buckets[ ENV["BUCKET_NAME"]]
+  puts bucket
+  object = bucket.objects["#{@pofirst.recording}.mp3"]
+ puts object
+ # @url = object.url_for(:read).to_s
+ #puts @url
+@url = object.url_for(:get, {
+      expires: 10.minutes,
+      response_content_disposition: 'attachment;'
+    }).to_s
+
+puts @url 
+
+
+
   end
 
   def demo_wedding_page
