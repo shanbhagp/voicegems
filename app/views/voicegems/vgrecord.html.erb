@@ -101,10 +101,11 @@
                                       </div>
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
+                                                <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
                                                    <div class="row">
-                                                     <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                    
 
-                                                         <div class="well span3 offset1">
+                                                         <div class="well span6 offset1">
                                                           <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -120,7 +121,9 @@
 
                                                                 <hr/>    
                                                          </div>
-                                                         <div class="well span3">         
+                                                     </div>
+                                                     <div class="row">
+                                                         <div class="well span6 offset1">         
                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
                                                                         <span class="textarea2">
@@ -133,7 +136,8 @@
                                                                          
                                                                      <hr/>
                                                           </div>
-
+                                                     </div> 
+                                                     <div class="row">    
                                                           <div class="well span3">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
                                                                   <br/> 
@@ -166,9 +170,9 @@
 
 
                                                           </div> 
-
+                                                     </div><%# end third row %>     
                                                     <% end %>
-                                                    </div><%# end main row %>
+                                                   
                                                      <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                         </div>
                                       </div>
