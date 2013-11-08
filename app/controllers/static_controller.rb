@@ -300,5 +300,14 @@ def googlev
   render :layout => nil
 end
 
+def mockup
+
+
+       @event = Event.find(ENV['demopage'].to_i)
+     @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
+     
+end 
+
 
 end
