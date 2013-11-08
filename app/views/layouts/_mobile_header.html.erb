@@ -51,18 +51,6 @@
                           
                           <li><%= link_to "Home", root_path %></li>
 
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Our Services <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><%= link_to students_path do %> Student Name Directory <% end%> </li>
-                                <li><%= link_to commencements_path do %> Commencement Service <% end%> </li>
-                                <li><%= link_to weddings_path do %> Wedding Receptions <% end%> </li>
-                              </ul>
-                          </li>
-
-                          <li><%= link_to "About", team_path %></li>
-                          <li><%= link_to "FAQ", faq_path, :target => "_blank" %></li>
-
                           
 
               
@@ -81,20 +69,12 @@
 <div class="container">
 <div class="nav-collapse">
     <ul class="nav">
-                      <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Our Services <b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li><%= link_to students_path do %> Student Name Directory <% end%> </li>
-                                <li><%= link_to commencements_path do %> Commencement Service <% end%> </li>
-                                <li><%= link_to weddings_path do %> Wedding Receptions <% end%> </li>
-                              </ul>
-                          </li>
+                      
                           
                           <li><%= link_to "Home", root_path %></li>
-                          <li><%= link_to "About", team_path %></li>
-                          <li><%= link_to "FAQ", faq_path, :target => "_blank" %></li>
+                         
 
-                         <li><%= link_to "Invited to Admin?", admincodesignup_path %></li>     
+                        
                           <li><%= link_to "Reset Password", new_password_reset_path %></li> 
                           <li><%= link_to "Login", login_path %></li>
 
