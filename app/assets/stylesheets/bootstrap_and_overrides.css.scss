@@ -910,3 +910,25 @@ background-repeat: no-repeat;
 .text-divider6 span.gold {
     background-color: #C0AB73;
 }
+
+
+.white_bg  {
+    background-color: white;
+    padding: 3px; /*add this if you want a bit of space around the text*/
+}
+
+.white_outline {
+    text-shadow:
+    -2px -2px 4px white,
+    2px -2px 4px white,
+    -2px 2px 4px white,
+    2px 2px 4px white,
+    -1px -1px 1px white,
+    1px -1px 1px white,
+    -1px 1px 1px white,
+    1px 1px 1px white,
+    -1px -1px 0px white,
+    1px -1px 0px white,
+    -1px 1px 0px white,
+    1px 1px 0px white;
+}

@@ -1,7 +1,11 @@
-<div class="whitebg">
+<div class="whitebg white_outline">
 
 
-      <div id="mic">
+     <% if mobile_device? %>
+         <div>
+     <% else %>
+         <div id="mic">
+      <% end %>
                 <br/>
                 <br/>
 
@@ -46,7 +50,7 @@
                  <div class="row biggertext">
                     <br/>
                     <div class="span9 offset2">
-                          <h2>VoiceGems lets you collect short wedding toasts for you to integrate into your entertainment mix, creating an unparalleled emotional touch they will love and remember. </h2>
+                          <h2><span class="white_outline">VoiceGems lets you collect short wedding toasts for you to integrate into your entertainment mix, creating an unparalleled emotional touch they will love and remember.</span> </h2>
                           <br/>
                           <div class="row">
                              <div class="span8 offset1">
