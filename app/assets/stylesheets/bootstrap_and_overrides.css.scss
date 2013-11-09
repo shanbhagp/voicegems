@@ -861,3 +861,52 @@ background-repeat: no-repeat;
 .gold {
   color: #C0AB73;
 }
+
+.bg-gold {
+  background-color: #C0AB73;
+}
+
+
+
+  .process .process-meta-gold {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 0px auto;
+  margin-top: 10px;
+  color: #fff;
+  margin-bottom: 5px;
+  background-color: #C0AB73;
+  box-shadow: inset 0px 0px 2px #777;
+}
+
+
+.text-divider5, .text-divider6 {
+    border-bottom: 1px solid #cccccc;
+    width: 100%;
+    margin-bottom: 19px;
+    margin-top: -3px;
+}
+.text-divider5 span {
+    display: block;
+    width: 70px;
+    height: 3px;
+}
+.text-divider6 span {
+    display: block;
+    width: 70px;
+    height: 3px;
+    float: right;
+}
+
+.text-divider5 span.gold {
+    background-color: #C0AB73;
+}
+
+.text-divider6 span.gold {
+    background-color: #C0AB73;
+}
