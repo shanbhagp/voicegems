@@ -63,7 +63,7 @@
 				</div>
 			
 
-				<div class="span4">
+				<div class="span3">
 					<a href="#" rel="tooltip" data-placement="right" title="User's recorded VoiceGem. Click the play button to hear. If an 'x' appears instead of the play button, you may need to ask the user to re-record."><h4>Recorded VoiceGem</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
@@ -74,7 +74,7 @@
 				</div>	
 				
 			
-				 <div class="span1" >
+				 <div class="span1 offset1" >
 					<h4>Actions</h4>
 				</div>
 
@@ -97,7 +97,7 @@
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="span4">
+					 <div class="span3">
 					 	<span class="vg">
 							<audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['VG_BUCKET_NAME'] %>/<%= f.recording %>.mp3" /> 
 						</span>	 			
@@ -108,7 +108,7 @@
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span1">
+					 <div class="span2">
 						     <div class="btn-group pull-right">
 
                         
@@ -203,7 +203,14 @@
                                  </div>  <%# end MODAL div id="regrec_hide_entry %>	         
 
                                                             
-                               
+                             <%= link_to AWS::S3.new.buckets[ ENV["VG_BUCKET_NAME"]].objects["#{f.recording}.mp3"].url_for(:get, {
+      expires: 10.minutes,
+      response_content_disposition: "attachment; filename=#{f.user.first_name}_#{f.user.last_name}_#{f.recording}"
+    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="icon-download icon-white icon-large"></i><% end %>
+
+
+
+
                               		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
 
                               		
