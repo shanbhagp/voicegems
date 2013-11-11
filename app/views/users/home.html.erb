@@ -209,12 +209,15 @@
 
                     <div class="span10 offset2">
                        <br/>
-                      <h3>Choose a plan to meet your needs: </h3> 
+                      <h3>Choose a plan to meet your business needs: </h3> 
 
                          <br/><br/>
                          <div class = "row">
+                          <% if mobile_device? %>
+                            <div class="span10">
+                          <% else %>
                               <div class="span8">
-                                   <!--SILVER-->
+                          <% end %>         <!--SILVER-->
                                     <div class="fltlft PlanBoxGold">
                                       <div class="PlanBoxHeading bg-gold"><%= @first_plan.name.upcase%> PLAN</div>
                                       <div class="PlanBoxContent">
