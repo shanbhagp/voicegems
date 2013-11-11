@@ -200,6 +200,16 @@ def vgsaveupload
 
       flash.keep
      @user = User.new
+
+      if mobile_device?
+         render action: 'mobile_demo_vgrecord', :layout => nil
+       else 
+         render action: 'demo_record_vg'
+       end 
+
+  end 
+
+  def mobile_demo_vgrecord
   end 
 
 
