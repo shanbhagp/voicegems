@@ -206,15 +206,18 @@
 
 
                  <div class="row biggertext">
-
+                    <% if mobile_device? %>
+                    <div class="span12">
+                    <% else %>
                     <div class="span10 offset2">
+                    <% end %>
                        <br/>
                       <h3>Choose a plan to meet your business needs: </h3> 
 
                          <br/><br/>
                          <div class = "row">
                           <% if mobile_device? %>
-                            <div class="span10">
+                            <div class="span12">
                           <% else %>
                               <div class="span8">
                           <% end %>         <!--SILVER-->

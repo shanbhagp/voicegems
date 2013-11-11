@@ -404,7 +404,7 @@ def event_link_create  #for new users signing up from an event code link
 	                            end 
 	                    else #email not registered; so probably user info didn't validate - maybe forgot a field, or bad email address
 	                             flash[:error] = "Please be sure to enter your first name, last name, and valid email address."
-	                    	     redirect_to demo_record_vg_path(:event_code => @event_code) 
+	                    	     redirect_to record_path(:event_code => @event_code) 
 	                    end 
 
 	                    
