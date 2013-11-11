@@ -52,7 +52,7 @@ module UsersHelper
           end 
           
          
-          if event_type == 'reception'
+
             #create subscription
             @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
             @sub.coupon = code
@@ -73,31 +73,10 @@ module UsersHelper
             #mail receipt
             UserMailer.sub_receipt(current_user, @r).deliver
 
-          else # event_type is an edu event type
-
-            @sub = Subscription.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id, :my_plan_id => plan, :active => true, :plan_name => Plan.find_by_my_plan_id(plan).name)
-            @sub.coupon = code
-            @sub.events_remaining = @er
-            @sub.unlimited = @unlimited
-            @sub.save 
-
-            #update customer with subscription_id
-            current_user.update_attributes(:subscription_id => @sub.id)
-
-           #create receipt
-            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
-              :subscription_id => @sub.id, :sub_my_plan_id => @sub.my_plan_id, :sub_plan_name => @sub.plan_name,
-              :sub_events_number => @sub.events_remaining, :sub_reg_annual_cost_in_cents => Plan.find_by_my_plan_id(@sub.my_plan_id).annual_cost_cents,
-              :sub_actual_annual_cost_in_cents => newprice, :sub_coupon_name => @sub.coupon) 
-            @r.save
-
-            #mail receipt
-            UserMailer.sub_receipt_edu(current_user, @r).deliver
-
-          end 
+         
 
 
-          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create a name page, from which you can 1) request name recordings, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an Event Page, from which you can 1) request VoiceGems, 2) download VoiceGems, and 3) invite other admins (who can request and download VoiceGems)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -724,13 +703,13 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
 end 
 
 def plan_set_one
-    1  #this returns the integer 1
+    13  #this returns the integer 1
 end 
 def plan_set_two
-    2  #this returns the integer 1
+    14  #this returns the integer 1
 end 
 def plan_set_three
-    3  #this returns the integer 1
+    15  #this returns the integer 1
 end 
 def plan_set_commencement
     10  

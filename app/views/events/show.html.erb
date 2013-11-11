@@ -13,7 +13,7 @@
 <% else %>   
 
 <div class="jumbotron">
-	<h1> Name Page: <em> <%= @event.title %> </em> </h1>
+	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
 	
 	<% unless @event.event_type == 'students' %><% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %><% end %>
 </div>
@@ -720,7 +720,7 @@
 										            </div>
 										            <div class="modal-body">
 
-										            <p> <%= @individual.pluralize.titleize %> can record their names for this Name Page using either of these links:
+										            <p> <%= @individual.pluralize.titleize %> can record their names for this Event Page using either of these links:
 										            	<br/><br/>
 										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
 										            
@@ -802,7 +802,7 @@
 	 </div> <%# end span 9 %>
 
 	 
-	<h4>Read-Only Name Page Link (no log-in required to view the Name Page): <%= link_to @url2, @url2, :target => "_blank" %></h4>
+	<h4>Read-Only Event Page Link (no log-in required to view the Event Page): <%= link_to @url2, @url2, :target => "_blank" %></h4>
 </div> <%# end row %>	 	
     	 
         
@@ -865,7 +865,7 @@
     	 <div class="row">
     	 	<div class="span10">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Page: </h4>
+    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Event Page: </h4>
 					 <br />	
 					 <%= form_for(@event.admininvites.build, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -881,7 +881,7 @@
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Name Page.' %>
+						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Event Page.' %>
 						  	
 
 				     <% end %>
@@ -928,15 +928,15 @@
 										            </div>
 										            <div class="modal-body">
 
-										            <p> Another way to get someone to be an admin for this Name Page is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.voicegems.com</strong>. </p> 
+										            <p> Another way to get someone to be an admin for this Event Page is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.voicegems.com</strong>. </p> 
 
-										        	 <p> When they enter this code and sign up, they will automatically become an admin for your Name Page (for <%= @event.title %>). </p>
+										        	 <p> When they enter this code and sign up, they will automatically become an admin for your Event Page (for <%= @event.title %>). </p>
 
 										            <p>You can use this in addition to, or as an alternative to, inviting admins by entering their email and pressing the 'Invite Admin' button.</p>
 
-										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin this Name Page. </p>
+										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin this Event Page. </p>
 
-										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names. The admin code allows whoever signs up with it to become an admin for that Name Page, so just give it directly to those people (e.g., the person who will be announcing names, or an event planner who is going to invite individuals record their names, or teachers and staff). 
+										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names. The admin code allows whoever signs up with it to become an admin for that Event Page, so just give it directly to those people (e.g., the person who will be announcing names, or an event planner who is going to invite individuals record their names, or teachers and staff). 
 										 			
 										 		
 

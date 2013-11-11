@@ -23,6 +23,11 @@ before_filter :owner, only: [:console, :index, :destroy]
      @event_code = @event.event_code
      @url = demo_record_vg_url(:event_code => @event.event_code)
 
+
+      @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
+      @second_plan = Plan.find_by_my_plan_id(plan_set_two)
+      @third_plan = Plan.find_by_my_plan_id(plan_set_three)
+
   end
 
   def index
@@ -899,7 +904,7 @@ def newcustomer
      @planobject = Plan.find_by_my_plan_id(@plan)
      @events_number = @planobject.events_number 
      @user = current_user
-    render 'stripenewcustomer_edu'
+    render 'stripenewcustomer'
     end 
   end
 end 
@@ -928,19 +933,10 @@ def newcustomercreate
           @user.customer = true
           @user.save
       end 
-      if @user.email == 'startx@example.com'
-          @user.customer = true
-          @user.save
-      end 
-      if @user.email == 'teststartx@example.com'
-          @user.customer = true
-          @user.save
-      end 
-        if @user.event_type == 'reception'
+
+
           render 'stripenewcustomer'
-        else #users(customer's) event type is an edu type
-          render 'stripenewcustomer_edu'
-        end
+      
 
     else
 
@@ -1028,7 +1024,7 @@ def sub_coupon
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create an event page, from which you can 1) request VoiceGems, 2) hear and download VoiceGems and 3) invite other admins (who can request and hear/download VoiceGems)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil? 
           @coupon = Coupon.find_by_free_page_name(@code)
@@ -1053,7 +1049,7 @@ def sub_coupon_edu
   
    if is_valid_free_sub(@code) && !@planobject.nil?
           create_sub_customer_without_stripe(@plan, @code)
-          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create a Name Page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for using VoiceGems! (No payment details were needed, and you have not been charged.) You can now create a Event Page, from which you can 1) request VoiceGems, 2) hear and download VoiceGems and 3) invite other admins (who can request and hear/download VoiceGems)."
           redirect_to current_user
    elsif is_valid_sub_coupon(@code) && !@planobject.nil?
           @coupon = Coupon.find_by_free_page_name(@code)
@@ -1095,11 +1091,9 @@ def stripereceiver  #incoming from stripenewcustomer form
           
           redirect_to current_user
         else
-          if event_type == "reception"
+        
             render 'stripenewcustomer'
-          else 
-            render 'stripenewcustomer_edu'
-          end 
+        
         end 
 
     end    

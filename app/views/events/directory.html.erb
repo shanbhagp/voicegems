@@ -290,8 +290,8 @@ $(function() {
 			   </div>
 		 <% end %>
 
-		<%= y.select :sub_page, @adminevents.map {|u| [u.title,u.id]}, prompt: 'Select a Name Page' %>
-		<%= y.submit "Copy Selected Entries to this Name Page", class: "btn-primary btn-small", disable_with: 'copying...' %>
+		<%= y.select :sub_page, @adminevents.map {|u| [u.title,u.id]}, prompt: 'Select a Event Page' %>
+		<%= y.submit "Copy Selected Entries to this Event Page", class: "btn-primary btn-small", disable_with: 'copying...' %>
 		<% end %><%# end migration/checkboxes form %>
 
 		
@@ -928,7 +928,7 @@ $(function() {
 										            </div>
 										            <div class="modal-body">
 
-										            <p> <%= @individual.pluralize.titleize %> can record their names for this Name Page using either of these links:
+										            <p> <%= @individual.pluralize.titleize %> can record their names for this Event Page using either of these links:
 										            	<br/><br/>
 										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
 										            
@@ -1016,7 +1016,7 @@ $(function() {
  <div class="row">
 
 	 <div class="span12">
-	 	<h4>Your public (read-only) link for this Name Page:</h4>
+	 	<h4>Your public (read-only) link for this Event Page:</h4>
 	 	<p> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= locked_event_url(@event) %> <br/> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Hear student name prounuciations for #{@event.title}", locked_event_url(@event), :target => "_blank"  %></p>
 	 		<h5> Please note: You can give this link to teachers or staff who wish to search and hear students' names. <strong>They can access the read-only page at this link without logging in as an admin</strong>, but they will not be able to request individual recordings, delete entries, or enter their own notes. </h5>
 	 </div>
@@ -1096,7 +1096,7 @@ $(function() {
     	 <div class="row">
     	 	<div class="span10">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Page: </h4>
+    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Event Page: </h4>
 					 <br />	
 					 <%= form_for(@event.admininvites.build, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -1112,7 +1112,7 @@ $(function() {
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Name Page.' %>
+						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Event Page.' %>
 						  	
 
 				     <% end %>
@@ -1159,15 +1159,15 @@ $(function() {
 										            </div>
 										            <div class="modal-body">
 
-										            <p> Another way to get someone to be an admin for this Name Page is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.voicegems.com</strong>. </p> 
+										            <p> Another way to get someone to be an admin for this Event Page is with the admin code.  Just give them this code, <strong><%= @event.access_code %></strong>, and ask them to click the link 'Invited to Admin?' at <strong>www.voicegems.com</strong>. </p> 
 
-										        	 <p> When they enter this code and sign up, they will automatically become an admin for your Name Page (for <%= @event.title %>). </p>
+										        	 <p> When they enter this code and sign up, they will automatically become an admin for your Event Page (for <%= @event.title %>). </p>
 
 										            <p>You can use this in addition to, or as an alternative to, inviting admins by entering their email and pressing the 'Invite Admin' button.</p>
 
-										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin this Name Page. </p>
+										            <p> We recommend using the 'Invite Admin' method (rather than the admin code), because it's a bit easier for admins to sign up, and it allows you to track who you've invited to admin this Event Page. </p>
 
-										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names (i.e., students). The admin code allows whoever signs up with it to become an admin for your Name Page, so just give it directly to those people (e.g., teachers, or the announcer at an event, or an event planner who is going to invite students to record their names). 
+										            <h4>Important Note: </h4> Do not give the admin code to those who you only want to record their names (i.e., students). The admin code allows whoever signs up with it to become an admin for your Event Page, so just give it directly to those people (e.g., teachers, or the announcer at an event, or an event planner who is going to invite students to record their names). 
 										 			
 										 		
 
@@ -1225,7 +1225,7 @@ $(function() {
 			</div>
 
 			<div class="well span8 ">
-				<h4>Create a Commencement Name Page for a Graduation Year/Class:</h4>
+				<h4>Create a Commencement Event Page for a Graduation Year/Class:</h4>
 				<% unless @event.grad_array.empty? %>
 
 				   <br/>
@@ -1243,7 +1243,7 @@ $(function() {
                         <%= f.select :grad_date, @event.grad_array, prompt: 'Select Graduation Year/Class', label: "Graduation Date:" %>
                  			
 
-                 		 	<%= f.submit "Create Name Page", class: "btn btn-primary" %>
+                 		 	<%= f.submit "Create Event Page", class: "btn btn-primary" %>
                  		 
 
 
@@ -1253,7 +1253,7 @@ $(function() {
                      <% end %> <%# form for new event creation %>
                    
                    <br/>
-                   <p>Note: This action will copy all the entries (from your Student Name Directory) for students in the selected graduation year/class into a new Name Page which can be used by Commencement name announcers. </p>  
+                   <p>Note: This action will copy all the entries (from your Student Name Directory) for students in the selected graduation year/class into a new Event Page which can be used by Commencement name announcers. </p>  
                <% else %>
                      <p>Default commencement pages require students to be able to select their graduation year/date when they register and record. </p>
 				<% end %> <%# end unless empty grad_array %>

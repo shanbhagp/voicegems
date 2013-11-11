@@ -35,7 +35,7 @@ class EventsController < ApplicationController
 	                    			flash[:success] = "You have created your Student Name Directory!"
 	                    			redirect_to master_set_path(:id => @event.id)
 	                    		else
-	                     		    redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+	                     		    redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 	                     		end 
 					          else #should't happen because subscription should save
 					            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
 						          if @s.save
 						          	 @event.customerkeys.create!(user_id: current_user.id)
 		                    		 @event.adminkeys.create!(user_id: current_user.id)
-		                     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+		                     		 redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 						          else #should't happen because subscription should save
 						            flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 						            redirect_to current_user
@@ -78,7 +78,7 @@ class EventsController < ApplicationController
 	             #END RUN MODIFIED for subscription events EXISTING CODE
 
 	     	 else #shouldn't happen because event creation well shouldn't allow incoming s event_type if no s pages are left
-	     	 	flash[:error] = 'No name pages remaining.  Please purchase more or upgrade your plan.'
+	     	 	flash[:error] = 'No event pages remaining.  Please purchase more or upgrade your plan.'
 	     		redirect_to current_user
 	     	 end 
 	     else
@@ -94,7 +94,7 @@ class EventsController < ApplicationController
            						 if @user.save
            						      @event.customerkeys.create!(user_id: current_user.id)
 		                     		  @event.adminkeys.create!(user_id: current_user.id)
-		                     		  redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+		                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 								 else #shouldn't happen because @user should save
 					                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 					                  redirect_to current_user
@@ -117,7 +117,7 @@ class EventsController < ApplicationController
 	           						 if @user.save
 	           						      @event.customerkeys.create!(user_id: current_user.id)
 			                     		  @event.adminkeys.create!(user_id: current_user.id)
-			                     		  redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+			                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 									 else #shouldn't happen because @user should save
 						                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 						                  redirect_to current_user
@@ -133,7 +133,7 @@ class EventsController < ApplicationController
 
 	     			
 	     		else #shouldn't happen because event creation well shouldn't allow incoming p event_type if no p pages are left
-	     			flash[:error] = 'No name pages remaining.  Please purchase more or upgrade your plan.'
+	     			flash[:error] = 'No event pages remaining.  Please purchase more or upgrade your plan.'
 	     	 		redirect_to current_user
 	     		end
 	     	else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
@@ -168,7 +168,7 @@ class EventsController < ApplicationController
 		 #	@person = "Attendee"
 		# end 
 		 
-		 if bigdaddyevent
+
 		 	
 		 	 @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
 			 @registeredandunrecordedvgs = @event.voicegems.registered.unrecorded.visible
@@ -181,19 +181,7 @@ class EventsController < ApplicationController
 
 
 		 	render action: 'voicegems'
-		 else
-			 @practiceobject = Practiceobject.new  
-			 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
-			 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
-			 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
-			 @unregisteredpos = @event.practiceobjects.unregistered.visible
-			 @hiddenpos = @event.practiceobjects.hidden
-			 @hiddenandregisteredpos  = @hiddenpos.registered
-			 @hiddenandunregisteredpos = @hiddenpos.unregistered  
-
-			 @url = record_url(:event_code => @event.event_code)
-			 @url2 = locked_event_url(@event)
-		end 
+	
     end
 
 def directory
@@ -707,7 +695,7 @@ def default_grad
 generate_event_code(@event)
 
 	if @event.grad_date.blank? #didn't select a grad year to migrate
-	      flash[:error] = 'Please select a graduation year/class to create a default Commencement Name Page. None was selected.'
+	      flash[:error] = 'Please select a graduation year/class to create a default Commencement Event Page. None was selected.'
 	      redirect_to @master_event
 	else 
 	    if  @event.save  
@@ -726,12 +714,12 @@ generate_event_code(@event)
 
 	    		 default_migrate_pos(@master_event, @event)
 
-	     		 redirect_to @event, notice: "Welcome to your name page for #{@event.title}."
+	     		 redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 	     		 
 	         
 
 	    else
-	      flash.keep[:error] = 'Please enter a title and date to create a default Commencement Name Page.'
+	      flash.keep[:error] = 'Please enter a title and date to create a default Commencement Event Page.'
 	      redirect_to @master_event
 	    end
 	end 
@@ -766,7 +754,7 @@ def migrate_entries
 		@master_event = Event.find(@master_event_id)
 
 	if params[:migration][:sub_page].blank?
-		flash[:error] = "No Name Page was selected to which to copy entries."
+		flash[:error] = "No Event Page was selected to which to copy entries."
 		redirect_to @master_event
 	else
 		if  @pos.blank?
@@ -780,7 +768,7 @@ def migrate_entries
 			Practiceobject.create(:event_id => @sub_page, :user_id => m.user_id, :email => m.email, :first_name => m.first_name, :last_name => m.last_name, :recording => m.recording, :phonetic => m.phonetic)
 			end 
 
-			flash[:success] = "Entries were successfully copied to this Name Page."
+			flash[:success] = "Entries were successfully copied to this Event Page."
 			redirect_to @sub_event
 		
 		end 

@@ -11,7 +11,7 @@
  
 
 <div class="jumbotron">
-	<h1>  <% if @event.master == true %>Student Name Directory<% else%>Name Page<% end %>: <em> <%= @event.title %> </em> </h1>
+	<h1>  <% if @event.master == true %>Student Name Directory<% else%>Event Page<% end %>: <em> <%= @event.title %> </em> </h1>
 	
 	 <% unless @event.master == true %><% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %><% end %>
 </div>
@@ -299,7 +299,7 @@
 										            </div>
 										            <div class="modal-body">
 
-										            <p> <%= @individual.pluralize.titleize %> can record their names for this Name Page using either of these links:
+										            <p> <%= @individual.pluralize.titleize %> can record their names for this Event Page using either of these links:
 										            	<br/><br/>
 										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
 										            

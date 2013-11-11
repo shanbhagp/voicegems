@@ -11,7 +11,7 @@ $(function() {
 <div class="row"> <%# wrap tabs%>
 
  <ul id="myTab" class="nav nav-tabs">
-	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Name Pages</strong></a></li>
+	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Event Pages</strong></a></li>
 	  <li><a href="#nw" data-toggle="tab"><strong>Your NameGuide<% if !current_user.practiceobjects.nil? && current_user.practiceobjects.count > 1 %>s<% end %></strong></a></li>
 </ul>
           
@@ -24,7 +24,7 @@ $(function() {
 				 		 			        
 				         <div class="span12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a name page: </h4> </br>
+				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -43,20 +43,20 @@ $(function() {
 										            </div>
 
 										            <div class="modal-body">
-										            <p> Attendees can record their names for this event/name page through a unique link, such as:
+										            <p> Attendees can record their names for this event/event page through a unique link, such as:
 										            	<br/><br/>
 										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
 										              </p> 
 
-										       			<p> The link will be available once you create the Name Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
+										       			<p> The link will be available once you create the Event Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
 										       		
 
-										       		<p>You can use this in addition to, or as an alternative to, requesting recordings from individuals by entering their email on the Name Page and pressing the 'Request Recording' button. </p>	<br/>							
+										       		<p>You can use this in addition to, or as an alternative to, requesting recordings from individuals by entering their email on the Event Page and pressing the 'Request Recording' button. </p>	<br/>							
 
 										 			<h4>So What's the Code? </h4>	<br/>
-													<p> It's the code that represents your specific name page in the link.</p>
+													<p> It's the code that represents your specific event page in the link.</p>
 
-													<p> If you want, you can choose a code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the name page is for an event in Boston on December 6th, you might choose 'BOSTONDEC6.' If the name page is for St. Xavier High School in Ohio, you might choose 'XAVIEROH'  </p>
+													<p> If you want, you can choose a code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event page is for an event in Boston on December 6th, you might choose 'BOSTONDEC6.' If the event page is for St. Xavier High School in Ohio, you might choose 'XAVIEROH'  </p>
 
 													<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
 
@@ -82,7 +82,7 @@ $(function() {
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
 				                        <% end %>
 				                 		 <br/> <hr/>
-				                         	<%= f.submit "Create Name Page", class: "btn btn-primary span4"  %> 
+				                         	<%= f.submit "Create Event Page", class: "btn btn-primary span4"  %> 
 				                        
 				                          &nbsp;&nbsp; 
 
@@ -105,7 +105,7 @@ $(function() {
 				 		 			        
 				         <div class="span12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a name page: </h4> </br>
+				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -124,20 +124,20 @@ $(function() {
 										            </div>
 
 										          <div class="modal-body">
-										            <p> Individuals can record their names for this name page through a unique link, such as:
+										            <p> Individuals can record their names for this event page through a unique link, such as:
 										            	<br/><br/>
 										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
 										              </p> 
 
-										       		<p> The link will be available once you create the Name Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
+										       		<p> The link will be available once you create the Event Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
 										       		
 
-										       		<p>You can use this in addition to, or as an alternative to, requesting recordings from individuals by entering their email on the Name Page and pressing the 'Request Recording' button. </p>	<br/>								
+										       		<p>You can use this in addition to, or as an alternative to, requesting recordings from individuals by entering their email on the Event Page and pressing the 'Request Recording' button. </p>	<br/>								
 
 										 			<h4>So What's the Code? </h4>	<br/>
-													<p> It's the code that represents your specific name page in the link.</p>
+													<p> It's the code that represents your specific event page in the link.</p>
 
-													<p> If you want, you can choose a code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the name page is for an event in Boston on December 6th, you might choose 'BOSTONDEC6.' If the name page is for St. Xavier High School in Ohio, you might choose 'XAVIEROH'  </p>
+													<p> If you want, you can choose a code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event page is for an event in Boston on December 6th, you might choose 'BOSTONDEC6.' If the event page is for St. Xavier High School in Ohio, you might choose 'XAVIEROH'  </p>
 
 													<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
 
@@ -166,9 +166,9 @@ $(function() {
 						                          <% end %> 
 
 				                 		 <% if no_pages_left? %>
-				                 		 	<%= f.submit "Create Name Page", class: "btn btn-primary", :disabled => true  %>
+				                 		 	<%= f.submit "Create Event Page", class: "btn btn-primary", :disabled => true  %>
 				                 		 <% else %>	
-				                         	<%= f.submit "Create Name Page", class: "btn btn-primary"  %> 
+				                         	<%= f.submit "Create Event Page", class: "btn btn-primary"  %> 
 				                         <% end %>
 				                          &nbsp;&nbsp; 
 
@@ -215,7 +215,7 @@ $(function() {
 				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Name pages you administer: </strong></h4>
 				            <br/>
 				            <% if @user.adminevents.count == 0 %> 
-				            (no name pages created yet)
+				            (no event pages created yet)
 				            <% else %> 
 						            <table class="table table-striped event">
 						              <% @user.adminevents.each do |e| %>
