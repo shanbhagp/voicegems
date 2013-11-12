@@ -1,0 +1,104 @@
+curl -X POST https://auphonic.com/api/simple/productions.json \
+    -u "your_auphonic_username:your_auphonic_password" \
+    -F "input_file=@/path/to/your/local/podcast.flac" \
+    -F "action=start"
+
+
+
+
+require "net/http"
+require "uri"
+
+uri = URI.parse("http://example.com/search")
+
+# Shortcut
+response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
+
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request.set_form_data({"q" => "My query", "per_page" => "50"})
+
+response = http.request(request)
+
+
+
+def email_to_friend
+  ...other code...
+  # now, do the dirty work
+  require 'net/http'
+  # get the url that we need to post to
+  url = URI.parse('http://www.url.com/subscribe')
+  # build the params string
+  post_args1 = { 'email' => params[:email] }
+  # send the request
+  resp, data = Net::HTTP.post_form(url, post_args1)
+end
+
+
+
+
+
+
+
+require "net/http"
+require "uri"
+
+uri = URI.parse("http://google.com/")
+
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net::HTTP::Get.new(uri.request_uri)
+request.basic_auth("username", "password")
+response = http.request(request)
+
+
+
+
+------------------
+
+
+
+
+require "net/http"
+require "uri"
+
+uri = URI.parse("https://auphonic.com/api/simple/productions.json")
+
+# Shortcut
+response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
+
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request.basic_auth("shanbhagp@aol.com", "atlantis1")
+request.set_form_data({"input_file" => "My query", "action" => "start"})
+
+response = http.request(request)
+
+
+----------------
+skip_before_filter :verify_authenticity_token, :only => [:vgsaveupload]
+----
+      #post request to Auphonic
+       source_filename = path 
+
+      require "net/http"
+  require "uri"
+
+uri = URI.parse("https://auphonic.com/api/simple/productions.json")
+
+# Shortcut
+#response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
+
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request.basic_auth("shanbhagp@aol.com", "atlantis1")
+request.set_form_data({"input_file" => source_filename, "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
+
+response = http.request(request)
+
+puts response
