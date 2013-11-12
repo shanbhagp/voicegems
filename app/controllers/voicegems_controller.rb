@@ -3,7 +3,7 @@ before_filter :vgfilter, only: [:index]
 before_filter :signed_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 before_filter :owner, only: [:index, :show, :new, :create]
 before_filter :correct_user_for_vg, only: [:edit] 
-
+skip_before_filter :verify_authenticity_token, :only => [:vgsaveupload]
 
 def vgrecord
 
@@ -142,47 +142,27 @@ def vgsaveupload
      # write the file to local images directory
       File.open(path, "wb") { |f| f.write(request.body.read) }
 
-      #upload to S3
-       bucket_name = ENV['VG_BUCKET_NAME']
+      #post request to Auphonic
        source_filename = path 
 
-        AWS.config(
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-        )
+      require "net/http"
+  require "uri"
 
-        # Create the basic S3 object
-        s3 = AWS::S3.new
+uri = URI.parse("https://auphonic.com/api/simple/productions.json")
 
-        # Load up the 'bucket' we want to store things in
-        bucket = s3.buckets[bucket_name]
+# Shortcut
+#response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
 
-        # If the bucket doesn't exist, create it
-        unless bucket.exists?
-          puts "Need to make bucket #{bucket_name}.."
-          s3.buckets.create(bucket_name)
-        end
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
 
-        # Grab a reference to an object in the bucket with the name we require
-        object = bucket.objects[File.basename(source_filename)]
+request = Net::HTTP::Post.new(uri.request_uri)
+request.basic_auth("shanbhagp@aol.com", "atlantis1")
+request.set_form_data({"input_file" => source_filename, "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
 
-        # Write a local file to the aforementioned object on S3
-        object.write(:file => source_filename)
-       
-        #transcode the file as a genuine mp3 via Zencoder
-        Zencoder::Job.create({
-                      :api_key => ENV['ZEN_API_KEY'],    
-                      :input => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}.wav",
-                      :outputs => [
-                        {
-                          :url => "s3://#{ENV['VG_BUCKET_NAME']}/#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}.mp3",
-                          :audio_codec => "mp3",
-                          :public => 1,
+response = http.request(request)
 
-                          }]
-
-                          })
-
+puts response
 
     @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
     current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")

@@ -338,6 +338,9 @@ match 'googlefb56f1f53f35d6fa', to: 'static#googlev'
 match '/mockup', to: 'static#mockup'
 
 
+match '/audior_index', to: 'static#audior_index'
+match '/audior_upload', to: 'static#audior_upload'
+
 
 
 #match '/show_master', to: 'events#show_master'

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+    <head>
+        <title></title>
+        <meta name="google" value="notranslate" />         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+             the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+             the percentage of the height of its parent container, which has to be set explicitly.  Fix for
+             Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show 
+             if JavaScript disabled.
+        -->
+        <style type="text/css" media="screen"> 
+            html, body  { height:100%; }
+            body { margin:0; padding:0; overflow:auto; text-align:center; 
+                   background-color: #ffffff; }   
+            object:focus { outline:none; }
+            #flashContent { display:none; }
+        </style>
+		
+        <script type="text/javascript" src="swfobject.js"></script>
+        <script type="text/javascript">
+            var swfVersionStr = "10.2.0";
+            var xiSwfUrlStr = "";
+       
+            var flashvars = {};
+            flashvars.lstext="Loading...";//you can provide a translation here for the "Laoding..." text taht shows up while this file and the external language file is loaded
+            flashvars.recorderId = "recorder1";//set this var if you have multiple instances of Audior on a page and you want to identify them
+            flashvars.userId ="user1";//this variable is sent back to upload.php when the user presses the [SAVE] button
+			flashvars.licenseKey = "PLACE_LICENSE_KEY_HERE"; //licensekey variable, you get it when you purchase the software
+			flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
+			flashvars.settingsFile = "audior_settings.xml" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
+			
+            var params = {};     
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+
+            var attributes = {};
+            attributes.id = "Audior";
+            attributes.name = "Audior";
+            attributes.align = "middle";
+
+            swfobject.embedSWF(
+                "Audior.swf", "flashContent", 
+                "600", "140", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+		
+		<!-- Below is the MP3Recorder JS API (Callbacks) -->
+		<script>
+		
+			function btSaveClick(recordName,duration,recorderId){
+				//this function is called when the SAVE button is released and it is called with 3 parameters: 
+				//recordName: the file name of the new audio recording  including the .mp3 extension
+				//recordDuration: duration of the recorded audio file in seconds but accurate to the millisecond (like this: 4.322)
+				//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+				console.log("Audior.btSaveClick("+recordName+","+recordDuration+","+recorderId+")");
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btSaveClick()";
+			}
+			
+			function btDownloadClick(recorderId){
+				//this function is called when the DOWNLOAD button is released 
+				console.log("Audior.btDownloadClick("+recorderId+")");
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btDownloadClick()";
+			}
+			function btPlayClick(recorderId){
+				//this function is called when the PLAY button is released
+				console.log("Audior.btPlayClick("+recorderId+")");
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPlayClick()";
+			}
+			
+			function btPauseClick(recorderId){
+				//this function is called when the PAUSE button is released
+				console.log("Audior.btPauseClick("+recorderId+")");
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPauseClick()";
+			}
+			
+			function btStopClick(recorderId){
+				//this function is called when the STOP button is released
+				console.log("Audior.btStopClick("+recorderId+")");
+				document.getElementById("mainbtn").disabled = true
+				document.getElementById("pauseResumeRec").disabled = true
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btStopClick()";
+			}
+			
+			function btRecordClick(recorderId){
+				//this function is called when the RECORD button is released
+				console.log("Audior.btRecordClick("+recorderId+")");
+				
+				document.getElementById("sav").disabled = true
+				document.getElementById("dwl").disabled = true
+				document.getElementById("pauseResumeRec").disabled = false
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btRecordClick()";
+			}
+
+			function btPauseRecordingClick(recorderId){
+				//this function is called when the Pause Recording button is released
+				console.log("Audior.btPauseRecordingClick("+recorderId+")");
+				document.getElementById("mainbtn").disabled = true
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPauseRecordingClick()";
+			}
+			
+			function btResumeRecordingClick(recorderId){
+				//this function is called when the Resume Recording button is released
+				console.log("Audior.btResumeRecordingClick("+recorderId+")");
+				document.getElementById("mainbtn").disabled = false
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btResumeRecordingClick()";
+			}
+			
+			
+			function onRecordingPlaybackStopped(recorderId){
+				//the recording has stopped playing
+				console.log('Audior.onRecordingPlaybackStopped('+recorderId+')')
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onRecordingPlaybackStopped()";
+			}
+			
+			function onEncodingDone(duration, recorderId){
+				//the MP3Recorder has finished the encoding of your audio data to mp3
+				console.log('Audior.onEncodingDone('+duration+', '+recorderId+')')
+				document.getElementById("sav").disabled = false
+				document.getElementById("mainbtn").disabled = false
+				document.getElementById("recAgain").disabled = false
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onEncodingDone()";
+			}
+			
+			function onUploadDone(success, recordName, duration, recorderId){
+				//the MP3Recorder has finished uploading the files to your server AND it has received a save=ok OR save=failed response from the upload script on the web server
+				//success  will be true if the upload succeeded and false otherwise
+				console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
+				document.getElementById("dwl").disabled = false
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onUploadDone()";
+			}
+			
+			function onMicAccess(allowed,recorderId){
+				console.log("Audior.onMicAccess("+allowed+","+recorderId+")");
+				//the user clicked Allow or Deny in the Privacy panel dialog box in Flash Player
+				//when the user clicks Deny this function is called with allowed=false
+				//when the user clicks Allow this function is called with allowed=true
+				//this function can be called anytime during the life of the Audior instance as the user has permanent access to the Privacy panel dialog box in Flash Player
+				document.getElementById("secondDisplay").innerHTML  = "Access to mic allowed: "+allowed;
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onMicAccess()";
+			}
+			
+			function onFlashReady(recorderId){
+				console.log("Audior.onFlashReady("+recorderId+")");
+				//as soon as this function is called you can communicate with Audior using the JS Control API
+				//Example : document.Audior.record(); will make a call to flash in order to start recording
+				//recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+				document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onFlashReady()";
+				document.getElementById("recAgain").disabled = true
+				document.getElementById("sav").disabled = true
+				document.getElementById("dwl").disabled = true
+				document.getElementById("pauseResumeRec").disabled = true
+			}
+			
+		</script>
+    </head>
+    <body>
+        <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
+             JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
+             when JavaScript is disabled.
+        -->
+        <div id="flashContent">
+            <p>
+                To view this page ensure that Adobe Flash Player version 
+                11.1.0 or greater is installed. 
+            </p>
+            <script type="text/javascript"> 
+                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
+            </script> 
+        </div>
+        
+        <noscript>
+            You need to have JS enabled for Audior to show.
+        </noscript>   
+
+<p>JS Control API:
+<input type="button" onclick="javascript:document.Audior.mainbtn()" name="mainbtn" value="Record -> Stop -> Play -> Pause" id="mainbtn"/>
+<input type="button" onclick="javascript:document.Audior.pauseResumeBtn()" disabled name="pauseResumeRec" value="Pause/Resume Recording" id="pauseResumeRec"/></br>
+<input type="button" onclick="javascript:document.Audior.recordagain()" disabled  name="recAgain" value="Record Again" id="recAgain"/>
+<input type="button" onclick="javascript:document.Audior.save()" disabled value="Save" name="sav" id="sav"/>
+<input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
+</p>
+<p id="firstDisplay">&nbsp;</p>
+<p id="secondDisplay">&nbsp;</p>
+
+		
+   </body>
+</html>
