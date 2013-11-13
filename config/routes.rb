@@ -340,6 +340,7 @@ match '/mockup', to: 'static#mockup'
 
 match '/audior_index', to: 'static#audior_index'
 match '/audior_upload', to: 'static#audior_upload'
+match '/audior_settings', to: 'static#audior_settings'
 
 
 

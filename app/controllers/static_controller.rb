@@ -328,4 +328,12 @@ def audior_upload
  
 end
 
+def audior_settings
+respond_to do |format|
+
+    format.xml
+  end
+end
+
+
 end

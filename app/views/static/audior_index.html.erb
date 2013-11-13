@@ -29,7 +29,7 @@
             flashvars.userId ="user1";//this variable is sent back to upload.php when the user presses the [SAVE] button
 			flashvars.licenseKey = "766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1"; //licensekey variable, you get it when you purchase the software
 			flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
-			flashvars.settingsFile = "<%= asset_path('Audior/audior_settings.xml') %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
+			flashvars.settingsFile = "<%= audior_settings_path %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
 			
             var params = {};     
             params.quality = "high";
@@ -160,6 +160,9 @@
 		</script>
     </head>
     <body>
+    <br/>
+    <br/>
+    <br/>
         <!-- SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough 
              JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show
              when JavaScript is disabled.

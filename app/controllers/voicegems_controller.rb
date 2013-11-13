@@ -3,7 +3,7 @@ before_filter :vgfilter, only: [:index]
 before_filter :signed_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 before_filter :owner, only: [:index, :show, :new, :create]
 before_filter :correct_user_for_vg, only: [:edit] 
-
+skip_before_filter :verify_authenticity_token, :only => [:vgsaveupload]
 
 def vgrecord
 
@@ -184,10 +184,33 @@ def vgsaveupload
                           })
 
 
+              #post request to Auphonic
+
+
+      require "net/http"
+  require "uri"
+
+uri = URI.parse("https://auphonic.com/api/simple/productions.json")
+
+# Shortcut
+#response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
+
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request.basic_auth("shanbhagp@aol.com", "atlantis1")
+request.set_form_data({"input_file" => "https://s3-us-west-1.amazonaws.com/#{ENV['BUCKET_NAME']}/#{@vg.recording}.mp3", "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
+
+response = http.request(request)
+
+puts response
+
+
     @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
     current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
 
-      false 
+      return false 
 
   end
 
