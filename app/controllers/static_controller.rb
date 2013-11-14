@@ -314,20 +314,53 @@ def audior_index
    render :layout => nil
 end 
 
+# NOW USING VG_AUDIOR_UPLOAD INSTEAD
 def audior_upload
 
-    begin
-      @f = File.new("#{Rails.root}/public/audio_clips/#{params[:recordName]}", "wb")
-      @f.write(request.raw_post)
-      @f.close
-      render :text => "save=ok&fileurl=/audio_clips/#{params[:recordName]}"
-    rescue
-      render :text => "save=fail"
-    end
- 
- 
+    #write to local directory
+          begin
+            @f = File.new("#{Rails.root}/public/audio_clips/#{params[:userId]}.mp3", "wb")
+            @f.write(request.raw_post)
+            @f.close
+            render :text => "save=ok&fileurl=/audio_clips/#{params[:userId]}"
+          rescue
+            render :text => "save=fail"
+          end
+       
+    #upload to S3  - note that needed to add .mp3, and that content-type being saved as image for some reason
+       bucket_name = ENV['VG_BUCKET_NAME']
+       source_filename = "#{Rails.root}/public/audio_clips/#{params[:userId]}.mp3" 
+
+        AWS.config(
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+        )
+
+        # Create the basic S3 object
+        s3 = AWS::S3.new
+
+        # Load up the 'bucket' we want to store things in
+        bucket = s3.buckets[bucket_name]
+
+        # If the bucket doesn't exist, create it
+        unless bucket.exists?
+          puts "Need to make bucket #{bucket_name}.."
+          s3.buckets.create(bucket_name)
+        end
+
+        # Grab a reference to an object in the bucket with the name we require
+        object = bucket.objects[File.basename(source_filename)]
+
+        # Write a local file to the aforementioned object on S3
+        object.write(:file => source_filename)
+
+        logger.warn "AUDIOR_UPLOAD"
+
+       logger.warn params[:userId]
+       
 end
 
+#not using anymore (just using an asset path in the audior index file )
 def audior_settings
 respond_to do |format|
 

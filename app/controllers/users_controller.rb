@@ -120,12 +120,10 @@ before_filter :owner, only: [:console, :index, :destroy]
     @vg = params[:vg] unless params[:vg].blank?
     
     if @user.recording.blank? && params[:x].blank?
-         flash[:error] = "No recording was uploaded.  Please try again, and make sure to press 'Upload' after you hear your recording play back."
-         if bigdaddyevent
+         flash[:error] = "No recording was saved.  Please try again, and make sure to press 'Save' when you're done recording."
+        
           redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
-         else
-         redirect_to record_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
-         end 
+         
     else
       flash.now[:info] = "Thank you! You have been given a temporary password. You will need to set a password to access this account in the future."
    
@@ -870,8 +868,9 @@ def purchase_sub_not_stripe_customer
   @events_number = params[:events_number]  #not being used right now because create_customer helper finds the events_number form the plan object via @plan argument
   @code = params[:code] 
   @new_price = params[:new_price]
+  event_type = "voicegems"
 
-   if create_customer(token, @plan, @code, @new_price)  #using the same helper as when a new user signs up as a customer
+   if create_customer(token, @plan, @code, @new_price, event_type)  #using the same helper as when a new user signs up as a customer
               #record stripe's (?) customer_id for this user
               # this helper is in users helper
           
@@ -886,6 +885,7 @@ def purchase_sub_not_stripe_customer
 
 
 end 
+
 
 
 

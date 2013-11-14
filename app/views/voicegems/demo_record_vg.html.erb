@@ -8,7 +8,148 @@
       
       <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
   </div>
-                                              
+
+  <script type="text/javascript">
+            var swfVersionStr = "10.2.0";
+            var xiSwfUrlStr = "";
+       
+            var flashvars = {};
+            flashvars.lstext="Loading...";//you can provide a translation here for the "Laoding..." text taht shows up while this file and the external language file is loaded
+            flashvars.recorderId = "recorder1";//set this var if you have multiple instances of Audior on a page and you want to identify them
+            flashvars.userId ="<%= @vg.to_s %>";//this variable is sent back to upload.php when the user presses the [SAVE] button
+            flashvars.licenseKey = "766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1"; //licensekey variable, you get it when you purchase the software
+            flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
+            flashvars.settingsFile = "<%= asset_path('Audior/audior_settings_demo.xml') %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
+            // flashvars.vg = "<%= @vg.to_s %>"
+      
+            var params = {};     
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+
+            var attributes = {};
+            attributes.id = "Audior";
+            attributes.name = "Audior";
+            attributes.align = "middle";
+
+            swfobject.embedSWF(
+                "<%= asset_path('Audior/Audior.swf') %>", "flashContent", 
+                "600", "140", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+    
+    <!-- Below is the MP3Recorder JS API (Callbacks) -->
+    <script>
+    
+      function btSaveClick(recordName,duration,recorderId){
+        //this function is called when the SAVE button is released and it is called with 3 parameters: 
+        //recordName: the file name of the new audio recording  including the .mp3 extension
+        //recordDuration: duration of the recorded audio file in seconds but accurate to the millisecond (like this: 4.322)
+        //recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+        console.log("Audior.btSaveClick("+recordName+","+recordDuration+","+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Saving, please wait...";
+      }
+      
+      function btDownloadClick(recorderId){
+        //this function is called when the DOWNLOAD button is released 
+        console.log("Audior.btDownloadClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "";
+      }
+      function btPlayClick(recorderId){
+        //this function is called when the PLAY button is released
+        console.log("Audior.btPlayClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+      }
+      
+      function btPauseClick(recorderId){
+        //this function is called when the PAUSE button is released
+        console.log("Audior.btPauseClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+      }
+      
+      function btStopClick(recorderId){
+        //this function is called when the STOP button is released
+        console.log("Audior.btStopClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = true
+        document.getElementById("pauseResumeRec").disabled = true
+        document.getElementById("firstDisplay").innerHTML  = "Encoding, please wait...";
+      }
+      
+      function btRecordClick(recorderId){
+        //this function is called when the RECORD button is released
+        console.log("Audior.btRecordClick("+recorderId+")");
+        
+        document.getElementById("sav").disabled = true
+        document.getElementById("dwl").disabled = true
+        document.getElementById("pauseResumeRec").disabled = false;
+    
+      }
+
+      function btPauseRecordingClick(recorderId){
+        //this function is called when the Pause Recording button is released
+        console.log("Audior.btPauseRecordingClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = true
+        document.getElementById("firstDisplay").innerHTML  = "";
+      }
+      
+      function btResumeRecordingClick(recorderId){
+        //this function is called when the Resume Recording button is released
+        console.log("Audior.btResumeRecordingClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "";
+      }
+      
+      
+      function onRecordingPlaybackStopped(recorderId){
+        //the recording has stopped playing
+        console.log('Audior.onRecordingPlaybackStopped('+recorderId+')')
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+      }
+      
+      function onEncodingDone(duration, recorderId){
+        //the MP3Recorder has finished the encoding of your audio data to mp3
+        console.log('Audior.onEncodingDone('+duration+', '+recorderId+')')
+        document.getElementById("mainbtn").disabled = false
+        document.getElementById("recAgain").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'"
+  
+      }
+      
+      function onUploadDone(success, recordName, duration, recorderId){
+        //the MP3Recorder has finished uploading the files to your server AND it has received a save=ok OR save=failed response from the upload script on the web server
+        //success  will be true if the upload succeeded and false otherwise
+        console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
+        document.getElementById("dwl").disabled = false
+         document.getElementById("continuebtn").setAttribute("class","span7")
+        document.getElementById("firstDisplay").innerHTML  = "Click 'NEXT' below.";
+  
+      }
+      
+      function onMicAccess(allowed,recorderId){
+        console.log("Audior.onMicAccess("+allowed+","+recorderId+")");
+        //the user clicked Allow or Deny in the Privacy panel dialog box in Flash Player
+        //when the user clicks Deny this function is called with allowed=false
+        //when the user clicks Allow this function is called with allowed=true
+        //this function can be called anytime during the life of the Audior instance as the user has permanent access to the Privacy panel dialog box in Flash Player
+        document.getElementById("firstDisplay").innerHTML  = "";
+      }
+      
+      function onFlashReady(recorderId){
+        console.log("Audior.onFlashReady("+recorderId+")");
+        //as soon as this function is called you can communicate with Audior using the JS Control API
+        //Example : document.Audior.record(); will make a call to flash in order to start recording
+        //recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+        document.getElementById("firstDisplay").innerHTML  = "If asked for access to your microphone, click 'Allow'";
+        document.getElementById("recAgain").disabled = true
+        document.getElementById("sav").disabled = true
+        document.getElementById("dwl").disabled = true
+        document.getElementById("pauseResumeRec").disabled = true
+      }
+      
+    </script>                                            
 
  <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
@@ -24,11 +165,10 @@
                   <br/>
                   <li>Fill out your name and email. </li><br/> 
                    <li>Enter any notes to the DJ about your VoiceGem, and any song request that should accompany it (optional).</li><br/>
-                  <li>Record your VoiceGem with our online voice recorder.  Don't worry, this part is super-easy. Just make sure to press 'Upload.' </li><br/>
+                  <li>Record your VoiceGem with our online voice recorder.  Don't worry, this part is super-easy. </li><br/>
                   <li><em>Thanks to your help, the DJ can make the reception entertainment extra-special!</em></li><br/>
                  </ol>
             </li>  
-            <li> If you have previously registered on our site, please sign in under 'Already Registered on our Site?' </li><br/>
             <li> More questions? Please contact us below. <em> Thank you!</em> </li>
             </ul>
 
@@ -68,56 +208,84 @@
 <% end %>
 
 
-<div class="alert alert-block alert-warning invisible" id="chrome">
- 
-    <button type="button" class="close" data-dismiss="alert">×</button>
 
-       
-            <h3 class="red"><i class="icon-warning-sign"></i>&nbsp;Using Chrome? Please allow VoiceGems to access your microphone before proceeding (see above, under the Chrome address bar).</h3>
-             <h4>Note: only the mic will be activated.</h4>
-             <h4>Don't see the 'Allow/Deny' dialog box above? <a href="<%= flashissue_path %>.htm#collapseSix" target="_blank">click here</a> </h4>
-        
-    </div>  
-
-              <div class="row">
-                           <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
-                           <div class="span8 offset2">
-                            
-                            <script type='text/javascript'>
-                              var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-                              if (is_chrome) {
-                   
-                                $('#chrome').attr("class","alert alert-block alert-error");;
-                              }
-                            </script> 
-                            <br/>
-                           </div>
-              </div>
+                         
 
 
-                        <div id="recordmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h3 id="myModalLabel"><em>Please record your VoiceGem here</em></h3>
-                            </div>
+                                                <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                   <div class="row">
+                                                         <div class="well span8 offset1">
+                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
+                                                              
+                                                              <br/>
+                                                              <%= f.error_notification %>
+                                                              
+                                                                <%= f.hidden_field :event_code, :value => @event_code %>
 
-                            <div class="modal-body">
-            
-                              <script>
-                                  function reloadPage() {
-                                    document.getElementById('recorder').contentWindow.location.reload();
-                                  }
-                                </script>
-            
-                                <input type="image" src="/assets/refresh-recorder.png" onclick="reloadPage()"> 
-                                
-                                <iframe iframe id="recorder" name="recorder" src='<%= demo_recorder_vg_path%>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
 
-                                <div class="modal-footer">
-                                 <div class="right"><button class="btn btn-primary" data-dismiss="modal">SAVE</button></div> 
-                                  
-                                </div>
-            
+                                                                  <%= f.input :first_name, label: "First Name", class: "span5" %>
+                                                                  <%= f.input :last_name, label: "Last Name" %>
+                                                                  <%= f.input :email %>
+                                                                 
+
+                                                                <hr/>    
+                                                           </div>
+
+                                                   </div>
+                                                   <div class="row">
+                                                         <div class="well span8 offset1">         
+                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
+                                                              <br/>      
+                                                                        <span class="textarea2 textareawider">
+                                                                         <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
+                                                                        </span>
+                                                                           
+
+                                                                          
+                                                                        
+                                                                         
+                                                                     <hr/>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row">
+                                                          <div class="well span8 offset1">
+                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
+                                                                  <br/> 
+                                                                <div class="row">
+                                                                      <div class="span7">
+                                                                                                          <div id="flashContent">
+                                                                                                              <p>
+                                                                                                                  To view this page ensure that Adobe Flash Player version 
+                                                                                                                  11.1.0 or greater is installed. 
+                                                                                                              </p>
+                                                                                                              <script type="text/javascript"> 
+                                                                                                                  var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                                                                                                                  document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
+                                                                                                              </script> 
+                                                                                                          </div>
+                                                                                                          
+                                                                                                          <noscript>
+                                                                                                              You need to have JS enabled for Audior to show.
+                                                                                                          </noscript>   
+
+                                                                                                  <div class="invisible">
+                                                                                                  <input type="button" onclick="javascript:document.Audior.mainbtn()" name="mainbtn" value="Record -> Stop -> Play -> Pause" id="mainbtn"/>
+                                                                                                  <input type="button" onclick="javascript:document.Audior.pauseResumeBtn()" disabled name="pauseResumeRec" value="Pause/Resume Recording" id="pauseResumeRec"/></br>
+                                                                                                  <input type="button" onclick="javascript:document.Audior.recordagain()" disabled  name="recAgain" value="Record Again" id="recAgain"/>
+                                                                                                  <input type="button" onclick="javascript:document.Audior.save()" disabled value="Save" name="sav" id="sav"/>
+                                                                                                  <input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
+                                                                                                  </div>
+
+                                                                                                  <div class="span6">
+                                                                                                  <h4 id="firstDisplay">&nbsp;</h4>
+                                                                                                  </div>
+                                                                       </div>
+                                                                  </div>
+                                                                
+                                                             
+                    <div class="row">
+                      <div class="span7">
+                         <hr/>
                                 <div class="accordion" id="accordionrec">
 
                                   <div class="accordion-group">
@@ -130,12 +298,12 @@
                                       <div class="accordion-inner">
                                         Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
                                         <ol>
-                                          <li><strong>Press 'RECORD', then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
-                                          <li> You will have 30 seconds maximum recording time. <strong>Please record your message, then immediately press 'STOP'.</strong></li> <br/>
-                                          <li>Your recording will automatically play back to you:</li>
+                                          <li><strong>Press the Record button, then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
+                                          <li> You will have 30 seconds maximum recording time. <strong>Please record your VoiceGem, then press 'STOP'.</strong></li> <br/>
+                                          <li>Press the Play button to review your VoiceGem.</li>
                                              <ul>
-                                                 <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
-                                                  <li>If you're not happy with it, press 'RECORD' to try again.</li>
+                                                 <li>If it sounds good, <strong>press 'Save.'</strong></li>  
+                                                  <li>If you're not happy with it, press 'Record Again' to try again.</li>
                                               </ul>
                                           </ol> 
                                       </div>
@@ -171,81 +339,14 @@
                                       </div>
                                     </div>
                                   </div>    
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
-                                    </div>
-                                  </div>      
+   
 
 
-                                </div>   <!-- end accordion -->    
-             
+                                </div>   <!-- end accordion --> 
+                        </div> 
+              </div>             
 
-                             </div> <%# End modal body %> 
-
-
-                         </div> <%# end modal %>
-                         
-
-                          <div class="accordion" id="accordion3">
-                                    <div class="accordion-group bg-signup">
-                                      <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseOne">
-                                         <h5 class="white">VoiceGems for New Users (DEMO)</h5>
-                                        </a>
-                                      </div>
-                                      <div id="collapseOne" class="accordion-body collapse in">
-                                        <div class="accordion-inner">
-                                                  
-                                                     <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
-                                                   <div class="row">
-                                                         <div class="well span6 offset1">
-                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
-                                                              
-                                                              <br/>
-                                                              <%= f.error_notification %>
-                                                              
-                                                                <%= f.hidden_field :event_code, :value => @event_code %>
-
-
-                                                                  <%= f.input :first_name, label: "First Name", class: "span5" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
-                                                                 
-
-                                                                <hr/>    
-                                                           </div>
-
-                                                   </div>
-                                                   <div class="row">
-                                                         <div class="well span6 offset1">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
-                                                              <br/>      
-                                                                        <span class="textarea2">
-                                                                         <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
-                                                                        </span>
-                                                                           
-
-                                                                          
-                                                                        
-                                                                         
-                                                                     <hr/>
-                                                          </div>
-                                                      </div>
-                                                      <div class="row">
-                                                          <div class="well span6 offset1">
-                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
-                                                                  <br/> 
-                                                                  <div class="row">
-                                                                   
-                                                                    <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your VoiceGem </button>
-                                                                    <span class="blue"><em></em></span>
-                                                                 
-                                                                 </div>
-                                                                  
-                                                                
-                                                                <hr/>
+                 <hr/>
                                                                
 
                                                                       <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
@@ -254,59 +355,15 @@
 
                                                                          <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
 
-                                                                       <h5>If not, or you must click to play it, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
+                                                                       <h5>If not, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
                                                                           
-                                                                         
-                                                                    <script>
-                                                                      var onFail = function(e) {
-                                                                        console.log('Fail', e);
-                                                                      };
-                                                                      navigator.webkitGetUserMedia({video: true, audio: true}, onFail);
-                                                                     </script> 
-
 
                                                           </div> 
                                                      </div><%# end third row %>     
                                                     <% end %>
-                                                    >
+                                                    
                                                      <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
-                                        </div>
-                                      </div>
-                                    </div>
-                                        <div class="accordion-group bg-signup">
-                                          <div class="accordion-heading">
-                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapseTwo">
-                                              <h5 class="white">Already Registered on our Site?</h5>
-                                            </a>
-                                          </div>
-                                          <div id="collapseTwo" class="accordion-body collapse">
-                                            <div class="accordion-inner">
-                                              <div class="well span4 offset3">
-                                                  <%= form_for(:session, url: vg_event_code_add_path, :html => {:class => "form-horizontal"} ) do |f| %>
-
-                                                  <%= f.hidden_field :event_code, :value => @event_code %>
-                                                   <span class="blue"><em>If you have previously registered on our site, please sign in here to record a VoiceGem for this event:</em></span> <br/> <br/>
-                                                  <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
-                                                  <br/>
-                                                  <br/>
-
-                                                  <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
-
-                                                    <br/>
-                                                    <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small span2") do %>
-                                                       Sign In <i class="icon-chevron-right icon-white"></i> 
-                                                      <% end %>
-
-                                                <% end %>
-                                               </div>
-                                               <br/>
-                                            </div>
-                                          </div>
-                                        </div>
-                                  </div>  
-
-
+                               
 
 
 </div><%# end container %>

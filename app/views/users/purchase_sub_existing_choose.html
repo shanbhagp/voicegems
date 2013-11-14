@@ -71,7 +71,7 @@
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
                           <%= form_for(:sub, url: changesub_existinguser_path) do |y| %>
-                                               <%= y.select :plan,  options_for_select([["Silver Plan (25 pages/yr, $35/mo)", 1], ["Gold Plan (50 pages/yr, $55/mo)", 2], ["Platinum Plan (100 pages/yr, $85/mo)", 3] ]) %>
+                                               <%= y.select :plan,  options_for_select([["Silver Plan (10 pages/yr, $15/mo)", plan_set_one], ["Gold Plan (25 pages/yr, $25/mo)", plan_set_two], ["Platinum Plan (50 pages/yr, $45/mo)", plan_set_three] ]) %>
                                                <%= y.hidden_field :code, :value => @code %>
                                                <%= y.submit "Choose This Plan", class: "btn btn-primary"  %> 
                                              <% end %>  

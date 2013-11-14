@@ -29,12 +29,12 @@
             <ul>
               <li><strong>$<%= @first_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
               <li><%= @first_plan.events_number%> Events / Year</li>
-              <li>Unlimited Name Recordings </li>
-              <li>Free 14 Day Trial</li>
+              <li>Unlimited VoiceGems </li>
+              <li>Free 30 Day Trial</li>
               <li>
                 <p class="PlanBoxSignUp"><%= form_for(:sec, url: purchase_sub_existing_choose_path) do |y| %>
                    <%= y.hidden_field :plan, :value => @first_plan.my_plan_id %>
-                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                    <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                   <% end %> </p>
               </li>
             </ul>
@@ -48,12 +48,12 @@
             <ul>
               <li><strong>$<%= @second_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
               <li><%= @second_plan.events_number%> Events / Year</li>
-              <li>Unlimited Name Recordings </li>
-              <li>Free 14 Day Trial</li>
+              <li>Unlimited VoiceGems </li>
+              <li>Free 30 Day Trial</li>
               <li>
                 <p class="PlanBoxSignUp"> <%= form_for(:sec, url:purchase_sub_existing_choose_path) do |y| %>
                     <%= y.hidden_field :plan, :value => @second_plan.my_plan_id  %>
-                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                    <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                   <% end %>  </p>
               </li>
             </ul>
@@ -67,12 +67,12 @@
             <ul>
               <li><strong>$<%= @third_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
               <li><%= @third_plan.events_number%> Events / Year</li>
-              <li>Unlimited Name Recordings </li>
-              <li>Free 14 Day Trial</li>
+              <li>Unlimited VoiceGems </li>
+              <li>Free 30 Day Trial</li>
               <li>
                 <p class="PlanBoxSignUp"> <%= form_for(:sec, url: purchase_sub_existing_choose_path) do |y| %>
                     <%= y.hidden_field :plan, :value =>  @third_plan.my_plan_id %>
-                    <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                    <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                   <% end %> </p>
               </li>
             </ul>

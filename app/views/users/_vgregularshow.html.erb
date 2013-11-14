@@ -7,7 +7,7 @@
 <hr/>
 
 <div class="row">
-   <div class="well span9 modal-header">
+   <div class="well span9 modal-header bg-dark">
             
               
               <div class="span2">
@@ -29,7 +29,7 @@
 
                 <div class="span2">
                   <br/>
-                  <a href="#" rel="tooltip" data-placement="right" title="Click on the buttons below to edit your voice-message, accompanying song request, or notes."><span class="label label-purple">&nbsp;&nbsp;Edit Your VoiceGem&nbsp;&nbsp;</span></a>
+                  <a href="#" rel="tooltip" data-placement="right" title="Click on the buttons below to edit your voice-message, accompanying song request, or notes."><span class="label bg-dark">&nbsp;&nbsp;Edit Your VoiceGem&nbsp;&nbsp;</span></a>
                                   
                 </div>  
 
@@ -65,7 +65,7 @@
 
 		            <div class="span2">
 		                <br/>
-		                  <a href="<%= edit_voicegem_path(f.id)%>" class="btn btn-info btn-small"><i class="icon-pencil icon-white"></i>&nbsp;Edit this VoiceGem</a> <br/>
+		                  <a href="<%= create_edit_voicegem_path(:id => f.id)%>" class="btn btn-info btn-small"><i class="icon-pencil icon-white"></i>&nbsp;Edit this VoiceGem</a> <br/>
 		                  for <strong><%= link_to f.event.title, f.event %></strong>
 		            </div>
 		            

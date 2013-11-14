@@ -26,10 +26,10 @@
             var flashvars = {};
             flashvars.lstext="Loading...";//you can provide a translation here for the "Laoding..." text taht shows up while this file and the external language file is loaded
             flashvars.recorderId = "recorder1";//set this var if you have multiple instances of Audior on a page and you want to identify them
-            flashvars.userId ="user1";//this variable is sent back to upload.php when the user presses the [SAVE] button
+            flashvars.userId ="<%= current_user.id %>";//this variable is sent back to upload.php when the user presses the [SAVE] button
 			flashvars.licenseKey = "766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1"; //licensekey variable, you get it when you purchase the software
 			flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
-			flashvars.settingsFile = "<%= audior_settings_path %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
+			flashvars.settingsFile = "<%= asset_path('Audior/audior_settings.xml') %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
 			
             var params = {};     
             params.quality = "high";

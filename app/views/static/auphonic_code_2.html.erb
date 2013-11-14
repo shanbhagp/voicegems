@@ -1,0 +1,25 @@
+ #process through Auphonic
+             require "net/http"
+             require "uri"
+
+              uri = URI.parse("https://auphonic.com/api/simple/productions.json")
+
+              # Shortcut
+              #response = Net::HTTP.post_form(uri, {"q" => "My query", "per_page" => "50"})
+
+              # Full control
+               http = Net::HTTP.new(uri.host, uri.port)
+
+              request = Net::HTTP::Post.new(uri.request_uri)
+              request.basic_auth("shanbhagp@aol.com", "atlantis1")
+              request.set_form_data({"input_file" => "https://s3-us-west-1.amazonaws.com/#{ENV['BUCKET_NAME']}/#{current_user.id}.mp3", "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
+
+              response = http.request(request)
+
+              puts response
+
+
+              @vg.update_attributes(recording: "#{current_user.id.to_s}")
+              current_user.update_attributes(recording: "#{current_user.id.to_s}")
+
+              return false 

@@ -340,9 +340,14 @@ match '/mockup', to: 'static#mockup'
 
 match '/audior_index', to: 'static#audior_index'
 match '/audior_upload', to: 'static#audior_upload'
+match '/vg_audior_upload', to: 'voicegems#vg_audior_upload'
 match '/audior_settings', to: 'static#audior_settings'
 
 
+match '/create_edit_voicegem', to: 'voicegems#create_edit_voicegem'
+
+match '/vg_precord', to: 'voicegems#vg_precord'
+match '/vg_precord2', to: 'voicegems#vg_precord2'
 
 #match '/show_master', to: 'events#show_master'
 

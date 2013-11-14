@@ -1,10 +1,14 @@
 class Voicegem < ActiveRecord::Base
-  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :hidden, :last_name, :length, :notes, :recording, :request, :token, :user_id, :vg_userinvite_id
+  attr_accessible :admin_id, :admin_notes, :email, :event_id, :first_name, :hidden, :last_name, :length, :notes, :recording, :request, :token, :user_id, :vg_userinvite_id, :zen_job_id, :vgrec, :x
+   attr_accessor :x
+  # added :x to attr_accessor and attr_accesssible so that could use it in update action (incoming from precord)
 
   belongs_to :event 
   belongs_to :user 
 
   has_many :vg_userinvites 
+
+  mount_uploader :vgrec, VgrecUploader
 
   before_save { self.email.downcase! }
   before_save { self.email.strip!}

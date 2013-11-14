@@ -12,130 +12,227 @@
 
 <br/>
 <br/>
+<script type="text/javascript">
+            var swfVersionStr = "10.2.0";
+            var xiSwfUrlStr = "";
+       
+            var flashvars = {};
+            flashvars.lstext="Loading...";//you can provide a translation here for the "Laoding..." text taht shows up while this file and the external language file is loaded
+            flashvars.recorderId = "recorder1";//set this var if you have multiple instances of Audior on a page and you want to identify them
+            flashvars.userId ="<%= @vg.to_s %>";//this variable is sent back to upload.php when the user presses the [SAVE] button
+            flashvars.licenseKey = "766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1"; //licensekey variable, you get it when you purchase the software
+            flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
+            flashvars.settingsFile = "<%= asset_path('Audior/audior_settings.xml') %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
+            // flashvars.vg = "<%= @vg.to_s %>"
+      
+            var params = {};     
+            params.quality = "high";
+            params.bgcolor = "#ffffff";
+            params.allowscriptaccess = "sameDomain";
+            params.allowfullscreen = "true";
+
+            var attributes = {};
+            attributes.id = "Audior";
+            attributes.name = "Audior";
+            attributes.align = "middle";
+
+            swfobject.embedSWF(
+                "<%= asset_path('Audior/Audior.swf') %>", "flashContent", 
+                "600", "140", 
+                swfVersionStr, xiSwfUrlStr, 
+                flashvars, params, attributes);
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        </script>
+    
+    <!-- Below is the MP3Recorder JS API (Callbacks) -->
+    <script>
+    
+      function btSaveClick(recordName,duration,recorderId){
+        //this function is called when the SAVE button is released and it is called with 3 parameters: 
+        //recordName: the file name of the new audio recording  including the .mp3 extension
+        //recordDuration: duration of the recorded audio file in seconds but accurate to the millisecond (like this: 4.322)
+        //recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+        console.log("Audior.btSaveClick("+recordName+","+recordDuration+","+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btSaveClick()";
+      }
+      
+      function btDownloadClick(recorderId){
+        //this function is called when the DOWNLOAD button is released 
+        console.log("Audior.btDownloadClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btDownloadClick()";
+      }
+      function btPlayClick(recorderId){
+        //this function is called when the PLAY button is released
+        console.log("Audior.btPlayClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPlayClick()";
+      }
+      
+      function btPauseClick(recorderId){
+        //this function is called when the PAUSE button is released
+        console.log("Audior.btPauseClick("+recorderId+")");
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPauseClick()";
+      }
+      
+      function btStopClick(recorderId){
+        //this function is called when the STOP button is released
+        console.log("Audior.btStopClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = true
+        document.getElementById("pauseResumeRec").disabled = true
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btStopClick()";
+      }
+      
+      function btRecordClick(recorderId){
+        //this function is called when the RECORD button is released
+        console.log("Audior.btRecordClick("+recorderId+")");
+        
+        document.getElementById("sav").disabled = true
+        document.getElementById("dwl").disabled = true
+        document.getElementById("pauseResumeRec").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btRecordClick()";
+      }
+
+      function btPauseRecordingClick(recorderId){
+        //this function is called when the Pause Recording button is released
+        console.log("Audior.btPauseRecordingClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = true
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btPauseRecordingClick()";
+      }
+      
+      function btResumeRecordingClick(recorderId){
+        //this function is called when the Resume Recording button is released
+        console.log("Audior.btResumeRecordingClick("+recorderId+")");
+        document.getElementById("mainbtn").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: btResumeRecordingClick()";
+      }
+      
+      
+      function onRecordingPlaybackStopped(recorderId){
+        //the recording has stopped playing
+        console.log('Audior.onRecordingPlaybackStopped('+recorderId+')')
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onRecordingPlaybackStopped()";
+      }
+      
+      function onEncodingDone(duration, recorderId){
+        //the MP3Recorder has finished the encoding of your audio data to mp3
+        console.log('Audior.onEncodingDone('+duration+', '+recorderId+')')
+        document.getElementById("sav").disabled = false
+        document.getElementById("mainbtn").disabled = false
+        document.getElementById("recAgain").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onEncodingDone()";
+      }
+      
+      function onUploadDone(success, recordName, duration, recorderId){
+        //the MP3Recorder has finished uploading the files to your server AND it has received a save=ok OR save=failed response from the upload script on the web server
+        //success  will be true if the upload succeeded and false otherwise
+        console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
+        document.getElementById("dwl").disabled = false
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onUploadDone()";
+      }
+      
+      function onMicAccess(allowed,recorderId){
+        console.log("Audior.onMicAccess("+allowed+","+recorderId+")");
+        //the user clicked Allow or Deny in the Privacy panel dialog box in Flash Player
+        //when the user clicks Deny this function is called with allowed=false
+        //when the user clicks Allow this function is called with allowed=true
+        //this function can be called anytime during the life of the Audior instance as the user has permanent access to the Privacy panel dialog box in Flash Player
+        document.getElementById("secondDisplay").innerHTML  = "Access to mic allowed: "+allowed;
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onMicAccess()";
+      }
+      
+      function onFlashReady(recorderId){
+        console.log("Audior.onFlashReady("+recorderId+")");
+        //as soon as this function is called you can communicate with Audior using the JS Control API
+        //Example : document.Audior.record(); will make a call to flash in order to start recording
+        //recorderId: the recorderId sent via flash vars, to be used when there are many recorders on the same web page
+        document.getElementById("firstDisplay").innerHTML  = "Last JS callback: onFlashReady()";
+        document.getElementById("recAgain").disabled = true
+        document.getElementById("sav").disabled = true
+        document.getElementById("dwl").disabled = true
+        document.getElementById("pauseResumeRec").disabled = true
+      }
+      
+    </script>
+
 
 <div class="container">
 
 
 
-<div id="porecmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h3 id="myModalLabel"><em>VoiceGem Recording for <%= @voicegem.event.title %></em></h3>
-            </div>
-            
-                            <div class="modal-body">
-            
-                              <script>
-                                  function reloadPage() {
-                                    document.getElementById('recorder').contentWindow.location.reload();
-                                  }
-                                </script>
-            
-                                <input type="image" src="/assets/refresh-recorder.png" onclick="reloadPage()"> 
-                                
-                                <iframe id="recorder" src='<%= vgtest_voicegem_path(@vg) %>' width="100%" height="230" frameborder="0" scrolling='no'  marginheight="200x" ></iframe>
-
-                                <div class="modal-footer">
-                                 <div class="right"><strong>(click 'SAVE' after you click 'UPLOAD')</strong> <button class="btn btn-primary" data-dismiss="modal">SAVE</button></div> 
-                                  
-                                </div>
-            
-                                <div class="accordion" id="accordionrec">
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec1">
-                                        <h4><span class="blue">Instructions<span/></h4> 
-                                      </a>
-                                    </div>
-                                    <div id="collapserec1" class="accordion-body collapse">
-                                      <div class="accordion-inner">
-                                        Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
-                                        <ol>
-                                          <li><strong>Press 'RECORD', then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
-                                          <li> You will have 30 seconds maximum recording time. <strong>Please record your message, then immediately press 'STOP'.</strong></li> <br/>
-                                          <li>Your recording will automatically play back to you:</li>
-                                             <ul>
-                                                 <li>If it sounds good, <strong>press 'UPLOAD.'</strong></li>  
-                                                  <li>If you're not happy with it, press 'RECORD' to try again.</li>
-                                              </ul>
-                                          </ol> 
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec2">
-                                        <h4><span class="blue">Problems?<span/></h4>
-                                      </a>
-                                    </div>
-                                    <div id="collapserec2" class="accordion-body collapse">
-                                      <div class="accordion-inner">
-                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
-                                          
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
-                                             <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
-                                              <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
-                                              <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
-                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
-                                      </div>
-                                    </div>
-                                  </div>    
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle"  data-parent="#accordionrec" href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><h4><span class="blue">Can't click 'Allow'?</span></h4></a>
-                                    </div>
-                                  </div>      
 
 
-                                </div>   <!-- end accordion -->    
-             
-
-                             </div> <%# End modal body %> 
-
-
-</div>
-
-
-                                         
-
-
+                                    
 <div class="row">
   <div class="span12 well">
+      
+
       <h4> <span class="label label-info"><i class="icon-edit icon-white"></i></span>&nbsp;<strong>Create/Update your <em>VoiceGem</em> for <%= @voicegem.event.title %>:</strong> </h4>
       <br/>
        <%= form_for(@voicegem, :html => {:class => "form-vertical"}) do |f| %>
-         <div class="span3">
-          <span class="label label-info">Step 1</span> <br/>(OPTIONAL) Enter/update your notes or song request for the DJ to accompany this VoiceGem:<br/><br/>
 
+      <div class="row">
+         <div class="span3 offset1">
+          <span class="label label-info">Step 1</span> <br/>(OPTIONAL) Enter/update your notes or song request for the DJ to accompany this VoiceGem:<br/><br/>
+        </div>
+        
+        <div class="span4 offset1">
           <span class="textarea2">
           <%= f.text_area :notes, :class => "span3" %>
-     	 </span>
+     	 </span> <br/>
            <span class="help-block">(examples: "please say 'this message is on behalf of Grandma Ruth'" OR "please say 'here's an old college favorite' and then play message with Neil Diamond's Sweet Caroline")</span>
          </div>
-         
+      
+    </div>
+
+    <br/>
+    <hr/>
+
+    <div class="row">
+
          <div class="span3 offset1">
           <span class="label label-important">Step 2</span><br/>Create or change your voice-message for this event: <br/><br/>
-           <a data-toggle="modal" href="#porecmodal" class="btn btn-danger btn-large">Record VoiceGem <i class="icon-caret-right icon-white"></i> </a>
+          </div>
+
+          <div class="span7 offset1">
+ 
+
+             <div class="row">
+                                          <div id="flashContent">
+                                              <p>
+                                                  To view this page ensure that Adobe Flash Player version 
+                                                  11.1.0 or greater is installed. 
+                                              </p>
+                                              <script type="text/javascript"> 
+                                                  var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                                                  document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
+                                              </script> 
+                                          </div>
+                                          
+                                          <noscript>
+                                              You need to have JS enabled for Audior to show.
+                                          </noscript>   
+                                          
+                                          <br/>
+
+                                 <strong>(remember to press 'SAVE' above)</strong> 
+           </div>
+
+
+
+
          </div>
+
+
+    </div>
+
+    <br/>
+    <hr/>
+
+    <div class="row">
          <div class="span2 offset1">
           <span class="label label-info">Step 3</span><br/>Save any changes:<br/><br/><br/>
           <%= f.submit "Save Changes", class: "btn btn-large btn-primary", disable_with: 'saving...' %>
          </div>
-         
+    </div>
           
 
 

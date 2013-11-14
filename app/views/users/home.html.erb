@@ -138,7 +138,7 @@
                                <br/>
                                <span class="ph3">&nbsp;&nbsp;&nbsp;A Link is Shared with Guests, Friends & Family before the Wedding</span>&nbsp;&nbsp;
                               <br/>
-                              &nbsp;&nbsp;&nbsp;<span class="help-block">(or emails entered for personal invitations)<span> <br/>  
+                   
                               
                           </div> 
                       </div>
@@ -233,7 +233,7 @@
                                             <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                                             <%= y.hidden_field :plan, :value => @first_plan.my_plan_id %>
                                              <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                                             <% end %>  </p>
                                           </li>
                                         </ul>
@@ -253,7 +253,7 @@
                                             <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                                             <%= y.hidden_field :plan, :value => @second_plan.my_plan_id %>
                                              <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                                             <% end %>  </p>
                                           </li>
                                         </ul>
@@ -273,7 +273,7 @@
                                             <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
                                             <%= y.hidden_field :plan, :value => @third_plan.my_plan_id %>
                                              <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-primary btn-large" %>
+                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
                                             <% end %>  </p>
                                           </li>
                                         </ul>

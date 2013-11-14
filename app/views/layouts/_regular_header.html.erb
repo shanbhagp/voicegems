@@ -33,11 +33,9 @@
                     <li class="divider"></li>
 
                     <% if !customer_has_active_subscription? %>
-                       <% if wed_event_user? %>
+                      
                            <li><%= link_to purchase_sub_existing_path do %><i class="icon-shopping-cart"></i> Purchase Subscription<% end %></li>
-                        <% else %>
-                            <li><%= link_to purchase_sub_existing_edu_path do %><i class="icon-shopping-cart"></i> Purchase Subscription<% end %></li> 
-                        <% end %>
+                     
                     <% end %> 
                     <% if customer_has_active_subscription? %>
                     <li><%= link_to cancel_path do %><i class="icon-ban-circle"></i> Cancel Subscription<% end %></li><% end %> 

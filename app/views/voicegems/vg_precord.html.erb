@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VoiceGems</title>
+  <meta name="google-site-verification" content="_SjMEoyfWLW3D-TwVkSfFtLVkGoUXmKQbf2dKLm-o90" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <link rel="icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
+  <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+ <script type="text/javascript" src="<%= asset_path('aplayer/audio.min.js') %>"></script>
+
+ <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45526859-1', 'voicegems.com');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  <body>
+<div class="row">
+
+      <div class="span4">
+            <div class="logo" id="logo2">
+                <img src="/assets/VoiceGems-logo-bare2.png" alt="" style="width:350px" />   
+           </div>
+      </div>
+
+</div>
+
+<div class="sep"></div>
+
+                    <div class="container">
+
+
+                          <%= form_for @voicegem, :html => {:multipart => true} do |f| %>
+
+<hr/>
+
+<div class="first_part">
+<ol>
+  <h3><li>Click record.</li></h3><br/>
+  <h3><li>Create a video recording and speak your message clearly (only the audio will be saved).</li></h3>
+  <h5><em>Please limit your recording to a maximum of 30 seconds.</em> </h5><br/>
+  <h3><li>Click next.</li></h3> <br/>
+</ol>
+
+<p>
+
+
+  <label class="filebutton">
+<span class="rectext">&nbsp;RECORD&nbsp;</span>
+<span> <input id="voicegem_vgrec" accept="video/*" name="voicegem[vgrec]" type="file" class="btn-largest span12" /></span>
+</label>
+
+
+
+ <%= f.hidden_field :x, :value => 'prec' %>      
+  </p>
+
+</div>
+<h3><span class="filename"></span></h3>
+<hr/>
+
+ <div class="row">
+    <div class="span10 offset2">
+  <p> 
+
+<span class="nextbutton invisible">
+<%= button_tag(:type => 'submit', :class => 'btn btn-info btn-large pull-right', :disable_with => 'please wait...')  do %>
+NEXT&nbsp;<i class="icon-caret-right icon-white"></i>
+<% end %>
+</span>
+
+
+                  </p>
+
+    </div>
+ </div>
+                <% end %>
+<hr/>
+                
+<h5>If you are not able to record on your mobile device, please <%= link_to "click here", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => ""} %>, set a password, and then log in on a laptop.</h5>
+
+             <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
+                    </div>
+
+
+
+
+<script>
+
+
+
+
+var jobId = "<%= @voicegem.zen_job_id %>";
+
+function poll() {
+  setTimeout(function() {
+    $.ajax({
+      url: 'https://app.zencoder.com/api/v2/jobs/' + jobId + '/progress',
+      type: 'GET',
+      headers: { "Zencoder-Api-Key": "<%= ENV['ZEN_API_KEY'] %>" },
+      //dataType: 'json',
+      success: function(data) {
+        parseResponse(data);
+      },
+      error: function(data) {
+        console.log(data)
+      }
+    });
+  }, 3000);
+}
+
+function parseResponse(data) {
+  switch(data.state) {
+    case 'pending':
+      console.log('Pending');
+      poll();
+      break;
+    case 'waiting':
+      console.log('Waiting');
+      poll();
+      break;
+    case 'processing':
+      console.log('processing');
+      $('.progress .bar').css('width', Math.round(data.progress) + '%');
+      poll();
+      break;
+    case 'finished':
+      console.log('Finished');
+      $('.progress').removeClass('active');
+      $('.progress .bar').css('width', '100%');
+      $('.rec-cell').attr("class","rec-cell");
+      break;
+    case 'failed':
+      console.log('Failed');
+      break;
+    case 'cancelled':
+      console.log('Cancelled');
+      break;
+    default: 
+      console.log("Wat?");
+  }
+}
+</script>
+<script>
+$(document).ready(function(){
+
+  poll();
+
+});
+
+</script>
+
+<script type="text/javascript">
+  $(function() {
+     $("input:file").change(function (){
+       var fileName = $(this).val();
+       $(".filename").html('Recording Selected. Click Next to review and save.');
+     });
+  });
+</script>
+
+
+<script type="text/javascript">
+  $(function() {
+     $("input:file").change(function (){
+       var nextbutton = $(this).val();
+       $(".nextbutton").attr("class","");
+       $(".first_part").attr("class","invisible");
+     });
+  });
+</script>
+
+  </body>
+</html>

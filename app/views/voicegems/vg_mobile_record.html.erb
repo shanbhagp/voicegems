@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= h(yield(:title) || "Untitled") %></title>
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <%= csrf_meta_tags %>
+
+    <%= yield(:head) %>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45526859-1', 'voicegems.com');
+  ga('send', 'pageview');
+
+</script>
+
+  </head>
+  <body  id="mob2">
+  
+<div class="row">
+
+         <div class="span4">
+            <div class="logo" id="logo2">
+                <img src="/assets/VoiceGems-logo-bare2.png" alt="" style="width:350px" />   
+           </div>
+      </div>
+
+</div>
+
+<div class="sep"></div>
+
+<% flash.each do |key, value| %>
+    <div class="alert alert-block alert-<%=key%>"> 
+    <%= value %> 
+    </div>
+<% end %>
+
+                                      
+<div class="container">
+
+ <h3>You've been invited to record a VoiceGem for an event (<% if !@event.nil? %><% if !@event.title.blank? %><%= @event.title %><% end %><% end %>). A VoiceGem is a short, personal voice-message/toast to the bride and groom (or anyone else), which which the DJ may blend into the reception entertainment.</h3>  
+ <h5>PLEASE NOTE: Since recording a VoiceGem on a mobile device requires more processing time, it might be easier to record on a laptop. </h5>
+
+<hr/>
+
+<form role="form" action="/vg_event_link_create"  id="new_user" method="post">
+ <input id="user_event_code" name="user[event_code]" type="hidden" value="<%= @event_code %>" />
+  <input id="user_x" name="user[x]" type="hidden" value="prec" />
+
+ <div class="form-group">
+    <label for="user_first_name">Enter First Name:</label>
+    <input id="user_first_name" name="user[first_name]"  type="text" class="form-control" placeholder="First Name">
+  </div>
+  <br/>
+ <div class="form-group">
+    <label for="user_last_name">Enter Last Name:</label>
+    <input id="user_last_name" name="user[last_name]"  placeholder="Last Name" type="text" class="form-control" placeholder="Enter Last Name">
+  </div>
+  <br/>
+  <div class="form-group">
+    <label for="user_email">Enter Email Address:</label>
+    <input type="email" class="form-control" placeholder="Email Address" id="user_email" name="user[email]">
+  </div>
+
+     <hr/>
+
+
+   <div class="form-group">
+ <label for="user_notes">(OPTIONAL) Enter any notes or song request for the DJ to accompany your VoiceGem:</label>
+ <textarea class="mob2ta" id="user_vgnotes" name="user[vgnotes]" placeholder="examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline" >
+</textarea> 
+</div>
+  
+<hr/>
+
+  <button type="submit" class="btn btn-primary pull-right btn-large">NEXT&nbsp;<i class="icon-caret-right icon-white"></i></button>
+
+
+</form>
+
+
+
+
+</div>
+<hr/>
+  </body>
+</html>
+  
+
+
+

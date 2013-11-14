@@ -21,7 +21,7 @@ end
 
 def vg_welcome(user)
   @user = user
-  mail :to => user.email, :subject => "Welcome to VoiceGems (a VoiceGems service)"
+  mail :to => user.email, :subject => "Welcome to VoiceGems"
 end
 
 def password_change(user, to)

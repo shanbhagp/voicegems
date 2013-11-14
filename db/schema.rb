@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131110201244) do
+ActiveRecord::Schema.define(:version => 20131114112006) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -245,6 +245,8 @@ ActiveRecord::Schema.define(:version => 20131110201244) do
     t.integer  "length"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "zen_job_id"
+    t.string   "vgrec"
   end
 
 end

@@ -18,12 +18,24 @@ def vgrecord
    @event = Event.find_by_event_code(@event_code)
    @user = User.new
 
+      if mobile_device?
+         render action: 'vg_mobile_record', :layout => nil
+       else 
+         render action: 'vgrecord'
+       end 
+
+
+
   else
   flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
     redirect_to root_path 
   end 
 
 
+end 
+
+
+def vg_mobile_record
 end 
 
 def vg_event_link_create
@@ -57,7 +69,14 @@ def vg_event_link_create
                     @vg = Voicegem.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :notes => @user.vg_notes, :request => @user.vg_request)
                     if @vg.save  #should be fine - since this is a new user, there can't be a PO for this event with his ID - true, but            #still problem if ADMIN ALSO INVITED AT THAT EMAIL ADDRESS, THEREBY CREATING A PO, AND USER HASN'T            #REGISTERED YET
                             # flash[:info] = "Now just record your VoiceGem for this event (#{@event.title}), and you're done!"
-                             redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                               if  params[:user][:x] == 'prec'
+                                    redirect_to vg_precord_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                               else
+                                    redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                               end        
+
+
+                            
                     else #already a PO for this user_id and event, but this shouldn't happen since it's a new user
                       redirect_to @user, notice: "Thanks for registering. However, something may have gone wrong - please contact VoiceGems for support."
                     end 
@@ -76,10 +95,14 @@ def vg_event_link_create
                                      else #has not recorded - so take them to the recording page (record_step2) again
                                       flash[:error] = "Please record your VoiceGem. If you wish to edit your name/email or notes to the MC/DJ, do so on your profile page after you record your name."
                                       @vg = current_user.voicegems.find_by_event_id(@event.id).first
-                                      redirect_to vgrecord_step2_path(:user => @user, :event => @event, :event_code => @event_code, :vg => @vg)
+                                         if  params[:user][:x] == 'prec'
+                                              redirect_to vg_precord_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                                         else
+                                              redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                                         end    
                                       end 
                               else #probably trying to register from record page with an existing email
-                                    flash[:error] = "This email (#{@user.email}) is already registered on our site. Please sign in under 'Already Registered?' (below) to record a VoiceGem for this event. If you didn't set or forgot your password, please click 'Reset Password' above."
+                                    flash[:error] = "This email (#{@user.email}) is already registered on our site."
                                       redirect_to vgrecord_path(:event_code => @event_code) 
                               end 
                       else
@@ -108,6 +131,12 @@ def vg_event_link_create
 end 
 
 
+def vg_precord
+  @voicegem = Voicegem.find(params[:vg])
+  @event = @voicegem.event
+  render :layout => nil
+end 
+
 def vgrecord_step2
   @event = Event.find(params[:event])
   @event_code = params[:event_code]
@@ -117,6 +146,9 @@ def vgrecord_step2
   @user = current_user
 #  @user = current_user this can't be being set if just rendering this page 
 #@vg and @user must be being set in the vg_event_link_create action (which mediates vgrecord and vgrecord_step2)
+
+ @time = Digest::SHA1.hexdigest([Time.now, rand].join)[4..8].upcase.to_s
+
 end 
 
 
@@ -125,6 +157,61 @@ def vgtest
   render :layout => nil
   # necessary b/c having the rendered header was causing problems on the test page
 end 
+
+def vg_audior_upload
+    @vg = Voicegem.find_by_id(params[:userId])
+    @time = Digest::SHA1.hexdigest([Time.now, rand].join)[4..8].upcase.to_s
+    # note that userId is really the voicegem (id)
+
+
+    #write to local directory
+          begin
+            @f = File.new("#{Rails.root}/public/audio_clips/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3", "wb")
+            @f.write(request.raw_post)
+            @f.close
+            render :text => "save=ok&fileurl=/audio_clips/#{current_user.id.to_s}_#{params[:userId]}_#{@time}"
+          rescue
+            render :text => "save=fail"
+          end
+       
+    #upload to S3  - note that needed to add .mp3, and that content-type being saved as image for some reason
+       bucket_name = ENV['VG_BUCKET_NAME']
+       source_filename = "#{Rails.root}/public/audio_clips/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3" 
+
+        AWS.config(
+          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+        )
+
+        # Create the basic S3 object
+        s3 = AWS::S3.new
+
+        # Load up the 'bucket' we want to store things in
+        bucket = s3.buckets[bucket_name]
+
+        # If the bucket doesn't exist, create it
+        unless bucket.exists?
+          puts "Need to make bucket #{bucket_name}.."
+          s3.buckets.create(bucket_name)
+        end
+
+        # Grab a reference to an object in the bucket with the name we require
+        object = bucket.objects[File.basename(source_filename)]
+
+        # Write a local file to the aforementioned object on S3
+        object.write(:file => source_filename, :acl => :public_read)
+
+        logger.warn "AUDIOR_UPLOAD"
+
+        logger.warn params[:userId]
+
+        # UPDATE PATHS
+         @vg.update_attributes(recording: "#{current_user.id.to_s}_#{params[:userId]}_#{@time}")
+         current_user.update_attributes(recording: "#{current_user.id.to_s}_#{params[:userId]}_#{@time}")
+
+
+end
+
 
 def vgsaveupload
 
@@ -186,6 +273,8 @@ def vgsaveupload
 
               #post request to Auphonic
 
+    @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
+    current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
 
       require "net/http"
   require "uri"
@@ -200,15 +289,13 @@ http = Net::HTTP.new(uri.host, uri.port)
 
 request = Net::HTTP::Post.new(uri.request_uri)
 request.basic_auth("shanbhagp@aol.com", "atlantis1")
-request.set_form_data({"input_file" => "https://s3-us-west-1.amazonaws.com/#{ENV['BUCKET_NAME']}/#{@vg.recording}.mp3", "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
+request.set_form_data({"service" => "PPzeGb8UQQTtAzbembHyxB", "input_file" => "#{ENV['BUCKET_NAME']}/#{@vg.recording}.mp3", "preset" => "hNxw4afLvAqzuceRc3KjVK", "action" => "start"})
 
 response = http.request(request)
 
-puts response
+logger.warn response
 
 
-    @vg.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
-    current_user.update_attributes(recording: "#{current_user.id.to_s}_#{@vg.id.to_s}_#{@time}")
 
       return false 
 
@@ -308,6 +395,13 @@ puts response
     @vg = Voicegem.find(params[:id]) # need this to pass in right voicegem id into vgsaveupload via vgtest render
   end
 
+  def create_edit_voicegem
+
+     @voicegem = Voicegem.find(params[:id])
+     @vg = Voicegem.find(params[:id]) # need this to pass in right voicegem id into vgsaveupload via vgtest render
+
+  end 
+
   # POST /voicegems
   # POST /voicegems.json
   # NOT USING THIS ACTION
@@ -331,15 +425,26 @@ puts response
     @voicegem = Voicegem.find(params[:id])
 
       if @voicegem.update_attributes(params[:voicegem])
-        flash[:info] = 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
-        redirect_to current_user 
-       
+            if  params[:voicegem][:x] == 'prec'
+                @hid2 = params[:voicegem][:x]
+
+                redirect_to vg_precord2_path(:ZenId => @ZenId, :vg => @voicegem.id)     
+            else
+                flash[:info] = 'Your VoiceGem was updated.  If you recorded a new VoiceGem, please wait a minute and refresh the page to see it take effect.' 
+                redirect_to current_user 
+            end 
       else
          render action: "edit" 
        
       end
   end
 
+def vg_precord2
+  # @practiceobject = current_user.practiceobjects.first
+  @voicegem = Voicegem.find(params[:vg]) 
+  @event = @voicegem.event
+  render :layout => nil
+end 
 
 
 
