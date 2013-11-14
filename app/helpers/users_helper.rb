@@ -76,7 +76,7 @@ module UsersHelper
          
 
 
-          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an Event Page, from which you can 1) request VoiceGems, 2) download VoiceGems, and 3) invite other admins (who can request and download VoiceGems)."
+          flash[:success] = "Thank you for subscribing to the #{Plan.find_by_my_plan_id(plan).name.titleize} plan!  You can now create an Event Page, from which you can 1) request VoiceGems, 2) hear/download VoiceGems, and 3) invite other admins (who can request and hear/download VoiceGems)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
