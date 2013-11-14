@@ -199,7 +199,7 @@ def vg_audior_upload
         object = bucket.objects[File.basename(source_filename)]
 
         # Write a local file to the aforementioned object on S3
-        object.write(:file => source_filename, :acl => :public_read, :content_type => 'audio/mpeg')
+        object.write(:file => source_filename, :acl => :public_read, :content_type => 'audio/mp3')
 
         logger.warn "AUDIOR_UPLOAD"
 
