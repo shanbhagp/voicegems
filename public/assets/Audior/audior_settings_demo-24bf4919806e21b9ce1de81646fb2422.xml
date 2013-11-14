@@ -21,13 +21,13 @@
 	<markerDistance>5</markerDistance>
 	
 	<!-- Path to the used language file --> 
-	<languageFile>assets/Audior/translations/en.xml</languageFile>
+	<languageFile>../assets/Audior/translations/en.xml</languageFile>
 	
 	<!-- This setting controls whether or not all of the flash buttons are shown/hidden. Set to 0 to hide the buttons -->
 	<showButtons>1</showButtons>
 	
 	<!-- This setting controls whether or not the Save button is enabled/disabled. Set to 1 to disable it -->
-	<disableSaveButton>0</disableSaveButton>
+	<disableSaveButton>1</disableSaveButton>
 	
 	<!-- This setting controls whether or not the Record again button is enabled/disabled. Set to 1 to disable it -->
 	<disableRecordAgainButton>0</disableRecordAgainButton>

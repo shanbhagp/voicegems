@@ -208,7 +208,7 @@ def adminusercreate
 						adminvoicegem(@user)
 						redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
 				     	#templates (redirects) in this helper
-				     end  		
+				    		
 		        else #couldn't find the ai by token
 		        	redirect_to @user, notice: 'There was an error. Invitation code was invalid. Please sign out and try again.'
 		        end 
