@@ -20,6 +20,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
+gem 'miniphonic'
 #gem 'letter_opener', :group => :development
 
 #gem "mail", "2.1.3"

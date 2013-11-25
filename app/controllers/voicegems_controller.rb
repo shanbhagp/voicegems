@@ -3,7 +3,7 @@ before_filter :vgfilter, only: [:index]
 before_filter :signed_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
 before_filter :owner, only: [:index, :show, :new, :create]
 before_filter :correct_user_for_vg, only: [:edit] 
-skip_before_filter :verify_authenticity_token, :only => [:vgsaveupload]
+skip_before_filter :verify_authenticity_token, :only => [:vg_audior_upload]
 
 def vgrecord
 
@@ -201,14 +201,31 @@ def vg_audior_upload
         # Write a local file to the aforementioned object on S3
         object.write(:file => source_filename, :acl => :public_read, :content_type => 'audio/mp3')
 
-        logger.warn "AUDIOR_UPLOAD"
+        logger.warn "AUDIOR_UPLOAD_skip"
 
         logger.warn params[:userId]
 
-        # UPDATE PATHS
+    # UPDATE PATHS
          @vg.update_attributes(recording: "#{current_user.id.to_s}_#{params[:userId]}_#{@time}")
          current_user.update_attributes(recording: "#{current_user.id.to_s}_#{params[:userId]}_#{@time}")
 
+    #PROCESS THROUGH AUPHONIC with MINIPHONIC GEM
+require 'miniphonic'
+
+Miniphonic.configure do |m|
+  m.user = "praveen@name-coach.com"
+  m.password = "atlantis1"
+end
+
+
+
+
+
+
+    production = Miniphonic::Production.new
+    production.create_from_preset("hNxw4afLvAqzuceRc3KjVK")
+    production.upload_audio_from_service("#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3","PPzeGb8UQQTtAzbembHyxB")
+    production.start
 
 end
 
