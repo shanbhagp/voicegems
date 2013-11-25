@@ -218,10 +218,6 @@ Miniphonic.configure do |m|
 end
 
 
-
-
-
-
     production = Miniphonic::Production.new
     production.create_from_preset("hNxw4afLvAqzuceRc3KjVK")
     production.upload_audio_from_service("#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3","PPzeGb8UQQTtAzbembHyxB")
