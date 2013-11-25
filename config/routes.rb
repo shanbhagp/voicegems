@@ -283,7 +283,8 @@ match '/demo_record/:event_code', to: 'events#demo_record', as: '/demo_record'
 match '/demo_record_wedding/:event_code', to: 'events#demo_record_wedding', as: '/demo_record_wedding'
 match '/demo_record_directory/:event_code', to: 'events#demo_record_directory', as: '/demo_record_directory'
 match '/demo_record_vg/:event_code', to: 'voicegems#demo_record_vg', as: 'demo_record_vg'
-
+match '/demo_record_2/:event_code', to: 'events#demo_record_2', as: '/demo_record_2'
+match '/demo_record_3/:event_code', to: 'events#demo_record_3', as: '/demo_record_3'
 match '/demo_record_temp/:event_code', to: 'events#demo_record_temp', as: '/demo_record_temp'
 
 match '/demo_recorder', to: 'users#demo_recorder'
@@ -348,6 +349,8 @@ match '/create_edit_voicegem', to: 'voicegems#create_edit_voicegem'
 
 match '/vg_precord', to: 'voicegems#vg_precord'
 match '/vg_precord2', to: 'voicegems#vg_precord2'
+
+
 
 #match '/show_master', to: 'events#show_master'
 

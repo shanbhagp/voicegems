@@ -590,6 +590,51 @@ puts @url
 
   end 
 
+def demo_record_2
+
+    @event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	 @po = Practiceobject.new
+
+ 	 #   if mobile_device?
+     #    render action: 'mobile_demo_record', :layout => nil
+     #  else 
+     #    render action: 'demo_record'
+     #  end 
+
+
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+
+  end 
+
+def demo_record_3
+
+    @event_code = params[:event_code]
+ 	if Event.find_by_event_code(@event_code)
+ 	 @event = Event.find_by_event_code(@event_code)
+ 	 @user = User.new
+ 	 @po = Practiceobject.new
+
+ 	 #   if mobile_device?
+     #    render action: 'mobile_demo_record', :layout => nil
+     #  else 
+     #    render action: 'demo_record'
+     #  end 
+
+
+ 	else
+ 	flash[:error] = "We were not able to find your event.  Please contact NameCoach or the admin for your event."
+ 	redirect_to root_path 
+ 	end 
+
+
+  end 
 
   def demo_record_temp
 

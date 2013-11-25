@@ -1,23 +1,22 @@
-<% if mobile_device? %>
-
-<% else %> 
 
 
-<div class="jumbotron">
-      <h1>VoiceGem Recording for the Jones-Ravenwood Wedding </h1>
-      
-      <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
-  </div>
+<% flash.each do |key, value| %>
+    <div class="alert alert-block alert-<%=key%>"> 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %> 
+    </div>
+<% end %>
 
-  <script type="text/javascript">
+
+<script type="text/javascript">
             var swfVersionStr = "10.2.0";
             var xiSwfUrlStr = "";
        
             var flashvars = {};
             flashvars.lstext="Loading...";//you can provide a translation here for the "Laoding..." text taht shows up while this file and the external language file is loaded
             flashvars.recorderId = "recorder1";//set this var if you have multiple instances of Audior on a page and you want to identify them
-            flashvars.userId ="<%= @vg.to_s %>";//this variable is sent back to upload.php when the user presses the [SAVE] button
-            flashvars.licenseKey = "766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1"; //licensekey variable, you get it when you purchase the software #new key 766f69636567656d732e636f6d3f6e616d652daurc8be636f6163682e636f6d3f6c6f63616c686f7374aurc0c2c4baceba138
+            flashvars.userId ="<%= @po.to_s %>";//this variable is sent back to upload.php when the user presses the [SAVE] button
+            flashvars.licenseKey = "766f69636567656d732e636f6d3f6e616d652daurc8be636f6163682e636f6d3f6c6f63616c686f7374aurc0c2c4baceba138"; //licensekey variable, you get it when you purchase the software #new key 766f69636567656d732e636f6d3f6e616d652daurc8be636f6163682e636f6d3f6c6f63616c686f7374aurc0c2c4baceba138  #old key: 766f69636567656d732e636faurc8be6d3f6c6f63616c686f7374aurc0c2c4bacebad1 
             
             flashvars.sscode="php" //instructs Audior to use the PHP set of server side files (switch to sscode="aspx") to use the .NET/ASPX set of files
             flashvars.settingsFile = "<%= asset_path('Audior/audior_settings_demo.xml') %>" //this setting instructs Audior what setting file to load. Either the static .XML or the dynamic .PHP that generates a dynamic xml.
@@ -62,13 +61,13 @@
       function btPlayClick(recorderId){
         //this function is called when the PLAY button is released
         console.log("Audior.btPlayClick("+recorderId+")");
-        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your name recording. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
       }
       
       function btPauseClick(recorderId){
         //this function is called when the PAUSE button is released
         console.log("Audior.btPauseClick("+recorderId+")");
-        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your name recording. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
       }
       
       function btStopClick(recorderId){
@@ -107,7 +106,7 @@
       function onRecordingPlaybackStopped(recorderId){
         //the recording has stopped playing
         console.log('Audior.onRecordingPlaybackStopped('+recorderId+')')
-        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your name recording. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'";
       }
       
       function onEncodingDone(duration, recorderId){
@@ -115,7 +114,7 @@
         console.log('Audior.onEncodingDone('+duration+', '+recorderId+')')
         document.getElementById("mainbtn").disabled = false
         document.getElementById("recAgain").disabled = false
-        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your VoiceGem. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'"
+        document.getElementById("firstDisplay").innerHTML  = "Press the Play button to review your name recording. If you're happy, press 'Save' (disabled for demo). Otherwise, press 'Record Again.'"
   
       }
       
@@ -152,6 +151,9 @@
       
     </script>                                            
 
+
+
+
  <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -159,15 +161,17 @@
             </div>
             <div class="modal-body">
             <ul>
-            <li> This service is quick, easy, and totally FREE for you. </li> <br/>
-            <li> You've been invited to record a VoiceGem, a short, personal voice-message/toast to the bride and groom (or anyone else), which which the DJ may mix into the reception entertainment. </li> <br/>
+            <li> This quick and easy service is FREE for you. </li> <br/>
+            <li> You've been asked to record your name in your own voice, so that someone who will announce your name at an upcoming event can make sure they pronounce it perfectly. </li> <br/>
             <li> The process is simple!
                 <ol>
                   <br/>
                   <li>Fill out your name and email. </li><br/> 
-                   <li>Enter any notes to the DJ about your VoiceGem, and any song request that should accompany it (optional).</li><br/>
-                  <li>Record your VoiceGem with our online voice recorder.  Don't worry, this part is super-easy. </li><br/>
-                  <li><em>Thanks to your help, the DJ can make the reception entertainment extra-special!</em></li><br/>
+                   <li>Enter your name as you would like it announced at the event, and any notes to help with pronunciation.</li><br/>
+                  <li>Record your name with our online voice recorder.  Don't worry, this part is super-easy and takes just a few seconds.  <br/><br/>
+                    <strong> Note: Please record on a laptop or desktop with a mic.  You can check that <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">Adobe Flash Player is enabled</a> on your browser (if you have installed a Flash-blocker, temporarily disable it).</strong>
+                    <br/><br/>
+                  <em>Thanks to your help, the person announcing your name can now hear your recording and make sure it's pronounced correctly on the day of the event!</em> </li><br/>
                  </ol>
             </li>  
             <li> More questions? Please contact us below. <em> Thank you!</em> </li>
@@ -188,7 +192,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>You've been invited to record a VoiceGem for an upcoming event, the Jones-Ravenwood Wedding.<em> Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
 
           
      
@@ -198,25 +202,14 @@
 
 
 
-
 <div class="container">  
 <br/>
-<% flash.each do |key, value| %>
-    <div class="alert alert-block alert-<%=key%>"> 
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <%= value %> 
-    </div>
-<% end %>
 
 
-
-                         
-
-
-                                                <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
                                                    <div class="row">
                                                          <div class="well span8 offset1">
-                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
+                                                          <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
@@ -224,9 +217,12 @@
                                                                 <%= f.hidden_field :event_code, :value => @event_code %>
 
 
-                                                                  <%= f.input :first_name, label: "First Name", class: "span5" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
+                                                                  <%= f.input :first_name, label: "First Name", placeholder: 
+                                                                "Student's First Name" %>
+                                                                  <%= f.input :last_name, label: "Last Name", placeholder: 
+                                                                "Student's Last Name" %>
+                                                                  <%= f.input :email, placeholder: "Student's Email"%>
+                                                                  <span class="help-block"><em>(emails will not be given to any 3rd party)</em></span>
                                                                  
 
                                                                 <hr/>    
@@ -235,10 +231,16 @@
                                                    </div>
                                                    <div class="row">
                                                          <div class="well span8 offset1">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
+                                                              <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
+
+                                                              <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
+                                                                            
+                                                                            <br/><br/>
+
                                                                         <span class="textarea2 textareawider">
-                                                                         <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
+                                                                         <%= f.label :notes, "Enter any notes to aid in pronunciation:" %> <br/>
+                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like ravine' or 'last name pronounced GLI-cough')" %>
                                                                         </span>
                                                                            
 
@@ -250,7 +252,7 @@
                                                       </div>
                                                       <div class="row">
                                                           <div class="well span8 offset1">
-                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
+                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/> 
                                                                 <div class="row">
                                                                       <div class="span7">
@@ -300,8 +302,8 @@
                                         Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
                                         <ol>
                                           <li><strong>Press the Record button, then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
-                                          <li> You will have 30 seconds maximum recording time. <strong>Please record your VoiceGem, then press 'STOP'.</strong></li> <br/>
-                                          <li>Press the Play button to review your VoiceGem.</li>
+                                          <li> You will have 10 seconds maximum recording time. <strong>Please say your name clearly and slowly, then press the Stop button,</strong> to make it easier for the person hearing/practicing your name.</li> <br/>
+                                          <li>Press the Play button to review your name recording.</li>
                                              <ul>
                                                  <li>If it sounds good, <strong>press 'Save.'</strong></li>  
                                                   <li>If you're not happy with it, press 'Record Again' to try again.</li>
@@ -366,10 +368,31 @@
                                                      <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                
 
+                
+
+
+<div class="cta">
+  <div class="container">
+    <div class="row">
+      
+      <div class="span4 offset3">
+        
+         <a href="<%= demo_event_page_path %>" class="btn btn-primary btn-large">Back to Demo Event Page</a> 
+       
+      </div>
+
+      <div class="span4">
+        
+          <a href="<%= commencements_path %>" target="_blank" class="btn btn-primary btn-large">Why Use NameCoach?</a>
+          
+        
+      </div>
+
+
+    </div>
+  </div>
+</div>
+                              
 
 </div><%# end container %>
-
-
-<% end %> 
-
 
