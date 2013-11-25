@@ -201,7 +201,7 @@ def vg_audior_upload
         # Write a local file to the aforementioned object on S3
         object.write(:file => source_filename, :acl => :public_read, :content_type => 'audio/mp3')
 
-        logger.warn "AUDIOR_UPLOAD_skip"
+        logger.warn "AUDIOR_UPLOAD"
 
         logger.warn params[:userId]
 
@@ -213,15 +213,15 @@ def vg_audior_upload
 require 'miniphonic'
 
 Miniphonic.configure do |m|
-  m.user = "praveen@name-coach.com"
-  m.password = "atlantis1"
+  m.user = ENV['VG_AUPHONIC_USER']
+  m.password = ENV['VG_AUPHONIC_PW'] 
 end
 
-
     production = Miniphonic::Production.new
-    production.create_from_preset("hNxw4afLvAqzuceRc3KjVK")
-    production.upload_audio_from_service("#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3","PPzeGb8UQQTtAzbembHyxB")
+    production.create_from_preset(ENV['VG_AUPHONIC_PRESET'])
+    production.upload_audio_from_service("#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3", ENV['VG_AUPHONIC_SERVICE'])
     production.start
+    logger.warn "MINIPHONIC STARTED"
 
 end
 
