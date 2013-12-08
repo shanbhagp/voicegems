@@ -1,5 +1,5 @@
 <div class="jumbotron">
-        <h1>Purchase Event Pages</h1>
+        <h1>Purchase VoiceGems Event Pages</h1>
   </div>
 
              
@@ -33,9 +33,15 @@
                   <div id="collapsechange" class="accordion-body collapse in">
                       <div class="accordion-inner">
                         <% if !@number.nil? && @number.to_i > 0 %>
-                                <%= @number %> Event Page<% if @number.to_i > 1 %>s<% end %> @ <%= @price %>/Event
+                               <%= @number %> Event Page<% if @number.to_i > 1 %>s<% end %> @ <%= @price %>/Event
                                 <br/>
+
+                            <% if !@coupon.nil? && !@new_price.nil? %>
+                                      Subtotal: $<%= @old_cost %>.00
+                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon_object.percent_off %>% off): now only <span class="black">$<%= number_with_precision((@new_price.to_f), :precision => 2) %></span>! </em></h4>
+                            <% else %>
                                 <strong>Total: $<%= @cost %>.00</strong>
+                            <% end %>
                         <% else %>
                          Please select number of pages again (click 'Change Order')
                         <% end %>
@@ -53,29 +59,21 @@
                   </div>
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
-                        <div class="fltlft PlanBox3">
-                              <div class="PlanBoxHeading">Event Page Pricing </div>
-                              <div class="PlanBoxContent">
-                                <ul>
-                                  <li><strong>1 to 5</strong> Events: <strong>$<%= tier_one_price %> / Event</strong></li>
-                                  <li><strong>6 to 10</strong> Events: <strong>$<%= tier_two_price %> / Event</strong></li>
-                                  <li><strong>11+</strong> Events: <strong>$<%= tier_three_price %> / Event</strong></li>
-                                  <li>
-                                    Select number of events:
-                                         <%= form_for(:pur, url: existing_changepur_path) do |y| %>
-                                               <%= y.select :number, (1..24), {:selected => "#{@number}"} %>
+                               
+                  
+                                  Select number of events:
+                                   <%= form_for(:pur, url: existing_changepur_path) do |y| %>
+                                               <%= y.hidden_field :code, :value => @coupon %>
+                                               <%= y.number_field :number, :min => '1', :value => "#{@number}" %>
                                                <%= y.submit "Change Order", class: "btn btn-primary"  %> 
                                              <% end %>  
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                             
                          
-                      </div><%# end accordion inner %>
+                     
                   </div><%# end collapsechange2 %>
                 </div><%# end accordigion group %>
 
-              <% if @number.to_i == 1 %>
+          
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange3">
@@ -95,7 +93,7 @@
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange3 %>
                 </div><%# end accordion group %>
-             <% end %>  
+        
    
 
 
@@ -166,8 +164,7 @@
                                     data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
                                 <br/>
                                 <br/>
-                                    
-                                <p>Note: if you already have a subscription plan, payments for that subscription will now be charged to this card. </p>
+                               
                                 
                                 <br/>
                                
@@ -214,6 +211,8 @@
         <br/>
     
 </div>
+</div>
+
 </div>
 
 </div>

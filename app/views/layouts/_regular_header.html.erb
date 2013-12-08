@@ -31,19 +31,12 @@
                     <li><%= link_to account_user_path(current_user) do %><i class="icon-pencil"></i> Change Password<% end%> </li>
                     <li><%= link_to edit_user_path(current_user) do %><i class="icon-pencil"></i> Edit User Name/Email<% end %></li>
                     <li class="divider"></li>
-
-                    <% if !customer_has_active_subscription? %>
-                      
-                           <li><%= link_to purchase_sub_existing_path do %><i class="icon-shopping-cart"></i> Purchase Subscription<% end %></li>
-                     
-                    <% end %> 
-                    <% if customer_has_active_subscription? %>
-                    <li><%= link_to cancel_path do %><i class="icon-ban-circle"></i> Cancel Subscription<% end %></li><% end %> 
+                    <li><%= link_to existing_user_purchase_path do %><i class="icon-shopping-cart"></i> Purchase Event Pages<% end %></li>
+                    
                     <li class="divider"></li>
                     <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
                   </ul>
                  </li>
-                 <% if is_haltom_user %>  <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> SIGN OUT <% end %></li> <% end %>
                <% end %>
 
              </ul>

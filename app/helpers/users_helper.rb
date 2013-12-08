@@ -554,6 +554,7 @@ def existing_customer_purchase_events_existing_card(number, cost, coupon)
         
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
+          current_user.coupon = coupon 
           current_user.save
          
            #create receipt
@@ -614,6 +615,7 @@ def update_card_and_purchase(token, number, cost, coupon)
         #update purchased_events in my database
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
+          current_user.coupon = coupon 
           current_user.save
 
             #create receipt
@@ -673,6 +675,7 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
+          current_user.coupon = coupon 
           current_user.save
 
            #create receipt

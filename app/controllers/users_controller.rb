@@ -692,8 +692,8 @@ def purchase_sub_existing_choose
   # if user is a stripe customer (even though no acticve sub), want to allow him to use existing card
    if !current_user.customer_id.blank?  
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
 end 
@@ -717,8 +717,8 @@ def changesub_existinguser
 
    if !current_user.customer_id.blank?
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
    render action: 'purchase_sub_existing_choose'
@@ -733,8 +733,8 @@ def sub_coupon_existing_user
 
    if !current_user.customer_id.blank?
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
   if is_valid_sub_coupon(@code) && !@planobject.nil? && has_not_trialed?  # to stop people from getting a code and applying it (by cancelling then resubscribing) when already been subscribed for a while
@@ -1154,7 +1154,6 @@ def set_order
     @number= params[:pur][:number].to_i
     @coupon = nil
 
-      @number= params[:pur][:number].to_i
     if @number.to_i < 16 
        @cost = @number.to_i*tier_one_price
        @price = "$#{tier_one_price}"
@@ -1304,11 +1303,7 @@ end
 
 
 def existing_user_purchase
-  if customer_has_active_subscription?
-      @subs = current_user.subscriptions 
-      @s = @subs.active.first
-      @s_year = @s.created_at + 365.days
-  end 
+
   @pe = current_user.purchased_events
 
 end 
@@ -1316,90 +1311,144 @@ end
 # the checkout page, allowing a change to the order through existing_changepur below
 def existing_user_purchase_select
   @number = params[:peu][:number].to_i
- 
-    if @number.to_i < 6  
-       @cost = @number.to_i*tier_one_price
-       @price = "$#{tier_one_price}" 
-    end 
-    if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*tier_two_price
-       @price = "$#{tier_two_price}"  
-    end 
-    if @number.to_i > 10 
-       @cost = @number.to_i*tier_three_price
-       @price = "$#{tier_three_price}" 
-    end 
+  @coupon = nil
+
+  if @number.to_i < 16 
+     @cost = @number.to_i*tier_one_price 
+     @price = "$#{tier_one_price}"
+  end 
+  if @number.to_i > 15 && @number.to_i < 41 
+     @cost = @number.to_i*tier_two_price 
+     @price = "$#{tier_two_price}"
+  end 
+  if @number.to_i > 40 
+     @cost = @number.to_i*tier_three_price
+     @price = "$#{tier_three_price}"
+  end 
 
     # if user is a stripe customer, want to allow him to use existing card
    if !current_user.customer_id.blank?  
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
 end 
 
 def existing_changepur
-  @number= params[:pur][:number].to_i
-    if @number.to_i < 6 
-       @cost = @number.to_i*tier_one_price
-       @price = "$#{tier_one_price}" 
-    end 
-    if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*tier_two_price
-       @price = "$#{tier_two_price}"
-    end 
-    if @number.to_i > 10 
-       @cost = @number.to_i*tier_three_price
-       @price = "$#{tier_three_price}" 
-    end 
-
+   @number= params[:pur][:number].to_i
+  @coupon= params[:pur][:code]
+  @coupon_object = Coupon.find_by_free_page_name(@coupon)
+ 
    # if user is a stripe customer, want to allow him to use existing card
    if !current_user.customer_id.blank?  
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
-   render action: 'existing_user_purchase_select'
+
+ if @number.to_i < 16 
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}"
+       @price_in_dollars = tier_one_price
+    end 
+    if @number.to_i > 15 && @number.to_i < 41 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
+       @price_in_dollars = tier_two_price
+    end 
+    if @number.to_i > 40 
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}"
+       @price_in_dollars = tier_three_price
+    end 
+
+
+    if is_valid_percent_off_coupon(@coupon)
+          @old_cost = @cost 
+          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @cost = @new_price
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'existing_user_purchase_select'
+      
+    else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+          if @number.to_i < 16 
+             @cost = @number.to_i*tier_one_price 
+             @price = "$#{tier_one_price}"
+          end 
+          if @number.to_i > 15 && @number.to_i < 41 
+             @cost = @number.to_i*tier_two_price 
+             @price = "$#{tier_two_price}"
+          end 
+          if @number.to_i > 40 
+             @cost = @number.to_i*tier_three_price
+             @price = "$#{tier_three_price}"
+          end 
+      @coupon = nil 
+      render action: 'existing_user_purchase_select'
+    end
 end 
 
 
 def existing_coupon_purchase
     @coupon= params[:coup][:code]
     @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+    @coupon_object = Coupon.find_by_free_page_name(@coupon)
+
 
      # if user is a stripe customer, want to allow him to use existing card
    if !current_user.customer_id.blank?  
      c = Stripe::Customer.retrieve(current_user.customer_id)
-     @last4 = c.active_card.last4
-     @cardtype = c.active_card.type
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
    end 
 
 
-    if is_valid_single_use_coupon(@coupon)
-          @price = "$#{tier_one_price}" 
-          @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
+
+
+     if @number.to_i < 16 
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}"
+       @price_in_dollars = tier_one_price
+    end 
+    if @number.to_i > 15 && @number.to_i < 41 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
+       @price_in_dollars = tier_two_price
+    end 
+    if @number.to_i > 40 
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}"
+       @price_in_dollars = tier_three_price
+    end 
+
+
+    if is_valid_percent_off_coupon(@coupon)
+          @old_cost = @cost 
+          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
-          render action: 'existing_user_purchase_select'
+            render action: 'existing_user_purchase_select'
       
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
-          if @number.to_i < 6 
+          if @number.to_i < 16 
              @cost = @number.to_i*tier_one_price 
-             @price = "$#{tier_one_price}" 
+             @price = "$#{tier_one_price}"
           end 
-          if @number.to_i > 5 && @number.to_i < 11 
-             @cost = @number.to_i*tier_two_price
-             @price = "$#{tier_two_price}" 
+          if @number.to_i > 15 && @number.to_i < 41 
+             @cost = @number.to_i*tier_two_price 
+             @price = "$#{tier_two_price}"
           end 
-          if @number.to_i > 10 
+          if @number.to_i > 40 
              @cost = @number.to_i*tier_three_price
-             @price = "$#{tier_three_price}" 
+             @price = "$#{tier_three_price}"
           end 
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."
-      render action: 'existing_user_purchase_select'
+        render action: 'existing_user_purchase_select'
     end
 end 
 
@@ -1415,9 +1464,9 @@ def purchase_events_existing_card
   
   if existing_customer_purchase_events_existing_card(@number, cost, coupon)
          #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
-            if !coupon.blank?
-              redeem_single_use_coupon(coupon)
-            end 
+            #if !coupon.blank?
+            #  redeem_single_use_coupon(coupon)
+            #end 
       flash[:success] = "Thank you! You have purchased an additional #{@number} event pages."
       redirect_to current_user
   else #errors in processing the card shouldn't usually happen, because the card was originally ok.  Can test by using stripes card number that binds to customer but does not charge correctly.
@@ -1438,9 +1487,9 @@ def purchase_events_new_card
 
         if update_card_and_purchase(token, @number, cost, coupon)
            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
-            if !coupon.blank?
-              redeem_single_use_coupon(coupon)
-            end 
+           # if !coupon.blank?
+           #   redeem_single_use_coupon(coupon)
+           # end 
           flash[:success] = "Thank you! You have purchased an additional #{@number} event pages."
           redirect_to current_user
         else
@@ -1457,9 +1506,9 @@ def purchase_events_new_stripe_customer
 
         if create_customer_and_purchase_existing_user(token, @number, cost, coupon) # this is almost like create_customer_purchase, except have flash.nows in that helper
            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
-            if !coupon.blank?
-              redeem_single_use_coupon(coupon)
-            end 
+           # if !coupon.blank?
+           #   redeem_single_use_coupon(coupon)
+           # end 
            redirect_to current_user
         else
           redirect_to existing_user_purchase_path
