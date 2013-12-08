@@ -54,15 +54,15 @@ def purchase_receipt(user, receipt, t1, t2, t3)
   @r = receipt
   @number = @r.events_number
 
-    if @number.to_i < 6 
+    if @number.to_i < 16 
        @cost = @number.to_i*t1
        @price = "$#{t1}" 
     end 
-    if @number.to_i > 5 && @number.to_i < 11 
+    if @number.to_i > 15 && @number.to_i < 41 
        @cost = @number.to_i*t2
        @price = "$#{t2}"
     end 
-    if @number.to_i > 10 
+    if @number.to_i > 40 
        @cost = @number.to_i*t3
        @price = "$#{t3}"
     end 

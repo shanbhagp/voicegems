@@ -167,6 +167,10 @@ module UsersHelper
         !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "single_use"
     end 
 
+    def is_valid_percent_off_coupon(coupon)
+        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "percent_off_purchase"
+    end 
+
     def redeem_single_use_coupon(coupon)
        if Coupon.find_by_free_page_name(coupon)
         c = Coupon.find_by_free_page_name(coupon)
@@ -258,6 +262,7 @@ module UsersHelper
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
+          current_user.coupon = coupon
           current_user.save
 
           #create receipt
@@ -268,7 +273,7 @@ module UsersHelper
             #mail receipt
             UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for your purchase!  You can now create a VoiceGems Event Page, from which you can 1) get the link to give to guests to record their VoiceGems, 2) hear/download those VoiceGems, and 3) invite other 'admins' (who can also request and hear VoiceGems)."
         else
           flash.now[:error] = "Something went wrong, please try again."
           false 
@@ -730,15 +735,15 @@ def one_grad_price
 end 
 
 def tier_one_price
-   75
+   99
 end  
 
 def tier_two_price
-  65
+  89
 end 
 
 def tier_three_price
-  55
+  79
 end 
 
 def anchor_and_update_pos(po)

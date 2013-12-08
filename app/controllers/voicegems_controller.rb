@@ -223,10 +223,197 @@ end
     production.start
     logger.warn "MINIPHONIC STARTED"
 
+
+#require 'encodingdotcom'
+#require 'encoding_dot_com'
+
+
+# Create an interface to the encoding.com queue with your user id and secret
+#queue = EncodingDotCom::Media.create(26365, "89a6c6040ef65c89f626e1e4f053cf61")
+
+# Create one or more output formats
+#format = EncodingDotCom::Format.create("output" => "mp3")
+
+# Get an media item processed. You can pass multiple output formats in a hash.
+#media_id = queue.add_and_process("http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3?nocopy", "http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3" => format)
+
+#queue.status(media_id) # => returns a string like "Waiting for encoder" or "Finished"
+#queue.info(media_id)   # => returns information about an item in the queue
+xml = Builder::XmlMarkup.new
+xml.instruct! :xml, :version => "1.0"   # Or whatever your requirements are
+# Consult the Builder gem docs for different ways you can build up your XML, this is just a simple example.
+xml.query do
+  xml.userid("26365")
+  xml.userkey("89a6c6040ef65c89f626e1e4f053cf61")
+  xml.action("AddMedia")
+  xml.source("http://vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3?nocopy")
+  xml.format do
+     xml.output("mp3")
+     #  xml.destination("http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3?acl=public-read")
+     xml.destination("http://vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3?acl=public-read")
+      # http://[AWS_KEY:AWS_SECRET@][bucket].s3.amazonaws.com/[filename][?acl=public-read | authenticated-read]
+      # http://[bucket].s3.amazonaws.com/[filename][?acl=public-read | authenticated-read]&canonical_id=AWS_CANONICAL_USER_ID
+
+     xml.audio_overlay do
+            xml.overlay_source("http://vgnamewavesdev.s3.amazonaws.com/415_56_8C43A_encoded.mp3")
+            xml.overlay_start("1")
+            xml.overlay_duration("30")
+            end 
+
+
+  end
+end
+
+###########
+require 'net/http'
+require 'uri'
+
+# this is the closest form to the one you tried
+# note that the http protocol is excluded
+# (presumably because we're explicitly constructing an HTTP object)
+
+http = Net::HTTP.new('manage.encoding.com')
+response = http.post('/', "xml=#{xml.target!}")
+
+logger.warn response
+##############
+
 end
 
 
 def vgsaveupload
+
+  ###########
+     xml.audio_overlay do
+            xml.overlay_source("http://vgnamewavesdev.s3.amazonaws.com/415_56_9237E_encoded.mp3")
+            xml.overlay_start("1")
+            xml.overlay_duration("30")
+            end 
+
+
+
+###############
+    xml.audio_overlay do
+            xml.overlay_source("http://vgnamewavesdev.s3.amazonaws.com/415_56_9EBE6_encoded.mp3")
+            xml.overlay_start("1")
+            xml.overlay_duration("30")
+            end 
+
+
+##############
+
+xml.audio_overlay do
+        xml.overlay_source("http://vgnamewavesdev.s3.amazonaws.com/415_56_0CF6C.mp3_encoded.mp3")
+        xml.overlay_start("1")
+        xml.overlay_duration("20")
+        end 
+
+###########
+require 'net/http'
+require 'uri'
+
+# this is the closest form to the one you tried
+# note that the http protocol is excluded
+# (presumably because we're explicitly constructing an HTTP object)
+
+http = Net::HTTP.new('manage.encoding.com')
+response = http.post('/', "xml=#{xml.target!}")
+
+logger.warn response
+##############
+
+
+require 'httparty'
+
+@url = "http://manage.encoding.com"
+
+
+@result = HTTParty.post(@url.to_str, 
+    :body => xml.target!, :headers => { 'Content-Type' => 'application/x-www-form-urlencoded' })
+
+logger.warn @result
+
+######################
+
+xml.query do
+  xml.userid do
+    xml.serial_number("12345")
+    xml.name("First Widget")
+    xml.any_other_tag_you_need("Contents of tag")
+  end
+end
+
+require "net/http"
+require "uri"
+uri = URI.parse("https://manage.encoding.com")
+response = Net::HTTP.new(uri.host, uri.port).request(Net::HTTP::Post.new(uri.request_uri, xml.target!))
+
+
+
+# And now send the request
+http = Net::HTTP.new("www.thewebservicedomain.com")
+response = http.post("/some/path/here", xml)
+response = Net::HTTP.new("www.thewebservicedomain.com").post("/some/path/here", xml)
+
+
+require "net/http"
+require "uri"
+
+uri = URI.parse("http://example.com/search")
+
+# Full control
+http = Net::HTTP.new(uri.host, uri.port)
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request.set_form_data({"q" => "My query", "per_page" => "50"})
+
+# Tweak headers, removing this will default to application/x-www-form-urlencoded 
+request["Content-Type"] = "application/json"
+
+response = http.request(request)
+response = Net::HTTP.new(uri.host, uri.port).request(Net::HTTP::Post.new(uri.request_uri))
+
+######
+require "net/http"
+require "uri"
+uri = URI.parse("https://manage.encoding.com")
+response = Net::HTTP.new(uri.host, uri.port).request(Net::HTTP::Post.new(uri.request_uri, xml))
+
+
+######
+require "net/http"
+require "uri"
+uri = URI.parse("https://manage.encoding.com")
+#response = Net::HTTP.new(uri.host, uri.port).request(Net::HTTP::Post.new(uri.request_uri, xml))
+response = Net::HTTP.new(uri.host, uri.port).post(uri.request_uri, xml)
+
+logger.warn response
+########
+
+require 'httparty'
+require 'json'
+@url = "https://manage.encoding.com"
+
+
+@result = HTTParty.post(@url.to_str, 
+    :body => { :query => {
+                            :userid => '26365',
+                            :userkey => '89a6c6040ef65c89f626e1e4f053cf61',
+                            :action => 'AddMedia'
+                          }
+             }.to_json,
+    :headers => { 'Content-Type' => 'application/json' } )
+
+logger.warn @result
+
+@result = HTTParty.post(@url.to_str, 
+    :body => { :subject => 'This is the screen name', 
+               :issue_type => 'Application Problem', 
+               :status => 'Open', 
+               :priority => 'Normal', 
+               :description => 'This is the description for the problem'
+             }.to_json,
+    :headers => { 'Content-Type' => 'application/json' } )
 
       @vg = Voicegem.find_by_id(params[:x])
       @time = Digest::SHA1.hexdigest([Time.now, rand].join)[4..8].upcase.to_s

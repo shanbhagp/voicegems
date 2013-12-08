@@ -127,12 +127,33 @@
                        </div> <!-- END SPAN8 OFFSET4 --> 
                   </div>
                   
-                  <div class="content process biggertext">
+                <div class="content process biggertext">
 
                       <div class="row">
                          <div class="span8 offset2">
                               <div class="process-meta-gold fl-left">
                                 <span>1</span>
+                              </div>
+                           
+                               <br/>
+                               <span class="ph3">&nbsp;&nbsp;&nbsp;DJ Buys a VoiceGems Page for an Event</span>&nbsp;&nbsp;
+                              <br/>
+                   
+                              
+                          </div> 
+                      </div>
+
+                      
+                      <br/>
+
+
+
+                  <div class="content process biggertext">
+
+                      <div class="row">
+                         <div class="span8 offset2">
+                              <div class="process-meta-gold fl-left">
+                                <span>2</span>
                               </div>
                            
                                <br/>
@@ -151,7 +172,7 @@
                       <div class="row">
                           <div class="span8 offset2">
                              <div class="process-meta-gold fl-left">
-                                <span>2</span>
+                                <span>3</span>
                              </div>
                          
                              <br/>
@@ -174,13 +195,13 @@
                       <div class="row">
                          <div class="span8 offset2">
                             <div class="process-meta-gold fl-left">
-                              <span>3</span>
+                              <span>4</span>
                             </div>
                          
                              <br/>
                              <span class="ph3">&nbsp;&nbsp;&nbsp;DJ Blends the VoiceGems into Music for an Unforgettable Event!</span>&nbsp;&nbsp;
                               <br/>
-                              &nbsp;&nbsp;&nbsp;<span class="help-block">(All VoiceGems downloadable as high-quality MP3's for easy mixing)</span>   
+                              &nbsp;&nbsp;&nbsp;<span class="help-block">(All VoiceGems downloadable as high-quality noise-cancelled MP3's for easy mixing)</span>   
                          </div> 
                       </div>
 
@@ -204,93 +225,27 @@
 
                   </div>
 
+  
 
-                 <div class="row biggertext">
-                    <% if mobile_device? %>
-                    <div class="span12">
-                    <% else %>
-                    <div class="span10 offset2">
-                    <% end %>
-                       <br/>
-                      <h3>Choose a plan to meet your business needs: </h3> 
-
-                         <br/><br/>
-                         <div class = "row">
-                          <% if mobile_device? %>
-                            <div class="span12">
-                          <% else %>
-                              <div class="span8">
-                          <% end %>         <!--SILVER-->
-                                    <div class="fltlft PlanBoxGold">
-                                      <div class="PlanBoxHeading bg-gold"><%= @first_plan.name.upcase%> PLAN</div>
-                                      <div class="PlanBoxContent">
-                                        <ul>
-                                          <li><strong>$<%= @first_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
-                                          <li><%= @first_plan.events_number%> Events / Year</li>
-                                          <li>Unlimited VoiceGems </li>
-                                          <li>Free 30 Day Trial</li>
-                                          <li>
-                                            <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                                            <%= y.hidden_field :plan, :value => @first_plan.my_plan_id %>
-                                             <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
-                                            <% end %>  </p>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-
-                                    <!--Gold-->
-                                    <div class="fltlft PlanBoxGold">
-                                      <div class="PlanBoxHeading bg-gold"><%= @second_plan.name.upcase%> PLAN</div>
-                                      <div class="PlanBoxContent">
-                                        <ul>
-                                          <li><strong>$<%= @second_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
-                                          <li><%= @second_plan.events_number%> Events / Year</li>
-                                          <li>Unlimited VoiceGems </li>
-                                          <li>Free 30 Day Trial</li>
-                                          <li>
-                                            <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                                            <%= y.hidden_field :plan, :value => @second_plan.my_plan_id %>
-                                             <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
-                                            <% end %>  </p>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                    
-                                    <!--Platinum-->
-                                    <div class="fltlft PlanBoxGold">
-                                      <div class="PlanBoxHeading bg-gold"><%= @third_plan.name.upcase%> PLAN</div>
-                                      <div class="PlanBoxContent">
-                                        <ul>
-                                          <li><strong>$<%= @third_plan.monthly_cost_cents / 100 %> Monthly</strong></li>
-                                          <li><%= @third_plan.events_number%> Events / Year</li>
-                                          <li>Unlimited VoiceGems </li>
-                                          <li>Free 30 Day Trial</li>
-                                          <li>
-                                            <p class="PlanBoxSignUp"><%= form_for(:snc, url: newcustomer_path) do |y| %>
-                                            <%= y.hidden_field :plan, :value => @third_plan.my_plan_id %>
-                                             <%= y.hidden_field :event_type, :value => 'voicegems' %>
-                                              <%= y.submit "Start Free Trial!", class: "btn-info btn-large" %>
-                                            <% end %>  </p>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                              </div>
-                            </div>
-
-
-                          </div>
-
-                       </div>
-
+               
                  <br/>
                  <br/>
-                 <br/>
-
+<div class="span7 offset3 home-block"  >
+          <div class="grey-box hero-block-2 biggertext">
+              <h2>Register for a VoiceGems Account to:</h2> <br/>
+              <h3>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Create VoiceGems Pages for your Clients (only $99 each)</p>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Request VoiceGems</p>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;Download and Mix VoiceGems from the Page</p>
+              <p>&nbsp;&nbsp;<i class="icon-ok light-blue"></i>&nbsp;&nbsp;30-day, 100% money-back Satisfaction Guarantee</p>
+              </h3>
+              <a href="<%= newcustomer_purchase_path %>" class="btn btn-info btn-large">Register</a>
+               <br/>
+              <span class="cent gray"><em></em></span>
+               
+          </div>
+          <div class="tp-bannershadow tp-shadow3"></div>
+      </div>
                  <div class="row">
                   <div class="span11 offset1">
                             <div class="text-divider5">

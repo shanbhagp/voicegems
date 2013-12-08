@@ -1,8 +1,6 @@
 <div class="jumbotron">
-        <h1>Customer Signup</h1>
+        <h1>Purchase VoiceGems Event Pages</h1>
       <br/>
-      <h3>&nbsp;<i class="icon-check icon-white"></i>&nbsp;Step 1: New User Registration</h3>
-      <h3><span class="deco">&nbsp;<i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Event Pages</span></h3>
   </div>
                
 <!-- This is exactly the same as stripetest, except for the jumbotron stuff -->
@@ -20,7 +18,7 @@
 <div class="container">
         
 <br/>
-
+  
 
 <div class="row">
 
@@ -39,7 +37,13 @@
                         <% if !@number.nil? && @number.to_i > 0 %>
                                 <%= @number %> Event Page<% if @number.to_i > 1 %>s<% end %> @ <%= @price %>/Event
                                 <br/>
+
+                            <% if !@coupon.nil? && !@new_price.nil? %>
+                                      Subtotal: $<%= @old_cost %>.00
+                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon_object.percent_off %>% off): now only <span class="black">$<%= number_with_precision((@new_price.to_f), :precision => 2) %></span>! </em></h4>
+                            <% else %>
                                 <strong>Total: $<%= @cost %>.00</strong>
+                            <% end %>
                         <% else %>
                          Please select number of pages again (click 'Change Order')
                         <% end %>
@@ -57,29 +61,21 @@
                   </div>
                   <div id="collapsechange2" class="accordion-body collapse">
                       <div class="accordion-inner">
-                          <div class="fltlft PlanBox3">
-                              <div class="PlanBoxHeading">Event Page Pricing </div>
-                              <div class="PlanBoxContent">
-                                <ul>
-                                  <li><strong>1 to 5</strong> Events: <strong>$35 / Event</strong></li>
-                                  <li><strong>6 to 10</strong> Events: <strong>$30 / Event</strong></li>
-                                  <li><strong>11+</strong> Events: <strong>$25 / Event</strong></li>
-                                  <li>
-                                    Select number of events:
+    
+                               
+                                  Select number of events:
                                    <%= form_for(:pur, url: changepur_path) do |y| %>
-                                               <%= y.select :number, (1..24), {:selected => "#{@number}"} %>
+                                               <%= y.hidden_field :code, :value => @coupon %>
+                                               <%= y.number_field :number, :min => '1', :value => "#{@number}" %>
                                                <%= y.submit "Change Order", class: "btn btn-primary"  %> 
                                              <% end %>  
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
+                             
                           
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange2 %>
                 </div><%# end accordion group %>
 
-            <% if @number.to_i == 1 %>
+
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange3">
@@ -99,13 +95,13 @@
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange3 %>
                 </div><%# end accordion group %>
-             <% end %>  
+         
 
             </div>   <%# end accordion%>
           
 
         <hr/>
-  
+
         
      
 

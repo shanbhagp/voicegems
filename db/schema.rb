@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131114112006) do
+ActiveRecord::Schema.define(:version => 20131208064726) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(:version => 20131114112006) do
     t.string   "vg_request"
     t.string   "event_type"
     t.string   "grad_date"
+    t.string   "coupon"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -226,6 +227,13 @@ ActiveRecord::Schema.define(:version => 20131114112006) do
     t.string   "invite_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "title"
+    t.string   "panda_video_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "voicegems", :force => true do |t|

@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :name, "TYPE OF PROMO CODE" %>
-    <%= f.select :name, [['FREE PAGE','free'],['FREE SUBSCRIPTION','free_sub'],['DISCOUNTED PAGE','single_use'], ['DISCOUNTED SUB','sub_discount']] %>
+    <%= f.select :name, [['FREE PAGE','free'],['FREE SUBSCRIPTION','free_sub'],['DISCOUNTED PAGE','single_use'], ['PERCENT OFF PURCHASE','percent_off_purchase'],['DISCOUNTED SUB','sub_discount']] %>
     (do not select DISCOUNTED SUB - for Praveen's use only)
   </div>
 <br />
@@ -23,7 +23,7 @@
 <div class="well">
 <strong>(FOR PRAVEEN'S USE ONLY - PLEASE IGNORE)</strong> <br>
   <div class="field">
-  <%= f.label :percent_off, "percent off subscription "%>
+  <%= f.label :percent_off, "percent off subscription or purchase "%>
   <%= f.text_field :percent_off%>
   </div>
     <div class="field">

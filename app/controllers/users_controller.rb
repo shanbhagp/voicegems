@@ -1104,7 +1104,6 @@ end
 
 def newcustomer_purchase
   @user = User.new 
-  @number = params[:pnc][:number].to_i
 
   if signed_in?
     flash[:notice] = "Since you are already a registered user, please use this page to purchase Event Pages."
@@ -1121,19 +1120,9 @@ def newcustomercreate_purchase
     @user.password_confirmation=params[:user][:password_confirmation]
     @user.first_name = params[:user][:first_name]
     @user.last_name = params[:user][:last_name]
-    @number = params[:user][:number].to_i  #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
-    if @number.to_i < 6 
-       @cost = @number.to_i*tier_one_price
-       @price = "$#{tier_one_price}" 
-    end 
-    if @number.to_i > 5 && @number.to_i < 11 
-       @cost = @number.to_i*tier_two_price
-       @price = "$#{tier_two_price}"
-    end 
-    if @number.to_i > 10 
-       @cost = @number.to_i*tier_three_price 
-       @price = "$#{tier_three_price}"
-    end 
+    @user.company = params[:user][:company]
+    @user.event_type = params[:user][:event_type]
+   #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
 
 
     if @user.save
@@ -1141,20 +1130,9 @@ def newcustomercreate_purchase
       sign_in @user
       # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
-      flash[:success] = "Thank you for registering.  Please fill in your payment details to finish subscribing."
-      if @user.email == 'shanbhagp@aol.com'
-          @user.customer = true
-          @user.save
-      end 
-      if @user.email == 'startx@example.com'
-          @user.customer = true
-          @user.save
-      end 
-      if @user.email == 'teststartx@example.com'
-          @user.customer = true
-          @user.save
-      end 
-      render 'stripenewcustomer_purchase'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+      flash.now[:success] = "Thank you for registering. To get started, select the number of VoiceGems Event Pages you wish to purchase."
+     
+      render 'checkout'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
@@ -1168,6 +1146,31 @@ def newcustomercreate_purchase
 
 end 
 
+def checkout
+  @number = 1
+end 
+
+def set_order
+    @number= params[:pur][:number].to_i
+    @coupon = nil
+
+      @number= params[:pur][:number].to_i
+    if @number.to_i < 16 
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}"
+    end 
+    if @number.to_i > 15 && @number.to_i < 41 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
+    end 
+    if @number.to_i > 40 
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}"
+    end 
+   render action: 'stripenewcustomer_purchase'
+
+end 
+
 def stripenewcustomer_purchase
    @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
 end 
@@ -1175,43 +1178,95 @@ end
 def changepur
   # @cost in DOLLARS
   @number= params[:pur][:number].to_i
-    if @number.to_i < 6 
+  @coupon= params[:pur][:code]
+  @coupon_object = Coupon.find_by_free_page_name(@coupon)
+ 
+
+
+ if @number.to_i < 16 
        @cost = @number.to_i*tier_one_price
        @price = "$#{tier_one_price}"
+       @price_in_dollars = tier_one_price
     end 
-    if @number.to_i > 5 && @number.to_i < 11 
+    if @number.to_i > 15 && @number.to_i < 41 
        @cost = @number.to_i*tier_two_price
        @price = "$#{tier_two_price}"
+       @price_in_dollars = tier_two_price
     end 
-    if @number.to_i > 10 
+    if @number.to_i > 40 
        @cost = @number.to_i*tier_three_price
        @price = "$#{tier_three_price}"
+       @price_in_dollars = tier_three_price
     end 
-   render action: 'stripenewcustomer_purchase'
-end 
 
 
-def coupon_purchase
-    @coupon= params[:coup][:code]
-    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
-
-    if is_valid_single_use_coupon(@coupon)
-          @price = "$#{tier_one_price}"
-          @cost = Coupon.find_by_free_page_name(@coupon).cost  # IN DOLLARS
+    if is_valid_percent_off_coupon(@coupon)
+          @old_cost = @cost 
+          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripenewcustomer_purchase'
       
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
-          if @number.to_i < 6 
+          if @number.to_i < 16 
              @cost = @number.to_i*tier_one_price 
              @price = "$#{tier_one_price}"
           end 
-          if @number.to_i > 5 && @number.to_i < 11 
+          if @number.to_i > 15 && @number.to_i < 41 
              @cost = @number.to_i*tier_two_price 
              @price = "$#{tier_two_price}"
           end 
-          if @number.to_i > 10 
+          if @number.to_i > 40 
+             @cost = @number.to_i*tier_three_price
+             @price = "$#{tier_three_price}"
+          end 
+      @coupon = nil 
+      render action: 'stripenewcustomer_purchase'
+    end
+end 
+
+
+def coupon_purchase
+    @coupon= params[:coup][:code]
+    @coupon_object = Coupon.find_by_free_page_name(@coupon)
+    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+
+    if @number.to_i < 16 
+       @cost = @number.to_i*tier_one_price
+       @price = "$#{tier_one_price}"
+       @price_in_dollars = tier_one_price
+    end 
+    if @number.to_i > 15 && @number.to_i < 41 
+       @cost = @number.to_i*tier_two_price
+       @price = "$#{tier_two_price}"
+       @price_in_dollars = tier_two_price
+    end 
+    if @number.to_i > 40 
+       @cost = @number.to_i*tier_three_price
+       @price = "$#{tier_three_price}"
+       @price_in_dollars = tier_three_price
+    end 
+
+
+    if is_valid_percent_off_coupon(@coupon)
+          @old_cost = @cost 
+          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @cost = @new_price
+          flash.now[:success] = "Your promo code has been applied!"
+          render action: 'stripenewcustomer_purchase'
+      
+    else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+          if @number.to_i < 16 
+             @cost = @number.to_i*tier_one_price 
+             @price = "$#{tier_one_price}"
+          end 
+          if @number.to_i > 15 && @number.to_i < 41 
+             @cost = @number.to_i*tier_two_price 
+             @price = "$#{tier_two_price}"
+          end 
+          if @number.to_i > 40 
              @cost = @number.to_i*tier_three_price
              @price = "$#{tier_three_price}"
           end 

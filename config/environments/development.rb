@@ -73,4 +73,7 @@ config.paperclip_defaults = {
   }
 }
 
+ENV['PANDASTREAM_URL'] = "https://e7a5e2db22f1cc878ac6:6d577059753105932f52@api.pandastream.com/80292268b1ec5c13594d49f5dae7593d"
+
+
 end

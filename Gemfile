@@ -21,8 +21,13 @@ gem 'fog'
 gem 'carrierwave_direct'
 gem 'sidekiq'
 gem 'miniphonic'
+gem 'panda', '~> 1.6.0'
+#gem 'nokogiri'
+gem 'encodingdotcom'
+gem "builder", "~> 3.0.4"
+#gem 'encoding-dot-com'
 #gem 'letter_opener', :group => :development
-
+#gem 'encoding-dot-com'
 #gem "mail", "2.1.3"
 #gem "mail", "2.4.4"
 #bundler said tha my rails version (3.2.6) requires version 2.4.4 of the mail gem)

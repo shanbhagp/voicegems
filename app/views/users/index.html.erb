@@ -14,10 +14,11 @@
     <th>Notes</th>
     <th>Admin?</th>
     <th>Customer?</th>
+    <th>Company</th>
     <th>Customer ID</th>
     <th>Purchased Events</th>
     <th>Event Type</th>
-    <th>Grad Date</th>
+    <th>Coupon</th>
   </tr>
 
 <% @users.each do |user| %>
@@ -33,10 +34,11 @@
     <td><%= user.notes %></td>
     <td><%= user.admin %></td>
     <td><%= user.customer %></td>
+    <td><%= user.company %></td>
     <td><%= user.customer_id %> </td>
     <td><%= user.purchased_events %> </td>
     <td><%= user.event_type %> </td>
-    <td><%= user.grad_date %> </td>
+    <td><%= user.coupon %> </td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
