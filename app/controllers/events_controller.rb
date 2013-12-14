@@ -510,35 +510,18 @@ def event_code_add  #this is for registering to record with an event link, for a
   end 
 
   def demo_event_page
-  	@event = Event.find(ENV['demopage'].to_i)
+     @event = Event.find(ENV['demopage'].to_i)
+	 @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
 
-  	 @practiceobject = Practiceobject.new  
-	 @practiceobject.event_id = @event.id #for the form_for(@practiceobject) which creatse a new practice object (and another form which just shows the labels - can find a better way for that)
-	 @registeredandrecordedpos = @event.practiceobjects.registered.recorded.visible
-	 @registeredandunrecordedpos = @event.practiceobjects.registered.unrecorded.visible
-	 @unregisteredpos = @event.practiceobjects.unregistered.visible
-	 @hiddenpos = @event.practiceobjects.hidden
-	 @hiddenandregisteredpos  = @hiddenpos.registered
-	 @hiddenandunregisteredpos = @hiddenpos.unregistered  
 
-	 @url = demo_record_url(:event_code => @event.event_code)
-
-	 @pofirst = @registeredandrecordedpos.first
-
-	 s3 = AWS::S3.new
-  bucket = s3.buckets[ ENV["BUCKET_NAME"]]
-  puts bucket
-  object = bucket.objects["#{@pofirst.recording}.mp3"]
- puts object
- # @url = object.url_for(:read).to_s
- #puts @url
-@url = object.url_for(:get, {
-      expires: 10.minutes,
-      response_content_disposition: 'attachment;'
-    }).to_s
-
-puts @url 
-
+			 @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
+			 @registeredandunrecordedvgs = @event.voicegems.registered.unrecorded.visible
+			 @unregisteredvgs = @event.voicegems.unregistered.visible
+			 @hiddenvgs = @event.voicegems.hidden
+			 @hiddenandregisteredvgs  = @hiddenvgs.registered
+			 @hiddenandunregisteredvgs = @hiddenvgs.unregistered  
+ 
 
 
   end
