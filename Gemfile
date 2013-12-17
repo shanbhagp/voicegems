@@ -25,6 +25,7 @@ gem 'panda', '~> 1.6.0'
 #gem 'nokogiri'
 gem 'encodingdotcom'
 gem "builder", "~> 3.0.4"
+gem 'cloudinary'
 #gem 'encoding-dot-com'
 #gem 'letter_opener', :group => :development
 #gem 'encoding-dot-com'
