@@ -354,6 +354,11 @@ match '/checkout', to: 'users#checkout'
 
 match '/set_order', to: 'users#set_order'
 
+match '/newcustomer_trial', to: 'users#newcustomer_trial'
+match '/newcustomercreate_trial', to: 'users#newcustomercreate_trial'
+match '/stripe_vgtrial', to: 'users#stripe_vgtrial'
+match '/stripereceiver_trial', to: 'users#stripereceiver_trial'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'

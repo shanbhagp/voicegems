@@ -44,7 +44,7 @@ end
 
 def page_is_active?
 	@event = Event.find(params[:id])
-	owner_has_active_subscription? || @event.purchase_type == 'p'
+	owner_has_active_subscription? || @event.purchase_type == 'p' || @event.purchase_type == 't'
 end 
 
 def active_page_check

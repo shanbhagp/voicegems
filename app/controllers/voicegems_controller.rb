@@ -6,19 +6,18 @@ before_filter :correct_user_for_vg, only: [:edit]
 skip_before_filter :verify_authenticity_token, :only => [:vg_audior_upload]
 
 def vgrecord
-
-  if signed_in?
-    flash[:success] = "Trying to record your VoiceGem? Please do so below."
-    redirect_to current_user 
-  else
-    
+  
       @event_code = params[:event_code]
 
       if Event.find_by_event_code(@event_code)
        @event = Event.find_by_event_code(@event_code)
        @user = User.new
 
-          if mobile_device?
+            if signed_in?
+              flash[:success] = "Trying to record your VoiceGem? Since you have already registered, please click 'Profile' above and then click 'Your VoiceGem'."
+            end
+
+           if mobile_device?
              render action: 'vg_mobile_record', :layout => nil
            else 
              render action: 'vgrecord'
@@ -27,11 +26,11 @@ def vgrecord
 
 
       else
-      flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
+        flash[:error] = "We were not able to find your event.  Please contact VoiceGems or the admin for your event."
         redirect_to root_path 
       end 
 
-  end
+
 end 
 
 

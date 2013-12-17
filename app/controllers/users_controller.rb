@@ -1146,6 +1146,7 @@ def newcustomercreate_purchase
 
 end 
 
+
 def checkout
   @number = 1
 end 
@@ -1515,6 +1516,82 @@ def purchase_events_new_stripe_customer
         end 
 
 end
+
+def newcustomer_trial
+  @user = User.new 
+
+  if signed_in?
+    flash[:notice] = "Since you are already a registered user, please use this page to purchase Event Pages."
+    redirect_to existing_user_purchase_path
+  end 
+
+
+end 
+
+
+def newcustomercreate_trial
+
+    @user = User.new
+    @user.email = params[:user][:email]
+    @user.password=params[:user][:password]
+    @user.password_confirmation=params[:user][:password_confirmation]
+    @user.first_name = params[:user][:first_name]
+    @user.last_name = params[:user][:last_name]
+    @user.company = params[:user][:company]
+    @user.event_type = params[:user][:event_type]
+   #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
+
+
+    if @user.save
+
+      sign_in @user
+      # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
+      # when creates an event, can invite himself (at that email) to create a PO for that event for himself
+      flash.now[:success] = "Thank you for registering. Please enter your credit card information to continue - your card will NOT be charged."
+     
+      render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+    else
+
+          if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
+                        flash[:error] = "You are already registered on our site. Please sign in to purchase event pages under your Accounts tab."
+                         redirect_to root_path
+          else
+              render action: 'newcustomer_trial'
+          end    
+
+    end 
+
+end 
+
+def stripe_vgtrial
+  @number = 1
+end
+
+
+def stripereceiver_trial #incoming from stripenewcustomer form
+  # get the credit card details submitted by the form
+    token = params[:stripeToken]
+    number = params[:number].to_i
+    coupon = params[:coupon] # this is the coupon code, a string
+    cost = params[:cost]
+
+    #this needs to change to allow for canceled subs - I think this is taken care of, no prior canceled subs for a true new customer(user)  
+
+        if create_customer_trial(token, number, cost, coupon)
+              #record stripe's (?) customer_id for this user
+              # this helper is in users helper
+          
+            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            if !coupon.blank?
+              redeem_single_use_coupon(coupon)
+            end 
+          redirect_to current_user
+        else
+          render 'stripe_vgtrial'
+        end 
+  
+end 
+
 
 
 def macbeath

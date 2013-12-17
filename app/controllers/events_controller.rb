@@ -136,6 +136,57 @@ class EventsController < ApplicationController
 	     			flash[:error] = 'No event pages remaining.  Please purchase more or upgrade your plan.'
 	     	 		redirect_to current_user
 	     		end
+	     	elsif @event.purchase_type == 't'
+	     			
+			     	     # RUN MODIFIED for purchased events EXISTING CODE
+		                 #generate the event_code 
+		                 if @event.event_code.blank?
+		                  generate_event_code(@event)
+				                    if  @event.save  
+					                    	# try decrementing p
+					                    	# @user.decrement(:purchased_events)
+			           						 if @user.save
+			           						      @event.customerkeys.create!(user_id: current_user.id)
+					                     		  @event.adminkeys.create!(user_id: current_user.id)
+					                     		  redirect_to @event, notice: "Welcome to your VoiceGems Event Page for #{@event.title}."
+											 else #shouldn't happen because @user should save
+								                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+								                  redirect_to current_user
+			           						 end 
+			           						 # END try decrementing p
+				                     else
+							                  flash[:error] = 'Please enter a title and date.'
+							                  redirect_to current_user
+				                     end
+
+		                 else
+				                  if Event.find_by_event_code(@event.event_code.upcase.delete(' '))
+				                         redirect_to current_user, notice: "This  code,#{@event.event_code.upcase.delete(' ')}, has already been taken. Please choose another."
+				                  else 
+						                        e = @event.event_code.upcase.delete(' ')
+						                        @event.event_code = e 
+						                          if  @event.save  
+								                    	# try decrementing p
+								                    	# @user.decrement(:purchased_events)
+						           						 if @user.save
+						           						      @event.customerkeys.create!(user_id: current_user.id)
+								                     		  @event.adminkeys.create!(user_id: current_user.id)
+								                     		  redirect_to @event, notice: "Welcome to your VoiceGems Event Page for #{@event.title}."
+														 else #shouldn't happen because @user should save
+											                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
+											                  redirect_to current_user
+						           						 end 
+						           						 # END try decrementing p
+							                      else
+							                      redirect_to current_user, notice: 'Please enter a title and date.'
+							                      end
+				                end 
+		              end 
+		             #END RUN MODIFIED for purchased pages EXISTING CODE
+
+
+
+
 	     	else #this shouldn't happen, just a catch all in case an event_type comes in that isn't p or s
 	     		flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 	     		redirect_to current_user

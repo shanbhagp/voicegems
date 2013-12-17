@@ -111,42 +111,7 @@ $(function() {
 				                            
 				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "span2" %> &nbsp;&nbsp;
 
-				                        <%= f.text_field :event_code, :placeholder => 'Event Code (optional)', :class => "span2" %>
-				                        		 <div id="info-code" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-										            <div class="modal-header">
-										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-										              <h3 id="myModalLabel">What's the Event Code?</h3>
-										            </div>
-
-										            <div class="modal-body">
-
-										             <p> Attendees can record VoiceGems for this event through a unique link, such as:
-										            	<br/><br/>
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleEventCode<br/>
-										              </p> 
-
-										       		<p> The link will be available once you create the Event Page, and you can just copy and paste the link into the web page for your event (if you have one), or an email to your attendees. </p> 
-										       		
-
-										       		<p>You can use this in addition to, or as an alternative to, inviting attendees by entering their email on the Event Page and pressing the 'Invite Attendee' button. </p>	<br/>								
-
-										 			<h4>So What's the Event Code? </h4>	<br/>
-													<p> It's the code that represents your event in the link.</p>
-
-													<p> If you want, you can choose an event code now and enter it in the field here. It should not have special characters or spaces. Pick something unique and descriptive. For example, if the event is in Boston on December 6th, you might choose 'BOSTONDEC6.' </p>
-
-													<p> <strong>If you leave this field blank, we will choose a unique 5-character code for you</strong> (which will appear in the event link). </p>
-
-										            </div>
-
-										            <div class="modal-footer">
-										              <button class="btn" data-dismiss="modal">Close</button>			
-										            </div>
-
-										         </div> <%# end modal %>
-
-				                 			<a data-toggle="modal" href="#info-code" ><i class="icon-info-sign "></i></a> &nbsp;&nbsp;
+				                       
 
 				                 	      
 						                		  <% if only_sub_pages_left? %> 
@@ -158,8 +123,12 @@ $(function() {
 						                             	
 						                          <% end %> 
 
+						                          <% if user_is_trialing? %>
+						                          		<%= f.hidden_field :purchase_type, :value => 't' %>
+						                          <% end %>
+
 				                 		 <% if no_pages_left? %>
-				                 		 	<%= f.submit "Create Event Page", class: "btn btn-primary", :disabled => true  %>
+				                 		 	<%= f.submit "Create Event Page", class: "btn btn-primary" %>
 				                 		 <% else %>	
 				                         	<%= f.submit "Create Event Page", class: "btn btn-primary"  %> 
 				                         <% end %>
@@ -172,10 +141,6 @@ $(function() {
 						                          <% if only_sub_pages_left? %> 
 						                                <span class="help-block">(<%= sub_pages_left %> pages remaining) </span>
 						                          <% end %> 
-
-						                          <% if no_pages_left? %> 
-						                                <span class="help-block">(0 pages remaining) </span>
-						                          <% end %> 	
 
 
 				                        <br/>

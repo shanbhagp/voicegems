@@ -163,6 +163,10 @@ module UsersHelper
       !has_trialed? 
     end 
 
+    def user_is_trialing?
+        current_user.event_type == 'voicegems_trial'
+    end 
+
     def is_valid_single_use_coupon(coupon)
         !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "single_use"
     end 
@@ -452,6 +456,70 @@ module UsersHelper
     end 
 
     #------------------------------------------------------------------------------------------------------
+
+
+ def create_customer_trial(token, number, cost, coupon)
+
+      @cost = cost 
+        # create a Customer
+        customer = Stripe::Customer.create(
+          :card => token,
+          :description => "#{current_user.first_name} #{current_user.last_name}",
+          :email => current_user.email
+        )
+
+        # charge the Customer instead of the card
+       # Stripe::Charge.create(
+       #     :amount => @cost.to_i*100, # in cents
+       #     :currency => "usd",
+        #    :customer => customer.id,
+        #    :description => "#{number} pages"
+       # )
+
+        if !customer.nil?
+          current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
+          @eventtotal = current_user.purchased_events + number.to_i
+          current_user.purchased_events = @eventtotal
+          current_user.coupon = coupon
+          current_user.save
+
+          #create receipt
+            @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
+               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+            @r.save
+
+            #mail receipt
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
+
+          flash[:success] = "Thank you for trying VoiceGems!  You can now create a VoiceGems Event Page, from which you can 1) get the link to give to guests to record their VoiceGems, 2) hear/download those VoiceGems, and 3) invite other 'admins' (who can also request and hear VoiceGems)."
+        else
+          flash.now[:error] = "Something went wrong, please try again."
+          false 
+        end
+        
+        rescue Stripe::InvalidRequestError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+       
+        rescue Stripe::CardError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}. Please try again."
+         false
+
+         rescue Stripe::StripeError => e
+         logger.error "Stripe error while creating customer: #{e.message}"
+         flash.now[:error] = "There was a problem processing your credit card. #{e.message}.  Please try again."
+         false
+
+         
+         
+    end 
+
+
+
+
+
 
     # for a customer changing their subscription (for stripereceiver_existing action)
     def update_card_and_subscription(token, plan) # plan is now a my_plan_id
