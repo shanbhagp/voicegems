@@ -1,19 +1,19 @@
----
-development:
-  cloud_name: halrdzgqn
-  api_key: '747368733499347'
-  api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
-  enhance_image_tag: true
-  static_image_support: false
-production:
-  cloud_name: halrdzgqn
-  api_key: '747368733499347'
-  api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
-  enhance_image_tag: true
-  static_image_support: true
-test:
-  cloud_name: halrdzgqn
-  api_key: '747368733499347'
-  api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
-  enhance_image_tag: true
-  static_image_support: false
+#---
+#development:
+#  cloud_name: halrdzgqn
+ # api_key: '747368733499347'
+ # api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
+ # enhance_image_tag: true
+ # static_image_support: false
+#production:
+#  cloud_name: halrdzgqn
+ # api_key: '747368733499347'
+ # api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
+ # enhance_image_tag: true
+ # static_image_support: true
+#test:
+  #cloud_name: halrdzgqn
+  #api_key: '747368733499347'
+ # api_secret: ME3N-bC9X2rVw1fZdN16_sZtnfc
+ # enhance_image_tag: true
+ # static_image_support: false
