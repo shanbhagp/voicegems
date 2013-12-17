@@ -71,6 +71,28 @@ def purchase_receipt(user, receipt, t1, t2, t3)
 
 end 
 
+def trial_receipt(user, receipt, t1, t2, t3)
+
+  @user = user
+  @r = receipt
+  @number = @r.events_number
+
+    if @number.to_i < 16 
+       @cost = @number.to_i*t1
+       @price = "$#{t1}" 
+    end 
+    if @number.to_i > 15 && @number.to_i < 41 
+       @cost = @number.to_i*t2
+       @price = "$#{t2}"
+    end 
+    if @number.to_i > 40 
+       @cost = @number.to_i*t3
+       @price = "$#{t3}"
+    end 
+
+  mail :to => user.email, :subject => "VoiceGems Receipt"
+
+end 
 
 def grad_purchase_receipt(user, receipt, cost, price)
 # cost in dollars

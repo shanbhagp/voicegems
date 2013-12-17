@@ -489,7 +489,7 @@ module UsersHelper
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
+            UserMailer.trial_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
           flash[:success] = "Thank you for trying VoiceGems!  You can now create a VoiceGems Event Page, from which you can 1) get the link to give to guests to record their VoiceGems, 2) hear/download those VoiceGems, and 3) invite other 'admins' (who can also request and hear VoiceGems)."
         else
