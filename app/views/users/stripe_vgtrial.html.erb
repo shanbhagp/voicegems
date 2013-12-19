@@ -56,7 +56,7 @@
                   <div id="collapsechange3" class="accordion-body collapse">
                       <div class="accordion-inner">
                           
-                                   <h5>To protect our valued relationships with the DJ's who use our service, we must guard against fraudulent users. </h5> <br/> <h5> But we would love for <em>you</em> to try our service for 30 days, risk-free.</h5> <br/> <h5>Your card will not be charged until you explicitly upgrade from your free trial. </h5>
+                                   <h5>To protect our valued relationships with the DJ's who use our service, we must guard against fraudulent users.  But we would love for <em>you</em> to try our service for 30 days, risk-free.</h5> <br/> <h5>Your card will not be charged until you explicitly upgrade from your free trial. </h5>
                         
                       </div><%# end accordion inner %>
                   </div><%# end collapsechange3 %>
@@ -81,6 +81,8 @@
                   <%= image_tag "jcb.png" %>
                   <%= image_tag "diners.png" %>
                 <% end %>
+                <br/><br/>
+                       <span class="help-block red"><em>YOUR CARD WILL NOT BE CHARGED</em></span>
                     <br/>
                     <form action="<%= stripereceiver_trial_url %>" method="POST" id="payment-form">
                         <input type="hidden" name="number" value="<%= @number %>">
@@ -91,8 +93,7 @@
                                 data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
                             data-description="Free 30-Day Trial" data-label="Enter Credit Card Details" data-panel-label="Continue (card will not be charged)"
                             data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secured with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
-                        <br/><br/>
-                       <span class="help-block">(YOUR CARD WILL NOT BE CHARGED.)</span>
+
                     </form>
  
 </div>
