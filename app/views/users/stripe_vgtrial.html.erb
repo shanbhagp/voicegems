@@ -91,7 +91,7 @@
 
                           <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                 data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
-                            data-description="Free 30-Day Trial" data-label="Enter Credit Card Details" data-panel-label="Continue (card will not be charged)"
+                            data-description="Free 30-Day Trial" data-label="Enter Credit Card Details" data-panel-label="Continue: Pay"
                             data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secured with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
 
                     </form>
