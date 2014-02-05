@@ -138,10 +138,14 @@ $(function() {
 						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
 						                 	 </td>
 						                  <% else %>
-						                  		<td> <%= form_for(:act, url: activate_path) do |y| %>
-										                <%= y.hidden_field :event_id, :value => e.id %>
-										                <%= y.submit "Activate", class: "btn-primary btn-large" %>&nbsp;&nbsp;(use 1 of <%= current_user.purchased_events %> purchased Event Pages) <% end %>						                
-										        </td>
+						                  		<% if current_user.purchased_events > 0 %>
+									                  		<td> <%= form_for(:act, url: activate_path) do |y| %>
+													                <%= y.hidden_field :event_id, :value => e.id %>
+													                <%= y.submit "Activate", class: "btn-primary", confirm: 'Are you sure you want to activate using a purchased Event Page?' %><br/>(<%= current_user.purchased_events %> purchased Event Pages left) <% end %>						                
+													        </td>
+										        <% else %>
+										        		<a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
+										        <% end %>
 						                  <% end %>
 						                  
 
