@@ -1867,6 +1867,24 @@ def test5
 end 
 
 
+#----------------------------------Trial and Upgrade Code ---------------------------------------------------------------
+
+def activate
+ 
+  @event = Event.find(params[:act][:event_id])
+  @event.purchase_type = 'p'
+  @event.save
+
+  current_user.decrement(:purchased_events)
+  current_user.save
+
+  redirect_to @event, notice: "Thank you for activating the Event Page for #{@event.title}.  You will now have permanent access to this page."
+
+end 
+
+#---------------------------------- END Trial and Upgrade Code ---------------------------------------------------------------
+
+
 end
 
 

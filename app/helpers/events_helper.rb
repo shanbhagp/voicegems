@@ -60,9 +60,25 @@ end
 def active_page_check
 	unless current_user.email == 'shanbhagp@aol.com' || page_is_active?
 	  redirect_to current_user
-      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact VoiceGems or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
+      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact VoiceGems or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions.  If you are the customer, you can permanentlay activate your Event Page below."
     end 
 end 
+
+#for use on the vgshow page (voicegems event page), since 
+def owner_is_trialing(event)
+    if !event.customerkeys.blank?
+    		@customer = User.find_by_id(event.customerkeys.first.user_id)
+    		Time.now < @customer.created_at + 31.days  
+    else
+    	return false 
+    end
+end
+
+def page_is_active(event)
+	owner_is_trialing(event) || event.purchase_type == 'p'
+end 
+
+
 
 #what is this doing? are we ever using the event's event_type?  YES - in event show pages
 def assign_event_type(event)

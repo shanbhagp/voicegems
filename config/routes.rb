@@ -359,6 +359,8 @@ match '/newcustomercreate_trial', to: 'users#newcustomercreate_trial'
 match '/stripe_vgtrial', to: 'users#stripe_vgtrial'
 match '/stripereceiver_trial', to: 'users#stripereceiver_trial'
 
+match '/activate', to: 'users#activate'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'

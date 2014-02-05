@@ -134,8 +134,15 @@ $(function() {
                                                          
                                                          
                                                 </td>
-						                  <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
-						                  </td>
+                                          <% if page_is_active(e) %>
+						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+						                 	 </td>
+						                  <% else %>
+						                  		<td> <%= form_for(:act, url: activate_path) do |y| %>
+										                <%= y.hidden_field :event_id, :value => e.id %>
+										                <%= y.submit "Activate", class: "btn-primary btn-large" %>&nbsp;&nbsp;(use 1 of <%= current_user.purchased_events %> purchased Event Pages)
+						                  		</td>
+						                  <% end %>
 						                  
 
 						                </tr>
