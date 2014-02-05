@@ -144,7 +144,7 @@ $(function() {
 													                <%= y.submit "Activate", class: "btn-primary", confirm: 'Are you sure you want to activate using a purchased Event Page?' %><br/>(<%= current_user.purchased_events %> purchased Event Pages left) <% end %>						                
 													        </td>
 										        <% else %>
-										        		<a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
+										        		<a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-small">Buy Event Pages</a>
 										        <% end %>
 						                  <% end %>
 						                  
