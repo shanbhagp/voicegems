@@ -139,6 +139,8 @@ module UsersHelper
           !active_sub_with_events_left? && current_user.purchased_events > 0
     end 
 
+
+
     def purch_and_sub_pages_left?
        active_sub_with_events_left? && current_user.purchased_events > 0
     end 
@@ -163,8 +165,13 @@ module UsersHelper
       !has_trialed? 
     end 
 
+    
     def user_is_trialing?
-        current_user.event_type == 'voicegems_trial'
+        current_user.event_type == 'voicegems_trial' &&  Date.today < current_user.created_at + 31.days
+    end
+
+    def purch_pages_left?
+       current_user.purchased_events > 0
     end 
 
     def is_valid_single_use_coupon(coupon)

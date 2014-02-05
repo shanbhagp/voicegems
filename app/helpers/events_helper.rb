@@ -33,18 +33,28 @@ end
 
 def owner_has_active_subscription?
     @event = Event.find(params[:id])
-    if !@event.customerkeys.blank?
+    if !@@event.customerkeys.blank?
     		@customer = User.find_by_id(@event.customerkeys.first.user_id)
-    		!@customer.subscriptions.blank? && @customer.subscriptions.any? {|s| s.active == true }  
+    		!customer.subscriptions.blank? && @customer.subscriptions.any? {|s| s.active == true }  
     else
     	return false 
     end
 
 end 
 
+def owner_is_trialing?
+    @event = Event.find(params[:id])
+    if !@event.customerkeys.blank?
+    		@customer = User.find_by_id(@event.customerkeys.first.user_id)
+    		Date.today < @customer.created_at + 31.days  
+    else
+    	return false 
+    end
+end
+
 def page_is_active?
 	@event = Event.find(params[:id])
-	owner_has_active_subscription? || @event.purchase_type == 'p' || @event.purchase_type == 't'
+	owner_is_trialing? || @event.purchase_type == 'p'
 end 
 
 def active_page_check
@@ -58,9 +68,6 @@ end
 def assign_event_type(event)
 
 	  event.event_type = current_user.event_type
-	  if event.master == true
-	  	event.event_type = 'students'
-	  end 
 	
 end 
 
