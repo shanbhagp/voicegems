@@ -46,7 +46,7 @@ def owner_is_trialing?
     @event = Event.find(params[:id])
     if !@event.customerkeys.blank?
     		@customer = User.find_by_id(@event.customerkeys.first.user_id)
-    		Date.today < @customer.created_at + 31.days  
+    		Time.now < @customer.created_at + 31.days  
     else
     	return false 
     end

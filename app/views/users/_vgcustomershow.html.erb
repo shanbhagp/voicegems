@@ -36,13 +36,13 @@ $(function() {
 				                                        	      
 						        				  <% if user_is_trialing? && purch_pages_left? %>
 
-						                          		<%= f.select :purchase_type,  options_for_select([   ["from purchased pages (#{current_user.purchased_events} left)", "p"], ["Don't use a purchased page", "t"]  ]), :size => 5 %>
+						                          		<%= f.select :purchase_type,  options_for_select([   ["from purchased pages (#{current_user.purchased_events} left)", "p"], ["Don't use a purchased page (free trial mode)", "t"]  ]), :size => 5 %>
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>
 
 						                          <% elsif user_is_trialing? %>
 
 						                          		<%= f.hidden_field :purchase_type, :value => 't' %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>
+						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(Free Trial Mode - Event Page freezes in 30 days)</span>
 
 						                          <% elsif purch_pages_left? %>
 						                          		
@@ -50,7 +50,7 @@ $(function() {
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(<%= current_user.purchased_events %> pages remaining)</span>
 						                          
 						                          <% else %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;
+						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-block">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
 						                          <% end %>
 
 						                          

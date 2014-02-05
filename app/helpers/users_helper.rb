@@ -167,7 +167,7 @@ module UsersHelper
 
     
     def user_is_trialing?
-        current_user.event_type == 'voicegems_trial' &&  Date.today < current_user.created_at + 31.days
+        current_user.event_type == 'voicegems_trial' &&  Time.now < current_user.created_at + 31.days
     end
 
     def purch_pages_left?
