@@ -140,8 +140,8 @@ $(function() {
 						                  <% else %>
 						                  		<td> <%= form_for(:act, url: activate_path) do |y| %>
 										                <%= y.hidden_field :event_id, :value => e.id %>
-										                <%= y.submit "Activate", class: "btn-primary btn-large" %>&nbsp;&nbsp;(use 1 of <%= current_user.purchased_events %> purchased Event Pages)
-						                  		</td>
+										                <%= y.submit "Activate", class: "btn-primary btn-large" %>&nbsp;&nbsp;(use 1 of <%= current_user.purchased_events %> purchased Event Pages) <% end %>						                
+										        </td>
 						                  <% end %>
 						                  
 
