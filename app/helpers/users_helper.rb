@@ -971,4 +971,13 @@ def vgfilter
 
 end 
 
+ def create_vg_customer_without_stripe
+          current_user.update_attributes(:customer => true, :admin => true)
+          current_user.purchased_events = 2
+          current_user.save
+end 
+
+
+
+
 end
