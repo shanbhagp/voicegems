@@ -1256,11 +1256,13 @@ def coupon_purchase
           flash.now[:success] = "Your promo code has been applied!"
           render action: 'stripenewcustomer_purchase'
       
+
     elsif is_valid_free_coupon(@coupon)
 
          create_vg_customer_without_stripe #gives 2 events free, for the MBLV promo code. 
          flash[:success] = "Thank you for using VoiceGems! Your promo code was applied.  You can now create a VoiceGems Event Page, from which you can 1) get the link to give to guests to record their VoiceGems, 2) hear/download those VoiceGems, and 3) invite other 'admins' (who can also request and hear VoiceGems)."
          redirect_to current_user
+
     else
         #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
