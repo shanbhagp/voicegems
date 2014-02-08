@@ -348,10 +348,6 @@ text-decoration:none;
 
 /* Header */
 
-header{
-	padding: 10px 0px 0px 0px;
-	background: #fafafa url("img/cream.png") repeat;
-}
 
 header .logo{
 	padding: 0px;
@@ -378,8 +374,8 @@ header .logo .meta{
 	box-shadow: none !important;
 	text-shadow: none !important;
 	border-radius: 0px !important;
-	font-weight: 600 !important; 
-	font-size: 13px !important;
+	font-weight: 800 !important; 
+	font-size: 16px !important; /* FONT SIZE */
 font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
@@ -406,11 +402,14 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	border-bottom: 0px !important;
 	margin-top: 10px;
 	margin-bottom: 0px;
+	margin-right: 150px;
 }
 
 .navbar ul li{
 	list-style-type: none;
 	padding: 0px;
+	float: right;
+
 }
 
 .navbar .btn{
@@ -456,6 +455,7 @@ CHANGED TO BELOW TO GET THE BLUE HOVER FOR NAVBAR LINKS THAT STOPPED WORKING AFT
 	-moz-transition:color 1s ease;
 	-o-transition:color 1s ease;
 	transition:color 1s ease;	
+
 }
 
 .navbar .nav > li > a:hover{
@@ -2546,4 +2546,14 @@ border-top-color: #30add1;
 
 .blue {
 	color: #5a8f8d;
+}
+
+.Vegas_Logo{
+	
+	margin-left: 30px;
+
+}
+
+#Vegas_Nav{
+	margin-left: 300px;
 }
