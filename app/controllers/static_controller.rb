@@ -369,4 +369,8 @@ respond_to do |format|
 end
 
 
+def auphonic
+end
+
+
 end

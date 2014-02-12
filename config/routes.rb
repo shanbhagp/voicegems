@@ -361,6 +361,8 @@ match '/stripereceiver_trial', to: 'users#stripereceiver_trial'
 
 match '/activate', to: 'users#activate'
 
+match '/auphonic', to: 'static#auphonic'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
