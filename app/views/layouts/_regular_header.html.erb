@@ -10,9 +10,7 @@
           
                           <ul class="nav span4">
                                                                                             
-                                      <li class="pull-down"><%= link_to "Home", root_path %></li>
-                                      <li class="pull-down"><%= link_to "DJs", login_path %></li>
-                                      <li class="pull-down"><%= link_to "Couples", login_path %></li>                                                      
+                                   
                          </ul>
            
                   </nav>
@@ -38,8 +36,8 @@
                           <ul class="nav span4">
            
                               
-                              <li class="pull-down"><%= link_to "FAQ", login_path %></li>
-                              <li class="pull-down"><%= link_to "Blog", login_path %></li>
+                                <li class="pull-down"><%= link_to "Home", root_path %></li>
+                              <li class="pull-down"><a href="http://voicegems.tumblr.com/" target="_blank">Blog</a></li>
 
                               <% if !signed_in? %>     
                                       <li class="pull-down"><%= link_to "Register", newcustomer_purchase_path %></li>   
