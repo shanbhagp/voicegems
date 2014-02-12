@@ -9,39 +9,10 @@
                   <nav>
           
                           <ul class="nav span4">
-           
-                              
-
-
-                              <% if !signed_in? %>     
-
-                                     
-                                      
-                                      <li class="pull-down"><%= link_to "Home", login_path %></li>
+                                                                                            
+                                      <li class="pull-down"><%= link_to "Home", root_path %></li>
                                       <li class="pull-down"><%= link_to "DJs", login_path %></li>
-                                      <li class="pull-down"><%= link_to "Couples", login_path %></li>
-                                       
-                                <% end %>
-
-                                <% if signed_in? %>
-                                     
-                                      <li class="pull-down"><%= link_to "Profile", current_user %></li>
-
-                                      <li class="dropdown pull-down">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                                             <ul class="dropdown-menu">
-                                                <li><%= link_to account_user_path(current_user) do %><i class="icon-pencil"></i> Change Password<% end%> </li>
-                                                <li><%= link_to edit_user_path(current_user) do %><i class="icon-pencil"></i> Edit User Name/Email<% end %></li>
-                                                <li class="divider"></li>
-                                                <li><%= link_to existing_user_purchase_path do %><i class="icon-shopping-cart"></i> Purchase Event Pages<% end %></li>
-                                                
-                                                <li class="divider"></li>
-                                                <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
-                                            </ul>
-                                       </li>
-                                <% end %>
-
-
+                                      <li class="pull-down"><%= link_to "Couples", login_path %></li>                                                      
                          </ul>
            
                   </nav>
@@ -67,14 +38,12 @@
                           <ul class="nav span4">
            
                               
-
+                              <li class="pull-down"><%= link_to "FAQ", login_path %></li>
+                              <li class="pull-down"><%= link_to "Blog", login_path %></li>
 
                               <% if !signed_in? %>     
-
-                            <li class="pull-down"><%= link_to "FAQ", login_path %></li>
-                                      <li class="pull-down"><%= link_to "Blog", login_path %></li>
-                                      <li class="pull-down"><%= link_to "Register", login_path %></li>
-                                          <li class="pull-down"><%= link_to "Login", login_path %></li>
+                                      <li class="pull-down"><%= link_to "Register", newcustomer_purchase_path %></li>   
+                                      <li class="pull-down"><%= link_to "Login", login_path %></li>
                                 <% end %>
 
                                 <% if signed_in? %>
