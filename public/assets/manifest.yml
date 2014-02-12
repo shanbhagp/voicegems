@@ -216,6 +216,8 @@ invite_attendee_3.png: invite_attendee_3-f317be6b44510f0424b60b9d73d9a0cd.png
 jcb.png: jcb-ae37b10ac7497f5d3da148f30b338152.png
 lock.png: lock-8b60df60aea5f4ee58097daff9858cda.png
 lockoverlay.png: lockoverlay-e0f72f03b5a54e49699e6b3e21b51e65.png
+logo_light_2.jpg: logo_light_2-730f3087cbf28ef1b87e6575b9b4477c.jpg
+logo_light_2.png: logo_light_2-66308804fde5249d8af91194a6b38f16.png
 low_contrast_linen.png: low_contrast_linen-4fd591202d5cdd2d506a0bdd8defbb1e.png
 mastercard.png: mastercard-2b0c213c263f8a59d4b0f86fb822f591.png
 navy_blue.png: navy_blue-9410e18325fa3e21ef98d29a1ca3cfdd.png
@@ -289,7 +291,7 @@ aplayer/audiojs.swf: aplayer/audiojs-015d31ed1f99798eee3c970137601c69.swf
 application.js: application-99dcd629e1aff297ccd3568060b33665.js
 jrec/Audior.swf: jrec/Audior-ab4398c335e4b4f264b5fb67fd386ec0.swf
 jrec/jRecorder.swf: jrec/jRecorder-66b07d55dc54e8df8561de1719dd7b99.swf
-application.css: application-9a704f00d21f499cdebe688c9fedf73a.css
+application.css: application-53dd1459083004f8eba67598a63f1a37.css
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 jquery-ui/ui-bg_flat_75_ffffff_40x100.png: jquery-ui/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png
 jquery-ui/ui-bg_glass_55_fbf9ee_1x400.png: jquery-ui/ui-bg_glass_55_fbf9ee_1x400-bbb04adbe79f471d8c88a2bc691231b6.png
