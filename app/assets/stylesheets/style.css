@@ -1609,7 +1609,7 @@ text-decoration:none;
 background:#fff;
 padding:8px 12px;
 margin:5px 0px 0px 0px;
-border:1px solid #eee;
+border:1px solid color: #C0AB73;
 color:#777;
 font-style:italic;
 }
@@ -1631,6 +1631,7 @@ font-style:italic;
   border-top-style: solid;
   top:-5px;
   left:20px;
+
 }
 
 .tauth{
@@ -2363,11 +2364,11 @@ border:1px solid #4f99bc;
 /* Testimonial */
 
 .test{
-border-bottom:2px solid #5eb2d9;
+border-bottom:2px solid #C0AB73;
 }
 
 .test-arrow{
-border-top-color: #5eb2d9;
+border-top-color: #C0AB73;
 }
 
 /* Service style #2 */
@@ -2468,11 +2469,11 @@ footer{
 /* Testimonial */
 
 .test{
-border-bottom:2px solid #30add1;
+border-bottom:2px solid #C0AB73;
 }
 
 .test-arrow{
-border-top-color: #30add1;
+border-top-color: #C0AB73;
 }
 
 /* Testimonial slider */
@@ -2508,7 +2509,8 @@ border-top-color: #30add1;
      padding-right: 8px;
      margin-bottom: -50px;
      font-size: 700%;
-     color: #73bcde;
+     color: #C0AB73;
+
      opacity:0.4;
  }
 
@@ -2520,7 +2522,7 @@ border-top-color: #30add1;
      padding-top: 35px;
      padding-right: 23px;
      font-size: 700%;
-     color: #73bcde;
+     color: #C0AB73;
      opacity:0.4;
  } 
 

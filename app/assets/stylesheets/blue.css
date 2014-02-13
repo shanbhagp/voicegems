@@ -129,11 +129,12 @@ border:1px solid #4f99bc;
 /* Testimonial */
 
 .test{
-border-bottom:2px solid #5eb2d9;
+border-bottom:2px solid #C0AB73;
 }
 
 .test-arrow{
-border-top-color: #5eb2d9;
+border-top-color:#C0AB73;
+
 }
 
 /* Service style #2 */
