@@ -1172,7 +1172,20 @@ def set_order
 end 
 
 def stripenewcustomer_purchase
-   @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
+    # @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
+   
+   # for getting rid of non-view url errors -- incoming from coupon_purchase
+   @coupon = params[:coupon]
+   @coupon_object = params[:coupon_object]
+   @number = params[:number]
+   @cost = params[:cost]
+   @price = params[:price]
+   @price_in_dollars = params[:price_in_dollars]
+   @old_cost = params[:old_cost]
+   @new_price = params[:new_price]
+
+ 
+
 end 
 
 def changepur
@@ -1254,8 +1267,8 @@ def coupon_purchase
           @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
-          render action: 'stripenewcustomer_purchase'
-      
+          #change to redirect from render ---- pass in all possible instance variables in case their used on the page.
+          redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
 
     elsif is_valid_free_coupon(@coupon)
 
@@ -1280,7 +1293,7 @@ def coupon_purchase
           end 
       @coupon = nil 
       flash.now[:error] = "Sorry, not a valid promo code."
-      render action: 'stripenewcustomer_purchase'
+      redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
     end
 
 end 

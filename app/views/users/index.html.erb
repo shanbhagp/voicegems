@@ -6,9 +6,10 @@
     <th> ID </th>
     <th>First name</th>
     <th>Last name</th>
-    <th>Password digest</th>
+   
     <th>Email</th>
-    <th>Remember token</th>
+    <th>Created At</th>
+ 
     <th>Recording</th>
     <th>Phonetic</th>
     <th>Notes</th>
@@ -26,9 +27,10 @@
         <td><%= user.id %></td>
     <td><%= user.first_name %></td>
     <td><%= user.last_name %></td>
-    <td><%= user.password_digest %></td>
+ 
     <td><%= user.email %></td>
-    <td><%= user.remember_token %></td>
+      <td><%= user.created_at.strftime("%b %d, %Y")  %></td>
+
     <td><%= user.recording %></td>
     <td><%= user.phonetic %></td>
     <td><%= user.notes %></td>
