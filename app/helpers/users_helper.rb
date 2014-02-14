@@ -525,7 +525,10 @@ module UsersHelper
 
 
 
-
+def create_vg_trial_without_stripe
+          current_user.update_attributes(:customer => true, :admin => true)
+          current_user.save
+end 
 
 
     # for a customer changing their subscription (for stripereceiver_existing action)
@@ -971,11 +974,12 @@ def vgfilter
 
 end 
 
- def create_vg_customer_without_stripe
+def create_vg_customer_without_stripe
           current_user.update_attributes(:customer => true, :admin => true)
           current_user.purchased_events = 2
           current_user.save
 end 
+
 
 
 

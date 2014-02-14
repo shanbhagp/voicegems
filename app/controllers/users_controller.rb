@@ -1113,15 +1113,15 @@ def newcustomer_purchase
 end 
 
 def newcustomercreate_purchase
-
-    @user = User.new
-    @user.email = params[:user][:email]
-    @user.password=params[:user][:password]
-    @user.password_confirmation=params[:user][:password_confirmation]
-    @user.first_name = params[:user][:first_name]
-    @user.last_name = params[:user][:last_name]
-    @user.company = params[:user][:company]
-    @user.event_type = params[:user][:event_type]
+@user = User.new(params[:user]) #replaced code below so when hit this url directly, don't get a nil error
+    #@user = User.new
+   # @user.email = params[:user][:email]
+   # @user.password=params[:user][:password]
+   # @user.password_confirmation=params[:user][:password_confirmation]
+    #@user.first_name = params[:user][:first_name]
+   # @user.last_name = params[:user][:last_name]
+   # @user.company = params[:user][:company]
+   # @user.event_type = params[:user][:event_type]
    #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
 
 
@@ -1132,13 +1132,14 @@ def newcustomercreate_purchase
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
       flash.now[:success] = "Thank you for registering. To get started, select the number of VoiceGems Event Pages you wish to purchase."
      
-      render 'checkout'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+      redirect_to checkout_path # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
                         flash[:error] = "You are already registered on our site. Please sign in to purchase event pages under your Accounts tab."
                          redirect_to root_path
           else
+              #redirect_to newcustomer_purchase_path
               render action: 'newcustomer_purchase'
           end    
 
@@ -1167,17 +1168,23 @@ def set_order
        @cost = @number.to_i*tier_three_price
        @price = "$#{tier_three_price}"
     end 
-   render action: 'stripenewcustomer_purchase'
+    redirect_to stripenewcustomer_purchase_path(:number => @number, :coupon => @coupon, :cost => @cost, :price => @price)
+    # render action: 'stripenewcustomer_purchase'
 
 end 
 
 def stripenewcustomer_purchase
     # @number = 1 #just in case for some reason @number is not defined in the view, will have default value of '1'. 
    
-   # for getting rid of non-view url errors -- incoming from coupon_purchase
+   # for getting rid of non-view url errors -- incoming from coupon_purchase, set_order, changepur, 
    @coupon = params[:coupon]
-   @coupon_object = params[:coupon_object]
-   @number = params[:number]
+   if params[:coupon_object] && Coupon.find(params[:coupon_object])
+     @coupon_object = Coupon.find(params[:coupon_object])
+   end 
+   @number = params[:number].to_i
+   if @number.blank? 
+      @number = 1
+   end
    @cost = params[:cost]
    @price = params[:price]
    @price_in_dollars = params[:price_in_dollars]
@@ -1217,8 +1224,8 @@ def changepur
           @old_cost = @cost 
           @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
-          flash.now[:success] = "Your promo code has been applied!"
-          render action: 'stripenewcustomer_purchase'
+          flash[:success] = "Your promo code has been applied!"
+          redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
       
     else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
@@ -1235,7 +1242,7 @@ def changepur
              @price = "$#{tier_three_price}"
           end 
       @coupon = nil 
-      render action: 'stripenewcustomer_purchase'
+      redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
     end
 end 
 
@@ -1266,7 +1273,7 @@ def coupon_purchase
           @old_cost = @cost 
           @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
-          flash.now[:success] = "Your promo code has been applied!"
+          flash[:success] = "Your promo code has been applied!"
           #change to redirect from render ---- pass in all possible instance variables in case their used on the page.
           redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
 
@@ -1292,7 +1299,7 @@ def coupon_purchase
              @price = "$#{tier_three_price}"
           end 
       @coupon = nil 
-      flash.now[:error] = "Sorry, not a valid promo code."
+      flash[:error] = "Sorry, not a valid promo code."
       redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
     end
 
@@ -1313,9 +1320,9 @@ def stripereceiver_purchase  #incoming from stripenewcustomer form
               # this helper is in users helper
           
             #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
-            if !coupon.blank?
-              redeem_single_use_coupon(coupon)
-            end 
+           # if !coupon.blank?
+           #   redeem_single_use_coupon(coupon)
+           # end 
           redirect_to current_user
         else
           render 'stripenewcustomer_purchase'
@@ -1557,15 +1564,16 @@ end
 
 
 def newcustomercreate_trial
+@user = User.new(params[:user]) #replaced code below so when hit this url directly, don't get a nil error
 
-    @user = User.new
-    @user.email = params[:user][:email]
-    @user.password=params[:user][:password]
-    @user.password_confirmation=params[:user][:password_confirmation]
-    @user.first_name = params[:user][:first_name]
-    @user.last_name = params[:user][:last_name]
-    @user.company = params[:user][:company]
-    @user.event_type = params[:user][:event_type]
+   # @user = User.new
+   # @user.email = params[:user][:email]
+   # @user.password=params[:user][:password]
+   # @user.password_confirmation=params[:user][:password_confirmation]
+   # @user.first_name = params[:user][:first_name]
+   # @user.last_name = params[:user][:last_name]
+   # @user.company = params[:user][:company]
+   # @user.event_type = params[:user][:event_type]
    #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
 
 
@@ -1574,9 +1582,12 @@ def newcustomercreate_trial
       sign_in @user
       # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
-      flash.now[:success] = "Thank you for registering. Please enter your credit card information to continue - your card will NOT be charged."
-     
-      render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+      flash[:success] = "Thank you for starting your free trial! Please contact with any questions."
+      
+      # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+      # redirect_to welcome_path  # a welcome page to explain to them what to do
+       create_vg_trial_without_stripe 
+       redirect_to current_user
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right

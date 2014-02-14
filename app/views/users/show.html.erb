@@ -1,6 +1,10 @@
 <%# show page is restricted through correct_user %>
 <div class="jumbotron">
-      <h1> Profile Page for <em><%= @user.email %></em> </h1>
+ <% if @user.customer %>
+      <h1> Dashboard for <em><%= @user.email %></em> </h1>
+<% else %>
+      <h1> Profile for <em><%= @user.email %></em> </h1>
+<% end %>
   </div>
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 

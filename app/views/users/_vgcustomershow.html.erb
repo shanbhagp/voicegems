@@ -12,18 +12,18 @@ $(function() {
 
  <ul id="myTab" class="nav nav-tabs">
 	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
-	  <li><a href="#nw" data-toggle="tab"><strong>Your VoiceGem<% if !current_user.voicegems.nil? && current_user.voicegems.count > 1 %>s<% end %></strong></a></li>
+	  <% unless (@user.customer == true && @user.voicegems.blank?) %> <li><a href="#nw" data-toggle="tab"><strong>Your VoiceGem<% if !current_user.voicegems.nil? && current_user.voicegems.count > 1 %>s<% end %></strong></a></li><% end %>
 </ul>
           
 <div id="myTabContent" class="tab-content">
      <div class="tab-pane active" id="ev">
 
      		
-	    	 					 <div class="row">
+	    	 		 <div class="row">
 				 		 			        
 				         <div class="span12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create an event page: </h4> </br>
+				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create an Event Page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -36,13 +36,13 @@ $(function() {
 				                                        	      
 						        				  <% if user_is_trialing? && purch_pages_left? %>
 
-						                          		<%= f.select :purchase_type,  options_for_select([   ["from purchased pages (#{current_user.purchased_events} left)", "p"], ["Don't use a purchased page (free trial mode)", "t"]  ]), :size => 5 %>
+						                          		<%= f.select :purchase_type,  options_for_select([   ["from Purchased Pages (#{current_user.purchased_events} left)", "p"], ["from Free Trial mode (expires #{(current_user.created_at + 30.days).strftime("%b %d, %Y")})", "t"]  ]), :size => 5 %>
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>
 
 						                          <% elsif user_is_trialing? %>
 
 						                          		<%= f.hidden_field :purchase_type, :value => 't' %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(Free Trial Mode - Event Page freezes in 30 days)</span>
+						                          		<%= f.submit "Create Trial Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(Trial Event Pages locked after <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>) </span> 
 
 						                          <% elsif purch_pages_left? %>
 						                          		
@@ -66,7 +66,12 @@ $(function() {
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
 
 				                     <% end %>
-				                
+
+				              <% if user_is_trialing? %> 
+				              <div class="row"> 
+				             <div class="span2 offset10"><a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-small">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></div></div>
+				             <% end %>        
+
 				             </div> <%# end well %>
 				         </div> <%# end span12 %>
 				        
@@ -90,7 +95,7 @@ $(function() {
 						            <table class="table table-striped event">
 						              <% @user.adminevents.each do |e| %>
 						                <tr>  
-						                  <td><strong><%= link_to e.title, e %></strong> </td>
+						                  <td><strong><%= link_to e.title, e %></strong> <% if e.purchase_type == 't'%><br/>(Trial Page - locked on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)<% end %> </td>
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
 						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit event</span></a>	 </td> 
 						                   <td> 
@@ -159,10 +164,11 @@ $(function() {
 				  </div>   			               
 				      </div>
 
-	
+	<% unless (@user.customer == true && @user.voicegems.blank?) %> 
       <div class="tab-pane" id="nw">
 		 <%= render 'users/vgregularshow' %> 	               
      </div>
+    <% end %>
 
 </div>
 

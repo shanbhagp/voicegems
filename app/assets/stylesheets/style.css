@@ -413,8 +413,8 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 .navbar ul li{
 	list-style-type: none;
 	float: right;
-	padding-right:5px; 
-	padding-left:5px;
+	padding-right:2px; 
+	padding-left:2px;
 }
 
 .navbar .btn{
