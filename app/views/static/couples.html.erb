@@ -1,0 +1,269 @@
+
+   <% flash.each do |key, value| %>
+              <div class="alert alert-block alert-<%=key%>"> 
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <%= value %> 
+              </div>
+            <% end %>
+
+<div class="container">
+
+                <br/>
+                <br/>
+
+                  <div id="bg">
+                       <center><%= image_tag("Couple.png", alt: "Rails", class: 'gold_image' ) %></center>
+                  </div>
+
+                  <br/><br/><br/><br/><br/><br/>
+
+                    
+    
+                        <div class="row">
+                        <div class="span12 ">
+
+                          <h1 class="gold">Wedding day...</h1>
+                          <div class="text-divider6">
+                                <span class="gold"></span>
+                              </div> 
+                              <br/>
+                          <h3>
+                              It’s one of the most important moments of your life and you want everything to be perfect. From dress selection, a great cake, and picking the right venue to having an exceptional DJ deliver a fantastic set-- you want things to be [right]. But, what matters most is the love and wishes of your family and friends.
+                           </h3>
+                        </div>
+                        </div>
+
+                        <br/><br/><br/><br/><br/>
+
+                        <div class="row">
+
+                        <div class="span12 ">
+
+                          <h1 class="gold">Wedding Toasts...</h1>
+                          <div class="text-divider6">
+                                <span class="gold"></span>
+                              </div> 
+                              <br/>
+                          <h3>
+                              are a time-honored tradition that makes this special day memorable and treasured, but it’s an opportunity that is only given to a select few. 
+                           </h3>
+                        </div>
+
+                        </div>
+               
+                        <br/><br/><br/><br/><br/>
+
+
+                        <div class="row">
+
+                        <div class="span12">
+                          <h1 class="gold">VoiceGems...</h1>
+                          <div class="text-divider6">
+                                <span class="gold"></span>
+                              </div> 
+                              <br/>
+                          <h2>
+                              has redefined the traditional toast by making each guest feel special and important.<br/>
+                           </h2>
+
+                        </div>
+
+                        </div>
+
+                        <br/><br/>
+
+
+              
+
+                <div class="row">
+
+                       <div class="span12">
+
+                           <h3>
+                            It is a unique, affordable, easy-to-use service, which supplements the traditional toasts in more than one way.
+
+                           </h3>  
+                           <br/><br/>                           
+                                            <h3>
+                                               <ul>
+                                                  <li>Any guest can create a short, pre-recorded toast (a VoiceGem) through online links, even those who can't attend
+                                                  </li><br/>
+                                                  <li>Encourages toasts to be thoughtful and relaxed - no last minute Google-searched toasts or [rambling drunken toasts]
+                                                  </li><br/>                     
+                                                  <li>Helps overcome the emotional stress that occurs when guests forget their lines or are simply too shy.</li><br/>
+                                                  <li>Lets your DJ unleash his professional creativity, blending VoiceGems with music to produce a fascinating new kind of entertainment mix.
+                                                  </li><br/>
+                                                  <li>VoiceGems can be played anytime during the party, creating exceptional moments throughout the day.</li><br/>
+
+
+
+
+
+
+                                               </ul> 
+                                            </h3>
+                            
+             
+                      </div>
+
+                </div>
+
+                 <br/>
+
+
+
+
+             
+        
+                <br/>
+                <br/>
+                <br/>
+
+                <div class="row" id="steps">                  
+                    <div class="span12">
+                          <h1><span class="gold"><i class="icon-cogs"></i>&nbsp;&nbsp;Four Easy Steps</span></h1>
+                          <div class="text-divider6">
+                            <span class="gold"></span>
+                          </div>
+                     </div> <!-- END SPAN8 OFFSET4 --> 
+                </div>
+                              
+                <div class="content process biggertext">
+                      <div class="row">
+                           <div class="span8 offset2">
+                                <div class="process-meta-gold fl-left">
+                                  <span>1</span>
+                                </div>
+                             
+                                 <br/>
+                                 <span class="ph3">&nbsp;&nbsp;&nbsp;DJ Creates a VoiceGems Page for an Event</span>&nbsp;&nbsp;
+                                <br/>                                
+                            </div> 
+                      </div>
+                  
+
+                      <div class="row">
+                          <div class="span8 offset3">
+                              <span class="biggerlink">Demo Page&nbsp;<i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</span></a>
+                            <br/><br/>
+                          </div>
+                      </div>
+                      
+               
+
+                      <div class="row">
+                           <div class="span8 offset2">
+                                  <div class="process-meta-gold fl-left">
+                                    <span>2</span>
+                                  </div>
+                             
+                                   <br/>
+                                   <span class="ph3">&nbsp;&nbsp;&nbsp;A Link is Shared with Guests, Friends & Family before the Event</span>&nbsp;&nbsp;
+                                  <br/>
+                     
+                                
+                            </div> 
+                      </div>
+          
+
+                      <div class="row">
+                          <div class="span8 offset3">
+                              
+                              <span class="biggerlink">Demo Link&nbsp;<i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= @url%>" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</span></a>
+                              <br/><br/>
+                          </div>
+                      </div>
+       
+                      <div class="row">
+                          <div class="span8 offset2">
+                                 <div class="process-meta-gold fl-left">
+                                    <span>3</span>
+                                 </div>
+                             
+                                 <br/>
+                                 <span class="ph3">&nbsp;&nbsp;&nbsp;They Record Short Messages/Toasts with our Online Voice Recorder</span>&nbsp;&nbsp;
+                                  <br/>
+                                 &nbsp;&nbsp;&nbsp;<span class="help-block">(30-second limit on messages. Can be paired with song requests.)</span>   
+                          
+                           </div> 
+                      </div>
+
+
+                      <br/>
+                      <br/>
+                    
+               
+                      <div class="row">
+                             <div class="span8 offset2">
+                                    <div class="process-meta-gold fl-left">
+                                      <span>4</span>
+                                    </div>
+                             
+                                    <br/>
+                                   <span class="ph3">&nbsp;&nbsp;&nbsp;DJ Blends the VoiceGems into Music for an Unforgettable Event!</span>&nbsp;&nbsp;
+                                    <br/>
+                                    &nbsp;&nbsp;&nbsp;<span class="help-block">(All VoiceGems downloadable as high-quality noise-cancelled MP3's for easy mixing)</span>   
+                             </div> 
+                      </div>
+
+
+                 </div> <!-- END CONTENT PROCWESS --> 
+
+                 <br/><br/><br/><br/><br/>
+                  
+                  
+                
+
+                  <div class="row">
+                        <div class="span9 offset2">
+                          <h1><span class="gold">Ask your DJ/MC to purchase and sign up <a href="<%= root_path %>" target="_blank">here</a>!</span></h1>
+
+                        </div>
+
+                  </div>
+
+              
+
+                           
+                 <br/><br/><br/><br/><br/><br/>
+                
+
+
+                
+  
+
+
+ <% if mobile_device? %> 
+                 <br/>
+
+
+                  <div class="row">
+                            <div class="span12">
+                                      <div class="text-divider6">
+                                        <span class="gold"></span>
+                                      </div> 
+                            </div>
+                        </div>
+
+
+                    <br/>
+
+
+
+                  <br/>
+
+                  <div class="row">
+                            <div class="span12">
+                                      <div class="text-divider6">
+                                        <span class="gold"></span>
+                                      </div> 
+                            </div>
+                        </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+<% end %>
+
+</div> <!--CONTAINER> 

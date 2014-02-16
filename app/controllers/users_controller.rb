@@ -1582,7 +1582,7 @@ def newcustomercreate_trial
       sign_in @user
       # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
-      flash[:success] = "Thank you for starting your free trial! Please contact with any questions."
+      flash[:success] = "Welcome to VoiceGems! Please contact us with any questions about how to make the most of your free trial!"
       
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do

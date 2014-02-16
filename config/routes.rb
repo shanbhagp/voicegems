@@ -365,6 +365,8 @@ match '/auphonic', to: 'static#auphonic'
 
 match '/welcome', to: 'users#welcome'
 
+match '/couples', to: 'static#couples'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'
