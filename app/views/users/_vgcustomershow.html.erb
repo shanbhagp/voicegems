@@ -11,8 +11,8 @@ $(function() {
 <div class="row"> <%# wrap tabs%>
 
  <ul id="myTab" class="nav nav-tabs">
-	  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
-	  <% unless (@user.customer == true && @user.voicegems.blank?) %> <li><a href="#nw" data-toggle="tab"><strong>Your VoiceGem<% if !current_user.voicegems.nil? && current_user.voicegems.count > 1 %>s<% end %></strong></a></li><% end %>
+	  <% unless (@user.customer == true && @user.voicegems.blank?) %>  <li class="active"><a href="#ev" data-toggle="tab"><strong>Your Events</strong></a></li>
+	 <li><a href="#nw" data-toggle="tab"><strong>Your VoiceGem<% if !current_user.voicegems.nil? && current_user.voicegems.count > 1 %>s<% end %></strong></a></li><% end %>
 </ul>
           
 <div id="myTabContent" class="tab-content">
@@ -87,7 +87,7 @@ $(function() {
 				    <div class="span12">
 				      <div class="well">
 
-				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Event pages you administer: </strong></h4>
+				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Your Event Pages: </strong></h4>
 				            <br/>
 				            <% if @user.adminevents.count == 0 %> 
 				            (no event pages created yet)

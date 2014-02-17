@@ -1,0 +1,25 @@
+
+<div class="container">
+
+<br/>
+<br/>
+
+  <div class="row">
+
+                  <div class="span8 offset2 home-block">
+                                <% flash.each do |key, value| %>
+                                  <div class="alert alert-block alert-<%=key%>"> 
+                                  <button type="button" class="close" data-dismiss="alert">×</button>
+                                  <%= value %> 
+                                  </div>
+                                <% end %>
+                            <div class="grey-box hero-block-2">
+                                <h4 class="fl-left"><span class="light-blue">Welcome</span></h4><br/>
+                               
+                            </div>
+                           <div class="tp-bannershadow tp-shadow1"></div>
+                  </div>
+  </div>
+
+
+</div>

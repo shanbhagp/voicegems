@@ -244,8 +244,11 @@
 		 	   <div class="row">
 				<div class=" well span6 offset3 cent">
 					<h3> No VoiceGems recorded yet </h3>
+
 				</div>
+
 			   </div>
+			   	<br/><br/><br/><br/><br/>
 		 <% end %>
 
      </div> <%# END TAB PANE 1 div class="tab-pane fade active" id="reg" %>	
@@ -373,7 +376,9 @@
 
 
      <div class="tab-pane" id="admins">
+
     	 <table class="table  table-striped event">
+        <caption><em>(Admins can access this Event Page to 1) request VoiceGems, 2) hear and download VoiceGems, and 3) invite other Admins)</em> <br/><br/></caption>
        
              <% @event.admins.each do |a| %>
                  <tr>
@@ -499,11 +504,12 @@
 
 			 </div> <%# end span 2 %>
     	 </div> <%# end row %>
-        
+        <br/><br/><br/><br/>
  	 </div>  <%# end admin tab pane %>
 
 
  	 <div class="tab-pane" id="request">
+ 	  <br/>
          <div class="row">
          	<div class="well span6 offset3">
          		 <p> People can record their VoiceGems for this event using either of these links:
