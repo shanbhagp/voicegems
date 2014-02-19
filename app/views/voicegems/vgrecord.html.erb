@@ -58,7 +58,8 @@
      
         <button type="button" class="close" data-dismiss="alert">×</button>
 
-                  <h3> <span class="red">Customers/Admins:</span> when users are invited to record a VoiceGem, they will see a page like this.  However, since you are signed in, you must go to your Dashboard to record/edit your VoiceGem (note that you may not have one for this event). </h3> 
+                  <h3> <span class="red">Customers/Admins:</span> when new users are invited to record a VoiceGem, they will do so on page like this.  However, since you are already registered, please go to your <%= link_to "Dashboard", current_user, :target => "_blank" %> to record/edit your VoiceGem (note that you may not have one for this event). </h3> <br/>
+                  <h4> To see how users will record VoiceGems: please <%= link_to "sign out", signout_path, method: "delete" %> (or use a different browser), paste the recording link into the address bar, and register with a different email address.</h4>
              
         </div>  
 <% end %>

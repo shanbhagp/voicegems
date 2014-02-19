@@ -24,7 +24,7 @@
                                    </ul>
 
                                   <br/>
-                                 <h4>After your Free Trial (ending on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h4>
+                                 <h4>After your Free Trial (<% if (current_user.created_at + 30.days) > Time.now %> ending <% else %> ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h4>
                                  <ul class="left">
                                  
                                    <li>Free trial Event Pages will be de-activated (locked). (Event Pages purchased during this time will never be locked.)</li>
