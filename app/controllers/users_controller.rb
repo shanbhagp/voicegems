@@ -7,7 +7,7 @@ before_filter :signed_in_user, only: [:index, :skip, :show, :new_step2, :setpass
   :purchase_sub_not_stripe_customer, :stripenewcustomer, :changesub, :sub_coupon, :stripereceiver, :stripenewcustomer_purchase,
   :changepur, :coupon_purchase, :stripereceiver_purchase, :existing_user_purchase, :existing_user_purchase_select,
   :existing_changepur, :existing_coupon_purchase, :purchase_events_existing_card, :purchase_events_new_card, :purchase_events_new_stripe_customer,
-  :stripetest]
+  :stripetest, :welcome]
 before_filter :correct_user, only: [:show, :edit, :update, :account, :setpassword]
 # before_filter :not_customer, only: [:stripetest] #now allowing for purchasing a sub even if already is a customer
 before_filter :customer_has_no_active_subscription, only: [:purchase_sub_existing] #purchase_sub_existing is the path from the 'purchase sub' link
@@ -1922,6 +1922,8 @@ end
 
 #---------------------------------- END Trial and Upgrade Code ---------------------------------------------------------------
 
+def welcome
+end 
 
 end
 
