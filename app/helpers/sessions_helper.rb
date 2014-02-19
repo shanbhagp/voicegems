@@ -159,7 +159,7 @@ def has_active_customer
 
     unless !@event.customerkeys.nil? && User.find_by_id(@event.customerkeys.first.user_id).customer == true 
       redirect_to current_user
-      flash[:error] = "Inactive Event Page: the customer who created the event page for #{@event.title} has an inactive subscription to our service.  Please contact VoiceGems or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
+      flash[:error] = "Inactive Event Page: the Event Page for #{@event.title} is no longer active.  Please contact VoiceGems or the customer (#{User.find_by_id(@event.customerkeys.first.user_id).email}) with any questions."
     end 
 end 
 

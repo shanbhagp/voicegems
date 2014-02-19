@@ -14,7 +14,10 @@ def vgrecord
        @user = User.new
 
             if signed_in?
-              flash[:success] = "Trying to record your VoiceGem? Since you have already registered, please click 'Profile' above and then click 'Your VoiceGem'."
+               unless current_user.admin == true || current_user.customer == true
+               
+               flash[:success] = "Trying to record your VoiceGem? Since you have already registered, please click 'Dashboard' above and then click 'Your VoiceGem'."
+               end 
             end
 
            if mobile_device?
@@ -38,6 +41,13 @@ def vg_mobile_record
 end 
 
 def vg_event_link_create
+
+if signed_in?
+
+flash[:error] = "If you wish to record/update your VoiceGem or anything else, please do so on this page under 'Your VoiceGems.'"
+redirect_to current_user 
+
+else
 
     @user = User.new
     @user.email = params[:user][:email]
@@ -85,27 +95,34 @@ def vg_event_link_create
               else # user already exists, or otherwise didn't validate as user
                     #redirect back to this sign-up form - should render errors; if it's because ther user already exists, this is covered by the 
                     # sign-in form on form, but maybe good to check first and tell user to sign-in.  Notice: "If you have already registered, please sign in under 'Already Registered.'""
-                      if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
-                              if signed_in? #perhaps pressing back button from record_step2 to change name or email?
+                      if  User.find_by_email(@user.email) #if the user already exists, tell them to try logging in to the right
+                             # if signed_in? #perhaps pressing back button from record_step2 to change name or email?
                                       #users may never get here because we check signed_in? in the record action
-                                      if !@user.recording.blank? #has already recorded.  Just take them to their profile page
-                                        flash[:error] = "If you wish to update your VoiceGem or anything else, please do so on this page."
-                                        redirect_to current_user  
-                                     else #has not recorded - so take them to the recording page (record_step2) again
-                                      flash[:error] = "Please record your VoiceGem. If you wish to edit your name/email or notes to the MC/DJ, do so on your profile page after you record your name."
-                                      @vg = current_user.voicegems.find_by_event_id(@event.id).first
-                                         if  params[:user][:x] == 'prec'
-                                              redirect_to vg_precord_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
-                                         else
-                                              redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
-                                         end    
-                                      end 
-                              else #probably trying to register from record page with an existing email
-                                    flash[:error] = "This email (#{@user.email}) is already registered on our site."
+                                     # if !@user.recording.blank? #has already recorded.  Just take them to their profile page
+                                      #  flash[:error] = "If you wish to update your VoiceGem or anything else, please do so on this page."
+                                      #  redirect_to current_user  
+                                     # else #has not recorded - so take them to the recording page (record_step2) again
+                                     #     flash[:error] = "Please record your VoiceGem. If you wish to edit your name/email or notes to the MC/DJ, do so on your Dashboard after you record your name."
+                                      #    if !current_user.voicegems.blank? && !current_user.voicegems.find_by_event_id(@event.id).blank? #this line to prevent error when admin creates page, has no voicegem, then clicks record link and enters his email and presses 'record voicegem'
+                                      #      @vg = current_user.voicegems.find_by_event_id(@event.id)
+                                      #    else
+                                      #      @vg = Voicegem.new(:user_id => @user.id, :event_id => @event.id, :email => @user.email, :first_name => @user.first_name, :last_name => @user.last_name, :notes => @user.vg_notes, :request => @user.vg_request)
+                                      #    end 
+                                       #            if  params[:user][:x] == 'prec'
+                                      #                  redirect_to vg_precord_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                                      #             else
+                                         #               redirect_to vgrecord_step2_path(:user => @user, :vg => @vg, :event => @event, :event_code => @event_code)
+                                        #           end    
+                                    #  end 
+
+                                    #   flash[:error] = "If you wish to record/update your VoiceGem or anything else, please do so on this page under the 'Your VoiceGems' tab."
+                                   #    redirect_to current_user 
+                            #  else #probably trying to register from record page with an existing email
+                                      flash[:error] = "This email (#{@user.email}) is already registered on our site."
                                       redirect_to vgrecord_path(:event_code => @event_code) 
-                              end 
+                            #  end 
                       else
-                         flash[:error] = "Please be sure to enter your first name, last name, and valid email address."         
+                          flash[:error] = "Please be sure to enter your first name, last name, and valid email address."         
                           redirect_to vgrecord_path(:event_code => @event_code) 
                       end 
                                           
@@ -126,6 +143,7 @@ def vg_event_link_create
     
   end
 
+end 
 
 end 
 

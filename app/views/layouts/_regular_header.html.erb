@@ -46,11 +46,9 @@
                                 <% end %>
 
                                 <% if signed_in? %>
-                                     <% if current_user.customer %>
+                                    
                                       <li class="pull-down"><%= link_to "Dashboard", current_user %></li>
-                                      <% else %>
-                                      <li class="pull-down"><%= link_to "Profile", current_user %></li>
-                                     <% end %>
+                                
 
                                       <li class="dropdown pull-down">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
@@ -59,8 +57,9 @@
                                                 <li><%= link_to edit_user_path(current_user) do %><i class="icon-pencil"></i> Edit User Name/Email<% end %></li>
                                                 <li class="divider"></li>
                                                 <li><%= link_to existing_user_purchase_path do %><i class="icon-shopping-cart"></i> Purchase Event Pages<% end %></li>
-                                                
                                                 <li class="divider"></li>
+                                                <li><%= link_to welcome_path do %><i class="icon-leaf"></i> Getting Started<% end %></li>
+                                               
                                                 <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
                                             </ul>
                                        </li>

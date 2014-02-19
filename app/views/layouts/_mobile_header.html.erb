@@ -45,12 +45,9 @@
                                 <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
                               </ul>
                              </li>
-                             <% if current_user.customer %>
+                         
                              <li><%= link_to "Dashboard", current_user %></li>
-                              <% else %>
-                              <li><%= link_to "Profile", current_user %></li>
-                              <% end %>
-                          
+
                           <li><%= link_to "Home", root_path %></li>
 
                           

@@ -375,4 +375,7 @@ end
 def couples
 end 
 
+def home_page
+end 
+
 end

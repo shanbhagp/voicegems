@@ -113,7 +113,7 @@ before_filter :owner, only: [:index]
 					        u.save #update the existing user to be an admin - !!!might want to wrap this/try this, to try to avoid an exception, there shouldn't be, except for the missing names in the DB issue 
 			 		 	 	@adminkey = Adminkey.new(event_id: @event.id, user_id: u.id)
 				            if @adminkey.save
-				            	adminvoicegem(u)
+				            	addvoicegem(u)
 				            	@to = @ai.recipient_email
 				            	startx
 				            	AdminInviteMailer.vg_admin_notify(@ai, root_url, @to).deliver 
@@ -205,7 +205,7 @@ def adminusercreate
 		            make_master_admin(@event, @user)	
 
 		           
-						adminvoicegem(@user)
+						addvoicegem(@user)
 						redirect_to @user, notice: "Welcome to VoiceGems, and thanks for registering to admin this event, #{@event.title}.  Click on your event to request and hear VoiceGems.  And create or update your own VoiceGem."
 				     	#templates (redirects) in this helper
 				    		

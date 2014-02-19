@@ -41,10 +41,10 @@ before_filter :owner, only: [:console, :index, :destroy]
 
   def skip
     if is_haltom_user
-      flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+      flash[:info] = "Welcome to your VoiceGems Dashboard! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
       redirect_to current_user
     else 
-    flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below."
+    flash[:info] = "Welcome to your VoiceGems Dashboard! You may need to wait a minute and refresh the page to hear your name recording below."
     redirect_to current_user
     end 
   end 
@@ -263,10 +263,10 @@ end
           if params[:user][:password]  #I think this only occurs when user sets pw for the first time, when signing up.
                  
                     if is_haltom_user
-                      flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
+                      flash[:info] = "Welcome to your VoiceGems Dashboard! You may need to wait a minute and refresh the page to hear your name recording below. Please ensure that your recording plays back, and then signout to allow the next student to record! Thank you!"
                       redirect_to @user
                     else 
-                       flash[:info] = "Welcome to your VoiceGems profile page! You may need to wait a minute and refresh the page to hear your recording below."
+                       flash[:info] = "Welcome to your VoiceGems Dashboard! You may need to wait a minute and refresh the page to hear your recording below."
                        redirect_to @user
                     end
           else
@@ -1582,12 +1582,12 @@ def newcustomercreate_trial
       sign_in @user
       # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
       # when creates an event, can invite himself (at that email) to create a PO for that event for himself
-      flash[:success] = "Welcome to VoiceGems! Please contact us with any questions about how to make the most of your free trial!"
+      flash[:success] = "Welcome to VoiceGems! Please contact us with any questions about how to make the most of this service."
       
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do
        create_vg_trial_without_stripe 
-       redirect_to current_user
+       redirect_to welcome_path
     else
 
           if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right

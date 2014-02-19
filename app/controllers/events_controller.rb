@@ -94,12 +94,14 @@ class EventsController < ApplicationController
            						 if @user.save
            						      @event.customerkeys.create!(user_id: current_user.id)
 		                     		  @event.adminkeys.create!(user_id: current_user.id)
+		                     		  addvoicegem(@user) #give admin a VoiceGem for this event
 		                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 								 else #shouldn't happen because @user should save
 					                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 					                  redirect_to current_user
            						 end 
            						 # END try decrementing p
+           						 
 		                  else
 		                  flash[:error] = 'Please enter a title and date.'
 		                  redirect_to current_user
@@ -117,12 +119,14 @@ class EventsController < ApplicationController
 	           						 if @user.save
 	           						      @event.customerkeys.create!(user_id: current_user.id)
 			                     		  @event.adminkeys.create!(user_id: current_user.id)
+			                     		  addvoicegem(@user) #give admin a VoiceGem for this event
 			                     		  redirect_to @event, notice: "Welcome to your event page for #{@event.title}."
 									 else #shouldn't happen because @user should save
 						                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 						                  redirect_to current_user
 	           						 end 
 	           						 # END try decrementing p
+	           						 
 		                      else
 		                      redirect_to current_user, notice: 'Please enter a title and date.'
 		                      end
@@ -148,12 +152,14 @@ class EventsController < ApplicationController
 			           						 if @user.save
 			           						      @event.customerkeys.create!(user_id: current_user.id)
 					                     		  @event.adminkeys.create!(user_id: current_user.id)
+					                     		  addvoicegem(@user) #give admin a VoiceGem for this event
 					                     		  redirect_to @event, notice: "Welcome to your VoiceGems Event Page for #{@event.title}."
 											 else #shouldn't happen because @user should save
 								                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'
 								                  redirect_to current_user
 			           						 end 
 			           						 # END try decrementing p
+
 				                     else
 							                  flash[:error] = 'Please enter a title and date.'
 							                  redirect_to current_user
@@ -171,6 +177,7 @@ class EventsController < ApplicationController
 						           						 if @user.save
 						           						      @event.customerkeys.create!(user_id: current_user.id)
 								                     		  @event.adminkeys.create!(user_id: current_user.id)
+								                     		  addvoicegem(@user) #give admin a VoiceGem for this event
 								                     		  redirect_to @event, notice: "Welcome to your VoiceGems Event Page for #{@event.title}."
 														 else #shouldn't happen because @user should save
 											                  flash[:error] = 'Something went wrong.  Please try again or contact tech support.'

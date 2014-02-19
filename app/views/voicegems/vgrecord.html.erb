@@ -53,6 +53,15 @@
          
     </div>  
 
+<% if current_user && (current_user.customer == true || current_user.admin == true) %>
+    <div class="alert alert-block alert-warning">
+     
+        <button type="button" class="close" data-dismiss="alert">×</button>
+
+                  <h3> <span class="red">Customers/Admins:</span> when users are invited to record a VoiceGem, they will see a page like this.  However, since you are signed in, you must go to your Dashboard to record/edit your VoiceGem (note that you may not have one for this event). </h3> 
+             
+        </div>  
+<% end %>
 
 
 
