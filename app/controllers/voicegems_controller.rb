@@ -241,59 +241,6 @@ end
     logger.warn "MINIPHONIC STARTED"
 
 
-#require 'encodingdotcom'
-#require 'encoding_dot_com'
-
-
-# Create an interface to the encoding.com queue with your user id and secret
-#queue = EncodingDotCom::Media.create(26365, "89a6c6040ef65c89f626e1e4f053cf61")
-
-# Create one or more output formats
-#format = EncodingDotCom::Format.create("output" => "mp3")
-
-# Get an media item processed. You can pass multiple output formats in a hash.
-#media_id = queue.add_and_process("http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3?nocopy", "http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3" => format)
-
-#queue.status(media_id) # => returns a string like "Waiting for encoder" or "Finished"
-#queue.info(media_id)   # => returns information about an item in the queue
-xml = Builder::XmlMarkup.new
-xml.instruct! :xml, :version => "1.0"   # Or whatever your requirements are
-# Consult the Builder gem docs for different ways you can build up your XML, this is just a simple example.
-xml.query do
-  xml.userid("26365")
-  xml.userkey("89a6c6040ef65c89f626e1e4f053cf61")
-  xml.action("AddMedia")
-  xml.source("http://vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}.mp3?nocopy")
-  xml.format do
-     xml.output("mp3")
-     #  xml.destination("http://AKIAJCTJ7WYDRGWUPFLA:w1CyHMksTjHwso2308XxV7Va+ULNTxfd0Yz2y5/K@vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3?acl=public-read")
-     xml.destination("http://vgnamewavesdev.s3.amazonaws.com/#{current_user.id.to_s}_#{params[:userId]}_#{@time}_encoded.mp3?acl=public-read")
-      # http://[AWS_KEY:AWS_SECRET@][bucket].s3.amazonaws.com/[filename][?acl=public-read | authenticated-read]
-      # http://[bucket].s3.amazonaws.com/[filename][?acl=public-read | authenticated-read]&canonical_id=AWS_CANONICAL_USER_ID
-
-     xml.audio_overlay do
-            xml.overlay_source("http://vgnamewavesdev.s3.amazonaws.com/415_56_8C43A_encoded.mp3")
-            xml.overlay_start("1")
-            xml.overlay_duration("30")
-            end 
-
-
-  end
-end
-
-###########
-require 'net/http'
-require 'uri'
-
-# this is the closest form to the one you tried
-# note that the http protocol is excluded
-# (presumably because we're explicitly constructing an HTTP object)
-
-http = Net::HTTP.new('manage.encoding.com')
-response = http.post('/', "xml=#{xml.target!}")
-
-logger.warn response
-##############
 
 end
 
