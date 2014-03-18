@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
 gem 'bootstrap-sass'#, '2.0.0'
@@ -11,7 +11,7 @@ gem 'zencoder'
 gem 'simple_form'
 gem 'best_in_place'
 gem 'stripe'
-gem 'pg'
+gem 'pg', '0.17.1'
 gem 'thin'
 gem 'exceptional'
 gem 'jquery-rails', '2.0.1'
@@ -45,7 +45,7 @@ group :assets do
 end
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+gem 'therubyracer', :platforms => :ruby
 
 
 group :test, :development do
@@ -64,6 +64,8 @@ group :test do
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
 end
+
+gem 'newrelic_rpm'
 
 
 # To use ActiveModel has_secure_password
