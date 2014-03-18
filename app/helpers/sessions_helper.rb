@@ -40,7 +40,9 @@ module SessionsHelper
     # it will return @current_user (and be true, since current_user not nil))
 
 def is_haltom_user
-      h = Event.find(ENV['HALTOM'])
+      if(ENV['HALTOM'] != nil) 
+          h = Event.find(ENV['HALTOM'])
+      end
       !h.nil? &&  !current_user.nil? && !current_user.practiceevents.nil? && current_user.practiceevents.any? {|p| p == h }  
   end 
 
