@@ -19,6 +19,9 @@ before_filter :owner, only: [:console, :index, :destroy]
   def home
     # check if signed_in and then display (you are currently signed in, view your profile)
     # automatically renders page 'users/home'
+     if signed_in?
+        redirect_to current_user
+     else
      @event = Event.find(ENV['demopage'].to_i)
      @event_code = @event.event_code
      @url = demo_record_vg_url(:event_code => @event.event_code)
@@ -27,6 +30,7 @@ before_filter :owner, only: [:console, :index, :destroy]
       @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
       @second_plan = Plan.find_by_my_plan_id(plan_set_two)
       @third_plan = Plan.find_by_my_plan_id(plan_set_three)
+     end
 
   end
 

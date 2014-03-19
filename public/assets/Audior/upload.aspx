@@ -1,1 +1,0 @@
-<%@ Page Language="C#" Debug="true" CodeFile="upload.aspx.cs" Inherits="Audior.Upload" AutoEventWireup="true" %>
