@@ -1,300 +1,230 @@
-
 <script>
-
-$(document).ready(function () {
-  location.hash && $(location.hash + '.collapse').collapse('show');
-});
-
+                $(window).scroll(function () {
+                    if ($(document).scrollTop() == 0) {
+                        $('#header_nav').removeClass('tiny');
+                    } else {
+                        $('#header_nav').addClass('tiny');
+                    }
+                });
 </script>
+        <style>
+.header {
+    width:100%;
+    height:150px;
+    background: #FAF9F6;
+    color: #fff;
+    position:fixed;
+    top:0;
+    left:0;
+    transition: height 500ms;
+    background-image: url(<%= asset_path "Logo_Black.png" %>);
+    background-size: 180px 140px;
+    background-position: center bottom;
+	background-repeat: no-repeat;
+	padding-top:75px;
 
-<!-- Page heading starts -->
+}
+.header.tiny {
+    height:50px;
+    background-image: url(<%= asset_path "logo_1.png" %>);
+    background-size: 130px 40px;
+    background-position: center center;
+	background-repeat: no-repeat;
+	position:fixed;
+	padding-top:0px;
+}
+</style>
 
-<div class="page-head bg-gold">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-        <h2><span class="blue">Frequently Asked Questions </span></h2>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="section-FAQ">
+	<h2 >Frequently Asked Questions</h2>
 
-<!-- Page Heading ends -->
-<br/>
-<!-- Page content starts -->
-<div class="container">
+	<div class="panel-group" id="accordion">
 
-<div class="content">
+		<div class= "question-general">
+			<h3>Gneral Questions</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is VoiceGems?</a></h4>
+				</div><!-- END PANEL-HEADING -->
+				<div id="collapseOne" class="panel-collapse collapse">
+					<div class="panel-body">
+						VoiceGems is a cloud-based service that allows DJs to connect wedding couples with their guests in a new and meaningful way.
+						VoiceGems collects short pre-recorded wedding messages/toasts for DJs to download and blend into their entertainment mix.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> How does VoiceGems work? </a></h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse">
+					<div class="panel-body">
+						First, DJs create a VoiceGems Event page. A custom link for that page is shared with guests, family and friends,
+						who click the link to record a short meaningful message/toast online. These messages are available on the Event Page,
+						where DJs can download and blend them into their music on the day of the event, providing an unparalleled experience.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-    <div class="row">
-      <div  class="span8 offset2">
-      <h2 class="blue cent">General FAQ</h2> <br/>
-       <!-- FAQ -->
-            <div class="accordion biggertext" id="accordion1">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> How Do I get my VoiceGems for my next event? </a></h4>
+				</div>
+				<div id="collapseThree" class="panel-collapse collapse">
+					<div class="panel-body">
+						If you’re a DJ, its as simple as registering or signing up for a free 30-day trial. You can then set up Event Pages for your clients.
+						For couples, send your wedding DJ here to register!
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                 <!-- 1 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">What is VoiceGems?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse1" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>VoiceGems is a cloud-based service that allows DJs to connect wedding couples with their guests in a new and meaningful way.  VoiceGems collects short pre-recorded wedding messages/toasts for DJs to download and blend into their entertainment mix.</p>
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"> What events does VoiceGems support? </a></h4>
+				</div>
+				<div id="collapseFour" class="panel-collapse collapse">
+					<div class="panel-body">
+						VoiceGems can be used for any event where you want to Mix Music With Meaning.
+						This includes weddings, corporate events, graduation and retirement parties, and anniversary celebrations,
+						birthdays, bar-mitzvahs and bat-mitzvahs, and so much more!
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"> How many messages/toasts can be recorded and what's the duration of each messages? </a></h4>
+				</div>
+				<div id="collapseFive" class="panel-collapse collapse">
+					<div class="panel-body">
+						An unlimited number of messages/toast can be recorded for each event.
+						To keep those messages meaningful and easy to integrate, each one is limited to 30 seconds.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                 <!-- 2-->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse2">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">How does VoiceGems work?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse2" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>First, DJs create a VoiceGems Event page. A custom link for that page is shared with guests, family and friends, who click the link to record a short meaningful message/toast online. These messages are available on the Event Page, where DJs can download and blend them into their music on the day of the event, providing an unparalleled experience.</p>
-                          
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"> Is personal info sold to any third parties? </a></h4>
+				</div>
+				<div id="collapseSix" class="panel-collapse collapse">
+					<div class="panel-body">
+						Never. We keep all user information, including names, emails, and any other personal information, strictly confidential.
+						Email addresses may be used for VoiceGems related communication (for example, requesting a name recording),
+						but is not given to any third party.Our business model is based on the unique value our service provides, not the value of user information.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                  <!-- 3 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse3">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">How do I get VoiceGems for my next event?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse3" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>If you’re a DJ, its as simple as <a href="<%= newcustomer_purchase_path %>">registering</a> or signing up for a <a href="<%= newcustomer_trial_path %>">free 30-day trial</a>. You can then set up Event Pages for your clients. For couples, send your wedding DJ <a href="<%= root_path %>">here</a> to register!</p>
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"> Are all the guests supposed to be invited to record VoiceGems? </a></h4>
+				</div>
+				<div id="collapseSeven" class="panel-collapse collapse">
+					<div class="panel-body">
+						VoiceGems gives you the power to decide who you want to participate in this special experience.
+						Once an Event Page is created, couples will receive a link that they can send to whomever they want.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"> Do couples get access to the VoiceGems (and for how long)? </a></h4>
+				</div>
+				<div id="collapseEight" class="panel-collapse collapse">
+					<div class="panel-body">
+						Yes. VoiceGems are meant to create a lasting memory for couples.
+						Not only do they make the event even more special on the big day, but VoiceGems can be cherished for a lifetime.
+						VoiceGems are stored on the cloud and available on the Event Page forever.
+						To give couples access to the VoiceGems, Dj's can simply add them as an admin from the Admin tab on the Event Page.
+						Couples can preview the VoiceGems before the big day if they wish, or wait to make them a surprise.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseNine"> Does VoiceGems work on all devices? </a></h4>
+				</div>
+				<div id="collapseNine" class="panel-collapse collapse">
+					<div class="panel-body">
+						Yes. As long as there's a mic, a user can record a VoiceGem via laptop, desktop, or mobile web.
+						We should note that while possible on mobile devices,
+						managing Event Pages (creating an Event Page, previewing VoiceGems, downloading MP3's, adding another 'admin' for an Event Page)
+						is optimized for non-mobile devices.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                   <!-- 4 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse4">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">What events does VoiceGems support?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse4" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>VoiceGems can be used for any event where you want to Mix Music With Meaning.  This includes weddings, corporate events, graduation and retirement parties, and anniversary celebrations, birthdays, bar-mitzvahs and bat-mitzvahs, and so much more! </p>
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTen"> How does VoiceGems ensure recording qualities? </a></h4>
+				</div>
+				<div id="collapseTen" class="panel-collapse collapse">
+					<div class="panel-body">
+						VoiceGems is now fully integrated with Auphonic's cutting-edge cloud-based audio processing system.
+						Every recording is automatically treated with Noise, Hiss, and Hum Reduction algorithms, as well as Global Loudness
+						Normalization and True Peak Limiter, to ensure that every VoiceGem is polished to the highest-possible quality.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
+		</div>
 
+		<div class="questions-DJ">
+			<h3>DJ Questions</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"> If I purchase more than one event page, do I get any discount? </a></h4>
+				</div>
+				<div id="collapseEleven" class="panel-collapse collapse">
+					<div class="panel-body">
+						Yes! Event Pages purchased in bulk receive substantial discounts. DJ's, please register or start a free 30-day trial for more information.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                    <!-- 5 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse5">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">How many messages/toasts can be recorded and what is the duration of each message?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse5" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>An unlimited number of messages/toast can be recorded for each event. To keep those messages meaningful and easy to integrate, each one is limited to 30 seconds. </p>
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve"> Is my payment information secure? </a></h4>
+				</div>
+				<div id="collapseTwelve" class="panel-collapse collapse">
+					<div class="panel-body">
+						Yes. If fact, our entire site uses up-to-date SSL Encryption (indicated by the padlock icon and https:// prefix in your browser's address bar).
+						This means that not only payment information, but all user information, is securely handled.
+						As an added layer of security, we use the Stripe payment gateway, and strictly comply with their payment processing protocol.
+						This means that encrypted payment information (such as credit card numbers) never touch our database,
+						but are instead immediately transmitted to Stripe's industry-standard secure processing system.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen"> Is there any registration or cancellation fee? </a></h4>
+				</div>
+				<div id="collapseThirteen" class="panel-collapse collapse">
+					<div class="panel-body">
+						No. Registering for VoiceGems allows you to create Event Pages and gives you access to special promotions.
+						Payment is on a per-event basis.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
 
-                    <!-- 6-->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse6">
-                           <!-- Title with experience details. -->
-                          <h4 class="blue">Is personal information sold to any third parties?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse6" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                           <!-- Details about job -->
-                          <p>Never. We keep all user information, including names, emails, and any other personal information, strictly confidential. Email addresses may be used for VoiceGems related communication (for example, requesting a name recording), but is not given to any third party.</p> <p>Our business model is based on the unique value our service provides, not the value of user information.</p>
-                        </div>
-                      </div>
-                    </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseForteen"> What happens when my free trial ends and how do I re-activate event page? </a></h4>
+				</div>
+				<div id="collapseForteen" class="panel-collapse collapse">
+					<div class="panel-body">
+						At the end of your 30-day free trial, you will not be able to create new Event Pages and all existing pages will be locked.
+						To continue using VoiceGems, simply purchase Event Pages. These can be used as credits,
+						to create new Event Pages or re-activate ones created during the free trial.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
+		</div><!-- END QUESTIONS-DJ -->
 
-
-                    <!--  7  -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse7">
-                          <h4 class="blue">Are all the guests supposed to be invited to record VoiceGems?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse7" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>VoiceGems gives you the power to decide who you want to participate in this special experience. Once an Event Page is created, couples will receive a link that they can send to whomever they want.</p>
-                        </div>
-                      </div>
-                    </div>  
-
-
-                     <!-- 8 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse8">
-                          <h4 class="blue">Do couples get access to the VoiceGems (and for how long)?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse8" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>Yes. VoiceGems are meant to create a lasting memory for couples.  Not only do they make the event even more special on the big day, but VoiceGems can be cherished for a lifetime.</p>
-                          <p> VoiceGems are stored on the cloud and available on the Event Page forever. To give couples access to the VoiceGems, Dj's can simply add them as an admin from the Admin tab on the Event Page. Couples can preview the VoiceGems before the big day if they wish, or wait to make them a surprise. 
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-                    <!-- 8 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse15">
-                          <h4 class="blue">Does VoiceGems work on all devices?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse15" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>Yes. As long as there's a mic, a user can record a VoiceGem via laptop, desktop, or mobile web.</p>
-                          <p>We should note that while possible on mobile devices, managing Event Pages (creating an Event Page, previewing VoiceGems, downloading MP3's, adding another 'admin' for an Event Page) is optimized for non-mobile devices. 
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-                      <!-- 9 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse9">
-                          <h4 class="blue">How does VoiceGems ensure quality recordings?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse9" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>VoiceGems is now fully integrated with Auphonic's cutting-edge cloud-based audio processing system.</p><p> Every recording is automatically treated with Noise, Hiss, and Hum Reduction algorithms, as well as Global Loudness Normalization and True Peak Limiter, to ensure that every VoiceGem is polished to the highest-possible quality.&nbsp;&nbsp;<i class="icon-caret-right"></i>&nbsp;&nbsp;<a href="<%= auphonic_path%>" target="_blank">Learn More</a></p> 
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-
-            </div><!-- End Accordion 2 -->
-        
-        </div> <!-- End span8 -->
-
-    </div> <!-- End row -->
-
-    <br/>
-
-    <div class="row">
-      <div  class="span8 offset2">
-       <!-- FAQ -->
-       <h2 class="blue cent">DJ FAQ</h2> <br/>
-            <div class="accordion biggertext" id="accordion2">
-
-               
-
-                    <!-- 10 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse10">
-                          <h4 class="blue">If I purchase more than one Event Page, do I get any discount?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse10" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>Yes! Event Pages purchased in bulk receive substantial discounts. DJ's, please <a href="<%= newcustomer_purchase_path %>">register</a> or start a <a href="<%= newcustomer_trial_path %>">free 30-day trial</a> for more information.</p> 
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-
-                    <!-- 11 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11">
-                          <h4 class="blue">Is my payment information secure?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse11" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>Yes. If fact, our entire site uses up-to-date SSL Encryption (indicated by the padlock icon and https:// prefix in your browser's address bar). This means that not only payment information, but all user information, is securely handled.</p> <p> As an added layer of security, we use the Stripe payment gateway, and strictly comply with their payment processing protocol. This means that encrypted payment information (such as credit card numbers) never touch our database, but are instead immediately transmitted to Stripe's industry-standard secure processing system.</p>
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-                  <!-- 12 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12">
-                          <h4 class="blue">Is there a registration or cancellation fee?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse12" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>No. Registering for VoiceGems allows you to create Event Pages and gives you access to special promotions. Payment is on a per-event basis.</p>
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-
-                 
-
-
-                  <!-- 14 -->
-                    <div class="accordion-group">
-                      <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse14">
-                          <h4 class="blue">What happens when my free trial ends, and how do I re-activate Event Pages?</h4>
-                        </a>
-                      </div>
-                      <div id="collapse14" class="accordion-body collapse">
-                        <div class="accordion-inner">
-                          <p>At the end of your 30-day free trial, you will not be able to create new Event Pages and all existing pages will be locked.</p>
-                          <p>
-                          To continue using VoiceGems, simply purchase Event Pages.  These can be used as credits, to create new Event Pages or re-activate ones created during the free trial.
-                        </p>
-                        </div>
-                      </div>
-                    </div>  
-
-
-            </div><!-- End Accordion 2 -->
-        
-        </div> <!-- End span8 -->
-
-    </div> <!-- End row -->
-
-
-  </div> <!-- End content -->
-</div> <!-- End container -->
-
-<!-- Page content ends -->
-
-
-
-</div>
+	</div><!-- END PANEL-GROUP -->
+</div><!-- END SECTION-FAQ-->

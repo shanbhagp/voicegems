@@ -41,8 +41,9 @@ GEM
     best_in_place (1.1.2)
       jquery-rails
       rails (~> 3.1)
-    bootstrap-sass (2.0.0)
-    bootstrap-will_paginate (0.0.6)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
+    bootstrap-will_paginate (0.0.9)
       will_paginate
     builder (3.0.4)
     capybara (1.1.2)
@@ -311,8 +312,8 @@ DEPENDENCIES
   aws-sdk
   bcrypt-ruby (= 3.0.1)
   best_in_place
-  bootstrap-sass
-  bootstrap-will_paginate (= 0.0.6)
+  bootstrap-sass (= 3.1.1)
+  bootstrap-will_paginate (= 0.0.9)
   builder (~> 3.0.4)
   capybara (= 1.1.2)
   carrierwave

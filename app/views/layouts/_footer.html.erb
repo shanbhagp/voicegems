@@ -1,75 +1,77 @@
+<div class="sections section-contact white black-bg">
 
+	<div class="container">
 
-  <!-- Footer starts -->
-<footer>
+		<header class="centralized">
+			<h1 >Contact</h1>
+			<img src="<%= asset_path "divider.png"%>" class="divider">
+		</header>
 
-    <div class="container">
+		<article>
+			<div class="row">
 
-          <div class="row">
+				<!-- CONTACT INFO -->
+				<div class="col-lg-6 col-lg-offset-1">
+					<h3>Meet Us</h3>
+					<div class="media">
+						<div class="social-icons sicon-white pull-left">
+							<a href="#" class="sicon-phone"><i>Phone</i></a>
+						</div>
+						<div class="media-body">
+							(+1) 650-564-3072
+						</div>
+					</div>
+					<div class="media">
+						<div class="social-icons sicon-white pull-left">
+							<a href="#" class="sicon-place"><i>Location</i></a>
+						</div>
+						<div class="media-body">
+							Stanford Venture Studios, 641 Knight Way, Stanford, CA 94305
+						</div>
+					</div>
+					<div class="media">
+						<div class="social-icons sicon-white pull-left">
+							<a href="#" class="sicon-mail"><i>email</i></a>
+						</div>
+						<div class="media-body ">
+							info@voicegems.com
+						</div>
+					</div>
+				</div>
+				<!-- END CONTACT INFO -->
 
-                        <div class="span4">
-                              <div class="widget">
-                                <h5>Contact</h5>
-                                <hr />
-                                <i class="icon-home"></i> &nbsp; Stanford Venture Studios, 641 Knight Way, Stanford, CA 94305
-                                <hr />
-                                <i class="icon-phone"></i> &nbsp; +1.650-564-3072
-                                <hr />
-                                <i class="icon-envelope-alt"></i> &nbsp; <a href="mailto:#">info@voicegems.com</a>
-                              </div>
-                        </div>
+				<!-- SOCIAL ICONS -->
+				<div class="col-lg-4">
+					<h3>Follow Us</h3>
+					</br>
+					<button class="btn btn-facebook">
+						<a href="https://www.facebook.com/VoiceGems" target="_blank"> <i class="fa fa-facebook"></i>
+					</button>
+					&nbsp;
+					<button class="btn btn-twitter">
+						<a href="https://twitter.com/VoiceGems" target="_blank"> <i class="fa fa-twitter"></i>
+					</button>
+					&nbsp;
+					<button class="btn btn-linkedin">
+						<i class="fa fa-linkedin"></i>
+					</button>
+				</div>
+				<!-- END SOCIAL ICONS -->
 
-                        <div class="span5">
-                                 <br/>
-                                 <br/>
-                                 <br/>
-                                 <br/>
-                                 <br/>
-                                           <!-- Copyright info -->
-                                  <p class="copy">Copyright &copy; 2013 | <a href="<%= root_path %>">VoiceGems</a> - <a href="<%= root_path %>">Home</a> | <a href="<%= terms_path %>" target="_blank">Terms and Conditions</a> | <a href="<%= privacy_path %>" target="_blank">Privacy Policy</a> |</p> 
-                        </div>
-                            
-   
-                               
-                      
+			</div><!-- END ROW -->
 
-                          <div class="span1"> 
-                          <br/><br/>
-                                       <a target="_blank" href="http://www.bridaltweet.com/page/voicegems"><img class="align-center gold_image_2" src="http://api.ning.com:80/files/8z0jZEFVwDt*dQA4FcmURShcOlwSi7xX4Mp4PA1H7FlZGtvjk7-kxTGSrBQOVnnj4lkp8Q68sUPKE-OVD81Sgv7tzUTLiqb7/BestWeddingVendors.jpg" width="125" /></a>
-                          </div>
- 
-                          <div class="span2">
-                             
-                                    <br/><br/><br/>
-             
-                                           <div class="widget">
-                                                 <div class="fb-like" data-href="https://www.facebook.com/VoiceGems" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                                                          <div class="social">
-                                                            <a href="https://twitter.com/VoiceGems" target="_blank"><i class="icon-twitter twitter"></i></a>
+			<div class="row centralized" id="footerItem">
+				<%= link_to "VoiceGems", root_path%>-<%= link_to "Home", root_path%>|<%= link_to "Terms and Conditions", terms_path%>|<%= link_to "Privacy Policy", privacy_path%>
+				</br></br>
+				<%= link_to image_tag("comodo_secure_76x26_transp.png", alt: "SSL"), "https://www.instantssl.com/ssl-certificate-products/what_is_ssl.html?key5sk1=f5605ca01804d4545342013213dc17000a0a1fe9&key5sk2=&key5sk3=1360149592000&key5sk24=&key5sk25=1360149590000&key5sk26=&key5sk27=1360149599000&key6sk1=&key6sk2=FF180&key6sk3=7&key6sk4=en-us&key6sk5=GB&key6sk6=1&key6sk7=https%253A%252F%252Fwww.instantssl.com%252F&key6sk8=115502&key6sk9=1366768&key6sk10=true&key6sk11=a3f277c1b032dca554d0fd21792c9a1cbe070cb9&key7sk1=16615&key1sk1=dt&key1sk2=https%253A%252F%252Fwww.instantssl.com%252F", id: "comodo", :target => "_blank" %>
+				<a target="_blank" href="http://www.bridaltweet.com/page/voicegems"><img src="http://api.ning.com:80/files/8z0jZEFVwDt*dQA4FcmURShcOlwSi7xX4Mp4PA1H7FlZGtvjk7-kxTGSrBQOVnnj4lkp8Q68sUPKE-OVD81Sgv7tzUTLiqb7/BestWeddingVendors.jpg" width="50px" /></a>
+			</div>
+		</article>
 
-                                                            <a href="https://www.facebook.com/VoiceGems" target="_blank"><i class="icon-facebook facebook"></i></a>
-                                                           
-                                            
-                                                          </div>
+	</div><!--END CONTAINER -->
 
+	<div id="map-image">
+		<img src="<%= asset_path "map.jpg"%>" >
+	</div>
 
-                                                   </div>
-                                           </div>
-                        </div>
-
-                       <div class="clearfix"></div>
-
-          </div>
-
-          <div class="row centdiv cent">
-             
-                  <span class="centdiv cent"><%= link_to image_tag("comodo_secure_76x26_transp.png", alt: "SSL"), "https://www.instantssl.com/ssl-certificate-products/what_is_ssl.html?key5sk1=f5605ca01804d4545342013213dc17000a0a1fe9&key5sk2=&key5sk3=1360149592000&key5sk24=&key5sk25=1360149590000&key5sk26=&key5sk27=1360149599000&key6sk1=&key6sk2=FF180&key6sk3=7&key6sk4=en-us&key6sk5=GB&key6sk6=1&key6sk7=https%253A%252F%252Fwww.instantssl.com%252F&key6sk8=115502&key6sk9=1366768&key6sk10=true&key6sk11=a3f277c1b032dca554d0fd21792c9a1cbe070cb9&key7sk1=16615&key1sk1=dt&key1sk2=https%253A%252F%252Fwww.instantssl.com%252F", id: "comodo", :target => "_blank" %></span>
-   
-          </div>
-
-
-        
-  </div> <!-- Container Ends -->
-
-</footer> <!-- Footer ends -->
-
+</div><!-- END SECTIONS-CONTACT -->

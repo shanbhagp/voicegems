@@ -1,9 +1,12 @@
- <header>
+ 
 
 
 
 <% if mobile_device? %>
+<header>
   <%= render 'layouts/mobile_header' %>
+  </header>
+  <div class="sep-gold"></div>
 <% else %>
   <%= render 'layouts/regular_header' %>
 <% end %> 
@@ -14,8 +17,7 @@
 
 
 
- </header>
-  <div class="sep-gold"></div>
+ 
 
             
 

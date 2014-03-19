@@ -15,6 +15,10 @@ end
 def cartest
 end 
 
+def djs
+  render :layout => "static1"
+end 
+
 def weddings
 
 #   @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
@@ -373,6 +377,7 @@ def auphonic
 end
 
 def couples
+  render :layout => "static1"
 end 
 
 def home_page

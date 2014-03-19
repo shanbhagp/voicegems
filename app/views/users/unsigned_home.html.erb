@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VoiceGems</title>
+
+<meta name="google-site-verification" content="_xVg0RTQV3h02jCVBa-MTtMSBjUMx0cCVCrJVodUZ6w" />
+
+   <meta id="audiopath" name="<%= yield(:path) %>" content="audio">
+   <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    "bootstrap_and_overrides" %>
+  <%= stylesheet_link_tag    "main" %>
+  <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="<%= asset_path('darkerbuttont_fav_2.ico')%>" />
+  <link rel="icon" href="<%= asset_path('darkerbuttont_fav_2.ico')%>" />
+  <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+ <script type="text/javascript" src="<%= asset_path('aplayer/audio.min.js') %>"></script>
+
+ <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+ <script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-45526859-1', 'voicegems.com');
+  ga('send', 'pageview');
+
+</script>
+
+
+</head>
+	    <body>			
+				<div class= "sections section-home white">
+					<div class="container">
+							<header class="centralized">
+									<img src="<%= asset_path "Logo_White.png" %>" width="350px">
+							</header>
+							
+							<article>
+									<div class="row">
+				                   		<img src="<%= asset_path "q_up.png"%>" class="col-lg-offset-3">
+					                   	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">	
+					                	<!-- Carousel indicators -->
+			                                <ol class="carousel-indicators">
+			                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			                                </ol>							                   		
+					                    	<div class="carousel-inner">		                   	
+						                   			<div class="item active">
+							                    	<p class="centralized">It's really made a difference in our weddings... </br>
+							                    	I truly think this product will change the wedding industry more over the next five years than anything I've seen in a long time.</p>
+							                   		<p class="centralized normal">DJ Allen Walker, Big Daddy Walker Productions</p>
+						                    		</div>		
+								                    <div class="item">
+									                    <p class="centralized">Our wedding experience was just completely different, </br>and it's definitely something I would recommend for your wedding.</p>
+									                    <p class="centralized normal">Kim Schafer, Former Bride, Cincinnati, OH</p>		
+								                    </div>				                    
+					                    	</div><!-- END CAROUSEL-INNTER -->				                    
+					                    </div><!-- END CAROUSEL-EXAMPLE-GENETIC -->			                    
+				                    <img src="<%= asset_path "q_down.png"%>" class="col-lg-offset-9">
+				            		</div><!-- END ROW -->	
+				                	</br></br>
+				                	
+				            		<div class="row">
+									    <div class="col-lg-1 col-lg-offset-3">
+										<a href="<%= djs_path %>"><button class="button button-1 button-1a">&nbsp;&nbsp;&nbsp;DJ&nbsp;&nbsp;&nbsp;</button></a>
+										</div>
+										<div class="col-lg-1 col-lg-offset-1">
+										<a href="<%= couples_path %>"><button class="button button-1 button-1a">couple</button></a>
+										</div>
+										<div class="col-lg-3 col-lg-offset-1">
+								    	<a href="<%= login_path %>"><button class="button button-2 button-2a">Sign In</button></a>
+								        </div>	
+								    </div><!-- END ROW -->
+								    
+							</article>
+						
+	
+						
+						
+						
+						
+						
+						<!--
+						<article>
+							    <div class="row">
+							    	<div class="col-lg-1 col-lg-offset-4">
+										<a href="DJ.html"><button type="button" class="btn btn-primary btn-lg" id="btn-DJ">DJ</button></a></br></br>
+									</div>
+									
+									<div class="col-lg-1 col-lg-offset-1">
+										<a href="Couple.html"><button type="button" class="btn btn-primary btn-lg">COUPLE</button></a>
+								    </div>	
+								    
+								    <div class="col-lg-2 col-lg-offset-1">
+								    		<a href="#">Sign In</a>			    
+								    </div>																
+						</article>
+						-->
+					</div><!-- END CONTAINER -->
+				</div><!-- END SECTION-WELCOME -->
+				 
+		</body>
+	
+</html>

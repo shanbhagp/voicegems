@@ -1,83 +1,60 @@
-<div class="container">
-    <div class="row">
+<div id="header_nav" class="header  navbar navbar-default navbar-static-top">
+	<div class="container">
+		<ul class="nav navbar-nav">
+			<li>
+				<%= link_to "DJ", djs_path %>
+			</li>
+			<li>
+				<%= link_to "Couple", faq_path %>
+			</li>
+			<li>
+				<a href="http://blog.voicegems.com/" target="_blank">Blog</a>
+			</li>
+			<li>
+				<a id="logo" href="<%= root_path %>"></a>
+			</li>
+			<li>
+				<%= link_to "FAQ", faq_path, :style => "padding-left:200px;" %>
+			</li>
+			<% if !signed_in? %>
+			<li>
+				<%= link_to "Sign In", login_path %>
+			</li>
+			<li>
+				<%= link_to "Sign Up",newcustomer_trial_path %>
+			</li>
+			<%else%>
+			<li class="pull-down">
+				<%= link_to "Dashboard", current_user %>
+			</li>
 
-          <div class="span4">  
-             <div class="navbar">
-         
-               <div class="navbar-inner ">
+			<li class="dropdown pull-down">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li>
+						<%= link_to account_user_path(current_user) do %><i class="icon-pencil"></i> Change Password<% end%>
+					</li>
+					<li>
+						<%= link_to edit_user_path(current_user) do %><i class="icon-pencil"></i> Edit User Name/Email<% end %>
+					</li>
 
-                  <nav>
-          
-                          <ul class="nav span4">
-                                                                                            
-                                   
-                         </ul>
-           
-                  </nav>
+					<li class="divider"></li>
+					<% if current_user.customer == true %>
+					<li>
+						<%= link_to existing_user_purchase_path do %><i class="icon-shopping-cart"></i> Purchase Event Pages<% end %>
+					</li>
 
-               </div> <!-- END NAVBAR INNER --> 
-
-             </div>  <!-- END NAVBAR --> 
-          </div>
-
-          <div class="span4">
-              <div class="logo" id="logo2">
-                    <a href="<%= root_path %>"><img src="/assets/VoiceGems-logo-bare2.png" alt="" style="width:350px" /></a>  
-               </div>
-          </div>
-
-          <div class="span4">  
-             <div class="navbar">
-         
-               <div class="navbar-inner">
-
-                  <nav>
-          
-                          <ul class="nav span4">
-           
-                              
-                         
-                              <li class="pull-down"><a href="<%= faq_path %>" target="_blank">FAQ</a></li>
-                              <li class="pull-down"><a href="http://blog.voicegems.com/" target="_blank">Blog</a></li>
-
-                              <% if !signed_in? %>     
-                                      <li class="pull-down"><%= link_to "Register",newcustomer_trial_path %></li>   
-                                      <li class="pull-down"><%= link_to "Login", login_path %></li>
-                                <% end %>
-
-                                <% if signed_in? %>
-                                    
-                                      <li class="pull-down"><%= link_to "Dashboard", current_user %></li>
-                                
-
-                                      <li class="dropdown pull-down">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-                                             <ul class="dropdown-menu">
-                                                <li><%= link_to account_user_path(current_user) do %><i class="icon-pencil"></i> Change Password<% end%> </li>
-                                                <li><%= link_to edit_user_path(current_user) do %><i class="icon-pencil"></i> Edit User Name/Email<% end %></li>
-                                              
-                                                <li class="divider"></li>
-                                             <% if current_user.customer == true %>
-                                                <li><%= link_to existing_user_purchase_path do %><i class="icon-shopping-cart"></i> Purchase Event Pages<% end %></li>
-                                             
-                                                <li class="divider"></li>
-                                                <li><%= link_to welcome_path do %><i class="icon-leaf"></i> Getting Started<% end %></li>
-                                              <% end %> 
-                                                <li> <%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %></li>
-                                            </ul>
-                                       </li>
-                                <% end %>
-
-
-                         </ul>
-           
-                  </nav>
-
-               </div> <!-- END NAVBAR INNER --> 
-
-             </div>  <!-- END NAVBAR --> 
-          </div>
-     
-
-     </div>
- </div>
+					<li class="divider"></li>
+					<li>
+						<%= link_to welcome_path do %><i class="icon-leaf"></i> Getting Started<% end %>
+					</li>
+					<% end %>
+					<li>
+						<%= link_to signout_path, method: "delete" do %><i class="icon-signout"></i> Sign out<% end %>
+					</li>
+				</ul>
+			</li>
+			<% end %>
+		</ul>
+	</div><!-- END CONTAINER -->
+</div><!-- END NAVBAR -->

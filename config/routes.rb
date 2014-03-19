@@ -366,6 +366,7 @@ match '/auphonic', to: 'static#auphonic'
 match '/welcome', to: 'users#welcome'
 
 match '/couples', to: 'static#couples'
+match '/djs', to: 'static#djs'
 
 match '/home_page', to: 'static#home_page'
 

@@ -14,8 +14,7 @@ before_filter :customer_has_no_active_subscription, only: [:purchase_sub_existin
 before_filter :owner, only: [:console, :index, :destroy]
 # before_filter :set_cache_buster, only: [:show]
 
-
-
+ 
   def home
     # check if signed_in and then display (you are currently signed in, view your profile)
     # automatically renders page 'users/home'
@@ -30,6 +29,7 @@ before_filter :owner, only: [:console, :index, :destroy]
       @first_plan = Plan.find_by_my_plan_id(plan_set_one) # sets @first_plan the first plan object ACCORDING TO MY LEGEND (with my_plan_id)
       @second_plan = Plan.find_by_my_plan_id(plan_set_two)
       @third_plan = Plan.find_by_my_plan_id(plan_set_three)
+      render :unsigned_home, :layout => nil
      end
 
   end

@@ -9,7 +9,10 @@
 
      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
      
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap_and_overrides" %>
+  <%= stylesheet_link_tag    "main" %>
+  <%= stylesheet_link_tag    "font-awesome" %>
+  <%= stylesheet_link_tag    "social-buttons-3" %>
   <%= javascript_include_tag "application", "jquery.complete-placeholder.min.js" %>
   <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="<%= image_path('darkerbuttont_fav_2.ico')%>" />
@@ -51,14 +54,12 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 		
-			<%= render 'layouts/header' %>
+			<%= render 'layouts/static1_header' %>
 
 
-			<%= yield %>
-      <!-- Scroll to top -->
-<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+			<%= yield %> 
 
-			<%= render 'layouts/footer' %>
+			<%= render 'layouts/static1_footer' %>
 		
 <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
