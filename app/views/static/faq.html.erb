@@ -1,41 +1,3 @@
-<script>
-                $(window).scroll(function () {
-                    if ($(document).scrollTop() == 0) {
-                        $('#header_nav').removeClass('tiny');
-                    } else {
-                        $('#header_nav').addClass('tiny');
-                    }
-                });
-</script>
-        <style>
-.header {
-    width:100%;
-    height:150px;
-    background: #FAF9F6;
-    color: #fff;
-    position:fixed;
-    top:0;
-    left:0;
-    transition: height 500ms;
-    background-image: url(<%= asset_path "Logo_Black.png" %>);
-    background-size: 180px 140px;
-    background-position: center bottom;
-	background-repeat: no-repeat;
-	padding-top:75px;
-
-}
-.header.tiny {
-    height:50px;
-    background-image: url(<%= asset_path "logo_1.png" %>);
-    background-size: 130px 40px;
-    background-position: center center;
-	background-repeat: no-repeat;
-	position:fixed;
-	padding-top:0px;
-}
-</style>
-
-<div class="section-FAQ">
 	<h2 >Frequently Asked Questions</h2>
 
 	<div class="panel-group" id="accordion">
@@ -227,4 +189,3 @@
 		</div><!-- END QUESTIONS-DJ -->
 
 	</div><!-- END PANEL-GROUP -->
-</div><!-- END SECTION-FAQ-->
