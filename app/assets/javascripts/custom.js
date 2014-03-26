@@ -54,11 +54,11 @@ $(window).load(function(){
    });
 
 /* Refind slider */
-
+/*
     $('#rs-slider').refineSlide({
         transition : 'random'
     });
-
+*/
 /* Testimonial slider */
 
 
@@ -159,14 +159,14 @@ $(document).ready(function(){
 /* Isotype */
 
 // cache container
-var $container = $('#portfolio');
+var container = $('#portfolio');
 // initialize isotope
-$container.isotope();
+container.isotope();
 
 // filter items when filter link is clicked
 $('#filters a').click(function(){
   var selector = $(this).attr('data-filter');
-  $container.isotope({ filter: selector });
+  container.isotope({ filter: selector });
   return false;
 });
 

@@ -92,7 +92,9 @@ $(function() {
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
 						                  <td><a  href="<%= edit_event_path(e) %>"><button type="button" class="btn btn-primary btn-small">edit event</button></a></td> 
 						                   <td> 
-				                  			 <div id="<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                  		<div id="<%= e.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                          <div class="modal-dialog">
+                                                          <div class="modal-content">
                                                           <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
@@ -120,9 +122,11 @@ $(function() {
                                                           </div>
 
                                                           <div class="modal-footer">
-                                                            <button class="btn" data-dismiss="modal">Close</button>
+                                                            <button class="btn btn-default" data-dismiss="modal">Close</button>
                                                               
                                                       
+                                                            </div>
+                                                            </div>
                                                             </div>
                                                         </div>
 

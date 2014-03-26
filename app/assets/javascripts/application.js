@@ -16,8 +16,8 @@
 //= require jquery.purr
 //= require modernizr.custom.28468
 //= require jquery.cslider
-//= require jquery.flexslider-min
-//= require jquery.carouFredSel-6.1.0-packed
+//= require jquery.flexslider
+//= require jquery.carouFredSel-6.2.1
 //= require best_in_place
 //= require bootstrap
 //= require flashblock-detector
@@ -25,4 +25,7 @@
 //= require recorder
 //= provide jrec
 //= provide aplayer
+//= require jquery.placeholder
+//= require jquery.isotope
+//= require jquery.prettyPhoto
 //= require_tree .
