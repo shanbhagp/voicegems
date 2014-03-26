@@ -5,7 +5,7 @@
 			<img src="<%= asset_path "divider.png"%>" class="divider">
 		</header>
 		<article>
-			<h2 class="centralized light">a redefinition of wedding toasts a redefinition of wedding toasts a redefinition of wedding toasts</h2>
+			<h2 class="centralized light">the best way to add fun and meaningful moments <br/> to your wedding experience</h2>
 		</article>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-WELCOME -->
@@ -96,18 +96,48 @@
 <div class= "sections section-signUp gold-bg">
 	<div class="container">
 		<header class="centralized">
-			<h2>Ask Your DJ/MC To Purchase and Sign Up</h2>
+			<h2>Invite Your DJ/MC to Use VoiceGems at Your Wedding!</h2>
 			<img src="<%= asset_path "divider.png"%>" class="divider">
 		</header>
 		<article>
 			<center>
-				<a href="<%= djs_path %>" ><button type="button" class="btn btn-primary btn-lg">
-					Click here!
-				</button></a>
+	
+          <div class="row" id="invite">
+       
+                      <div class="span4 offset4 home-block">
+                                    
+                                <div class="hero-block-2">
+                                   <% flash.each do |key, value| %>
+                                      <div class="alert alert-block alert-<%=key%>"> 
+                                      <button type="button" class="close" data-dismiss="alert">×</button>
+                                      <%= value %> 
+                                      </div>
+                                    <% end %>
+                                    <br/>
+                                    <%= form_for(:invite, url: invite_dj_path, :html => {:class => "form-horizontal"}) do |y| %>
+                                                    <%= y.text_field :sender_name, :placeholder => "Your Name" %> <br/> <br/>
+                                                    <%= y.text_field :sender_email, :placeholder => "Your Email" %> <br/> <br/>
+                                                     <%= y.text_field :recipient_name, :placeholder => "DJ's Name" %> <br/> <br/>
+                                                    <%= y.text_field :recipient_email, :placeholder => "DJ's Email" %>
+                                                    <br/><br/>
+                                                    <%= button_tag(:type => 'submit', :class => 'btn btn-primary btn-large', :disable_with => 'sending invite...')  do %>
+                                                     Send Invite!&nbsp;&nbsp;<i class="icon-envelope"></i>
+                                                    <% end %>
+                                                   
+                                                   <br/>
+                                    <% end %>  
+
+                                </div>
+                               <div class="tp-bannershadow tp-shadow1"></div>
+                      </div>
+                  </div>
+
 			</center>
 		</article>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-STEPS -->
+
+
 <% if mobile_device? %>
 <br/>
 

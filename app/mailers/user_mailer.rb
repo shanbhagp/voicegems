@@ -125,4 +125,18 @@ def testemail(email)
   mail :to => @email.recipient_email, :subject => @email.subject, :from => @email.from_email, :body => @email.body
 end 
 
+
+def dj_invitation(invitation)
+  @invitation = Djinvite.find(invitation)
+  
+  if !@invitation.sender_name.blank?
+     @subject = "A request from your client, #{@invitation.sender_name}, to mix music with meaning!"
+  else
+     @subject = "A request from your client, #{@invitation.sender_email}, to mix music with meaning!" 
+  end
+
+  mail :to => @invitation.recipient_email, :subject => @subject 
+
+end 
+
 end

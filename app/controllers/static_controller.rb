@@ -383,4 +383,27 @@ end
 def home_page
 end 
 
+def invite_dj
+
+  @invite = Djinvite.new
+  @invite.sender_email = params[:invite][:sender_email]
+  @invite.sender_name = params[:invite][:sender_name]
+  @invite.recipient_email = params[:invite][:recipient_email]
+  @invite.recipient_name = params[:invite][:recipient_name]
+  @invite.sent_at = Time.now
+
+  #check if email is already in DB - if so, send an email that this person is interested in using VoiceGems 
+  # if not, send an invite
+          if @invite.save  
+              #AdminInviteMailer.admin_invitation(@ai, new_user_url(:token => @practiceobject.token), @practiceobject).deliver 
+              UserMailer.dj_invitation(@invite.id).deliver 
+              redirect_to couples_path(anchor: 'invite'), notice: "An email invitation has been sent to #{@invite.recipient_email} - we hope you enjoy our service at your event!"
+          else
+              redirect_to couples_path(anchor: 'invite'), notice: 'Something went wrong - please make sure to enter valid email addresses'
+            # see if we can use render here (how to do that?) and thereby get the validation errors
+          end
+
+
+end
+
 end

@@ -1,0 +1,2 @@
+module DjinvitesHelper
+end

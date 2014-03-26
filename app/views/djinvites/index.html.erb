@@ -1,0 +1,25 @@
+<h1>Listing Djinvites</h1>
+
+<table  class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Sender Name</th>
+    <th>Sender Email</th>
+     <th>Recipient Name</th>
+    <th>Recipient Email</th>
+    <th>Sent At</th>
+  </tr>
+
+<% @invites.each do |k| %>
+  <tr>
+    <td><%= k.id %></td>
+    <td><%= k.sender_name %></td>
+    <td><%= k.sender_email %></td>
+    <td><%= k.recipient_name %></td>
+    <td><%= k.recipient_email %></td>
+    <td><%= k.sent_at %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

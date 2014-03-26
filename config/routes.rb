@@ -1,5 +1,7 @@
 App4::Application.routes.draw do
 
+  resources :djinvites
+
   resources :emails
 
   resources :vg_userinvites
@@ -369,6 +371,8 @@ match '/couples', to: 'static#couples'
 match '/djs', to: 'static#djs'
 
 match '/home_page', to: 'static#home_page'
+
+match '/invite_dj', to: 'static#invite_dj'
 
 #match '/show_master', to: 'events#show_master'
 
