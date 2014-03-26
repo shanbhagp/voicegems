@@ -1,7 +1,7 @@
 <div class= "sections section-DJWelcome white">
 	<div class="container">
 		<header class="centralized">
-			<img src="<%= asset_path "logo_2.png" %>" width="500px">
+			<img src="<%= asset_path "Logo_White_Micro.png" %>" width="500px">
 			<img src="<%= asset_path "divider.png" %>" class="divider">
 		</header>
 		<article>
@@ -24,7 +24,7 @@
 					Easy to collect and access recordings through our custom web links
 				</li>
 				<li>
-					All recordings polished with cutting-edge noise reduction audio processors
+					All recordings polished with cutting-edge noise reduction audio processors&nbsp;&nbsp;<a href="<%= auphonic_path%>" target="_blank"><em>Learn More</em></a>
 				</li>
 				<li>
 					Highest quality voice MP3's downloadable for easy integration
@@ -42,16 +42,12 @@
 		</header>
 		<article>
 			<div class="row">
-				<div class="col-lg-5 col-lg-offset-1">
+				<div class="col-lg-6">
 					<h5 class="normal centralized">Growth-Enhancing Benefits for DJs</h5>
-
-					<div onclick="thevid=document.getElementById('thevideo'); thevid.style.display='block'; this.style.display='none'">
-						<img style="cursor: pointer;" src="<%= asset_path "DJ-final.png" %>" width="470" height="260" class="img" alt="DJ Allen" title="Click to know about DJ Allen's experience with Voicegems" />
+					<br>
+					<div class="centralized">
+						<iframe src="//player.vimeo.com/video/86656578" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 					</div>
-					<div id="thevideo" style="display: none;">
-						<embed width="470" height="260" type="application/x-shockwave-flash" src="https://www.youtube.com/v/26EpwxkU5js?version=3&amp;hl=en_US&amp;autoplay=1" allowFullScreen="true" allowscriptaccess="always" allowfullscreen="true" />
-					</div>
-
 					<ul >
 						<li>
 							Provide an additional revenue channel
@@ -67,22 +63,21 @@
 
 				<div class="col-lg-6" >
 					<h5 class="normal centralized">A More Meaningful Experience for Clients</h5>
+					<br>
 
-					<div onclick="thevid1=document.getElementById('thevideo1'); thevid1.style.display='block'; this.style.display='none'">
-						<img style="cursor: pointer;" src="<%= asset_path "Kim-final.png" %>" width="470" height="260" alt="Kim image" class="img1" title="Click to know more about Kim's experience with Voicegems" />
+					<div class="centralized">
+						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
 					</div>
-					<div id="thevideo1" style="display: none;">
-						<embed width="470" height="260" type="application/x-shockwave-flash" class="img1" src="https://www.youtube.com/v/26EpwxkU5js?version=3&amp;hl=en_US&amp;autoplay=1" allowFullScreen="true" allowscriptaccess="always" allowfullscreen="true" />
-					</div>
+
 					<ul >
 						<li>
-							Any family member or friend can express their sentiments
+							Any family member or friend can express sentiments
 						</li>
 						<li>
 							Toasts become more thoughtful
 						</li>
 						<li>
-							Music takes on an altogether new dimension when blended with VoiceGems
+							Music takes on an altogether new dimension 
 						</li>
 					</ul>
 				</div>
@@ -116,7 +111,7 @@
 				<li>
 					DJ Blends the VoiceGems into Music for an Unforgettable Event!
 				</li>
-				<span class="grey">(All VoiceGems downloadable as high-quality noise-cancelled MP3's for easy mixing)</span>
+				<span class="grey">(All VoiceGems downloadable as high-quality <a href="<%= auphonic_path%>" target="_blank"><strong>noise-cancelled</strong></a> MP3's for easy mixing)</span>
 			</ol>
 		</article>
 	</div><!-- END CONTAINER -->

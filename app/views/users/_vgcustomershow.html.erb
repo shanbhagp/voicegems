@@ -50,26 +50,19 @@ $(function() {
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(<%= current_user.purchased_events %> pages remaining)</span>
 						                          
 						                          <% else %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-block">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
+						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-block">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>" class="btn btn-primary btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
 						                          <% end %>
 
-						                          
-
-						                         
-
-				                 		
-
-						                 
-
-
-				                        <br/>
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
 
 				                     <% end %>
 
 				              <% if user_is_trialing? %> 
-				              <div class="row"> 
-				             <div class="span2 offset10"><a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-small">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></div></div>
+				              <div class="row centralized"> 
+
+				             <div class="span2 offset9"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
+					Buy Event Pages
+				</button></a></div></div>
 				             <% end %>        
 
 				             </div> <%# end well %>
@@ -97,7 +90,7 @@ $(function() {
 						                <tr>  
 						                  <td><strong><%= link_to e.title, e %></strong> <% if e.purchase_type == 't'%><br/>(Trial Page - locked on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)<% end %> </td>
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
-						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit event</span></a>	 </td> 
+						                  <td><a  href="<%= edit_event_path(e) %>"><button type="button" class="btn btn-primary btn-small">edit event</button></a></td> 
 						                   <td> 
 				                  			 <div id="<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                           <div class="modal-header">
@@ -135,12 +128,12 @@ $(function() {
 
                                                           
                                                            
-                                                              <a data-toggle="modal" href="#<%= e.id %>" class="btn btn-info btn-small">See All Event Admins</a>
+                                                              <a data-toggle="modal" href="#<%= e.id %>" ><button class="btn btn-primary btn-small">See All Event Admins</button></a>
                                                          
                                                          
                                                 </td>
                                           <% if page_is_active(e) %>
-						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" ><button class="btn btn-primary btn-small">go </button> </a>
 						                 	 </td>
 						                  <% else %>
 						                  		<% if current_user.purchased_events > 0 %>
@@ -149,7 +142,13 @@ $(function() {
 													                <%= y.submit "Activate", class: "btn-primary", confirm: 'Are you sure you want to activate using a purchased Event Page?' %><br/>(<%= current_user.purchased_events %> purchased Event Pages left) <% end %>						                
 													        </td>
 										        <% else %>
-										        		<td> <a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-small">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a> </td>
+										        		<td> <a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
+					Buy Event Pages&nbsp;&nbsp;
+				</button></a>	 </td>
+							       
+										       
+										       
+										       
 										        <% end %>
 						                  <% end %>
 						                  

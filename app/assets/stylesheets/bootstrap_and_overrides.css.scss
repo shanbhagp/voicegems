@@ -62,32 +62,15 @@ footer {
 .jumbotron {
   position: relative;
   padding: 40px 0;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
-background-image: -webkit-gradient(
-  linear,
-  left top,
-  right bottom,
-  color-stop(0, #C0AC73),
-  color-stop(1, #FAF0DA)
-);
-background-image: -o-linear-gradient(right bottom, #C0AC73 0%, #FAF0DA 100%);
-background-image: -moz-linear-gradient(right bottom, #C0AC73 0%, #FAF0DA 100%);
-background-image: -webkit-linear-gradient(right bottom, #C0AC73 0%, #FAF0DA 100%);
-background-image: -ms-linear-gradient(right bottom, #C0AC73 0%, #FAF0DA 100%);
-background-image: linear-gradient(to right bottom, #C0AC73 0%, #FAF0DA 100%); 
 }
 
+
 .jumbotron h1 {
-  color: white;
-  font-weight: bold;
-  letter-spacing: -1px;
-  line-height: 1;
+  color: black;
 }
 
 .jumbotron h3 {
-  color: white;
+  color: black;
 }
 
 .event td {
@@ -282,6 +265,8 @@ html {
 }
 
 
+
+
 .btn-group .btn-modal {
   float:right;
 }
@@ -291,7 +276,7 @@ html {
 }
 
 .left {
-  text-align:left
+  text-align:left;
 }
 
 .right {
@@ -339,15 +324,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
  background-image: url(/assets/low_contrast_linen.png);
 }
 
-
-body
-{
-    background-image: -webkit-linear-gradient(top, #D1C7AA, white);
-    background-image:     -moz-linear-gradient(top, #D1C7AA, white);
-    background-image:          -o-linear-gradient(top, #D1C7AA, white);
-    background-image:               linear-gradient(top, #D1C7AA, white);
-/*background-image: url(/assets/groovepaper.png);*/
-} 
 
 .table-header {
   color: #fff;
@@ -642,7 +618,7 @@ font-weight: normal;
 }
 .home-block h1 {
     padding-top: 6px;
-    margin-bottom: 8px;
+    margin-bottom: 40px;
     margin-top: 0;
 }
 .hero-block-1 {
@@ -963,4 +939,20 @@ background-repeat: no-repeat;
 
 .gold_image_2 {
   border: 2px solid #C0AB73;
+}
+.InternalTitle h1{
+  text-align: center;
+  font-weight: bold;
+}
+#warn{
+  font-weight: bold;
+}
+btn-info{
+  color: #ffffff;
+  background-color: #99885B;
+  border-color: #A18F60;
+}
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active {
+background-color: #A18F60;
+border-color: #A18F60;
 }

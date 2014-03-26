@@ -1,8 +1,7 @@
 
-<div class="jumbotron">
-      <h1> Edit Event Details for <%= @event.title %> </em> </h1>
+      <h2> Edit Event Details for <%= @event.title %> </em> </h2>
     
-  </div>
+
              <% flash.each do |key, value| %>
             	<div class="alert alert-block alert-<%=key%>"> 
             	<button type="button" class="close" data-dismiss="alert">×</button>
@@ -86,7 +85,7 @@ $(function() {
 				                 			<a data-toggle="modal" href="#info-code2" ><i class="icon-info-sign "></i></a>
 
 
-
+</br></br></br>
 				                        	 <div class="form-actions">
      
     										 <%= f.submit "Save Changes", class: "btn btn-primary", confirm: 'Are you sure?', disable_with: 'saving changes...'  %> 
@@ -101,7 +100,7 @@ $(function() {
 				          </div>
 
 </div>
-				    
+				</br></br></br>    
 
 
 

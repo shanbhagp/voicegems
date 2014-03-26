@@ -1,7 +1,7 @@
 /* Blue Color */
 
 a, a:visited{
-	color: #5eb2d9;
+	color: #b09c69;
 }
 
 a:hover{
@@ -9,16 +9,15 @@ a:hover{
 }
 
 .color{
-	color: #5eb2d9;
+	color: #b09c69;
 }
 
 .button a, .button a:visited{
-background:#5eb2d9;
-border-bottom:2px solid #4f99bc;
+background:white;
 }
 
 .button a:hover{
-background:#4f99bc;
+background: white;
 }
 
 /* Navigation */

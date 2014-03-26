@@ -1,7 +1,7 @@
 
-<div class="jumbotron">
-      <h1> Change Your Password</h1>
-  </div>
+
+      <h2> Change Your Password</h2>
+
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 
               <button type="button" class="close" data-dismiss="alert">×</button>
@@ -18,17 +18,17 @@
       <div class="row">
 
                  <div class="well span7 offset2">
-                       <h4><i class="icon-lock icon-large"></i>&nbsp;&nbsp;<span class="blue">Change Your Password</span></h4>
+
                       <%= simple_form_for(@user, :url => changepassword_path, :html => {:class => "form-horizontal"}) do |f| %>
                       <br/>
                       <%= f.error_notification %>
                           <%= f.input :password, hint: "(minimum 6 characters)", label: "Create a new Password" %>
                           <%= f.input :password_confirmation, label: "Confirm Password" %>
-
+                          </br></br>
                         
                           <div class="form-actions">
                            
-                          <%= f.button :submit, "Update Password", class: "btn btn-large btn-info", disable_with: "updating..." %>
+                          <%= f.button :submit, "Update Password", class: "btn btn-large btn-primary", disable_with: "updating..." %>
                        
                           </div>
 
@@ -37,3 +37,5 @@
                  </div>
       </div>
 </div>
+
+</br></br></br>

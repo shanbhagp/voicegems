@@ -1,22 +1,21 @@
 <% provide(:path, '') %>
 
 <script>
-
  $(document).ready(function() {
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
 });
 </script>
+
 <%# checks to see if the current user is an admin for this event; prevents users who are admins for one event to access another event page for which they are just registered but not admins.  cant use current-user method here because that is for controllers, has redirects and stuff in it.. %>
 <% if !@event.adminkeys.find_by_user_id(current_user.id) %>
-	<%= render 'events/vgnonadminshow' %> 
+<%= render 'events/vgnonadminshow' %> 
 <% else %>   
 
-<div class="jumbotron">
-	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
-	
-	<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
-</div>
+
+<h2> Event Page: <em> <%= @event.title %> </em> </h2>
+<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
+
 
 <% flash.each do |key, value| %>
 	<div class="alert alert-block alert-<%=key%>"> 
@@ -28,17 +27,15 @@
 <br/>
 
 <div class="container">
-
-
+	
 <ul id="myTab" class="nav nav-tabs ">
   <li class="active"><a href="#reg" data-toggle="tab"><strong>Recorded VoiceGems </strong></a></li>
   <li><a href="#admins" data-toggle="tab"><strong>Admins for this Event</strong></a></li>
   <li><a href="#request" data-toggle="tab"><strong>Request VoiceGems</strong></a></li>
   <% unless @hiddenvgs.count == 0 %><li><a href="#deleted" data-toggle="tab"><strong>Deleted VoiceGems</strong></a> </li><% end %>
-  
 </ul>
    		  
-<%# this first section uses @registeredpos and lists the registered practice objects %>	
+<% # this first section uses @registeredpos and lists the registered practice objects %>	
 <div id="myTabContent" class="tab-content ">
 
     <div class="tab-pane active" id="reg">
@@ -448,7 +445,7 @@
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+						 <%= f.submit "Invite Admin", class: "btn btn-primary", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
 						  	
 
 				     <% end %>
@@ -492,7 +489,7 @@
 
 						     		<div  style="text-align:right" >
 								          <br/><br/><br/>
-								            <a data-toggle="modal" href="#admins_invited" class="btn btn-info btn-small">See Admins Invited</a>
+								            <a data-toggle="modal" href="#admins_invited" class="btn btn-primary btn-small">See Admins Invited</a>
 
 								    </div>
 
@@ -536,4 +533,6 @@
 </div>
 
 <% end %> <%# END if proper admin else end %>
+
+</br></br></br>
 

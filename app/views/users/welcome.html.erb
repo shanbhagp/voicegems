@@ -62,18 +62,20 @@
                                    
                                 </ul>
 
-                                <div class="row">
-                                  <div class="span3 offset2">
-                                       <%= image_tag("logo2_Ask_Us.jpg", alt: "Rails", class: 'gold_image') %>
-                                  </div>
-                                </div>
+
 
                                 <br/> <hr/>
                                 <div class="row"> 
                                   
-                                  <div class="span3"><a href="<%= existing_user_purchase_path %>" class="btn btn-info btn-small">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></div>
+                                  <div class="span3"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
+					Buy Event Pages
+				</button></a></div>
+                                  <div class="span3 "><a href="<%= users_path %>/<%= current_user.id %>" ><button type="button" class="btn btn-primary btn-small">
+					Go to DashBoard
+				</button></a></div>
 
-                                    <div class="span3 fl-right"><a href="<%= users_path %>/<%= current_user.id %>" class="btn btn-info btn-small">Go to DashBoard&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></div>
+
+
 
                                 </div>
                                 <br/>
@@ -86,3 +88,4 @@
 
 
 </div>
+</br></br></br>

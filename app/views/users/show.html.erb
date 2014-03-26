@@ -1,11 +1,11 @@
 <%# show page is restricted through correct_user %>
-<div class="jumbotron">
+
  <% if @user.customer %>
-      <h1> Dashboard for <em><%= @user.email %></em> </h1>
+      <h2> Dashboard for <em><%= @user.email %></em> </h2>
 <% else %>
-      <h1> Dashboard for <em><%= @user.email %></em> </h1>
+      <h2> Dashboard for <em><%= @user.email %></em> </h2>
 <% end %>
-  </div>
+
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 
               <button type="button" class="close" data-dismiss="alert">×</button>
@@ -30,7 +30,7 @@
        <% end %> 
     <% end %>
 
-
+</br></br></br></br>
 
 </div>
 

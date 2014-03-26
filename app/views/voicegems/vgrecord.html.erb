@@ -1,11 +1,11 @@
 
 
 
-<div class="jumbotron">
-      <h1>VoiceGem Recording <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h1>
+
+      <h2>VoiceGem Recording <% if !@event.nil? %><% if !@event.title.nil? %>for<em> <%= @event.title %> </em> <% end %> <% end %></h2>
       
       <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
-  </div>
+
                                               
 
  <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

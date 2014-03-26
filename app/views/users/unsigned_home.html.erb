@@ -50,12 +50,14 @@
 							
 							<article>
 									<div class="row">
-				                   		<img src="<%= asset_path "q_up.png"%>" class="col-lg-offset-3">
+				                   		<img src="<%= asset_path "divider_q.png"%>" class="col-lg-offset-1">
+				                   		<br><br>
 					                   	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">	
 					                	<!-- Carousel indicators -->
 			                                <ol class="carousel-indicators">
-			                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active" ></li>
 			                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
 			                                </ol>							                   		
 					                    	<div class="carousel-inner">		                   	
 						                   			<div class="item active">
@@ -66,19 +68,23 @@
 								                    <div class="item">
 									                    <p class="centralized">Our wedding experience was just completely different, </br>and it's definitely something I would recommend for your wedding.</p>
 									                    <p class="centralized normal">Kim Schafer, Former Bride, Cincinnati, OH</p>		
-								                    </div>				                    
+								                    </div>	
+								                    <div class="item">
+									                    <p class="centralized">Couples increasingly look for just this sort of thing. By bringing the voices of family and friends into the mix, VoiceGems adds a fun and meaningful social dimension which promises to  transform the way couples and their guests experience weddings.</p>
+									                    <p class="centralized normal">Christine Dyer, Founder, Bridaltweet.com</p>		
+								                    </div>						                    
 					                    	</div><!-- END CAROUSEL-INNTER -->				                    
 					                    </div><!-- END CAROUSEL-EXAMPLE-GENETIC -->			                    
-				                    <img src="<%= asset_path "q_down.png"%>" class="col-lg-offset-9">
+				                   
 				            		</div><!-- END ROW -->	
-				                	</br></br>
+				                	</br></br></br>
 				                	
 				            		<div class="row">
 									    <div class="col-lg-1 col-lg-offset-3">
-										<a href="<%= djs_path %>"><button class="button button-1 button-1a">&nbsp;&nbsp;&nbsp;DJ&nbsp;&nbsp;&nbsp;</button></a>
+										<a href="<%= djs_path %>"><button class="button button-1 button-1a">&nbsp;&nbsp;&nbsp;DJs&nbsp;&nbsp;&nbsp;</button></a>
 										</div>
 										<div class="col-lg-1 col-lg-offset-1">
-										<a href="<%= couples_path %>"><button class="button button-1 button-1a">couple</button></a>
+										<a href="<%= couples_path %>"><button class="button button-1 button-1a">Couples</button></a>
 										</div>
 										<div class="col-lg-3 col-lg-offset-1">
 								    	<a href="<%= login_path %>"><button class="button button-2 button-2a">Sign In</button></a>

@@ -24,6 +24,10 @@ article h5{
 	font-size: 1.4em;
 	line-height: 1.6;
 }
+article h6{
+	font-size: 1.3em;
+	line-height: 1.6;
+}
 .black-bg {
 	background-color: #292929;
 }
@@ -96,7 +100,7 @@ a{
   background-size: cover;
 }
 .section-DJWelcome header{
-	padding-top: 200px;
+	padding-top: 120px;
 }
 /*section - what */
 .section-what {
@@ -126,13 +130,14 @@ a{
 	line-height: 1.8;
 	margin-top: 30px;
 	margin-bottom: 40px;
+	margin-left: 20px;
 }
 .section-DJwhy article{
 	margin-top: 20px;
 	margin-bottom: 60px;
 }
 .carousel-indicators {
-  left: 50%;
+  left: 48%;
   right: 0;
   top: auto;
   bottom: -40px;
@@ -142,7 +147,7 @@ a{
   display: inline-block;
   width: 10px;
   height: 10px;
-  margin: 1px;
+  margin-left: 10px;
   text-indent: -999px;
   border: 1px solid #7E6A38;
   border-radius: 10px;
@@ -151,11 +156,12 @@ a{
   background-color: rgba(0, 0, 0, 0);
 }
 .carousel-indicators .active {
-  margin: 0;
-  width: 12px;
+  margin-left: 10px;
+  width: 11px;
   height: 12px;
   background-color: #7E6A38;
 }
+
 /*section - coupleWhy */
 .section-coupleWhy{
   width: 100%;
@@ -165,10 +171,14 @@ a{
 }
 .section-coupleWhy ul{
 	font-size: 1.5em;
-	line-height: 1.8;
+	line-height: 2;
 	margin-top: 30px;
 	margin-bottom: 40px;
 }
+.section-coupleWhy ul li{
+	margin-bottom: 10px;
+}
+
 .section-coupleWhy article{
 	margin-top: 20px;
 	margin-bottom: 60px;
@@ -177,6 +187,8 @@ a{
 /*section - steps */
 .section-steps {
   width: 100%;
+  background:url(<%= asset_path "microphone1.jpg" %>) no-repeat;
+   background-position:fixed;
 }
 .section-steps header{
 	padding-top: 50px;
@@ -213,7 +225,7 @@ a{
 	margin-bottom: 60px;
 }
 .section-signUp ul li{
-	background-image:url(<%= asset_path "Gems.png" %>);
+	background-image:url(<%= asset_path "check.png" %>);
 	background-repeat: no-repeat;
 	background-position: 0 20px; 
 	padding-left: 35px;
@@ -251,8 +263,8 @@ a{
 }
 /*section-FAQ*/
 .section-FAQ{
-	padding-top:140px;
-	  background: -webkit-linear-gradient(#D2C8AC, white); 
+padding-top:200px;
+background: -webkit-linear-gradient(#D2C8AC, white); 
  background: -o-linear-gradient(#D2C8AC, white); 
  background: -moz-linear-gradient(#D2C8AC, white); 
  background: linear-gradient(#D2C8AC, white); 
@@ -312,6 +324,9 @@ a{
 	filter: alpha(opacity=10);  /* For IE8 and ealier */
 	overflow: hidden;
 }	
+.section-contact .socialButtons{
+	margin-left: 70px;
+}
 /*section - CoupleWelcome */
 .section-CoupleWelcome {
   width: 100%;
@@ -324,7 +339,7 @@ a{
   background-size: cover;
 }
 .section-CoupleWelcome header{
-	padding-top: 200px;
+	padding-top: 120px;
 }
 /*NavBar*/
 .navbar{
