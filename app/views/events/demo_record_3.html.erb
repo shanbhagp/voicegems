@@ -123,7 +123,7 @@
         //success  will be true if the upload succeeded and false otherwise
         console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
         document.getElementById("dwl").disabled = false
-         document.getElementById("continuebtn").setAttribute("class","span7")
+         document.getElementById("continuebtn").setAttribute("class","col-md-7")
         document.getElementById("firstDisplay").innerHTML  = "Click 'NEXT' below.";
   
       }
@@ -208,7 +208,7 @@
 
                                                 <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
                                                    <div class="row">
-                                                         <div class="well span8 offset1">
+                                                         <div class="well col-md-8 col-md-offset-1">
                                                           <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -230,17 +230,17 @@
 
                                                    </div>
                                                    <div class="row">
-                                                         <div class="well span8 offset1">         
+                                                         <div class="well col-md-8 col-md-offset-1">         
                                                               <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
 
-                                                              <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
+                                                              <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
                                                                             
                                                                             <br/><br/>
 
                                                                         <span class="textarea2 textareawider">
                                                                          <%= f.label :notes, "Enter any notes to aid in pronunciation:" %> <br/>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like ravine' or 'last name pronounced GLI-cough')" %>
                                                                         </span>
                                                                            
 
@@ -251,11 +251,11 @@
                                                           </div>
                                                       </div>
                                                       <div class="row">
-                                                          <div class="well span8 offset1">
+                                                          <div class="well col-md-8 col-md-offset-1">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/> 
                                                                 <div class="row">
-                                                                      <div class="span7">
+                                                                      <div class="col-md-7">
                                                                                                           <div id="flashContent">
                                                                                                               <p>
                                                                                                                   To view this page ensure that Adobe Flash Player version 
@@ -279,7 +279,7 @@
                                                                                                   <input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
                                                                                                   </div>
 
-                                                                                                  <div class="span6">
+                                                                                                  <div class="col-md-6">
                                                                                                   <h4 id="firstDisplay">&nbsp;</h4>
                                                                                                   </div>
                                                                        </div>
@@ -287,7 +287,7 @@
                                                                 
                                                              
                     <div class="row">
-                      <div class="span7">
+                      <div class="col-md-7">
                          <hr/>
                                 <div class="accordion" id="accordionrec">
 
@@ -375,13 +375,13 @@
   <div class="container">
     <div class="row">
       
-      <div class="span4 offset3">
+      <div class="col-md-4 col-md-offset-3">
         
          <a href="<%= demo_event_page_path %>" class="btn btn-primary btn-large">Back to Demo Event Page</a> 
        
       </div>
 
-      <div class="span4">
+      <div class="col-md-4">
         
           <a href="<%= commencements_path %>" target="_blank" class="btn btn-primary btn-large">Why Use NameCoach?</a>
           

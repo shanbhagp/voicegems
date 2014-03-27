@@ -86,20 +86,20 @@ function setLeftMargin() {
             <% end %>
 
 <div class="row">
-  <div class="well span5 bg-white">
+  <div class="well col-md-5 bg-white">
        
      
           <span class="red">&nbsp;&nbsp;MIC LEVEL</span> 
  
 
-          <div class="span1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
+          <div class="col-md-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
           </div>
 
        
             <br/>
 
-       <div class="span3">
+       <div class="col-md-3">
             <span class="black">Elapsed Time: <span id="time">0</span> seconds </span> 
       </div>
    
@@ -109,7 +109,7 @@ function setLeftMargin() {
 
 
 <div class="row">
-          <div class = "span4 well">
+          <div class = "col-md-4 well">
           &nbsp;&nbsp;&nbsp;&nbsp;
            <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record", id: "record", :disabled => false) do %>
                               RECORD <i class="icon-caret-right"></i> 
@@ -128,7 +128,7 @@ function setLeftMargin() {
   </div>       
 
 <div class="row">
-    <div class="span5 well bg-white">
+    <div class="col-md-5 well bg-white">
         <span class="red">STATUS:</span> <span id="status" class="black"><strong>Press RECORD to begin.</strong> If asked for permission to access your microphone, <strong>click 'Allow.'</strong> </span>
     </div> 
           

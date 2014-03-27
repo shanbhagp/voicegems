@@ -45,7 +45,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
   <body>
 <div class="row">
 
-       <div class="span4">
+       <div class="col-md-4">
           <div class="logo" id="logo2">
                 <h1><a href="<%= root_path %>">Name<span class="purple fat">Coach</span></a></h1>
                 <p class="meta">&nbsp;<em>hear the name, say it right</em> </p>
@@ -70,7 +70,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
  <h6>If the progress bar freezes, please refresh the browser</h6>
 </div>
 
-<div id="english" class="span2 offset1 invisible">
+<div id="english" class="col-md-2 col-md-offset-1 invisible">
     <audio id="audio"></audio>
 
     <a href="#" class="btn btn-info" id="audio1">Play Name Recording&nbsp;<i class="icon-play-circle icon-white"></i></a>
@@ -88,7 +88,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
             <% end %>
 
 
-<div id="record_again" class="span2 offset1 invisible">
+<div id="record_again" class="col-md-2 col-md-offset-1 invisible">
   <%= link_to precord_path(:po => @practiceobject.id), class: 'btn btn-danger' do %> Record Again&nbsp;<i class="icon-refresh icon-white"></i>
                                   <% end %>
 </div>

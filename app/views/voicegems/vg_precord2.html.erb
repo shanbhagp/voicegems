@@ -40,7 +40,7 @@
 <div class="row">
 
        
-      <div class="span4">
+      <div class="col-md-4">
             <div class="logo" id="logo2">
                 <img src="/assets/VoiceGems-logo-bare2.png" alt="" style="width:350px" />   
            </div>
@@ -64,7 +64,7 @@
  <h6>If the progress bar freezes, please refresh the browser</h6>
 </div>
 
-<div id="english" class="span2 offset1 invisible">
+<div id="english" class="col-md-2 col-md-offset-1 invisible">
     <audio id="audio"></audio>
 
     <a href="#" class="btn btn-info" id="audio1">Play Your VoiceGem&nbsp;<i class="icon-play-circle icon-white"></i></a>
@@ -82,7 +82,7 @@
             <% end %>
 
 
-<div id="record_again" class="span2 offset1 invisible">
+<div id="record_again" class="col-md-2 col-md-offset-1 invisible">
   <%= link_to vg_precord_path(:vg => @voicegem.id), class: 'btn btn-danger' do %> Record Again&nbsp;<i class="icon-refresh icon-white"></i>
                                   <% end %>
 </div>

@@ -6,7 +6,7 @@
 
   <div class="row">
 
-                  <div class="span8 offset2 home-block">
+                  <div class="col-md-8 col-md-offset-2 home-block">
                                 <% flash.each do |key, value| %>
                                   <div class="alert alert-block alert-<%=key%>"> 
                                   <button type="button" class="close" data-dismiss="alert">×</button>
@@ -67,10 +67,10 @@
                                 <br/> <hr/>
                                 <div class="row"> 
                                   
-                                  <div class="span3"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
+                                  <div class="col-md-3"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
 					Buy Event Pages
 				</button></a></div>
-                                  <div class="span3 "><a href="<%= users_path %>/<%= current_user.id %>" ><button type="button" class="btn btn-primary btn-small">
+                                  <div class="col-md-3 "><a href="<%= users_path %>/<%= current_user.id %>" ><button type="button" class="btn btn-primary btn-small">
 					Go to DashBoard
 				</button></a></div>
 

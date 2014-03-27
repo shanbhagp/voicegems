@@ -46,66 +46,66 @@
         </table>
 
 	    <div class="row">
-			<div class="well span12 modal-header bg-dark">
+			<div class="well col-md-12 modal-header bg-dark">
 					
 						
-				<div class="span2">
+				<div class="col-md-2">
 					
 					<a href="#" rel="tooltip" data-placement="right" title="User's name and email address."><h4>User Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="span2">
+				<div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes user may have entered to accompany their VoiceGem."><h4>User's Notes</h4></a>
 				</div>
 			
 
-				<div class="span3">
+				<div class="col-md-3">
 					<a href="#" rel="tooltip" data-placement="right" title="User's recorded VoiceGem. Click the play button to hear. If an 'x' appears instead of the play button, you may need to ask the user to re-record."><h4>Recorded VoiceGem</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="span2">
+					<div class="col-md-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Any notes you may have for this VoiceGem. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 														
 				</div>	
 				
 			
-				 <div class="span1 offset1" >
+				 <div class="col-md-1 col-md-offset-1" >
 					<h4>Actions</h4>
 				</div>
 
-			</div>	<%# end div well span12 %>	
+			</div>	<%# end div well col-md-12 %>	
 
 		</div> <%# end div row %>	
 
 
 		<% @registeredandrecordedvgs.each do |f| %>					    	
 			 <div class="row">
-				 <div class="well span12">
-					 <div class="span2">
+				 <div class="well col-md-12">
+					 <div class="col-md-2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						(<%= f.user.email %>) <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
 
-					 <div class="span2">
+					 <div class="col-md-2">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="span3">
+					 <div class="col-md-3">
 					 	<span class="vg">
 							<audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['VG_BUCKET_NAME'] %>/<%= f.recording %>.mp3" /> 
 						</span>	 			
 					 </div>
 			
 
-					 <div class="span2">								
+					 <div class="col-md-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						     <div class="btn-group pull-right">
 
                         
@@ -185,7 +185,7 @@
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
                                          <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+                                                <i class="fa fa-trash-o"></i>&nbsp;Delete
                                          <% end %>
                                          <br/>
                                          <br/>
@@ -203,16 +203,16 @@
                              <%= link_to AWS::S3.new.buckets[ ENV["VG_BUCKET_NAME"]].objects["#{f.recording}.mp3"].url_for(:get, {
       expires: 10.minutes,
       response_content_disposition: "attachment; filename=#{f.user.first_name}_#{f.user.last_name}_#{f.recording}"
-    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="icon-download icon-white icon-large"></i><% end %>
+    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="fa fa-download"></i><% end %>
 
 
 
 
-                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
                               		
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -229,7 +229,7 @@
 					                    });  
 					                 </script>
 
-					 </div> <%# end div span2 %>
+					 </div> <%# end div col-md-2 %>
 
 				 </div> <%# end div class="well" %>	
 
@@ -239,7 +239,7 @@
 
 		 <% if @registeredandrecordedvgs.count == 0  %>
 		 	   <div class="row">
-				<div class=" well span6 offset3 cent">
+				<div class=" well col-md-6 col-md-offset-3 cent">
 					<h3> No VoiceGems recorded yet </h3>
 
 				</div>
@@ -262,27 +262,27 @@
              	<caption><em>(VoiceGems deleted by an admin)</em></caption>
              </table>
 			 <div class="row">
-				 <div class="well span12 modal-header">
-					 <div class="span2">
+				 <div class="well col-md-12 modal-header">
+					 <div class="col-md-2">
 						 <a href="#" rel="tooltip" data-placement="right" title="User's registered name and email address."><h4>User Name/Email</h4></a>
 					 </div>
 										
-					 <div class="span2">
+					 <div class="col-md-2">
 					     <a href="#" rel="tooltip" data-placement="right" title="Any notes user may have entered to accompany their VoiceGem."><h4>User's Notes</h4></a>
 					 </div>
 											
 
-					 <div class="span4">
+					 <div class="col-md-4">
 						 <a href="#" rel="tooltip" data-placement="right" title="User's recorded VoiceGem."><h4>Recorded VoiceGem</h4></a>
 						 <em>(press play button to hear)</em>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <a href="#" rel="tooltip" data-placement="right" title="Any notes you may have for this VoiceGem. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 													
 					 </div>	
 
-					 <div class="span1 right">
+					 <div class="col-md-1 right">
 						 <h4>Actions</h4>
 					 </div>
 
@@ -293,29 +293,29 @@
 
 			 <% @hiddenandregisteredvgs.each do |f| %>					    	
 				 <div class="row">
-					 <div class="well span12">
-						 <div class="span2">
+					 <div class="well col-md-12">
+						 <div class="col-md-2">
 							 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 							 (<%= f.user.email %>) <br/>
 							 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 						 </div>
 											
 
-						 <div class="span2">
+						 <div class="col-md-2">
 						 		<% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 						 </div>
 																						
-						 <div class="span4">
+						 <div class="col-md-4">
 						 	<span class="vg">
 							<audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['VG_BUCKET_NAME'] %>/<%= f.recording %>.mp3" /> 
 							 </span>
 						 </div>
 													
-						 <div class="span2">
+						 <div class="col-md-2">
 							 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 						 </div>
 
-						 <div class="span1">
+						 <div class="col-md-1">
 																
 								 <div id="hidden_reg_restore_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -345,9 +345,9 @@
 
 			                     </div>  <%# END MODAL id="hidden_reg_restore_entry %>     	
 				 				
-				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this user's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
+				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this user's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="fa fa-plus-square"></i></button>
 
-						 </div>	<%# end class=span1 %>
+						 </div>	<%# end class=col-md-1 %>
 
 					 </div>	<%# END class = well %>
 				 </div>  <%# END class = row %>
@@ -428,30 +428,30 @@
     	 </table>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="span9">
+    	 	<div class="col-md-9">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this event: </h4>
+    	 	 		 <h4> <i class="fa fa-envelope"></i>&nbsp;Invite an admin for this event: </h4>
 					 <br />	
 					 <%= form_for(:vgai, url: vg_admininvite_path, :html => {:class => 'form-inline'}) do |f| %>
 				
 					     <%= f.hidden_field :event_id, :value => @event.id %>
 														 									    
-					     <%= f.text_field :first_name, :placeholder => "First Name", :class => "span2" %>
+					     <%= f.text_field :first_name, :placeholder => "First Name", :class => "col-md-2" %>
 																		
 					  
-					     <%= f.text_field :last_name, :placeholder => "Last Name", :class => "span2" %>
+					     <%= f.text_field :last_name, :placeholder => "Last Name", :class => "col-md-2" %>
 					 
 															 									    
-					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
+					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-primary", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+					     <%= f.submit "Invite Admin", class: "btn btn-primary col-md-2", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
 						  	
 
 				     <% end %>
 			 </div> <%# end well %>
 			</div>
-			 <div class="span2">
+			 <div class="col-md-2">
 			 	     <div id="admins_invited" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				         <div class="modal-header">
 				              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -508,12 +508,12 @@
  	 <div class="tab-pane" id="request">
  	  <br/>
          <div class="row">
-         	<div class="well span6 offset3">
+         	<div class="well col-md-6 col-md-offset-3">
          		 <p> People can record their VoiceGems for this event using either of these links:
 		            	<br/><br/>
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+		            	<i class="fa fa-caret-right "></i>&nbsp;&nbsp;<%= @url %> <br/>
 		            
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
+		            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
 		              </p> 
 
 		       		<p> Just copy and paste either link into the web page for your event (if you have one), or send out an email containing the link. </p> 

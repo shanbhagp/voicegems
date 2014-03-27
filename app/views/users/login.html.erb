@@ -8,24 +8,22 @@
   <div class="row">
 
                   <div class="col-md-7 col-md-offset-2 home-block">
-                                <% flash.each do |key, value| %>
-                                  <div class="alert alert-<%key%> alert-dismissable"> 
-                                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                  <%= value %> 
-                                  </div>
-                                <% end %>
                             <div class="grey-box hero-block-2">
                                 <center><h4 >Log In</h4></center><br/>
                                 <%= simple_form_for(:session, :url => sessions_path, :wrapper => :bootstrap_horizontal, :html => {:class => "form-horizontal"}) do |f| %>
-                                    <br/>
-                                   
+                                       <% flash.each do |key, value| %>
+                                         <div class="alert alert-<%=get_alert_class(key)%> alert-dismissable"> 
+                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                         <%= value %> 
+                                         </div>
+                                       <% end %>
                                         <%= f.input :email, label: "Email" %>
                                         <%= f.input :password, label: "Password" %>
 
                                       
                                         <div class="form-actions">
                                         <br>
-                                        <%= f.button :submit, "Log In", class: "btn btn-primary span2 cent", disable_with: "logging in..." %>
+                                        <%= f.button :submit, "Log In", class: "btn btn-primary col-md-2 cent", disable_with: "logging in..." %>
                                         <br>
                                         <hr/>
                                           

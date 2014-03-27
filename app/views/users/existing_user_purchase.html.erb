@@ -19,7 +19,7 @@
 
   <div class="row">
 
-      <div class="span4 offset4">
+      <div class="col-md-4 col-md-offset-4">
 
     
             <% if current_user.purchased_events > 0 %>
@@ -38,11 +38,11 @@
 
    <div class="row">
 
-        <div class="well span10 offset1">
+        <div class="well col-md-10 col-md-offset-1">
                  
                                
                           <div class="row"> 
-                               <div class="span12 ">
+                               <div class="col-md-12 ">
                                     <center><h3>Enter the number of Event Pages you'd like to purchase ($99 each): </h3></center>
                                     <br/>
                                    <div class="centralized">
@@ -50,7 +50,7 @@
                                       
                                         <%= y.number_field :number, :min => '1', :value => "#{@number}" %>
                                         &nbsp;&nbsp;
-                                       <%= y.submit "Next", class: "btn btn-primary btn-large span2"  %> 
+                                       <%= y.submit "Next", class: "btn btn-primary btn-large col-md-2"  %> 
                                      <% end %>  
                                      </div>
                                 </div>
@@ -58,7 +58,7 @@
                                             
                       
                           <div class="row">
-                                <div class="span12">
+                                <div class="col-md-12">
                                  
                                   <center><h5><em>Purchasing more than 15 Event Pages? Get a discount price of $89 per event.</em></h5></center>
                                   <center><h5><em>Purchasing more than 40 Event Pages? Get a discount price of $79 per event.</em></h5></center>

@@ -47,11 +47,11 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+        prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
         prepend.use :input
+        prepend.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+        prepend.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
       end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
   end
  
@@ -59,12 +59,12 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.wrapper tag: 'div', class: 'controls' do |input|
-      input.wrapper tag: 'div', class: 'input-group' do |prepend|
-        prepend.use :input
-    prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+      input.wrapper tag: 'div', class: 'input-group' do |append|
+        append.use :input
+        append.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+        append.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+        append.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
       end
-      input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
-      input.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
   end
  
@@ -99,8 +99,8 @@ SimpleForm.setup do |config|
     b.wrapper tag: 'div', class: 'col-sm-7' do |input_block|
       input_block.use :input
       input_block.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+      input_block.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
-    b.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
   end  
 
   config.button_class = 'btn btn-default' 
@@ -110,4 +110,5 @@ SimpleForm.setup do |config|
   # to learn about the different styles for forms and inputs,
   # buttons and other elements.
   config.default_wrapper = :bootstrap
+  config.error_notification_class = 'alert alert-danger'
 end
