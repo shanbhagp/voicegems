@@ -12,24 +12,27 @@
 
 <div class= "sections section-what">
 	<div class="container">
+
+	<div class="row">
 		<header class="centralized">
-			<h1>Wedding day...</h1>
+			<h1>Your Wedding Day...</h1>
 			<img src="<%= asset_path "divider.png"%>" class="divider">
 		</header>
-		<article>
-			<h5 class="centralized light">It’s one of the most important moments of your life and you want everything to be perfect. </br>
-			From dress selection, a great cake, and picking the right venue to having an exceptional DJ deliver a fantastic set</br>
-			you want things to be [right]. </br>But, what matters most is the love and wishes of your family and friends.</h5>
+	</div>
+	<br/>
+	<div class="row">
+		<article class="col-lg-5 col-lg-offset-1">
+			<h5>From choosing a great cake and picking the right venue to having an exceptional DJ deliver a fantastic set, you expect everything to be perfect. <br/><br/>But, what matters most is the love and well-wishes of your family and friends.</h5>
 		</article>
 
-		<header class="centralized">
-			<h1>Wedding Toasts...</h1>
-			<img src="<%= asset_path "divider.png"%>" class="divider">
-		</header>
-		<article class="second">
-			<h5 class="centralized light">are a time-honored tradition that makes this special day memorable and treasured, </br>
-			but it’s an opportunity that is only given to a select few.</h5>
+		<article class="col-lg-4 col-lg-offset-1">
+			<img src="<%= asset_path "wed2.jpeg"%>" class="img-responsive img-thumbnail" alt="Responsive image">
 		</article>
+	</div>
+
+<br/><br/>
+	
+
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-WHAT -->
 
@@ -39,28 +42,38 @@
 			<h1>Why VoiceGems</h1>
 			<img src="<%= asset_path "divider.png"%>" class="divider">
 		</header>
-		<article>
-			<h6 class="centralized light">It is a unique, affordable, easy-to-use service, which supplements the traditional toasts in more than one way.</h6>
-			<ul class="col-lg-11 col-lg-offset-1">
+	
+
+		<div class="row">
+			<article class="col-lg-11 col-lg-offset-1">
+				<h5 class="light">The traditional wedding toast only gives a select few the opportunity to express their sentiments. &nbsp;&nbsp;&nbsp;VoiceGems is a unique, affordable, easy-to-use service, which supplements the traditional toast in a unique way:</h5>
+
+				<ul>
+
 				<li>
-					Encourages toasts to be thoughtful and relaxed - no last minute Google-searched toasts
-				</li>				
-				<li>
-					Any guest can create a short, pre-recorded toast through online links, even those who can't attend
+					Any guest can create a short, pre-recorded toast online - even family and friends who can't attend
 				</li>
 
 				<li>
-					Helps overcome the emotional stress that occurs when guests forget their lines or are simply too shy.
-				</li>
-				<li>
-					VoiceGems can be played anytime during the party, creating exceptional moments throughout the day.
+					Encourages toasts to be thoughtful and relaxed, while eliminating stress and embarassment 
 				</li>				
 				<li>
-					Lets your DJ unleash his professional creativity, blending VoiceGems with music to produce a fascinating new kind of entertainment mix.
+					With VoiceGems, your DJ can blend toasts with music to produce a more meaningful, fun, and social entertainment mix
 				</li>
 
 			</ul>
-		</article>
+				   <div class="centralized">
+						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+					</div>
+					<br/><br/>
+					 <h5 class="normal centralized"><i class="icon-caret-right"></i><span class="blue"><a href="http://blog.voicegems.com/post/78532566464/founder-of-bridaltweet-com-loves-voicegems" target="_blank"><em>&nbsp;&nbsp;See why the Founder of BridalTweet.com loves VoiceGems!&nbsp;&nbsp;</a></em></span></h5>
+			
+			</article>
+		</div>
+
+	
+	
+
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-WHY -->
 
@@ -115,9 +128,9 @@
                                     <% end %>
                                     <br/>
                                     <%= form_for(:invite, url: invite_dj_path, :html => {:class => "form-horizontal"}) do |y| %>
-                                                    <%= y.text_field :sender_name, :placeholder => "Your Name" %> <br/> <br/>
+                                                    <%= y.text_field :sender_name, :placeholder => "Your Name" %> 
                                                     <%= y.text_field :sender_email, :placeholder => "Your Email" %> <br/> <br/>
-                                                     <%= y.text_field :recipient_name, :placeholder => "DJ's Name" %> <br/> <br/>
+                                                     <%= y.text_field :recipient_name, :placeholder => "DJ's Name" %> 
                                                     <%= y.text_field :recipient_email, :placeholder => "DJ's Email" %>
                                                     <br/><br/>
                                                     <%= button_tag(:type => 'submit', :class => 'btn btn-primary btn-large', :disable_with => 'sending invite...')  do %>

@@ -899,4 +899,32 @@ def migrate_pos
 end 
 
 
+ 
+def export
+ @event = Event.find(params[:id])
+ @registeredandrecordedvgs = @event.voicegems.registered.recorded.visible
+
+ require 'rubygems'
+ require 'zip'
+ require "open-uri"
+
+		  t = Tempfile.new("my-temp-filename-#{Time.now}")
+		  Zip::OutputStream.open(t.path) do |z|v
+		    @registeredandrecordedvgs.items.each do |item|
+		      title = item.email
+		      z.put_next_entry("voicegems/#{title}")
+		      url1 = item.recording
+		      url1_data = open(url1)
+		      z.print IO.read(url1_data)
+		  end
+		end
+		 
+		send_file t.path, :type => 'application/zip',
+                                 :disposition => 'attachment',
+                                 :filename => "List.zip"
+                                 
+        t.close
+end
+
+
 end
