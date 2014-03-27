@@ -185,7 +185,7 @@
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
                                          <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+                                                <i class="fa fa-trash-o"></i>&nbsp;Delete
                                          <% end %>
                                          <br/>
                                          <br/>
@@ -203,16 +203,16 @@
                              <%= link_to AWS::S3.new.buckets[ ENV["VG_BUCKET_NAME"]].objects["#{f.recording}.mp3"].url_for(:get, {
       expires: 10.minutes,
       response_content_disposition: "attachment; filename=#{f.user.first_name}_#{f.user.last_name}_#{f.recording}"
-    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="icon-download icon-white icon-large"></i><% end %>
+    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="fa fa-download"></i><% end %>
 
 
 
 
-                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
                               		
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -345,7 +345,7 @@
 
 			                     </div>  <%# END MODAL id="hidden_reg_restore_entry %>     	
 				 				
-				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this user's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
+				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this user's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="fa fa-plus-square"></i></button>
 
 						 </div>	<%# end class=col-md-1 %>
 
@@ -430,7 +430,7 @@
     	 <div class="row">
     	 	<div class="col-md-9">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this event: </h4>
+    	 	 		 <h4> <i class="fa fa-envelope"></i>&nbsp;Invite an admin for this event: </h4>
 					 <br />	
 					 <%= form_for(:vgai, url: vg_admininvite_path, :html => {:class => 'form-inline'}) do |f| %>
 				
@@ -445,7 +445,7 @@
 					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin", class: "btn btn-primary", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+					     <%= f.submit "Invite Admin", class: "btn btn-primary col-md-2", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
 						  	
 
 				     <% end %>
@@ -511,9 +511,9 @@
          	<div class="well col-md-6 col-md-offset-3">
          		 <p> People can record their VoiceGems for this event using either of these links:
 		            	<br/><br/>
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+		            	<i class="fa fa-caret-right "></i>&nbsp;&nbsp;<%= @url %> <br/>
 		            
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
+		            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
 		              </p> 
 
 		       		<p> Just copy and paste either link into the web page for your event (if you have one), or send out an email containing the link. </p> 
