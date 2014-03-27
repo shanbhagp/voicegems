@@ -16,6 +16,12 @@ def cartest
 end 
 
 def djs
+
+     @event = Event.find(ENV['demopage'].to_i)
+     @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
+
+
   render :layout => "static1"
 end 
 
@@ -377,7 +383,13 @@ def auphonic
 end
 
 def couples
-  render :layout => "static1"
+
+     @event = Event.find(ENV['demopage'].to_i)
+     @event_code = @event.event_code
+     @url = demo_record_vg_url(:event_code => @event.event_code)
+
+
+     render :layout => "static1"
 end 
 
 def home_page

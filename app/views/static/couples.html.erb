@@ -88,11 +88,11 @@
 				<li>
 					DJ Creates a VoiceGems Page for an Event
 				</li>
-				<span class="grey">Demo Page - &nbsp;<a href="#" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
+				<span class="grey">Demo Page - &nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
 				<li>
 					A Link is Shared with Guests, Friends &amp Family before the Event
 				</li>
-				<span class="grey">Demo Link - &nbsp;<a href="#" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</a></span>
+				<span class="grey">Demo Link - &nbsp;<a href="<%= @url%>" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</a></span>
 				<li>
 					They Record Short Messages/Toasts with our Online Voice Recorder
 				</li>
@@ -100,7 +100,7 @@
 				<li>
 					DJ Blends the VoiceGems into Music for an Unforgettable Event!
 				</li>
-				<span class="grey">(All VoiceGems downloadable as high-quality <a href="<%= auphonic_path%>" target="_blank"><strong>noise-cancelled</strong></a>  MP3's for easy mixing)</span>
+				<span class="grey">(All VoiceGems downloadable as high-quality <a href="<%= auphonic_path %>" target="_blank"><strong>noise-cancelled</strong></a>  MP3's for easy mixing)</span>
 			</ol>
 		</article>
 	</div><!-- END CONTAINER -->
@@ -117,7 +117,7 @@
 	
           <div class="row" id="invite">
        
-                      <div class="col-md-4 col-md-offset-4 home-block">
+                      <div class="col-md-8 col-md-offset-2 home-block">
                                     
                                 <div class="hero-block-2">
                                    <% flash.each do |key, value| %>
@@ -127,7 +127,7 @@
                                       </div>
                                     <% end %>
                                     <br/>
-                                    <%= form_for(:invite, url: invite_dj_path, :html => {:class => "form-horizontal"}) do |y| %>
+                                    <%= form_for(:invite, url: invite_dj_path, :html => {:class => 'form-inline'}) do |y| %>
                                                     <%= y.text_field :sender_name, :placeholder => "Your Name" %> 
                                                     <%= y.text_field :sender_email, :placeholder => "Your Email" %> <br/> <br/>
                                                      <%= y.text_field :recipient_name, :placeholder => "DJ's Name" %> 
