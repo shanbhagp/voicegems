@@ -101,7 +101,7 @@
             
                              <div class="modal-footer">
                                   <h6 class="right">(click here after you upload your recording)</h6> 
-                                  <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large span1' do %>
+                                  <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary btn-large col-md-1' do %>
                                                   DONE&nbsp;<i class="icon-caret-right icon-white"></i>
                                          <% end %>
                              </div>
@@ -120,7 +120,7 @@
                                                    <div class="row">
                                                     <%= simple_form_for(@user, :html => {:class => 'form-inline'}) do |f| %>
 
-                                                         <div class="well span3 offset1">
+                                                         <div class="well col-md-3 col-md-offset-1">
                                                           <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -134,26 +134,26 @@
                                                                   <%= f.input :email %>
 
                                                          </div>
-                                                         <div class="well span3">         
+                                                         <div class="well col-md-3">         
                                                              <h4><% if @user.phonetic.blank? && @user.notes.blank? %><i class="icon-check-empty"></i>&nbsp;<% else %><i class="icon-check icon-large">&nbsp;</i><% end %><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                                                                             
                                                                             <br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                          
                                                                      
 
                                                           </div>
 
-                                                          <div class="well span3">
+                                                          <div class="well col-md-3">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/>
                                                                   <div class="row">
                                                                  
-                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name </button>
+                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large col-md-3">Record Your Name </button>
                                                                                                                                            
                                                                      <br/>
                                                                    

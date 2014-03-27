@@ -67,7 +67,7 @@
                                       </div>
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
-                                          <div class="well span5 offset3">
+                                          <div class="well col-md-5 col-md-offset-3">
                                                 <h4><i class="icon-user">&nbsp;</i><span class="blue">Admin Registration for New Users</span></h4>
                                                 <br/>
                                                 <%= simple_form_for(@user, :url => admincodesignupcreate_path, :html => {:class => "form-horizontal"}) do |f| %>
@@ -102,7 +102,7 @@
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
                                                   
-                                                <div class="well span5 offset3">
+                                                <div class="well col-md-5 col-md-offset-3">
                                                     <h4><i class="icon-user">&nbsp;</i><span class="blue">Admin Registration for Existing Users</span></h4>
                                                                     <br/> 
                                                                
@@ -110,14 +110,14 @@
 
                                                           
                                                            <span class="blue"><em>If you're registering as an admin for an event with an admin code, but have previously registered on our site, please enter the admin code for that event and sign in here:</em></span> <br/> <br/>
-                                                           <%= f.text_field :access_code, :class => "span3", :placeholder => "Admin Code" %> 
+                                                           <%= f.text_field :access_code, :class => "col-md-3", :placeholder => "Admin Code" %> 
                                                           <br/>
                                                           <br/>
-                                                          <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
+                                                          <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
                                                           <br/>
                                                           <br/>
 
-                                                          <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
+                                                          <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
 
                                                             <br/>
                                                             <br/>

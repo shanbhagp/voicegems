@@ -105,25 +105,25 @@
 
 
 <div class="row">
-  <div class="span12 well">
+  <div class="col-md-12 well">
       <h4> <span class="label label-info"><i class="icon-edit icon-white"></i></span>&nbsp;<strong>Create/Update your <em>NameGuide</em> for <%= @practiceobject.event.title %>:</strong> </h4>
       <br/>
        <%= form_for(@practiceobject, :html => {:class => "form-vertical"}) do |f| %>
-         <div class="span3">
+         <div class="col-md-3">
           <span class="label label-info">Step 1</span> <br/>Enter your name as you would like it announced:<br/><br/>
-          <%= f.text_field :phonetic, :class => "span3" %>
+          <%= f.text_field :phonetic, :class => "col-md-3" %>
            <span class="help-block">(e.g., 'Dr. Henry Jones, Jr.')</span>
          </div>
-         <div class="span3">
+         <div class="col-md-3">
           <span class="label label-info">Step 2</span><br/>Enter any notes to help with correct pronunciation:</br><br/>
-          <%= f.text_area :notes, :class => "span3", :placeholder => "(you can leave this blank if you wish)" %>
+          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(you can leave this blank if you wish)" %>
            <span class="help-block">(e.g., 'first name rhymes with ravine' or 'last name pronounced GLI-cough')"</span>
          </div>
-         <div class="span3">
+         <div class="col-md-3">
           <span class="label label-important">Step 3</span><br/>Create or change the name recording for this event: <br/><br/>
            <a data-toggle="modal" href="#porecmodal" class="btn btn-danger btn-large">Record Name <i class="icon-caret-right icon-white"></i> </a>
          </div>
-         <div class="span2">
+         <div class="col-md-2">
           <span class="label label-info">Step 4</span><br/>Save any changes:<br/><br/><br/>
           <%= f.submit "Save Changes", class: "btn btn-large btn-primary", disable_with: 'saving...' %>
          </div>
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-            <div class="span1 offset11">
+            <div class="col-md-1 col-md-offset-11">
           <a href="<%= users_path%>/<%= current_user.id %>" class="btn btn-default">Cancel</a>
         </div>
 

@@ -56,38 +56,38 @@ $(function() {
         </table>
 
 	    <div class="row">
-			<div class="well span12 modal-header">
+			<div class="well col-md-12 modal-header">
 					
 						
-				<div class="span2">
+				<div class="col-md-2">
 					
 					<a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="span2">
+				<div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				</div>
 			
 
-				<div class="span3">
+				<div class="col-md-3">
 					<a href="#" rel="tooltip" data-placement="right" title="How the student would like their name said or what they would like to be called. Click the play button next to their name to hear it in their own voice. If an 'x' appears instead of the play button, you may need to ask the student to re-record."><h4>Name Pronunciation</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="span2">
+					<div class="col-md-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Your notes for this student, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 														
 				</div>	
 				
-				<div class="span1">
+				<div class="col-md-1">
 							&nbsp;
 				</div>
-				 <div class="span1" >
+				 <div class="col-md-1" >
 					<h4>Actions</h4>
 				</div>
 
-			</div>	<%# end div well span12 %>	
+			</div>	<%# end div well col-md-12 %>	
 
 		</div> <%# end div row %>	
 
@@ -107,9 +107,9 @@ $(function() {
 		<div class="search">
 
 			 <div class="row break">
-				 <div class="well span12">
+				 <div class="well col-md-12">
 
-					 <div class="span2 ">
+					 <div class="col-md-2 ">
 					 	<%= check_box_tag "po_ids[]", f.id %>
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						<span>(<%= f.user.email %>)</span> <br/>
@@ -117,11 +117,11 @@ $(function() {
 					 </div>
 	
 
-					 <div class="span2">
+					 <div class="col-md-2">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="span3">
+					 <div class="col-md-3">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -135,11 +135,11 @@ $(function() {
 					 </div>
 			
 
-					 <div class="span2">								
+					 <div class="col-md-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						     <div class="btn-group pull-right">
 
                         
@@ -270,7 +270,7 @@ $(function() {
 					                    });  
 					                 </script>
 
-					 </div> <%# end div span2 %>
+					 </div> <%# end div col-md-2 %>
 
 				 </div> <%# end div class="well" %>	
 
@@ -284,7 +284,7 @@ $(function() {
 
  <% if @registeredandrecordedpos.count == 0  %>
 		 	   <div class="row">
-				<div class=" well span6 offset3 cent">
+				<div class=" well col-md-6 col-md-offset-3 cent">
 					<h3> No entries in this category </h3>
 				</div>
 			   </div>
@@ -309,33 +309,33 @@ $(function() {
 		 </table>
 		
 		 <div class="row">
-			 <div class="well span12 modal-header">
+			 <div class="well col-md-12 modal-header">
 									
 										
-				 <div class="span2">
+				 <div class="col-md-2">
 					 <a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 				 </div>
 										
 						
-				 <div class="span2">
+				 <div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				 </div>
 							
 
-				 <div class="span3">
+				 <div class="col-md-3">
 					 <a href="#" rel="tooltip" data-placement="right" title="How the student would like their name announced. When the student voice-records their name, the play button will appear next to their name."><h4>Name Pronunciation</h4></a>
 										<em>(name not yet voice-recorded)</em>
 				 </div>
 
-				 <div class="span2">
+				 <div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Your notes for this student, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 																		
 				 </div>	
 
-				 <div class="span1">
+				 <div class="col-md-1">
 					&nbsp;
 				 </div>
-				 <div class="span1" >
+				 <div class="col-md-1" >
 					<h4>Actions</h4>
 				 </div>
 
@@ -350,22 +350,22 @@ $(function() {
 
 		 <div class="search">		    	
 			 <div class="row break">
-				 <div class="well span12">
+				 <div class="well col-md-12">
 									
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						 (<%= f.user.email %>) <br/>
 						 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 					
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 
 						
 					
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <table>
 							 <tbody>
 							 	<tr>
@@ -378,11 +378,11 @@ $(function() {
 						 </table>
 				     </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 													
 						 <div class="btn-group pull-right">
 
@@ -509,7 +509,7 @@ $(function() {
 			                    { $("#regunrec_popover_hide_entry<%= f.id %>").popover();  
 			                    });  
 		                    </script>
-					 </div>	<%# END div class="span2" %>	
+					 </div>	<%# END div class="col-md-2" %>	
 
 
 				 </div> <%# END div class="well" %>	
@@ -522,7 +522,7 @@ $(function() {
 
 		 <% if @registeredandunrecordedpos.count == 0  %>
 		   <div class="row">
-			<div class=" well span6 offset3 cent">
+			<div class=" well col-md-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 			</div>
 		    </div>
@@ -570,7 +570,7 @@ $(function() {
                                              <h5>(The first entry is the original invitation email, and any other entries are reminder emails.) </h5>
                                              <br/>
                                              
-                                             <div class="span2"> 
+                                             <div class="col-md-2"> 
                                              <table class="table table-condensed table-striped">
                                                  <thead>
 	                                              <th>Sent To:</th>
@@ -705,7 +705,7 @@ $(function() {
       	
       	 <% if @unregisteredpos.count == 0  %>
       	 	  <div class="row">
-				<div class=" well span6 offset3 cent">
+				<div class=" well col-md-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 				</div>
 			 </div>
@@ -723,27 +723,27 @@ $(function() {
              	<caption><em>(students who have registered on this site)</em></caption>
              </table>
 			 <div class="row">
-				 <div class="well span12 modal-header">
-					 <div class="span2">
+				 <div class="well col-md-12 modal-header">
+					 <div class="col-md-2">
 						 <a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 					 </div>
 										
-					 <div class="span2">
+					 <div class="col-md-2">
 					     <a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 					 </div>
 											
 
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <a href="#" rel="tooltip" data-placement="right" title="How the student would like their name announced. Click the play button next to their name to hear it in their own voice. If an 'x' appears rather than the play button, the name recording has not been made or processed yet."><h4>Name Pronunciation</h4></a>
 						 <em>(press play button to hear)</em>
 					 </div>
 
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <a href="#" rel="tooltip" data-placement="right" title="Your notes for this student, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 													
 					 </div>	
 
-					 <div class="span1 right">
+					 <div class="col-md-1 right">
 						 <h4>Actions</h4>
 					 </div>
 
@@ -754,19 +754,19 @@ $(function() {
 
 			 <% @hiddenandregisteredpos.each do |f| %>					    	
 				 <div class="row break">
-					 <div class="well span12">
-						 <div class="span2">
+					 <div class="well col-md-12">
+						 <div class="col-md-2">
 							 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 							 (<%= f.user.email %>) <br/>
 							 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 						 </div>
 											
 
-						 <div class="span2">
+						 <div class="col-md-2">
 						 		<% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 						 </div>
 																						
-						 <div class="span3">
+						 <div class="col-md-3">
 							<table>
 							 	 <tbody>
 							 		 <tr>
@@ -777,11 +777,11 @@ $(function() {
 						     </table>
 						 </div>
 													
-						 <div class="span3">
+						 <div class="col-md-3">
 							 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 						 </div>
 
-						 <div class="span1">
+						 <div class="col-md-1">
 																
 								 <div id="hidden_reg_restore_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -813,7 +813,7 @@ $(function() {
 				 				
 				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this student's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
 
-						 </div>	<%# end class=span1 %>
+						 </div>	<%# end class=col-md-1 %>
 
 					 </div>	<%# END class = well %>
 				 </div>  <%# END class = row %>
@@ -919,7 +919,7 @@ $(function() {
     	<br/>
     	<div class="row">
 
-	<div class = "span4">
+	<div class = "col-md-4">
 	 		<div class="well">
 					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
@@ -968,7 +968,7 @@ $(function() {
 
 
 
- 	 <div class="span8">
+ 	 <div class="col-md-8">
 			
 				<div class="well">
 			
@@ -981,13 +981,13 @@ $(function() {
 									
 						   <%= f.hidden_field :event_id %>
 															 									    
-						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
+						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-md-2" %>
 																			
 						  
-						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
+						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-md-2" %>
 						
 																 									    
-						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
+						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 						
 						 									  
 						     <%= f.submit "Request Recording", class: "btn btn-info", disable_with: 'Sending...' %>
@@ -1004,7 +1004,7 @@ $(function() {
 </div> <%# end row %>	 	
    
 <div class="row">
-    <div class="span12">
+    <div class="col-md-12">
         
         <div class="text-divider6">
           <br/>
@@ -1015,7 +1015,7 @@ $(function() {
 
  <div class="row">
 
-	 <div class="span12">
+	 <div class="col-md-12">
 	 	<h4>Your public (read-only) link for this Event Page:</h4>
 	 	<p> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= locked_event_url(@event) %> <br/> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Hear student name prounuciations for #{@event.title}", locked_event_url(@event), :target => "_blank"  %></p>
 	 		<h5> Please note: You can give this link to teachers or staff who wish to search and hear students' names. <strong>They can access the read-only page at this link without logging in as an admin</strong>, but they will not be able to request individual recordings, delete entries, or enter their own notes. </h5>
@@ -1026,7 +1026,7 @@ $(function() {
 
 
 <div class="row">
-    <div class="span12">
+    <div class="col-md-12">
         
         <div class="text-divider5">
           <br/>
@@ -1094,7 +1094,7 @@ $(function() {
     	 </table>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="span10">
+    	 	<div class="col-md-10">
     	 	 <div class="well">
     	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Event Page: </h4>
 					 <br />	
@@ -1103,13 +1103,13 @@ $(function() {
 				
 					     <%= f.hidden_field :event_id %>
 														 									    
-					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span3" %>
+					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-md-3" %>
 																		
 					  
-					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span3" %>
+					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-md-3" %>
 					 
 															 									    
-					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
+					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 
 											 						  
 						 <%= f.submit "Invite Admin", class: "btn btn-info", disable_with: 'Inviting...', confirm: 'Please confirm you would like to invite this person as an admin for this Event Page.' %>
@@ -1118,7 +1118,7 @@ $(function() {
 				     <% end %>
 			 </div> <%# end well %>
 			</div>
-			 <div class="span2">
+			 <div class="col-md-2">
 			 	     <div id="admins_invited" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				         <div class="modal-header">
 				              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -1207,7 +1207,7 @@ $(function() {
 <div class="tab-pane" id="sublists">
 	<br/> 
 		<div class="row">
-			<div class="well span3">	    	
+			<div class="well col-md-3">	    	
 						
 				 <%= simple_form_for(User.new, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -1224,7 +1224,7 @@ $(function() {
 				<% end %>
 			</div>
 
-			<div class="well span8 ">
+			<div class="well col-md-8 ">
 				<h4>Create a Commencement Event Page for a Graduation Year/Class:</h4>
 				<% unless @event.grad_array.empty? %>
 
@@ -1234,10 +1234,10 @@ $(function() {
                     
                      	<%= hidden_field_tag(:master_event_id, @event.id) %>
 
-                        <%= f.text_field :title, :placeholder => 'Title (required)', :class => "span2" %> &nbsp;&nbsp;
+                        <%= f.text_field :title, :placeholder => 'Title (required)', :class => "col-md-2" %> &nbsp;&nbsp;
                          
                             
-                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "span2" %> &nbsp;&nbsp;
+                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "col-md-2" %> &nbsp;&nbsp;
 
 
                         <%= f.select :grad_date, @event.grad_array, prompt: 'Select Graduation Year/Class', label: "Graduation Date:" %>

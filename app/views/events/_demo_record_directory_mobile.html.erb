@@ -167,7 +167,7 @@
                                                    <div class="row">
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
-                                                         <div class="well span6 offset2">
+                                                         <div class="well col-md-6 col-md-offset-2">
                                                           <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> <span class="muted"> (required)</span> </h4>
                                                               
                                                               <br/>
@@ -183,15 +183,15 @@
                                                              <hr/>
 
                                                          </div>
-                                                         <div class="well span6 offset2">         
+                                                         <div class="well col-md-6 col-md-offset-2">         
                                                              <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you like to be called:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you like to be called:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
                                                                             
                                                                             <br/><br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                           
                                                                           <hr/>
                                                                          
@@ -199,12 +199,12 @@
 
                                                           </div>
 
-                                                          <div class="well span6 offset2">
+                                                          <div class="well col-md-6 col-md-offset-2">
                                                               <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/> <br/>
                                                                   <div class="row">
                                                                  
-                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large span3">Record Your Name <span><em></em></span></button>
+                                                                     <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large col-md-3">Record Your Name <span><em></em></span></button>
                                                                                                                                            
                                                                      <br/><br/>
                                                                      <div class="cent">

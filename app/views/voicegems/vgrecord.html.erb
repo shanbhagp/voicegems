@@ -80,7 +80,7 @@
 
               <div class="row">
                            <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
-                           <div class="span8 offset2">
+                           <div class="col-md-8 col-md-offset-2">
                             
  
                             <br/>
@@ -100,7 +100,7 @@
                                                    <div class="row">
                                                     
 
-                                                         <div class="well span6 offset1">
+                                                         <div class="well col-md-6 col-md-offset-1">
                                                           <h4><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -118,7 +118,7 @@
                                                          </div>
                                                      </div>
                                                      <div class="row">
-                                                         <div class="well span6 offset1">         
+                                                         <div class="well col-md-6 col-md-offset-1">         
                                                              <h4><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
                                                                         <span class="textarea2">
@@ -133,12 +133,12 @@
                                                           </div>
                                                      </div> 
                                                      <div class="row">    
-                                                          <div class="well span6 offset1">
+                                                          <div class="well col-md-6 col-md-offset-1">
                                                               <h4><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
                                                                   <br/> 
                                                                   <div class="row">
-                                                                   <div class="span5">
-                                                                    <%= f.button :submit, "Record Your VoiceGem", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
+                                                                   <div class="col-md-5">
+                                                                    <%= f.button :submit, "Record Your VoiceGem", class: "btn btn-danger btn-large col-md-3", disable_with: "please wait..." %>
                                                                     <br/><span class="blue"><em>(this is easy and takes under a minute!) </em></span>
                                                                    </div>
                                                                  </div>
@@ -173,20 +173,20 @@
                                           </div>
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
-                                              <div class="well span4 offset3">
+                                              <div class="well col-md-4 col-md-offset-3">
                                                   <%= form_for(:session, url: vg_event_code_add_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
                                                   <%= f.hidden_field :event_code, :value => @event_code %>
                                                    <span class="blue"><em>If you have previously registered on our site, please sign in here to record a VoiceGem for this event:</em></span> <br/> <br/>
-                                                  <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
+                                                  <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
 
-                                                  <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
+                                                  <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
 
                                                     <br/>
                                                     <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small span2") do %>
+                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-md-2") do %>
                                                        Sign In <i class="icon-chevron-right icon-white"></i> 
                                                       <% end %>
 

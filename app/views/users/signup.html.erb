@@ -77,7 +77,7 @@
                                                    <div class="row">
                                                     <%= simple_form_for(@user, :wrapper => :bootstrap_horizontal, :html => {:class => 'form-inline'}) do |f| %>
 
-                                                         <div class="well span3 offset1">
+                                                         <div class="well col-md-3 col-md-offset-1">
                                                           <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="icon-check icon-large">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -91,26 +91,26 @@
                                                                   <%= f.input :email %>
 
                                                          </div>
-                                                         <div class="well span3">         
+                                                         <div class="well col-md-3">         
                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> (optional) </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                                                                             
                                                                             <br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "span3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                          
                                                                      
 
                                                           </div>
 
-                                                          <div class="well span3">
+                                                          <div class="well col-md-3">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/>
                                                                   <div class="row">
-                                                                   <div class="span3">
-                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large span3", disable_with: "please wait..." %>
+                                                                   <div class="col-md-3">
+                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large col-md-3", disable_with: "please wait..." %>
                                                                     <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
                                                                    </div>
                                                                  </div>
@@ -139,15 +139,15 @@
 
                                                   <%= f.hidden_field :token, :value => @user.invite_token %>
                                                    <span><em>If you've been invited for an event and have previously registered on our site, please sign in here:<em></span> <br/> <br/>
-                                                  <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
+                                                  <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
 
-                                                  <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
+                                                  <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
 
                                                     <br/>
                                                     <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small span2") do %>
+                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-md-2") do %>
                                                        Sign In <i class="icon-chevron-right icon-white"></i> 
                                                       <% end %>
 

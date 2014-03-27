@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 <div class="top-controls thread-top-controls">
 	<div class="row">
-		<div class="span9">
+		<div class="col-md-9">
 			<h2>Send a Voice Message</h2>
       <b>to shanbhagp@aol.com</b>
 		</div>
@@ -155,27 +155,27 @@ $(document).ready(function() {
 <div class="row">
 	<div id="home-recorder">
 			<img alt="Spinner" id="flash-spinner" src="/assets/spinner-ceb380acbab98f0450df16fd19c7f286.gif" style="display: none;">
-			<div id="record-div" class="span2" style="">
+			<div id="record-div" class="col-md-2" style="">
 				<span id="recordButton" href="javascript:void(0)"><img alt="Recordbutton" id="recButtonImage" src="/assets/RecordButton-03b189028fa51e77b866811248119b91.png"></span><br>
 				<span id="recordText">Record</span>
 			</div>
 
-			<div id="play-div" class="span1">
+			<div id="play-div" class="col-md-1">
 				<span id="playButton" href="javascript:void(0)"><img alt="Playbutton" id="play-button-image" src="/assets/PlayButton-3382ada7223300cfbc31f6a1101d389f.png"></span><br>
 				<span id="replayText">Replay</span>
 			</div>
 
-			<span id="recording-timer" class="span1">0:00</span>
-			<div id="sound-level" class="span2 ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div></div>
+			<span id="recording-timer" class="col-md-1">0:00</span>
+			<div id="sound-level" class="col-md-2 ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div></div>
 	</div>
 	<div id="flash-row" style="margin-top: -105px;">
-		<div class="span2" id="allow-instructions" style="display:none">
+		<div class="col-md-2" id="allow-instructions" style="display:none">
 			Click allow to enable your microphone <br> <br>
 			<a href="#" id="flash-settings-link">Skip this next time?</a>
 			<a target="_blank" href="/troubleshooting">Problems?</a>
 			<img alt="Spinner" id="permission-spinner" src="/assets/spinner-ceb380acbab98f0450df16fd19c7f286.gif">
 		</div>
-		<div class="span2" id="flash-object-div"><div id="flash-container"><object id="flash-object" name="flash-object" data="/assets/HiddenAudioRecorder-8e371f2c6c7eb16607c33e6d4680d946.swf" type="application/x-shockwave-flash" width="216" height="138"><param name="allowscriptaccess" value="always"><param name="bgcolor" value="#ff0000"><param name="wmode" value="transparent"></object></div></div>
+		<div class="col-md-2" id="flash-object-div"><div id="flash-container"><object id="flash-object" name="flash-object" data="/assets/HiddenAudioRecorder-8e371f2c6c7eb16607c33e6d4680d946.swf" type="application/x-shockwave-flash" width="216" height="138"><param name="allowscriptaccess" value="always"><param name="bgcolor" value="#ff0000"><param name="wmode" value="transparent"></object></div></div>
 	</div> 
 </div>
 
@@ -194,11 +194,11 @@ $(document).ready(function() {
 </div>
 
 	<div class="row" id="send-row">
-		<a href="#" class="btn btn-large btn-success span2" id="send-button">Send</a>
+		<a href="#" class="btn btn-large btn-success col-md-2" id="send-button">Send</a>
 
-		<p id="need-recording" class="span4 help-inline" style="display:none">Please record your message first</p>
+		<p id="need-recording" class="col-md-4 help-inline" style="display:none">Please record your message first</p>
 
-		<div id="upload-progress" class="progress progress-warning progress-striped active span2" style="display:none">
+		<div id="upload-progress" class="progress progress-warning progress-striped active col-md-2" style="display:none">
 			<div id="upload-progress-bar" class="bar" style="width: 1000%;"></div>
 		</div>
 	</div>

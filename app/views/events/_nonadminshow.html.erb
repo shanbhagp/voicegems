@@ -19,7 +19,7 @@
 <div class="row">
 
  	
-	<div class="span5 offset6">
+	<div class="col-md-5 col-md-offset-6">
 			<div class="well">
 
 
@@ -64,20 +64,20 @@
              	<caption><em>(students who have registered on this site and recorded their name)</em></caption>
              </table>
 			<div class="row">
-				<div class="well span12 modal-header bg-dark">
+				<div class="well col-md-12 modal-header bg-dark">
 					
 						
-				<div class="span3 offset1">
+				<div class="col-md-3 col-md-offset-1">
 						<a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name</h4></a>
 					</div>
 						
 		
-						<div class="span3">
+						<div class="col-md-3">
 						<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name. This may have been left blank."><h4>Student's Notes</h4></a>
 						</div>
 			
 
-					<div class="span3">
+					<div class="col-md-3">
 						<a href="#" rel="tooltip" data-placement="right" title="Name the student goes by, and their recording. Click the play button next to their name to hear it in their own voice. If an 'x' appears rather than the play button, the name recording has not been made or processed yet."><h4>Name Pronunciation</h4></a>
 						<em>(press play button to hear)</em>
 					</div>
@@ -92,20 +92,20 @@
 
 			<% @registeredandrecordedpos.each do |f| %>					    	
 			<div class="row">
-				<div class="well span12">
-					<div class="span3 offset1">
+				<div class="well col-md-12">
+					<div class="col-md-3 col-md-offset-1">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 			
 					</div>
 	
 
-					<div class="span3">
+					<div class="col-md-3">
 					 		<% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					</div>
 
 		
 	
-						<div class="span3">
+						<div class="col-md-3">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -128,7 +128,7 @@
 			<% end %>
 
 					<% if @registeredandrecordedpos.count == 0  %>
-							<div class=" well span6 offset3 cent">
+							<div class=" well col-md-6 col-md-offset-3 cent">
 							<h3> No entries in this category </h3>
 							</div>
 				    <% end %>
@@ -142,20 +142,20 @@
 				             	<caption><em>(students registered on this site who have not yet recorded their name)</em></caption>
 				             </table>
 							<div class="row">
-								<div class="well span12 modal-header bg-dark">
+								<div class="well col-md-12 modal-header bg-dark">
 									
 										
-								<div class="span3 offset1">
+								<div class="col-md-3 col-md-offset-1">
 										<a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name</h4></a>
 									</div>
 										
 						
-										<div class="span3">
+										<div class="col-md-3">
 										<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name. This may have been left blank."><h4>Student's Notes</h4></a>
 										</div>
 							
 
-									<div class="span3">
+									<div class="col-md-3">
 										<a href="#" rel="tooltip" data-placement="right" title="Name the student goes by, and their recording. When the student voice-records their name, the play button will appear next to their name."><h4>Name Pronunciation</h4></a>
 										<em>(name not yet voice-recorded)</em>
 									</div>
@@ -169,21 +169,21 @@
 
 							<% @registeredandunrecordedpos.each do |f| %>					    	
 							<div class="row">
-								<div class="well span12">
+								<div class="well col-md-12">
 									
-									<div class="span3 offset1">
+									<div class="col-md-3 col-md-offset-1">
 											<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 										
 									</div>
 					
 
-									<div class="span3">
+									<div class="col-md-3">
 									 		<% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 									</div>
 
 						
 					
-									<div class="span3">
+									<div class="col-md-3">
 										<table>
 											 <tbody>
 											 	<tr>
@@ -204,7 +204,7 @@
 
 
 							<% if @registeredandunrecordedpos.count == 0  %>
-							<div class=" well span6 offset3 cent">
+							<div class=" well col-md-6 col-md-offset-3 cent">
 							<h3> No entries in this category </h3>
 							</div>
 				<% end %>	
@@ -237,7 +237,7 @@
     					</table>
 
     					<% if @unregisteredpos.count == 0  %>
-							<div class=" well span6 offset3 cent">
+							<div class=" well col-md-6 col-md-offset-3 cent">
 							<h3> No entries in this category </h3>
 							</div>
 				<% end %>	

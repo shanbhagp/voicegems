@@ -124,7 +124,7 @@
         //success  will be true if the upload succeeded and false otherwise
         console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
         document.getElementById("dwl").disabled = false
-         document.getElementById("continuebtn").setAttribute("class","span7")
+         document.getElementById("continuebtn").setAttribute("class","col-md-7")
         document.getElementById("firstDisplay").innerHTML  = "Click 'NEXT' below.";
   
       }
@@ -215,7 +215,7 @@
 
                                                 <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
                                                    <div class="row">
-                                                         <div class="well span8 offset1">
+                                                         <div class="well col-md-8 col-md-offset-1">
                                                           <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -224,7 +224,7 @@
                                                                 <%= f.hidden_field :event_code, :value => @event_code %>
 
 
-                                                                  <%= f.input :first_name, label: "First Name", class: "span5" %>
+                                                                  <%= f.input :first_name, label: "First Name", class: "col-md-5" %>
                                                                   <%= f.input :last_name, label: "Last Name" %>
                                                                   <%= f.input :email %>
                                                                  
@@ -234,7 +234,7 @@
 
                                                    </div>
                                                    <div class="row">
-                                                         <div class="well span8 offset1">         
+                                                         <div class="well col-md-8 col-md-offset-1">         
                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
                                                                         <span class="textarea2 textareawider">
@@ -249,11 +249,11 @@
                                                           </div>
                                                       </div>
                                                       <div class="row">
-                                                          <div class="well span8 offset1">
+                                                          <div class="well col-md-8 col-md-offset-1">
                                                               <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
                                                                   <br/> 
                                                                 <div class="row">
-                                                                      <div class="span7">
+                                                                      <div class="col-md-7">
                                                                                                           <div id="flashContent">
                                                                                                               <p>
                                                                                                                   To view this page ensure that Adobe Flash Player version 
@@ -277,7 +277,7 @@
                                                                                                   <input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
                                                                                                   </div>
 
-                                                                                                  <div class="span6">
+                                                                                                  <div class="col-md-6">
                                                                                                   <h4 id="firstDisplay">&nbsp;</h4>
                                                                                                   </div>
                                                                        </div>
@@ -285,7 +285,7 @@
                                                                 
                                                              
                     <div class="row">
-                      <div class="span7">
+                      <div class="col-md-7">
                          <hr/>
                                 <div class="accordion" id="accordionrec">
 

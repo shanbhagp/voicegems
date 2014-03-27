@@ -61,7 +61,7 @@
 <br/>
 
 <div class="row">
-      <div class="well span5 offset2">
+      <div class="well col-md-5 col-md-offset-2">
       <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 1: Basic Info (required) </h4>
           <%= simple_form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
           <br/>
@@ -77,11 +77,11 @@
               
        <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 2: NameGuide Info (optional) </h4> 
         <br/>      
-                     <%= f.input :phonetic, :class => "span3 fl-left", label: "Enter your name as you would like it announced", hint: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                     <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced", hint: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                     
 
                       
-                      <%= f.input :notes, :class => "span3", label: "Enter any notes to aid in pronunciation", hint: "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                      <%= f.input :notes, :class => "col-md-3", label: "Enter any notes to aid in pronunciation", hint: "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                      
                       <hr/>
 
@@ -89,7 +89,7 @@
               <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 3: Save Info (required) </h4> <br/>
 
               <div class="row">
-               <div class="span2 offset2">
+               <div class="col-md-2 col-md-offset-2">
                 <%= f.button :submit, "Save Info", class: "btn btn-large btn-primary", disable_with: "saving..." %>
               </div>
             </div>
@@ -99,19 +99,19 @@
             <h4 class="blue">  <i class="icon-check-empty">&nbsp;</i>STEP 4: Record Your Name (<em>highly</em> recommended) </h4> <br/>
 
               <div class="row">
-               <div class="span2 offset2">
+               <div class="col-md-2 col-md-offset-2">
  
 
                    <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large", disabled="true">Record Your Name <i class="icon-caret-right icon-white"></i> </button> <br/>
                <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
-              </div> <%# end span2 %>
+              </div> <%# end col-md-2 %>
             </div> <%# end row %>
           <% end %>
         
 
       </div>
 
-      <div class="well span3 offset1">
+      <div class="well col-md-3 col-md-offset-1">
         <h4> <span class="label label-info"> <i class="icon-user icon-white">&nbsp;</i> Already Registered on our site?</span> </h4>
                   <br/> 
                   <% flash.each do |key, value| %>
@@ -121,11 +121,11 @@
 
                     <%= f.hidden_field :token, :value => @user.invite_token %>
                      <span><em>If you've been invited for an event and have previously registered on our site, please sign in here:<em></span> <br/> <br/>
-                    <%= f.text_field :email, :class => "span3", :placeholder => "Email" %>
+                    <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
                     <br/>
                     <br/>
 
-                    <%= f.password_field :password, :class => "span3", :placeholder => "Password" %>
+                    <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
 
                       <br/>
                       <br/>

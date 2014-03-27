@@ -44,38 +44,38 @@
         </table>
 
 	    <div class="row">
-			<div class="well span12 modal-header">
+			<div class="well col-md-12 modal-header">
 					
 						
-				<div class="span2">
+				<div class="col-md-2">
 					
 					<a href="#" rel="tooltip" data-placement="right" title="Student's name and email address."><h4>Student Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="span2">
+				<div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				</div>
 			
 
-				<div class="span3">
+				<div class="col-md-3">
 					<a href="#" rel="tooltip" data-placement="right" title="How the student would like their name said. Click the play button next to their name to hear it in their own voice. If an 'x' appears instead of the play button, you may need to ask the student to re-record."><h4>Name Pronunciation</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="span2">
+					<div class="col-md-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Your notes for this student, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 														
 				</div>	
 				
-				<div class="span1">
+				<div class="col-md-1">
 							&nbsp;
 				</div>
-				 <div class="span1" >
+				 <div class="col-md-1" >
 					<h4>Actions</h4>
 				</div>
 
-			</div>	<%# end div well span12 %>	
+			</div>	<%# end div well col-md-12 %>	
 
 		</div> <%# end div row %>	
 
@@ -85,19 +85,19 @@
 		<% @registeredandrecordedpos.each do |f| %>	
 		<div class="search">				    	
 			 <div class="row break">
-				 <div class="well span12">
-					 <div class="span2">
+				 <div class="well col-md-12">
+					 <div class="col-md-2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						(<%= f.user.first_name %>@example.com) <br/>
 						
 					 </div>
 	
 
-					 <div class="span2">
+					 <div class="col-md-2">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="span3">
+					 <div class="col-md-3">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -111,11 +111,11 @@
 					 </div>
 			
 
-					 <div class="span2">								
+					 <div class="col-md-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						     <div class="btn-group pull-right">
 
                         
@@ -247,7 +247,7 @@
 					                    });  
 					                 </script>
 
-					 </div> <%# end div span2 %>
+					 </div> <%# end div col-md-2 %>
 
 				 </div> <%# end div class="well" %>	
 
@@ -257,7 +257,7 @@
 
 		 <% if @registeredandrecordedpos.count == 0  %>
 		 	   <div class="row">
-				<div class=" well span6 offset3 cent">
+				<div class=" well col-md-6 col-md-offset-3 cent">
 					<h3> No entries in this category </h3>
 				</div>
 			   </div>
@@ -274,33 +274,33 @@
 		 </table>
 		
 		 <div class="row">
-			 <div class="well span12 modal-header">
+			 <div class="well col-md-12 modal-header">
 									
 										
-				 <div class="span2">
+				 <div class="col-md-2">
 					 <a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><h4>Attendee Name/Email</h4></a>
 				 </div>
 										
 						
-				 <div class="span2">
+				 <div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes attendee entered to help with pronouncing their name.  They may have left this blank."><h4>Attendee's Notes</h4></a>
 				 </div>
 							
 
-				 <div class="span3">
+				 <div class="col-md-3">
 					 <a href="#" rel="tooltip" data-placement="right" title="How the attendee would like their name announced. When the attendee voice-records their name, the play button will appear next to their name."><h4>Name Pronunciation</h4></a>
 										<em>(name not yet voice-recorded)</em>
 				 </div>
 
-				 <div class="span2">
+				 <div class="col-md-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 																		
 				 </div>	
 
-				 <div class="span1">
+				 <div class="col-md-1">
 					&nbsp;
 				 </div>
-				 <div class="span1" >
+				 <div class="col-md-1" >
 					<h4>Actions</h4>
 				 </div>
 
@@ -311,22 +311,22 @@
 
 		 <% @registeredandunrecordedpos.each do |f| %>					    	
 			 <div class="row">
-				 <div class="well span12">
+				 <div class="well col-md-12">
 									
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						 (<%= f.user.first_name %>@example.com) <br/>
 						 
 					 </div>
 					
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 
 						
 					
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <table>
 							 <tbody>
 							 	<tr>
@@ -339,11 +339,11 @@
 						 </table>
 				     </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 						 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="span2">
+					 <div class="col-md-2">
 													
 						 <div class="btn-group pull-right">
 
@@ -469,7 +469,7 @@
 			                    { $("#regunrec_popover_hide_entry<%= f.id %>").popover();  
 			                    });  
 		                    </script>
-					 </div>	<%# END div class="span2" %>	
+					 </div>	<%# END div class="col-md-2" %>	
 
 
 				 </div> <%# END div class="well" %>	
@@ -480,7 +480,7 @@
 
 		 <% if @registeredandunrecordedpos.count == 0  %>
 		   <div class="row">
-			<div class=" well span6 offset3 cent">
+			<div class=" well col-md-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 			</div>
 		    </div>
@@ -528,7 +528,7 @@
                                              <h5>(The first entry is the original invitation email, and any other entries are reminder emails.) </h5>
                                              <br/>
                                              
-                                             <div class="span2"> 
+                                             <div class="col-md-2"> 
                                              <table class="table table-condensed table-striped">
                                                  <thead>
 	                                              <th>Sent To:</th>
@@ -661,7 +661,7 @@
       	
       	 <% if @unregisteredpos.count == 0  %>
       	 	  <div class="row">
-				<div class=" well span6 offset3 cent">
+				<div class=" well col-md-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 				</div>
 			 </div>
@@ -679,27 +679,27 @@
              	<caption><em>(students who have registered on this site)</em></caption>
              </table>
 			 <div class="row">
-				 <div class="well span12 modal-header">
-					 <div class="span2">
+				 <div class="well col-md-12 modal-header">
+					 <div class="col-md-2">
 						 <a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 					 </div>
 										
-					 <div class="span2">
+					 <div class="col-md-2">
 					     <a href="#" rel="tooltip" data-placement="right" title="Any notes attendee entered to help with pronouncing their name.  They may have left this blank."><h4>Attendee's Notes</h4></a>
 					 </div>
 											
 
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <a href="#" rel="tooltip" data-placement="right" title="How the attendee would like their name announced. Click the play button next to their name to hear it in their own voice. If an 'x' appears rather than the play button, the name recording has not been made or processed yet."><h4>Name To be Announced</h4></a>
 						 <em>(press play button to hear)</em>
 					 </div>
 
-					 <div class="span3">
+					 <div class="col-md-3">
 						 <a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee, to aid in pronunciation. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit - disabled for demo)</em>
 													
 					 </div>	
 
-					 <div class="span1 right">
+					 <div class="col-md-1 right">
 						 <h4>Actions</h4>
 					 </div>
 
@@ -710,19 +710,19 @@
 
 			 <% @hiddenandregisteredpos.each do |f| %>					    	
 				 <div class="row">
-					 <div class="well span12">
-						 <div class="span2">
+					 <div class="well col-md-12">
+						 <div class="col-md-2">
 							 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 							 (<%= f.user.first_name %>@example.com) <br/>
 							
 						 </div>
 											
 
-						 <div class="span2">
+						 <div class="col-md-2">
 						 		<% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 						 </div>
 																						
-						 <div class="span3">
+						 <div class="col-md-3">
 							<table>
 							 	 <tbody>
 							 		 <tr>
@@ -733,11 +733,11 @@
 						     </table>
 						 </div>
 													
-						 <div class="span3">
+						 <div class="col-md-3">
 							 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 						 </div>
 
-						 <div class="span1">
+						 <div class="col-md-1">
 																
 								 <div id="hidden_reg_restore_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
@@ -769,7 +769,7 @@
 				 				
 				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
 
-						 </div>	<%# end class=span1 %>
+						 </div>	<%# end class=col-md-1 %>
 
 					 </div>	<%# END class = well %>
 				 </div>  <%# END class = row %>
@@ -875,7 +875,7 @@
     	
     	<div class="row">
 
-	<div class = "span4">
+	<div class = "col-md-4">
 	 		<div class="well">
 					 <div id="info-eventcode" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 										            <div class="modal-header">
@@ -922,7 +922,7 @@
 
 
 
- 	 <div class="span8">
+ 	 <div class="col-md-8">
 			
 				<div class="well">
 					 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite a student to record their name: </h4>
@@ -933,13 +933,13 @@
 									
 						   <%= f.hidden_field :event_id %>
 															 									    
-						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span2" %>
+						    <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-md-2" %>
 																			
 						  
-						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span2" %>
+						    <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-md-2" %>
 						
 																 									    
-						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "span2"  %>
+						    <%= f.text_field :email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 						
 						 									  
 						    <%= f.submit "Send Name Request", class: "btn btn-info", disabled: true %>
@@ -1022,7 +1022,7 @@
     	 </table>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="span10">
+    	 	<div class="col-md-10">
     	 	 <div class="well">
     	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Name Directory: </h4>
 					 <br />	
@@ -1031,13 +1031,13 @@
 				
 					    
 														 									    
-					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "span3" %>
+					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-md-3" %>
 																		
 					  
-					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "span3" %>
+					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-md-3" %>
 					 
 															 									    
-					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "span2"  %>
+					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
 
 											 						  
 						 <%= f.submit "Invite Admin", class: "btn btn-info", disabled: true, confirm: 'Please confirm you would like to invite this person as an admin for this Name Directory.' %>
