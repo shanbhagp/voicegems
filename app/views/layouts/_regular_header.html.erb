@@ -1,6 +1,7 @@
-<div id="header_nav" class="header  navbar navbar-default navbar-static-top">
-	<div class="container">
-		<ul class="nav navbar-nav">
+<div id="header_nav" class="header navbar navbar-default navbar-static-top">
+	<div id="inside_nav" class="header-wrapper uiheight">
+                <div class="header-col header-col1">
+		<ul class="nav navbar-nav pull-right">
 			<li>
 				<%= link_to "DJ", djs_path %>
 			</li>
@@ -10,11 +11,16 @@
 			<li>
 				<a href="http://blog.voicegems.com/" target="_blank">Blog</a>
 			</li>
+                 </ul>
+                </div>
+		 <a id="logo" href="<%= root_path %>">
+                <div class="header-col header-col2">
+                </div>
+                </a>
+                <div class="header-col header-col3">
+		<ul class="nav navbar-nav pull-left">
 			<li>
-				<a id="logo" href="<%= root_path %>"></a>
-			</li>
-			<li>
-				<%= link_to "FAQ", faq_path, :style => "padding-left:200px;" %>
+				<%= link_to "FAQ", faq_path %>
 			</li>
 			<% if !signed_in? %>
 			<li>
@@ -56,5 +62,6 @@
 			</li>
 			<% end %>
 		</ul>
+               </div>
 	</div><!-- END CONTAINER -->
 </div><!-- END NAVBAR -->
