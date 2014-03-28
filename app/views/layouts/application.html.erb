@@ -20,66 +20,6 @@
  <script type="text/javascript" src="<%= asset_path('aplayer/audio.min.js') %>"></script>
 
  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-<style>
-.header-wrapper {
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.header-col {
-    position: relative;
-    display: inline-block;
-
-    vertical-align: top;
-}
-
-.header-col-content {
-    white-space: normal;
-}
-
-.header-col1 {
-    max-width: 50%;
-}
-.header-col2 {
-    width: 200px;
-}
-.header-col3 {
-    max-width: 50%;
-}
-
-.header {
-    width:100%;
-    height:120px;
-    background: #FAF9F6;
-    color: #fff;
-    position:fixed;
-    top:0;
-    left:0;
-    transition: height 500ms;
-    background-image: url(<%= asset_path "logo1.png"%>);
-        background-position: center bottom;
-	background-repeat: no-repeat;
-
-}
-.header.tiny {
-    height:70px;
-    background-image: url(<%= asset_path "logo-Text.png"%>);
-    background-position: center center;
-	background-repeat: no-repeat;
-	position:fixed;
-    }
-.uiheight
-{
-	height:150px;
-	transition: height 500ms, padding-top 500ms;
-	padding-top:68px;
-}
-.uiheight.tiny
-{
-	height:50px;
-	padding-top: 10px;
-}
-</style>
 
 <script>
   audiojs.events.ready(function() {
@@ -96,19 +36,6 @@
   ga('create', 'UA-45526859-1', 'voicegems.com');
   ga('send', 'pageview');
 
-</script>
-
-<script>
-                $(window).scroll(function () {
-                    if ($(document).scrollTop() == 0) {
-                        $('#header_nav').removeClass('tiny');
-                        $('#inside_nav').removeClass('tiny');
-                    } else {
-                        $('#header_nav').addClass('tiny');
-                        $('#inside_nav').addClass('tiny');
-
-                    }
-                });
 </script>
 
 
