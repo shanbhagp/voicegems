@@ -38,7 +38,7 @@ GEM
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
-    best_in_place (1.1.2)
+    best_in_place (2.1.0)
       jquery-rails
       rails (~> 3.1)
     bootstrap-sass (3.1.1.0)
@@ -311,7 +311,7 @@ DEPENDENCIES
   annotate (~> 2.4.1.beta)
   aws-sdk
   bcrypt-ruby (= 3.0.1)
-  best_in_place
+  best_in_place (~> 2.1.0)
   bootstrap-sass (= 3.1.1)
   bootstrap-will_paginate (= 0.0.9)
   builder (~> 3.0.4)
