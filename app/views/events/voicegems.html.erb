@@ -18,7 +18,7 @@
 
 
 <% flash.each do |key, value| %>
-	<div class="alert alert-block alert-<%=key%>"> 
+	<div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
 	<button type="button" class="close" data-dismiss="alert">×</button>
 	<%= value %> 
 	</div>
@@ -111,8 +111,10 @@
                         
 
                                                           
-                                 <div id="regrec_send_reminder<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="regrec_send_reminder<%= f.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
+                                     <div class="modal-dialog">
+                                     <div class="modal-content">
                                      <div class="modal-header">
 	                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                                    <h3>Request to Re-Record</h3>
@@ -165,14 +167,18 @@
                                      </div> <%# end div modal-body %>	
 
                                   	 <div class="modal-footer">
-                                    	 <button class="btn" data-dismiss="modal">Cancel</button>
+                                    	 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
                                   	 </div>
+                                         </div>
+                                         </div>
 
                            		 </div>   <%# end MODAL div id="regrec_send_reminder %>	
 
                                  
 
-                                 <div id="regrec_hide_entry<%= f.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <div id="regrec_hide_entry<%= f.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                     <div class="modal-dialog">
+                                     <div class="modal-content">
 
                                     <div class="modal-header">
                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -194,7 +200,9 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button class="btn" data-dismiss="modal">Cancel</button>
+                                        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                     </div>
+                                     </div>
                                      </div>
 
                                  </div>  <%# end MODAL div id="regrec_hide_entry %>	         
@@ -452,7 +460,9 @@
 			 </div> <%# end well %>
 			</div>
 			 <div class="col-md-2">
-			 	     <div id="admins_invited" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			 	     <div id="admins_invited" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                         <div class="modal-content">
 				         <div class="modal-header">
 				              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				              <h3 id="myModalLabel">Admin Invitations</h3>
@@ -481,8 +491,10 @@
 				         </div>
 
 				         <div class="modal-footer">
-				              <button class="btn" data-dismiss="modal">Close</button>
+				              <button class="btn btn-default" data-dismiss="modal">Close</button>
 				         </div>
+                                         </div>
+                                         </div>
 				     </div> <%# end modal %>
 
 				     													   
