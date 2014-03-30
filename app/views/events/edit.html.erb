@@ -1,4 +1,8 @@
-
+<script>
+$(function() {
+  $('#event_date').datepicker({ dateFormat: 'yy-mm-dd' });
+});
+</script>
       <h2> Edit Event Details for <%= @event.title %> </em> </h2>
     
 
@@ -14,43 +18,27 @@
 
 <div class="container">
 
-<script>
-$(function() {
-  $('#event_date').datepicker({ dateFormat: 'yy-mm-dd' });
-});
-</script>
+<div class="row">
 
 <div class="col-md-6 col-md-offset-3">
-				            <div class="well">
-				              <h4> <span class="blue"><i class="fa fa-edit "></i></span>&nbsp;<strong>Edit event page:</strong> </h4> </br>
+        <div class="grey-box hero-block-2">
+				              <h4> <span><i class="fa fa-edit "></i></span>&nbsp;<strong>Edit event page:</strong> </h4> </br>
 
-				                   <%= form_for(@event, :html => {:class => "form-horizontal"}) do |f| %>
+				                   <%= simple_form_for(@event,:wrapper => :bootstrap_horizontal, :html => {:class => "form-horizontal"}) do |f| %>
 				                      
-				                        <%= f.label :title, "Event Title" %>
-				                        <%= f.text_field :title, :class => "col-md-3" %>
-
-				                        <br/>
-				                        <% if @event.event_type == 'graduation' %>
-				                        <span class="help-block">(e.g., "The Harvard Quincy House Commencement")</span>
-				                        <% else %>
+                                                        <%= f.input :title, label: "Event Title" %>
+                                                        <div class="col-sm-7 col-sm-offset-5">
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
-				                        <% end %>
-				                         <br/>
-				                         <br/>
+                                                        </div>
+                                                        <br/>
 				                        
-				                        <%= f.label :date %> 
-				                        <% if !@event.date.nil? %>
-				                        <%= f.text_field :date, :class => "col-md-2", :value => @event.date.strftime("%b %d, %Y") %>
-				                        <% else %>
-				                        <%= f.text_field :date, :class => "col-md-2", :value => @event.date %>
-				                        <% end %>
+                                                         <%= f.input :date,as: :string, input_html: { :value => !@event.date.nil? ? @event.date.strftime("%Y-%m-%d") : @event.date } %>
 				                 
-				                        <br/>
-				                        <br/>
 
-				                        <%= f.label :event_code %>
-				                        <%= f.text_field :event_code, :class => "col-md-2" %>
-				                        				<div id="info-code2" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                        <%= f.input :event_code, label: "Event Code" %>
+				                        				<div id="info-code2" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                            <div class="modal-dialog">
+                                                                                            <div class="modal-content">
 										            <div class="modal-header">
 										              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 										              <h3 id="myModalLabel">What's the Event Code?</h3>
@@ -81,8 +69,14 @@ $(function() {
 										                
 										        
 										              </div>
+										              </div>
+										              </div>
 										           </div>
-				                 			<a data-toggle="modal" href="#info-code2" ><i class="fa fa-info-circle "></i></a>
+
+                                                                        
+                                                        <div class="col-sm-7 col-sm-offset-5 left">
+				                 			<a data-toggle="modal" href="#info-code2" ><i class="fa fa-info-circle fa-lg"></i></a>
+                                                         </div>
 
 
 </br></br></br>
