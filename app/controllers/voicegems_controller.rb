@@ -16,7 +16,7 @@ def vgrecord
             if signed_in?
                unless current_user.admin == true || current_user.customer == true
                
-               flash[:success] = "Trying to record your VoiceGem? Since you have already registered, please click 'Dashboard' above and then click 'Your VoiceGem'."
+               flash[:success] = "Trying to record your VoiceGem? Since you have already registered, please click 'Dashboard' above and then edit your VoiceGem."
                end 
             end
 
