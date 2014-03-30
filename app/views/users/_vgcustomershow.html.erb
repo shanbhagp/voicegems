@@ -23,7 +23,7 @@ $(function() {
 				 		 			        
 				         <div class="col-md-12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create an Event Page: </h4> </br>
+				                 <h4><i class="fa fa-edit"></i>&nbsp;Create an Event Page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -42,7 +42,7 @@ $(function() {
 						                          <% elsif user_is_trialing? %>
 
 						                          		<%= f.hidden_field :purchase_type, :value => 't' %>
-						                          		<%= f.submit "Create Trial Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(Trial Event Pages locked after <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>) </span> 
+						                          		<%= f.submit "Create Trial Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-inline">(Trial Event Pages locked after <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>) </span> 
 
 						                          <% elsif purch_pages_left? %>
 						                          		
@@ -50,7 +50,7 @@ $(function() {
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-block">(<%= current_user.purchased_events %> pages remaining)</span>
 						                          
 						                          <% else %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-block">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>" class="btn btn-primary btn-large">Buy Event Pages&nbsp;&nbsp;<i class="icon-chevron-right"></i><i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a>
+						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-block">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>" class="btn btn-primary btn-large">Buy Event Pages&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 						                          <% end %>
 
 				                        <span class="help-block">(e.g., "The Jones-Ravenwood Wedding")</span>
@@ -80,7 +80,7 @@ $(function() {
 				    <div class="col-md-12">
 				      <div class="well">
 
-				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Your Event Pages: </strong></h4>
+				            <h4><i class="fa fa-list"></i></span>&nbsp;<strong>Your Event Pages: </strong></h4>
 				            <br/>
 				            <% if @user.adminevents.count == 0 %> 
 				            (no event pages created yet)
