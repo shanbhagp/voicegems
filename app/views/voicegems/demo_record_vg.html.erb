@@ -3,11 +3,9 @@
 <% else %> 
 
 
-<div class="jumbotron">
-      <h1>VoiceGem Recording for the Jones-Ravenwood Wedding </h1>
+      <h2>VoiceGem Recording for the Jones-Ravenwood Wedding </h2>
       
       <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
-  </div>
 
   <script type="text/javascript">
             var swfVersionStr = "10.2.0";
@@ -152,7 +150,9 @@
       
     </script>                                            
 
- <div id="newinfo" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div id="newinfo" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+             <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h3 id="myModalLabel"><em>What's going on here?</em></h3>
@@ -181,6 +181,8 @@
 
              
             </div>
+          </div>
+          </div>
           </div>
 
 
@@ -213,7 +215,7 @@
                          
 
 
-                                                <%= simple_form_for(@user, :url => vg_event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
+                                                <%= simple_form_for(@user,:wrapper => :bootstrap_horizontal, :url => vg_event_link_create_path, :html => {:class => 'form-horizontal'}) do |f| %>
                                                    <div class="row">
                                                          <div class="well col-md-8 col-md-offset-1">
                                                           <h4> <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>

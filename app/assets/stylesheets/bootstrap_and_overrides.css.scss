@@ -957,6 +957,17 @@ background-color: #A18F60;
 border-color: #A18F60;
 }
 
+.nav-tabs > li > a:hover {
+    border-color: #E0D5B9 #E0D5B9 #D9CDAB;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #E0D5B9;
+}
+
+a:hover, a:focus {
+    color: #948459;
+}
 
 .blue-border {
     border: 1px solid #5eb2d9;;
@@ -964,5 +975,13 @@ border-color: #A18F60;
 
 .popover {
   min-width: 200px;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #E0D5B9;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #F2EEE3;
 }
 

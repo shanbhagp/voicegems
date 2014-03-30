@@ -24,7 +24,7 @@ background: white;
 
 /**
 .navbar .nav > li > a:hover{
-	color: #5eb2d9 !important;
+	color: #C0AB73 !important;
 	-webkit-transition:color 1s ease;
 	-moz-transition:color 1s ease;
 	-o-transition:color 1s ease;
@@ -34,96 +34,96 @@ background: white;
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
-	color: #5eb2d9 !important;
+	color: black !important;
 }
 
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret,
 .navbar .nav li.dropdown.active > .dropdown-toggle .caret,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
-	border-top-color:#5eb2d9 !important;
-	border-bottom-color:#5eb2d9 !important;
+	border-top-color:black !important;
+	border-bottom-color:black !important;
 }
 
 .dropdown-menu{
-	border-top: 2px solid #5eb2d9 !important;
+	border-top: 2px solid #C0AB73 !important;
 }
 
 /* Title */
 
 .title i{
-	color: #5eb2d9;
+	color: #C0AB73;
 }
 
 /* Service #2 */
 
 .aserv-img i:hover{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Flex Slider */
 
 .flex-caption h3 {
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Slider */
 
 .da-slide h2 span{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 .da-slide p{
-	border-left: 3px solid #5eb2d9;
+	border-left: 3px solid #C0AB73;
 }
 
 .da-slide .da-link{
-	border-left:3px solid #5eb2d9;
+	border-left:3px solid #C0AB73;
 }
 
 /* Slider features */
 
 .slider-features i{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 .slider-features h5 a:hover{
-	color: #5eb2d9;
+	color: #C0AB73;
 }
 
 /* Blog */
 
 .posts .tags a{
-background:#5eb2d9;
+background:#C0AB73;
 border:1px solid #4f99bc;
 border-bottom:3px solid #4f99bc;
 }
 
 .posts .tags a:hover{
-border-bottom:3px solid #5eb2d9;
+border-bottom:3px solid #C0AB73;
 background:#4f99bc;
 border:1px solid #4f99bc;
 }
 
 .paging a:hover{
-background: #5eb2d9;
+background: #C0AB73;
 border:1px solid #4f99bc;
 }
 
 .paging .current{
-background: #5eb2d9;
+background: #C0AB73;
 border:1px solid #4f99bc;
 }
 
 /* Sidebar */
 
 .sidebar .widget{
-	border-top: 1px solid #5eb2d9;
+	border-top: 1px solid #C0AB73;
 }
 
 /* Events */
 
 .events .accordion-heading .accordion-toggle {
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Testimonial */
@@ -140,43 +140,43 @@ border-top-color:#C0AB73;
 /* Service style #2 */
 
 .service-two h5 i{
-	color: #5eb2d9;
+	color: #C0AB73;
 }
 
 /* Process */
 
 .process .process-meta{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Features #1 */
 
 .features-one .feat i{
-	color: #5eb2d9;
+	color: #C0AB73;
 }
 
 /* Features #2 */
 
 .features-two i{
-	color: #5eb2d9;	
+	color: #C0AB73;	
 }
 
 /* About #2 */
 
 .about-two .asocial i{
-	background:#5eb2d9;
+	background:#C0AB73;
 }
 
 /* Pricing table #1 */
 
 .pricel .phead-top{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Pricing table #2 */
 
 .phead-round{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 .phead-round:hover{
@@ -186,17 +186,17 @@ border-top-color:#C0AB73;
 /* Flex slider */
 
 .flexslider .flex-control-nav a:hover{
-	background: #5eb2d9 !important;
+	background: #C0AB73 !important;
 }
 
 .flexslider a.flex-active{
-	background: #5eb2d9 !important;
+	background: #C0AB73 !important;
 }
 
 /* Recent posts */
 
 .recent-posts .carousel_nav i{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 .recent-posts .carousel_nav i:hover{
@@ -204,19 +204,19 @@ border-top-color:#C0AB73;
 }
 
 .recent-posts .rp-item:hover{
-	border-bottom: 2px solid #5eb2d9;
+	border-bottom: 2px solid #C0AB73;
 }	
 
 /* Career */
 
 .nav-tabs > li > a:hover{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 /* Back to top */
 
 .totop a, .totop a:visited{
-	background: #5eb2d9;
+	background: #C0AB73;
 }
 
 .totop a:hover{
@@ -226,5 +226,5 @@ border-top-color:#C0AB73;
 /* Footer */
 
 footer{
-	border-top: 4px solid #5eb2d9;
+	border-top: 4px solid #C0AB73;
 }
