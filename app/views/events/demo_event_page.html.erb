@@ -10,7 +10,7 @@
 
 	<h2> Demo VoiceGems Event Page: <em> The Jones-Ravenwood Wedding </em> </h2>
 	
-	<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
+<h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3>
 
 <% flash.each do |key, value| %>
 	<div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
@@ -302,7 +302,7 @@
 		                                         <hr/> <br/>
 		                                         <%= form_for(:a, url: removeadmin_path) do |x| %>                    
 		                                        
-		                                             <%= x.submit "Remove Admin", class: "btn-danger btn-large btn-modal", disabled: true %>
+		                                             <%= x.submit "Remove Admin (disabled)", class: "btn-danger btn-large btn-modal", disabled: true %>
 		                                         <% end %>
 		                                        <br/>
 		                                        <br/>

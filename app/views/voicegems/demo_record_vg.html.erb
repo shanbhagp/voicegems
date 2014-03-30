@@ -1,4 +1,4 @@
-<h2>VoiceGem Recording for the Jones-Ravenwood Wedding </h2>
+<h2>VoiceGem Recording for the Jones-Ravenwood Wedding (DEMO)</h2>
 <h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3>
 
   <script type="text/javascript">
@@ -180,14 +180,12 @@
           </div>
 
 
-<div class="alert alert-block  modal-header">
+<div class="alert alert-block modal-header">
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>You've been invited to record a VoiceGem for an upcoming event, the Jones-Ravenwood Wedding.<em> Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="fa fa-info-circle"></i></a> </h3>  
- </div>  
-
-
+              <h3>You've been invited to record a VoiceGem for an upcoming event, the Jones-Ravenwood Wedding.<em> Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-primary">More Info <i class="fa fa-info-circle"></i></a> </h3>  
+</div>  
 
 
 <div class="container">  
@@ -200,163 +198,196 @@
 <% end %>
 
 
+<div class="alert alert-block alert-danger invisible" id="chrome">
+   
+    <button type="button" class="close" data-dismiss="alert">×</button>
+       
+            <h3 class="red"><i class="fa fa-warning"></i>&nbsp;Using Chrome?</h3> <center><h4 class="red">You will probably be asked by your browser for access to your microphone, under the address bar above (it's easy to miss):</h4></center><center><img src="<%= image_path('Allow_Box_2.png')%>"></center> </h4>
 
+</div>  
+
+
+<div class="row">
+         <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
+         <div class="col-md-8 col-md-offset-2">
+          
+          <script type='text/javascript'>
+            var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+            if (is_chrome) {
+ 
+              $('#chrome').attr("class","alert alert-block alert-danger");;
+            }
+          </script> 
+          <br/>
+         </div>
+</div>
                          
 
 
-                                                <%= simple_form_for(@user,:wrapper => :bootstrap_horizontal, :url => vg_event_link_create_path, :html => {:class => 'form-horizontal'}) do |f| %>
-                                                   <div class="row">
-                                                         <div class="well col-md-8 col-md-offset-1">
-                                                          <h4> <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
-                                                              
-                                                              <br/>
-                                                              <%= f.error_notification %>
-                                                              
-                                                                <%= f.hidden_field :event_code, :value => @event_code %>
+                  <%= simple_form_for(@user,:wrapper => :bootstrap_horizontal, :url => vg_event_link_create_path, :html => {:class => 'form-horizontal'}) do |f| %>
+                     <div class="row">
+                           <div class="well col-md-12">
+                             <center><h3><span>STEP 1: Basic Info</span></h3></center>
+                                
+                                <br/>
+                                <%= f.error_notification %>
+                                
+                                  <%= f.hidden_field :event_code, :value => @event_code %>
 
 
-                                                                  <%= f.input :first_name, label: "First Name", class: "col-md-5" %>
-                                                                  <%= f.input :last_name, label: "Last Name" %>
-                                                                  <%= f.input :email %>
-                                                                 
+                                    <%= f.input :first_name, label: "First Name", class: "col-md-5" %>
+                                    <%= f.input :last_name, label: "Last Name" %>
+                                    <%= f.input :email %>
+                                   
 
-                                                                <hr/>    
-                                                           </div>
+                                  <hr/>    
+                             </div>
 
-                                                   </div>
-                                                   <div class="row">
-                                                         <div class="well col-md-8 col-md-offset-1">         
-                                                             <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 2: Notes/Request<span class="muted"> (optional)</span> </h4> 
-                                                              <br/>      
-                                                                        <span class="textarea2 textareawider">
-                                                                         <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
-                                                                        </span>
-                                                                           
+                     </div>
 
-                                                                          
-                                                                        
-                                                                         
-                                                                     <hr/>
-                                                          </div>
-                                                      </div>
-                                                      <div class="row">
-                                                          <div class="well col-md-8 col-md-offset-1">
-                                                              <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your VoiceGem</span> </h4> <br/>
-                                                                  <br/> 
-                                                                <div class="row">
-                                                                      <div class="col-md-7">
-                                                                                                          <div id="flashContent">
-                                                                                                              <p>
-                                                                                                                  To view this page ensure that Adobe Flash Player version 
-                                                                                                                  11.1.0 or greater is installed. 
-                                                                                                              </p>
-                                                                                                              <script type="text/javascript"> 
-                                                                                                                  var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
-                                                                                                                  document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
-                                                                                                              </script> 
-                                                                                                          </div>
-                                                                                                          
-                                                                                                          <noscript>
-                                                                                                              You need to have JS enabled for Audior to show.
-                                                                                                          </noscript>   
+                     <div class="row">
+                           <div class="well col-md-12">         
+                                <h3><span>STEP 2: Notes/Request<span class="muted"> (optional)</span> </h3> 
+                                <br/>      
+                                          <span class="textarea2">
+                                           <%= f.input :vg_notes, label: "If you want, enter any notes or song request for the DJ to accompany your VoiceGem:", placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
+                                          </span>
+                                             
 
-                                                                                                  <div class="invisible">
-                                                                                                  <input type="button" onclick="javascript:document.Audior.mainbtn()" name="mainbtn" value="Record -> Stop -> Play -> Pause" id="mainbtn"/>
-                                                                                                  <input type="button" onclick="javascript:document.Audior.pauseResumeBtn()" disabled name="pauseResumeRec" value="Pause/Resume Recording" id="pauseResumeRec"/></br>
-                                                                                                  <input type="button" onclick="javascript:document.Audior.recordagain()" disabled  name="recAgain" value="Record Again" id="recAgain"/>
-                                                                                                  <input type="button" onclick="javascript:document.Audior.save()" disabled value="Save" name="sav" id="sav"/>
-                                                                                                  <input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
-                                                                                                  </div>
-
-                                                                                                  <div class="col-md-6">
-                                                                                                  <h4 id="firstDisplay">&nbsp;</h4>
-                                                                                                  </div>
-                                                                       </div>
-                                                                  </div>
-                                                                
-                                                             
-                    <div class="row">
-                      <div class="col-md-7">
-                         <hr/>
-                                <div class="accordion" id="accordionrec">
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec1">
-                                        <h4><span class="blue">Instructions<span/></h4> 
-                                      </a>
-                                    </div>
-                                    <div id="collapserec1" class="accordion-body collapse">
-                                      <div class="accordion-inner">
-                                        Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
-                                        <ol>
-                                          <li><strong>Press the Record button, then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
-                                          <li> You will have 30 seconds maximum recording time. <strong>Please record your VoiceGem, then press 'STOP'.</strong></li> <br/>
-                                          <li>Press the Play button to review your VoiceGem.</li>
-                                             <ul>
-                                                 <li>If it sounds good, <strong>press 'Save.'</strong></li>  
-                                                  <li>If you're not happy with it, press 'Record Again' to try again.</li>
-                                              </ul>
-                                          </ol> 
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionrec" href="#collapserec2">
-                                        <h4><span class="blue">Problems?<span/></h4>
-                                      </a>
-                                    </div>
-                                    <div id="collapserec2" class="accordion-body collapse">
-                                      <div class="accordion-inner">
-                                          <h4><i class="fa fa-warning red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                            
                                           
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
-                                             <hr/>
-                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('Allow_Box_2.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
-                                              <hr/>
-                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
-                                              <hr/>
-                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
-                                               <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
-                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
-                                      </div>
-                                    </div>
-                                  </div>    
-   
+                                           
+                                       <hr/>
+                            </div>
+                     </div>
+
+                     <div class="row">
+                            <div class="well col-md-12">
+                                <center><h3><span>STEP 3: Record Your VoiceGem</span></h3></center> <br/>
+                                        <br/> 
+                                  <div class="row">
+                                        <div class="col-md-12">
+                                            <center>
+                                              <div id="flashContent">
+                                                                <p>
+                                                                    To view this page ensure that Adobe Flash Player version 
+                                                                    11.1.0 or greater is installed. 
+                                                                </p>
+                                                                <script type="text/javascript"> 
+                                                                    var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                                                                    document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
+                                                                </script> 
+                                              </div>
+                                                            
+                                              <noscript>
+                                                  You need to have JS enabled for Audior to show.
+                                              </noscript>   
+
+                                              <div>
+                                                    <h4 id="firstDisplay" class="red">&nbsp;</h4>
+                                              </div>
+                                           </center>
+
+                                         </div>
+                                  </div>
+                                  
+                                  <hr/>
+
+                                  <div class="row">
+                                        <div class="col-md-12">     
+                                               <div class="panel-group" id="accordionrec">
+
+                                                        <div class="panel panel-default">
+                                                              <div class="panel-heading">
+                                                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordionrec" href="#collapserec1">Instructions</a></h4>
+                                                              </div><!-- END PANEL-HEADING -->
 
 
-                                </div>   <!-- end accordion --> 
-                        </div> 
-              </div>             
+                                                              <div id="collapserec1" class="panel-collapse collapse">
+                                                                  <div class="panel-body">
+                                                                        <ol>
+                                                                              <li><strong>Press the Record button, then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
+                                                                              <li> You will have 30 seconds maximum recording time. <strong>Please record your VoiceGem, then press 'STOP'.</strong></li> <br/>
+                                                                              <li>Press the Play button to review your VoiceGem.</li>
+                                                                                 <ul>
+                                                                                     <li>If it sounds good, <strong>press 'Save.'</strong></li>  
+                                                                                      <li>If you're not happy with it, press 'Record Again' to try again.</li>
+                                                                                  </ul>
+                                                                      </ol> 
+                                                                      <br/>
+                                                                          Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> 
+                                                                  </div> <!-- END collapserec1-->
+                                                              </div>
+                                                        </div> <!-- END PANEL-DEFALT-->
 
-                 <hr/>
-                                                               
 
-                                                                      <!-- BELOW: a simple HTML way to embed a .swf video. If Flash is disabled, a link to the browser settings page will show up, which is useful for the user.Swfobject is an alternative, but since we're just embedding a simple, auto-playing video for testing purposes, that doesn't seem necessary for the time being. -->
-                                                                          <h4> Can you see the animation below? </h4>
+                                                        <div class="panel panel-default">
+                                                              <div class="panel-heading">
+                                                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordionrec" href="#collapserec2">Problems?</a></h4>
+                                                              </div><!-- END PANEL-HEADING -->
+
+                                                              <div id="collapserec2" class="accordion-body collapse">
+                                                                  <div class="panel-body">
+                                                                        <h4><i class="fa fa-warning red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                                                        
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
+                                                                           <hr/>
+                                                                        <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page).</h5> 
+                                                                             <center><img src="<%= image_path('Allow_Box_2.png')%>"></center> <h5>Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
+                                                                            <hr/>
+                                                                        <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
+                                                                            <hr/>
+                                                                        <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
+                                                                             <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
+                                                                            <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
                                                                           
+                                                                        <hr/>
 
-                                                                         <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
+                                                                         <div class="row">
+                                                                            <div class="well col-md-12">
+                                                                              <center>
+                                                                                  <h4> Can you see an animation below? </h4>
+                                                                        
+                                                                                  <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
 
-                                                                       <h5>If not, you will need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
-                                                                          
+                                                                                   <h5>If not, you will probably need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
 
-                                                          </div> 
-                                                     </div><%# end third row %>     
-                                                    <% end %>
+                                                                              </center>
+                                                                            </div>                           
+
+                                                                      </div> <%# end row %>     
+
+                                                                  </div> <!-- END PANEL-BODY-->
+                                                              </div> <!-- END collapserec2-->
+                                                        </div> <!-- END PANEL-DEFALT-->
+
+                                                      
+                                               </div>     <!-- END PANEL GROUP -->            
+                                        </div> 
+                                  </div>            
+
+                                  <hr/>                                                             
+                            </div> 
+                     </div><%# end third row %>
+
+                    <% end %>
                                                     
-                                                     <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
+                  <h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
                                
-
+      <div class="invisible">
+            <input type="button" onclick="javascript:document.Audior.mainbtn()" name="mainbtn" value="Record -> Stop -> Play -> Pause" id="mainbtn"/>
+            <input type="button" onclick="javascript:document.Audior.pauseResumeBtn()" disabled name="pauseResumeRec" value="Pause/Resume Recording" id="pauseResumeRec"/></br>
+            <input type="button" onclick="javascript:document.Audior.recordagain()" disabled  name="recAgain" value="Record Again" id="recAgain"/>
+            <input type="button" onclick="javascript:document.Audior.save()" disabled value="Save" name="sav" id="sav"/>
+            <input type="button" onclick="javascript:document.Audior.download()" disabled value="Download" name="dwl" id="dwl" /></br>
+      </div>
 
 </div><%# end container %>
 

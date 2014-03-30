@@ -126,7 +126,7 @@
                     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                           data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-email="<%= current_user.email %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
                       data-description="<%= @number %> Event Page<% if @number > 1 %>s<% end %>"
-                      data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question "></i></a></span> 
+                      data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question-circle"></i></a></span> 
                   <br/>
                   <br/>
                       
