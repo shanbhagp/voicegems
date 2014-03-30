@@ -126,7 +126,7 @@
         //success  will be true if the upload succeeded and false otherwise
         console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
         document.getElementById("dwl").disabled = false
-         document.getElementById("continuebtn").setAttribute("class","col-md-7")
+         document.getElementById("continuebtn").setAttribute("class", "col-md-6 col-md-offset-3")
         document.getElementById("firstDisplay").innerHTML  = "Click 'NEXT' below.";
   
       }
@@ -218,12 +218,14 @@
      <center>                        
               <div id="continuebtn" class="invisible">
            
-              <%= link_to setpassword_path(:id => current_user.id, :event => @event, :event_code => @event_code, :vg => @vg), disable_with: 'please wait...', class: 'btn btn-primary col-md-2' do %> NEXT&nbsp;<i class="fa fa-caret-right "></i>
+                    <%= link_to setpassword_path(:id => current_user.id, :event => @event, :event_code => @event_code, :vg => @vg), disable_with: 'please wait...', class: 'btn btn-primary pull-right' do %> NEXT&nbsp;<i class="fa fa-caret-right "></i>
                   <% end %>
 
               </div>
      </center>
-    </div>                           
+    </div>  
+    <br/>
+    <br/>                         
 </div>                      
                       
 <div class="row">
@@ -238,7 +240,6 @@
 
                             <div id="collapserec1" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                  Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> <br/><br/>
                                       <ol>
                                             <li><strong>Press the Record button, then click 'Allow'</strong> if asked for permission to use your computer's microphone.</li> <br/>
                                             <li> You will have 30 seconds maximum recording time. <strong>Please record your VoiceGem, then press 'STOP'.</strong></li> <br/>
@@ -248,6 +249,8 @@
                                                     <li>If you're not happy with it, press 'Record Again' to try again.</li>
                                                 </ul>
                                     </ol> 
+                                    <br/>
+                                        Note: <em>if the recorder isn't working, please ensure your browser's <strong>Javascript and Flash are enabled</strong></em> 
                                 </div> <!-- END collapserec1-->
                             </div>
                       </div> <!-- END PANEL-DEFALT-->
