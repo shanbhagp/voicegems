@@ -21,12 +21,12 @@
                                         <%= f.input :password, label: "Password" %>
 
                                       
-                                        <div class="form-actions">
-                                        <br>
-                                        <%= f.button :submit, "Log In", class: "btn btn-primary col-md-2 cent", disable_with: "logging in..." %>
-                                        <br>
-                                        <hr/>
+                                        <div class="form-action">
+                                        <br/>
+                                        <%= f.button :submit, "Log In", class: "btn btn-primary", disable_with: "logging in..." %>
+                                        <br/>
                                           
+                                        <hr/>
                                            <a href="<%= new_password_reset_path %>" >Forgot Password?</a>
                                         </div>
 
