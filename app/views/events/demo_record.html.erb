@@ -45,7 +45,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for an upcoming event<% if !@event.nil? %><% if !@event.title.blank? %>, <%= @event.title %><% end %><% end %>.  <br/><em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="fa fa-info "></i></a> </h3>  
 
           
      
@@ -103,25 +103,25 @@
                                     </div>
                                     <div id="collapserec2" class="accordion-body collapse">
                                       <div class="accordion-inner">
-                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                          <h4><i class="fa fa-warning red"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
                                           
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;<a href="/flashissue" target="_blank">Please click here</a></h5>
                                              <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
                                               
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please temporarily disable it (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please temporarily disable it (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
                                               <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
                                               <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
-                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
+                                               <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
                                       </div>
                                     </div>
                                   </div>    
@@ -161,7 +161,7 @@
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well col-md-3 col-md-offset-1">
-                                                          <h4> <i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> <span class="muted"> (required)</span> </h4>
+                                                          <h4> <i class="fa fa-check fa-lg">&nbsp;</i><span class="blue">STEP 1: Enter Basic Info</span> <span class="muted"> (required)</span> </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
@@ -177,7 +177,7 @@
 
                                                          </div>
                                                          <div class="well col-md-3">         
-                                                             <h4><i class="icon-check icon-large">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
+                                                             <h4><i class="fa fa-check fa-lg">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
                                                                          <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Henry 'Indiana' Jones, Jr.')"  %>
                                                                             
@@ -193,7 +193,7 @@
                                                           </div>
 
                                                           <div class="well col-md-3">
-                                                              <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
+                                                              <h4> <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/> <br/>
                                                                   <div class="row">
                                                                  
@@ -201,7 +201,7 @@
                                                                                                                                            
                                                                      <br/><br/>
                                                                      <div class="cent">
-                                                                      <h3><span><i class="icon-hand-up icon-large"></i>&nbsp;<em>Try Demo!</em></span></h3>
+                                                                      <h3><span><i class="fa fa-hand-o-up fa-lg"></i>&nbsp;<em>Try Demo!</em></span></h3>
                                                                      </div>
 
                                                                      <!--<script type='text/javascript' src='flashblock-detector.js'> -->

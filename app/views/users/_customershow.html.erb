@@ -24,7 +24,7 @@ $(function() {
 				 		 			        
 				         <div class="col-md-12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
+				                 <h4><i class="fa fa-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -45,7 +45,7 @@ $(function() {
 										            <div class="modal-body">
 										            <p> Attendees can record their names for this event/event page through a unique link, such as:
 										            	<br/><br/>
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
+										            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
 										              </p> 
 
 										       			<p> The link will be available once you create the Event Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
@@ -69,7 +69,7 @@ $(function() {
 
 										         </div> <%# end modal %>
 
-				                 			<a data-toggle="modal" href="#info-code" ><i class="icon-info-sign "></i></a> &nbsp;&nbsp;&nbsp;
+				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info "></i></a> &nbsp;&nbsp;&nbsp;
 
 						                         
 				                 			<%= f.select :purchase_type,  options_for_select([["from subscription pages (#{sub_pages_left} left)", "s"], ["from purchased pages (#{current_user.purchased_events} left)", "p"]]), :size => 5 %>
@@ -105,7 +105,7 @@ $(function() {
 				 		 			        
 				         <div class="col-md-12">
 				             <div class="well">
-				                 <h4><i class="icon-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
+				                 <h4><i class="fa fa-edit icon-blue"></i>&nbsp;Create a event page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
@@ -126,7 +126,7 @@ $(function() {
 										          <div class="modal-body">
 										            <p> Individuals can record their names for this event page through a unique link, such as:
 										            	<br/><br/>
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
+										            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;www.voicegems.com/record/ExampleCode<br/>
 										              </p> 
 
 										       		<p> The link will be available once you create the Event Page, and you can distribute this link to the individuals whose names you want recorded. </p> 
@@ -150,7 +150,7 @@ $(function() {
 
 										         </div> <%# end modal %>
 
-				                 			<a data-toggle="modal" href="#info-code" ><i class="icon-info-sign "></i></a> &nbsp;&nbsp;
+				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info "></i></a> &nbsp;&nbsp;
 
 				                 			<% if current_user.customer == true && current_user.event_type == 'all_inclusive' && !customer_has_master_list? %>
 				                 	      		Master List?  <%= f.check_box :master %> &nbsp;&nbsp; 
@@ -210,7 +210,7 @@ $(function() {
 				    <div class="col-md-12">
 				      <div class="well">
 
-				            <h4><i class="icon-list icon-blue"></i></span>&nbsp;<strong>Name pages you administer: </strong></h4>
+				            <h4><i class="fa fa-list icon-blue"></i></span>&nbsp;<strong>Name pages you administer: </strong></h4>
 				            <br/>
 				            <% if @user.adminevents.count == 0 %> 
 				            (no event pages created yet)
@@ -220,7 +220,7 @@ $(function() {
 						                <tr>  
 						                  <td><strong><%= link_to e.title, e %></strong> </td>
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
-						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit</span></a>	 </td> 
+						                  <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="fa fa-pencil "></i>&nbsp;edit</span></a>	 </td> 
 						                   <td> 
 				                  			 <div id="<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                           <div class="modal-header">
@@ -262,7 +262,7 @@ $(function() {
                                                          
                                                          
                                                 </td>
-						                  <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+						                  <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="fa fa-chevron-right "></i> </a>
 						                  </td>
 						                  
 

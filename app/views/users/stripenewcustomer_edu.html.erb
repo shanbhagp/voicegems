@@ -1,8 +1,8 @@
 <div class="jumbotron">
         <h1>Customer Signup</h1>
       <br/>
-      <h3><i class="icon-check icon-white"></i>&nbsp;Step 1: New User Registration</h3>
-      <h3><span class="deco">&nbsp;<% if current_user.customer_id.blank? %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Subscription<% else %><i class="icon-check-empty icon-white"></i>&nbsp;Step 2: Purchase Subscription<% end %></span></h3>
+      <h3><i class="fa fa-check "></i>&nbsp;Step 1: New User Registration</h3>
+      <h3><span class="deco">&nbsp;<% if current_user.customer_id.blank? %><i class="fa fa-check-empty "></i>&nbsp;Step 2: Subscription<% else %><i class="fa fa-check-empty "></i>&nbsp;Step 2: Purchase Subscription<% end %></span></h3>
   </div>
                
 <!-- This is exactly the same as stripetest, except for the jumbotron stuff -->
@@ -42,7 +42,7 @@
               
                                     
                                     <% if !@coupon.nil? && !@new_price.nil? %>
-                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon.percent_off %>% off): now only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/year </em></h4>
+                                    <h4> <icon class="fa fa-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon.percent_off %>% off): now only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/year </em></h4>
                                     <% end %>
                                    
                                     <h4>14-day Free Trial</h4>
@@ -123,7 +123,7 @@
                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-panel-label="Subscribe!" data-name="VoiceGems"
                     data-description="<%= @planobject.name %>"
-                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="<%= faq_path %>.htm#collapseTen" target="_blank" ><i class="icon-question-sign "></i></a></span> 
+                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="<%= faq_path %>.htm#collapseTen" target="_blank" ><i class="fa fa-question "></i></a></span> 
                 <br/>
                 <br/>
                 <h5> Your card will not be charged until the free trial period ends.  You may cancel your subscription any time.</h5>

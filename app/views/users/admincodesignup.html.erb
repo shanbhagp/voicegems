@@ -43,7 +43,7 @@
     <button type="button" class="close" data-dismiss="alert">×</button>
  
 
-              <h4> You've been asked to be an admin for an upcoming event. &nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newadmininfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a> </h4>     
+              <h4> You've been asked to be an admin for an upcoming event. &nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newadmininfo" class="btn btn-info">More Info <i class="fa fa-info "></i></a> </h4>     
 </div>  
 
              <% flash.each do |key, value| %>
@@ -68,7 +68,7 @@
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
                                           <div class="well col-md-5 col-md-offset-3">
-                                                <h4><i class="icon-user">&nbsp;</i><span class="blue">Admin Registration for New Users</span></h4>
+                                                <h4><i class="fa fa-user">&nbsp;</i><span class="blue">Admin Registration for New Users</span></h4>
                                                 <br/>
                                                 <%= simple_form_for(@user, :url => admincodesignupcreate_path, :html => {:class => "form-horizontal"}) do |f| %>
                                                 <br/>
@@ -103,7 +103,7 @@
                                             <div class="accordion-inner">
                                                   
                                                 <div class="well col-md-5 col-md-offset-3">
-                                                    <h4><i class="icon-user">&nbsp;</i><span class="blue">Admin Registration for Existing Users</span></h4>
+                                                    <h4><i class="fa fa-user">&nbsp;</i><span class="blue">Admin Registration for Existing Users</span></h4>
                                                                     <br/> 
                                                                
                                                       <%= form_for(:session, url: addcodeadmin_path, :html => {:class => "form-horizontal"} ) do |f| %>
@@ -122,7 +122,7 @@
                                                             <br/>
                                                             <br/>
                                                               <%= button_tag(type: 'submit', class: "btn btn-primary btn-small pull-right") do %>
-                                                               Sign In <i class="icon-chevron-right icon-white"></i> 
+                                                               Sign In <i class="fa fa-chevron-right "></i> 
                                                               <% end %>
 
                                                         <% end %> <%# end well %>

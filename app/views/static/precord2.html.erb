@@ -73,7 +73,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <div id="english" class="col-md-2 col-md-offset-1 invisible">
     <audio id="audio"></audio>
 
-    <a href="#" class="btn btn-info" id="audio1">Play Name Recording&nbsp;<i class="icon-play-circle icon-white"></i></a>
+    <a href="#" class="btn btn-info" id="audio1">Play Name Recording&nbsp;<i class="fa fa-play-circle "></i></a>
    
   </div>
 
@@ -89,7 +89,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 
 
 <div id="record_again" class="col-md-2 col-md-offset-1 invisible">
-  <%= link_to precord_path(:po => @practiceobject.id), class: 'btn btn-danger' do %> Record Again&nbsp;<i class="icon-refresh icon-white"></i>
+  <%= link_to precord_path(:po => @practiceobject.id), class: 'btn btn-danger' do %> Record Again&nbsp;<i class="fa fa-refresh "></i>
                                   <% end %>
 </div>
 
@@ -98,7 +98,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <hr/>
 
  <div id="next" class="invisible">
-         <span>If satisfied with your recording, click next to continue &nbsp;&nbsp;&nbsp;&nbsp;</span><%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait..', class: 'btn btn-info btn-large pull-right' do %>NEXT&nbsp;<i class="icon-caret-right icon-white"></i>  <% end %>
+         <span>If satisfied with your recording, click next to continue &nbsp;&nbsp;&nbsp;&nbsp;</span><%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait..', class: 'btn btn-info btn-large pull-right' do %>NEXT&nbsp;<i class="fa fa-caret-right "></i>  <% end %>
     </div>
 
 </div>

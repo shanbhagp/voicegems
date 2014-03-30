@@ -40,7 +40,7 @@
 
                             <% if !@coupon.nil? && !@new_price.nil? %>
                                       Subtotal: $<%= @old_cost %>.00
-                                    <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon_object.percent_off %>% off): now only <span class="black">$<%= number_with_precision((@new_price.to_f), :precision => 2) %></span>! </em></h4>
+                                    <h4> <icon class="fa fa-caret-right"></i>&nbsp;<em>Discount Applied (<%= @coupon_object.percent_off %>% off): now only <span class="black">$<%= number_with_precision((@new_price.to_f), :precision => 2) %></span>! </em></h4>
                             <% else %>
                                 <strong>Total: $<%= @cost %>.00</strong>
                             <% end %>
@@ -126,7 +126,7 @@
                     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                           data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-email="<%= current_user.email %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
                       data-description="<%= @number %> Event Page<% if @number > 1 %>s<% end %>"
-                      data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
+                      data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question "></i></a></span> 
                   <br/>
                   <br/>
                       

@@ -36,7 +36,7 @@
 
                  <h4> <% if !@nplan.name.nil? %><%= @nplan.name.titleize %><% end %> ($<% if !@nplan.monthly_cost_cents.nil? %><%= @nplan.monthly_cost_cents/100 %><% end %>.00/month) </h4>
                   <% if !@new_price.nil?  %>
-                     <h4> <icon class="icon-caret-right"></i>&nbsp;<em>Discounted Price (<%= @coupon.percent_off %>% off): only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/month! </em></h4>
+                     <h4> <icon class="fa fa-caret-right"></i>&nbsp;<em>Discounted Price (<%= @coupon.percent_off %>% off): only $<%= number_with_precision((@new_price.to_f)/100, :precision => 2) %>/month! </em></h4>
                   <% end %>
                   <br/>
                   <h4><icon class="icon-ok-sign">&nbsp;<%= @nplan.events_number %> Events / Year  </h4>
@@ -141,7 +141,7 @@
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-panel-label="Change Subscription!" data-name="VoiceGems" data-label="Enter New Card Details"
                                     data-description="<%= Plan.find_by_my_plan_id(@newplan).name %> subscription"
-                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="icon-question-sign "></i></a></span> 
+                                    data-image="<%= image_path('darkerbuttont_fav_2.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question "></i></a></span> 
                                 <br/>
                                 <br/>
                                     

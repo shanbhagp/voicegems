@@ -45,7 +45,7 @@
               <% if !@po.nil? %>  
            <% if !@po.event.nil? %> 
 
-              <p> <h3>Now just record your name, and you're done!</done>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info btn-small">More Info <i class="icon-info-sign icon-white"></i></a> </h3>  </p>
+              <p> <h3>Now just record your name, and you're done!</done>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info btn-small">More Info <i class="fa fa-info "></i></a> </h3>  </p>
 
           <% end %>
           <% end %>
@@ -61,7 +61,7 @@
 
 <div class="row">
       <div class="well col-md-5 col-md-offset-2">
-      <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 1: Basic Info (required) </h4>
+      <h4 class="blue">  <% if signed_in? %><i class="fa fa-check">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i>STEP 1: Basic Info (required) </h4>
           <%= simple_form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
           <br/>
           <%= f.error_notification %>
@@ -74,7 +74,7 @@
               <%= f.input :email %>
                <hr/>
               
-       <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 2: NameGuide Info (optional) </h4> 
+       <h4 class="blue">  <% if signed_in? %><i class="fa fa-check">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i>STEP 2: NameGuide Info (optional) </h4> 
         <br/>      
                      <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced", hint: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                     
@@ -85,7 +85,7 @@
                       <hr/>
 
               
-              <h4 class="blue">  <% if signed_in? %><i class="icon-check">&nbsp;<% else %><i class="icon-check-empty">&nbsp;<% end %></i>STEP 3: Save Info (required) </h4> <br/>
+              <h4 class="blue">  <% if signed_in? %><i class="fa fa-check">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i>STEP 3: Save Info (required) </h4> <br/>
 
               <div class="row">
                <div class="col-md-2 col-md-offset-2">
@@ -95,7 +95,7 @@
               
                <hr/>
             
-            <h4 class="blue">  <i class="icon-check-empty">&nbsp;</i>STEP 4: Record Your Name (<em>highly</em> recommended) </h4> <br/>
+            <h4 class="blue">  <i class="fa fa-check-empty">&nbsp;</i>STEP 4: Record Your Name (<em>highly</em> recommended) </h4> <br/>
 
               <div class="row">
                <div class="col-md-2 col-md-offset-2">
@@ -168,7 +168,7 @@
                          </div> <%# end modal %>
 
 
-               <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="icon-caret-right icon-white"></i> </button> <br/>
+               <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="fa fa-caret-right "></i> </button> <br/>
                <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
               </div>
             </div>
@@ -178,7 +178,7 @@
       </div>
 
       <div class="well col-md-3 col-md-offset-1">
-        <h4> <span class="label label-info"> <i class="icon-user icon-white">&nbsp;</i> Already Registered on our site?</span> </h4>
+        <h4> <span class="label label-info"> <i class="fa fa-user ">&nbsp;</i> Already Registered on our site?</span> </h4>
                   <br/> 
                   <% flash.each do |key, value| %>
                       <%= content_tag(:div, value, class: "alert alert-#{key}") %>
@@ -196,7 +196,7 @@
                       <br/>
                       <br/>
                         <%= button_tag(type: 'submit', class: "btn btn-primary btn-small pull-right") do %>
-                         Sign In <i class="icon-chevron-right icon-white"></i> 
+                         Sign In <i class="fa fa-chevron-right "></i> 
                         <% end %>
 
                   <% end %>

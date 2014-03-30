@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="col-md-2">
-						<a href="<%= edit_practiceobject_path%>/<%= f.id %>" class="btn btn-info btn-small"> Edit PO <i class="icon-chevron-right icon-white"></i> </a>
+						<a href="<%= edit_practiceobject_path%>/<%= f.id %>" class="btn btn-info btn-small"> Edit PO <i class="fa fa-chevron-right "></i> </a>
 					</div>
 
 					<div class="col-md-2">
@@ -91,7 +91,7 @@
 
 <div class="row">
     <div class="col-md-12">
-          <h4><span class="label label-info"><i class="icon-volume-up icon-white"></i></span><strong> Your <em>Namewave</em>: </strong></h4>
+          <h4><span class="label label-info"><i class="fa fa-volume-up "></i></span><strong> Your <em>Namewave</em>: </strong></h4>
     </div>
 
 </div>
@@ -295,7 +295,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
 
 --------------------------------------------------------
 
-<button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to hide the attendee's entry." data-original-title="Hide Attendee's Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+<button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to hide the attendee's entry." data-original-title="Hide Attendee's Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
 
 -------------------------
 
@@ -307,12 +307,12 @@ Elapsed Time: <span id="time">00</span>/10 seconds
        <%= form_for(:session, url: addcodeadmin_path, :html => {:class => "form-horizontal"} ) do |f| %>                        
 
 <%= button_tag(type: 'submit', class: "btn btn-info btn-small", id: "send") do %>
-                        <i class="icon-upload"></i> 
+                        <i class="fa fa-upload"></i> 
                  <% end %>
   <% end %> 
 
                                  <%= link_to f, confirm: 'Are you sure?', disable_with: 'deleting...', method: :delete, class: 'btn-mini btn-info btn-small' do %>
-                                  <i class="icon-trash icon-white"></i>
+                                  <i class="fa fa-trash-o "></i>
                                 <% end %>
 
                         <%= button_to('x', users_path, :class => 'btn btn-small btn-primary')  %>
@@ -320,13 +320,13 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                                       <%= button_to "4", {:controller => :users,
                                       :action => 'hide', :class => 'btn btn-primary' }, :method => :post %>
 
-                                                   <a href="<%= practiceobjects_path%>/<%= f.id %>" class="btn btn-info btn-small"><i class="icon-chevron-right icon-white"></i> </a>
+                                                   <a href="<%= practiceobjects_path%>/<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-chevron-right "></i> </a>
 
                                                    
 
 
 
-                                <button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete the attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Hide Attendee's Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                                <button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete the attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Hide Attendee's Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
 
 -------------------------
 
@@ -355,7 +355,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                      <%= form_for(f) do |x| %>
                                       <%= x.hidden_field :hidden, :value => false %>                    
                                       <%= button_tag(type: 'submit', class: "btn btn-info" ) do %>
-                                        <i class="icon-plus-sign"></i> 
+                                        <i class="fa fa-plus"></i> 
                                        <% end %>
                                       <% end %>
 ------------------------------------
@@ -377,7 +377,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                                 <%= form_for(f) do |x| %>
                                                   <%= x.hidden_field :hidden, :value => false %>                    
                                                   <%= button_tag(type: 'submit', class: "btn btn-info" ) do %>
-                                                    <i class="icon-plus-sign"></i> 
+                                                    <i class="fa fa-plus"></i> 
                                                    <% end %>
                                                   <% end %>
                                               <br/>
@@ -395,7 +395,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                                             
                         
                               
-                              <button id= "popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#restore_entry<%= f.id %>" class="btn btn-info"><i class="icon-plus-sign"></i></button>
+                              <button id= "popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#restore_entry<%= f.id %>" class="btn btn-info"><i class="fa fa-plus"></i></button>
 
 ---------------------------------
 
@@ -432,7 +432,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                                             
                         
                               
-                              <button id= "popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#restore_entry<%= f.id %>" class="btn btn-info"><i class="icon-plus-sign"></i></button>
+                              <button id= "popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#restore_entry<%= f.id %>" class="btn btn-info"><i class="fa fa-plus"></i></button>
                                                                           
   --------------------------------------------------------------
 
@@ -543,7 +543,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                                             <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                                  <hr/>
                                                   <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+                                                <i class="fa fa-trash-o "></i>&nbsp;Delete
                                               <% end %>
                                               <br/>
                                               <br/>
@@ -559,11 +559,11 @@ Elapsed Time: <span id="time">00</span>/10 seconds
 
                                                             
                                
-                              <button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click here to send an email asking this attendee to record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              <button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click here to send an email asking this attendee to record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-                              <button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+                              <button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
                               
-                              <button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              <button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       </div>  
@@ -685,7 +685,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
 
                                             </div>  <%# END modal body %>      
 
-                            <% unless a.id == current_user.id %> <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="icon-ban-circle red"></i></a> <% end %>
+                            <% unless a.id == current_user.id %> <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="fa fa-ban red"></i></a> <% end %>
                           <td> 
                           <% end %> 
                         </tr>
@@ -720,9 +720,9 @@ $(function ()
 -----------------------------------------
 
   <div class="row">     
-          <h4 class="blue">  <i class="icon-check-empty">&nbsp;</i>STEP 3: Save Info (required) </h4> <br/>
+          <h4 class="blue">  <i class="fa fa-check-empty">&nbsp;</i>STEP 3: Save Info (required) </h4> <br/>
           <div class="col-md-2 col-md-offset-2">
-           <a data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="icon-caret-right icon-white"></i> </a>
+           <a data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="fa fa-caret-right "></i> </a>
          </div>     
        </div>
 -------------------
@@ -745,7 +745,7 @@ $(function ()
 <div class="row">
     <div class="col-md-8 col-md-offset-3">
         
-         <% if !@user.recording.blank? %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" > DONE <i class="icon-caret-right icon-white"></i> </button> <% else %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" disabled="true" > DONE <i class="icon-caret-right icon-white"></i> </button>  <% end %>
+         <% if !@user.recording.blank? %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" > DONE <i class="fa fa-caret-right "></i> </button> <% else %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" disabled="true" > DONE <i class="fa fa-caret-right "></i> </button>  <% end %>
     </div>
 </div>
 

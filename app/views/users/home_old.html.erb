@@ -16,7 +16,7 @@
      <%= link_to "Sign out", signout_path, method: "delete" %>
 
      <% if current_user.customer == false %>
-     <a href="<%= stripetest_path %>" class="btn btn-success btn-small"> Start Your Free Trial! <i class="icon-chevron-right icon-white"></i> </a> 
+     <a href="<%= stripetest_path %>" class="btn btn-success btn-small"> Start Your Free Trial! <i class="fa fa-chevron-right "></i> </a> 
      <% end %> 
 
 
@@ -33,13 +33,13 @@
 
         <h2> Not registered? Sign up here: </h2>
 
-      <a href="<%= eventcodesignup_path %>" class="btn btn-info btn-small"> Recording Your Name for an Event? <i class="icon-chevron-right icon-white"></i> </a> 
+      <a href="<%= eventcodesignup_path %>" class="btn btn-info btn-small"> Recording Your Name for an Event? <i class="fa fa-chevron-right "></i> </a> 
         
         <br/> <br/>
-         <a href="<%= admincodesignup_path %>" class="btn btn-info btn-small"> Invited to Admin an Event? <i class="icon-chevron-right icon-white"></i> </a> 
+         <a href="<%= admincodesignup_path %>" class="btn btn-info btn-small"> Invited to Admin an Event? <i class="fa fa-chevron-right "></i> </a> 
 
          <br/> <br/>
-         <a href="<%= newcustomer_path %>" class="btn btn-success btn-small"> Start Your Free Trial! <i class="icon-chevron-right icon-white"></i> </a> 
+         <a href="<%= newcustomer_path %>" class="btn btn-success btn-small"> Start Your Free Trial! <i class="fa fa-chevron-right "></i> </a> 
 
         <%= form_for(@user, :url => homepageusercreate_path) do |f| %>
 

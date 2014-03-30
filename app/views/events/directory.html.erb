@@ -233,7 +233,7 @@ $(function() {
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
                                          <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+                                                <i class="fa fa-trash-o "></i>&nbsp;Delete
                                          <% end %>
                                          <br/>
                                          <br/>
@@ -249,11 +249,11 @@ $(function() {
 
                                                             
                                
-                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click to send an email asking this student to re-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click to send an email asking this student to re-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-                              		<button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+                              		<button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -475,7 +475,7 @@ $(function() {
 			                         <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 			                         <hr/>
 			                         <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-			                             <i class="icon-trash icon-white"></i>&nbsp;Delete
+			                             <i class="fa fa-trash-o "></i>&nbsp;Delete
 			                         <% end %>
 	                                 <br/>
 	                                 <br/>
@@ -489,11 +489,11 @@ $(function() {
 
                                                             
                                
-                              <button id= "regunrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email asking this student to voice-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Record" data-toggle="modal" href="#regunrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              <button id= "regunrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email asking this student to voice-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Record" data-toggle="modal" href="#regunrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-                              <button id= "regunrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#regunrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+                              <button id= "regunrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#regunrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
                               
-                              <button id= "regunrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regunrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              <button id= "regunrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regunrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       	 </div>  <%# end button group for Actions under tab 2 %>
@@ -659,7 +659,7 @@ $(function() {
                                              <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 							                 <hr/>
 							                  <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-							                      <i class="icon-trash icon-white"></i>&nbsp;Delete
+							                      <i class="fa fa-trash-o "></i>&nbsp;Delete
 							                  <% end %>
 			                                 <br/>
 			                                 <br/>
@@ -675,11 +675,11 @@ $(function() {
 
                                                             
 									 
-									 <button id= "popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email reminding this student to register on our site and record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Send Reminder Email" data-toggle="modal" href="#send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+									 <button id= "popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email reminding this student to register on our site and record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Send Reminder Email" data-toggle="modal" href="#send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-									 <button id= "popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the invitation/reminder emails already sent to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+									 <button id= "popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the invitation/reminder emails already sent to this student." data-original-title="See Emails already Sent" data-toggle="modal" href="#reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
 									
-									 <button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+									 <button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this student's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
 																					                                       
 
 								 </div>	<%# div button-group %> 
@@ -811,7 +811,7 @@ $(function() {
 
 			                     </div>  <%# END MODAL id="hidden_reg_restore_entry %>     	
 				 				
-				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this student's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
+				 				 <button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this student's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="fa fa-plus"></i></button>
 
 						 </div>	<%# end class=col-md-1 %>
 
@@ -890,7 +890,7 @@ $(function() {
 
                                  </div>  <%# END modal body %>     	
 
-                                 <button id= "hidden_unreg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this student's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_unreg_restore_entry<%= f.id %>" class="btn btn-info"><i class="icon-plus-sign"></i></button>
+                                 <button id= "hidden_unreg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this student's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_unreg_restore_entry<%= f.id %>" class="btn btn-info"><i class="fa fa-plus"></i></button>
 															
 							 </td>
 
@@ -930,9 +930,9 @@ $(function() {
 
 										            <p> <%= @individual.pluralize.titleize %> can record their names for this Event Page using either of these links:
 										            	<br/><br/>
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+										            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
 										            
-										            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
+										            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
 										              </p> 
 
 										       		<p> Just give this link to all your your <%= @individual %>s. </p> 
@@ -957,8 +957,8 @@ $(function() {
 										        
 										              </div>
 					 </div> <%# end modal %>
-					 <h4><i class="icon-link icon-white blue"></i>&nbsp;Use Recording Link:  
-					 	<a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4> <hr/>
+					 <h4><i class="fa fa-link  blue"></i>&nbsp;Use Recording Link:  
+					 	<a data-toggle="modal" href="#info-eventcode" ><i class="fa fa-info "></i></a> </h4> <hr/>
 					 	<%= @url %> <br/><br/>
 					 	<%= link_to "Record your name for #{@event.title}", @url, :target => "_blank"  %>
 					 	
@@ -972,7 +972,7 @@ $(function() {
 			
 				<div class="well">
 			
-			     <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite a student to record their name: </h4>
+			     <h4> <i class="fa fa-envelope  blue"></i>&nbsp;Invite a student to record their name: </h4>
 												 	
 					 <span class="help-block">(Optional - for sending a personal invite.  Otherwise, just use the recording link.)</span>
 					 <hr/>
@@ -1017,7 +1017,7 @@ $(function() {
 
 	 <div class="col-md-12">
 	 	<h4>Your public (read-only) link for this Event Page:</h4>
-	 	<p> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= locked_event_url(@event) %> <br/> <i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Hear student name prounuciations for #{@event.title}", locked_event_url(@event), :target => "_blank"  %></p>
+	 	<p> <i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= locked_event_url(@event) %> <br/> <i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= link_to "Hear student name prounuciations for #{@event.title}", locked_event_url(@event), :target => "_blank"  %></p>
 	 		<h5> Please note: You can give this link to teachers or staff who wish to search and hear students' names. <strong>They can access the read-only page at this link without logging in as an admin</strong>, but they will not be able to request individual recordings, delete entries, or enter their own notes. </h5>
 	 </div>
 
@@ -1079,7 +1079,7 @@ $(function() {
 
 		                 </div>  <%# END modal %>      
 
-		                 <% unless a.id == current_user.id %> <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="icon-ban-circle red"></i></a> <% end %>
+		                 <% unless a.id == current_user.id %> <a id= "popover_delete_admin<%= a.id %>" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin<%= a.id %>"><i class="fa fa-ban red"></i></a> <% end %>
 		              <td> 
                       <% end %>  <%# end if-end wrapper for this td %>
                  </tr>
@@ -1096,7 +1096,7 @@ $(function() {
     	 <div class="row">
     	 	<div class="col-md-10">
     	 	 <div class="well">
-    	 	 		 <h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an admin for this Event Page: </h4>
+    	 	 		 <h4> <i class="fa fa-envelope  blue"></i>&nbsp;Invite an admin for this Event Page: </h4>
 					 <br />	
 					 <%= form_for(@event.admininvites.build, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -1181,7 +1181,7 @@ $(function() {
 										           </div>
 
 									<div  style="text-align:right" >
-										Admin Code: <em><%= @event.access_code %> </em> <a data-toggle="modal" href="#info-admincode" ><i class="icon-info-sign "></i></a>
+										Admin Code: <em><%= @event.access_code %> </em> <a data-toggle="modal" href="#info-admincode" ><i class="fa fa-info "></i></a>
 										</div> 		           	
 
 										<hr/>	

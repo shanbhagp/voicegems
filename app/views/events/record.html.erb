@@ -45,7 +45,7 @@
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>Dear Student, you've been invited to voice-record your name for <% if !@event.nil? %><% if !@event.title.blank? %><%= @event.title %><% end %><% end %>. <br/> <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="icon-info-sign icon-white"></i></a><% if @event == Event.find(ENV['HALTOM']) %> &nbsp;&nbsp;&nbsp;HALTOM STUDENTS: Please remember to sign out when you're done! Thank you!<% end %> </h3>  
+              <h3>Dear Student, you've been invited to voice-record your name for <% if !@event.nil? %><% if !@event.title.blank? %><%= @event.title %><% end %><% end %>. <br/> <em>Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="fa fa-info "></i></a><% if @event == Event.find(ENV['HALTOM']) %> &nbsp;&nbsp;&nbsp;HALTOM STUDENTS: Please remember to sign out when you're done! Thank you!<% end %> </h3>  
 
           
      
@@ -81,7 +81,7 @@
                                                      <%= simple_form_for(@user, :url => event_link_create_path, :html => {:class => 'form-inline'}) do |f| %>
 
                                                          <div class="well col-md-3 col-md-offset-1">
-                                                          <h4> <i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
+                                                          <h4> <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
                                                               
                                                               <br/>
                                                               <%= f.error_notification %>
@@ -103,7 +103,7 @@
                                                          <% if iolani %>
 
                                                          <div class="well col-md-3">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"></span> <span class="muted"> (required)</span> </h4> 
+                                                             <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"></span> <span class="muted"> (required)</span> </h4> 
                                                               <br/>      
 
                                                                       
@@ -122,7 +122,7 @@
                                                         <% else %>
 
                                                          <div class="well col-md-3">         
-                                                             <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 2: Pronunciation Info<span class="muted"> (optional)</span> </h4> 
+                                                             <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 2: Pronunciation Info<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
 
                                                                             <br/>
@@ -136,7 +136,7 @@
                                                         <% end %>  
 
                                                           <div class="well col-md-3">
-                                                              <h4><i class="icon-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
+                                                              <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/>
                                                                   <div class="row">
                                                                    <div class="col-md-3">
@@ -190,7 +190,7 @@
                                                     <br/>
                                                     <br/>
                                                       <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-md-2") do %>
-                                                       Sign In <i class="icon-chevron-right icon-white"></i> 
+                                                       Sign In <i class="fa fa-chevron-right "></i> 
                                                       <% end %>
 
                                                 <% end %>

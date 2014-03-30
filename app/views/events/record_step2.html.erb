@@ -17,7 +17,7 @@
     <button type="button" class="close" data-dismiss="alert">×</button>
    <hr/>
        
-            <h4 class="red"><i class="icon-warning-sign"></i>&nbsp;Due to a new security feature in Chrome: after you click 'Record' below, you will be prompted to click 'Allow', and then prompted to click 'Allow' <strong>ONCE MORE</strong> under the browser address bar above:</h4><center><img src="<%= image_path('chrome-warn-small.png')%>"></center> <h4><em>Note: If this results in a recording with a few initial seconds of silence, please just record again.</em></h4>
+            <h4 class="red"><i class="fa fa-warning"></i>&nbsp;Due to a new security feature in Chrome: after you click 'Record' below, you will be prompted to click 'Allow', and then prompted to click 'Allow' <strong>ONCE MORE</strong> under the browser address bar above:</h4><center><img src="<%= image_path('chrome-warn-small.png')%>"></center> <h4><em>Note: If this results in a recording with a few initial seconds of silence, please just record again.</em></h4>
         <hr/>
 
     </div>  
@@ -54,7 +54,7 @@
            <div class="row">                     
                               <hr/>
 
-                              <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary col-md-2 pull-right' do %> SAVE&nbsp;<i class="icon-caret-right icon-white"></i>
+                              <%= link_to setpassword_path(:id => current_user.id, :event => @event.id), disable_with: 'please wait...', confirm: 'Did you remember to Upload your name recording?  If you did, press OK to go on. Otherwise, Cancel to go back.',  class: 'btn btn-primary col-md-2 pull-right' do %> SAVE&nbsp;<i class="fa fa-caret-right "></i>
                                   <% end %> &nbsp;&nbsp;<strong>(click 'SAVE' after you click 'UPLOAD')</strong> 
            </div>                      
                       
@@ -92,24 +92,24 @@
                                     </div>
                                     <div id="collapserec2" class="accordion-body collapse">
                                       <div class="accordion-inner">
-                                          <h4><i class="icon-warning-sign red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
+                                          <h4><i class="fa fa-warning red"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank"><span class="red">I can't click 'Allow'</span></a></h4>
                                           
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;<a href="<%= flashissue_path %>.htm#collapseOne" target="_blank">Please click here</a></h5>
                                              <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page). <center><img src="<%= image_path('chrome-warn-small.png')%>"></center> Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
                                               <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;I accidentally clicked 'Deny'</h4>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please refresh this page and try again.</h5>
                                               <hr/>
-                                          <h4 class="red"><i class="icon-warning-sign red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
-                                               <h5><i class="icon-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
-                                              <h5><i class="icon-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
+                                          <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;My recording does not play back/sound good</h4>
+                                               <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you are using Chrome on a Mac, try a different browser.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please ensure you have a quiet environment.</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check your computer's mic settings to see that it is enabled (as well as any options such as noise-cancellation).</h5>
+                                              <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Check to make sure your speaker volume is up.</h5>
                                       </div>
                                     </div>
                                   </div>    

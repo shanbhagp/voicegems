@@ -35,7 +35,7 @@
  	<div class="col-md-7">
 			
 				<div class="well">
-					<h4> <i class="icon-envelope icon-white blue"></i>&nbsp;Invite an event attendee to register and record their name: </h4>
+					<h4> <i class="fa fa-envelope  blue"></i>&nbsp;Invite an event attendee to register and record their name: </h4>
 					<br />
 					<%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -84,7 +84,7 @@
 										              </div>
 										           </div>
 
-					<h4>Event Code: <em><%= @event.event_code %> </em> <a data-toggle="modal" href="#info-eventcode" ><i class="icon-info-sign "></i></a> </h4>					
+					<h4>Event Code: <em><%= @event.event_code %> </em> <a data-toggle="modal" href="#info-eventcode" ><i class="fa fa-info "></i></a> </h4>					
 				</div>
 				  	
 												           
@@ -96,7 +96,7 @@
 			<div class="well">
 
 
-										<h4><span class="label label-info"><i class="icon-user icon-white"></i></span>&nbsp;Admins for this event page: <br/></h4><br/>
+										<h4><span class="label label-info"><i class="fa fa-user "></i></span>&nbsp;Admins for this event page: <br/></h4><br/>
 										<table class="table table-condensed">
 											<% @event.admins.each do |a| %>
 												<tr>
@@ -205,7 +205,7 @@
 										           </div>
 
 													<div  style="text-align:right" >
-														Admin Code: <em><%= @event.access_code %> </em> <a data-toggle="modal" href="#info-admincode" ><i class="icon-info-sign "></i></a>
+														Admin Code: <em><%= @event.access_code %> </em> <a data-toggle="modal" href="#info-admincode" ><i class="fa fa-info "></i></a>
 														</div> 	
 										<% end %>
 
@@ -402,7 +402,7 @@
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
                                          <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+                                                <i class="fa fa-trash-o "></i>&nbsp;Delete
                                          <% end %>
                                          <br/>
                                          <br/>
@@ -418,11 +418,11 @@
 
                                                             
                                
-                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click to send an email asking this attendee to re-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the voice-recording is unclear, click to send an email asking this attendee to re-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-                              		<button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+                              		<button id= "regrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#regrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -622,7 +622,7 @@
 			                                                            <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 			                                                 <hr/>
 			                                                  <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-			                                                <i class="icon-trash icon-white"></i>&nbsp;Delete
+			                                                <i class="fa fa-trash-o "></i>&nbsp;Delete
 			                                              <% end %>
 			                                              <br/>
 			                                              <br/>
@@ -638,11 +638,11 @@
 
                                                             
                                
-					                              <button id= "regunrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email asking this attendee to voice-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Record" data-toggle="modal" href="#regunrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+					                              <button id= "regunrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email asking this attendee to voice-record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Ask to Record" data-toggle="modal" href="#regunrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-					                              <button id= "regunrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#regungrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+					                              <button id= "regunrec_popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the requests/reminders already emailed to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#regungrec_reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
 					                              
-					                              <button id= "regunrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regunrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+					                              <button id= "regunrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regunrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       					</div>  <%# end button group for Actions under tab 2 %>
@@ -803,7 +803,7 @@
                                                           	<h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
 							                                   <hr/>
 							                                    <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-							                                  <i class="icon-trash icon-white"></i>&nbsp;Delete
+							                                  <i class="fa fa-trash-o "></i>&nbsp;Delete
 							                                <% end %>
 							                                <br/>
 							                                <br/>
@@ -819,11 +819,11 @@
 
                                                             
 															 
-															<button id= "popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email reminding this attendee to register on our site and record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Send Reminder Email" data-toggle="modal" href="#send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="icon-envelope"></i></button>
+															<button id= "popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="Click to send an email reminding this attendee to register on our site and record their name.<br/><br/> You will see a preview of the email to be sent." data-original-title="Send Reminder Email" data-toggle="modal" href="#send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
 
-															<button id= "popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the invitation/reminder emails already sent to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="icon-inbox"></i></button>
+															<button id= "popover_reminders_sent<%= f.id %>" rel="popover" data-placement="left" data-content="Click to see the invitation/reminder emails already sent to this attendee." data-original-title="See Emails already Sent" data-toggle="modal" href="#reminders_sent<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-inbox"></i></button>
 															
-	 														<button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+	 														<button id= "popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this attendee's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
 																					                                       
 
 											</div>	
@@ -968,7 +968,7 @@
 			                                                            
 															
 																		
-				 														<button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="icon-plus-sign"></i></button>
+				 														<button id= "hidden_reg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_reg_restore_entry<%= f.id %>" class="btn btn-info pull-right"><i class="fa fa-plus"></i></button>
 
 															</div>	<%# end class=col-md-1 %>
 
@@ -1052,7 +1052,7 @@
                                                             
 												
 															
-	 														<button id= "hidden_unreg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_unreg_restore_entry<%= f.id %>" class="btn btn-info"><i class="icon-plus-sign"></i></button>
+	 														<button id= "hidden_unreg_popover_restore<%= f.id %>" rel="popover" data-placement="left" data-content="Click to undelete this attendee's entry." data-original-title="Restore this Entry" data-toggle="modal" href="#hidden_unreg_restore_entry<%= f.id %>" class="btn btn-info"><i class="fa fa-plus"></i></button>
 																								                                       
 
 															

@@ -32,7 +32,7 @@
  	<div class="col-md-7">
 			
 				<div class="well">
-					<h4> <span class="label label-info"><i class="icon-envelope icon-white"></i></span>&nbsp;Invite an event attendee to register and record their name: </h4>
+					<h4> <span class="label label-info"><i class="fa fa-envelope "></i></span>&nbsp;Invite an event attendee to register and record their name: </h4>
 					<br />
 					<%= form_for(@practiceobject, :html => {:class => 'form-inline'}) do |f| %>
 
@@ -60,7 +60,7 @@
 			<div class="well">
 
 
-										<h4><span class="label label-info"><i class="icon-user icon-white"></i></span>&nbsp;Admins<% if @event.title %> for <%= @event.title %><% end %>:</h4><br/>
+										<h4><span class="label label-info"><i class="fa fa-user "></i></span>&nbsp;Admins<% if @event.title %> for <%= @event.title %><% end %>:</h4><br/>
 										<table class="table table-condensed">
 											<% @event.admins.each do |a| %>
 												<tr>
@@ -350,20 +350,20 @@
 
 <%= button_to "Go", e,
       :class => "btn btn-primary btn-small", :method => :get %>
-<%= button_to raw("<i class=\"icon-search icon-white\">Add To Cart</i>"), 
+<%= button_to raw("<i class=\"fa fa-search \">Add To Cart</i>"), 
           line_items_path(product_id: product), 
           class: "btn btn-success" %>
 
 
-<a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large">Record Your Name <i class="icon-chevron-right icon-white"></i> </a>
+<a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large">Record Your Name <i class="fa fa-chevron-right "></i> </a>
 
-<a href="<%= e %>" class="btn btn-danger btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+<a href="<%= e %>" class="btn btn-danger btn-small">go <i class="fa fa-chevron-right "></i> </a>
 
 
-<a id="<%= f.id %>" href="#"><span class="label label-info label-left"><i class="icon-pencil icon-white"></i>&nbsp;edit</span></a> 
+<a id="<%= f.id %>" href="#"><span class="label label-info label-left"><i class="fa fa-pencil "></i>&nbsp;edit</span></a> 
 
 GOT THIS WORKING -  MAYBE USEFUL FOR OTHER BUTTON LINKS WHERE I NEED SOME ERB:
-<a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+<a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="fa fa-chevron-right "></i> </a>
 
 
 
@@ -373,7 +373,7 @@ AN ATTEMPT AT THE REGULAR USER SHOW PAGE 'YOUR EVENTS' PART, WITH the admin list
 <% if @user.practiceevents.any? %>
 <div class="row">
     <div class="col-md-12">
-          <h4><span class="label label-info"><i class="icon-list icon-white"></i></span><strong> Event pages in which your <em>Namewave</em> appears: </strong></h4>
+          <h4><span class="label label-info"><i class="fa fa-list "></i></span><strong> Event pages in which your <em>Namewave</em> appears: </strong></h4>
            <table class="table table-bordered table-striped event ">
                                 <caption><em>(these are the events you are attending in which your name will be announced)</em></caption>
                                 <thead>
@@ -390,7 +390,7 @@ AN ATTEMPT AT THE REGULAR USER SHOW PAGE 'YOUR EVENTS' PART, WITH the admin list
                                         
                                               <tr>
                                                 <td> <strong><%= link_to e.title, e %></strong><br/>
-                                                  <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+                                                  <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="fa fa-chevron-right "></i> </a>
                                                  </td>
                                                 <td><% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %></td>
                                                 <td>

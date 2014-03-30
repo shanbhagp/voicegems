@@ -182,7 +182,7 @@
                                          <h4> Please confirm you would like to delete this entry </h4> 
                                          <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
                                          <hr/>
-                                          <button  href="#" class="btn btn-danger btn-large btn-modal" ><i class="icon-trash"></i>&nbsp;Delete (disabled)</button>
+                                          <button  href="#" class="btn btn-danger btn-large btn-modal" ><i class="fa fa-trash-o"></i>&nbsp;Delete (disabled)</button>
                                          <br/>
                                          <br/>
                                                                
@@ -208,7 +208,7 @@
 
                               		
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="icon-trash"></i></button>
+                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
@@ -242,9 +242,9 @@
          	<div class="well col-md-6 col-md-offset-3">
          		 <p> People can record their VoiceGems for this event using either of these links:
 		            	<br/><br/>
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
+		            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>
 		            
-		            	<i class="icon-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
+		            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= link_to "Record a VoiceGem for #{@event.title}", @url, :target => "_blank"  %>
 		              </p> 
 
 		       		<p> Just copy and paste either link into the web page for your event (if you have one), or send out an email containing the link. </p> 
@@ -308,7 +308,7 @@
 
 		                 </div>  <%# END modal %>      
 
-		                 <a id= "popover_delete_admin" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin"><i class="icon-ban-circle red"></i></a> 
+		                 <a id= "popover_delete_admin" rel="popover" data-placement="left" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin"><i class="fa fa-ban red"></i></a> 
 		              <td> 
                 
                  </tr>

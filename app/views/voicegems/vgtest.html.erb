@@ -71,16 +71,16 @@
             <div class = "col-md-4 well">
           &nbsp;&nbsp;&nbsp;&nbsp;
            <%= button_tag(type: 'submit', class: "btn btn-danger btn-small btn-record", id: "record", :disabled => false) do %>
-                              RECORD <i class="icon-caret-right"></i> 
+                              RECORD <i class="fa fa-caret-right"></i> 
                             <% end %>
           &nbsp;&nbsp;&nbsp;&nbsp;
 
           <%= button_tag(type: 'submit', class: "btn btn-warning btn-small btn-record", id: "stop", :disabled => true) do %>
-                              STOP  <i class="icon-stop"></i> 
+                              STOP  <i class="fa fa-stop"></i> 
                             <% end %>
            &nbsp;&nbsp;&nbsp;&nbsp;
             <%= button_tag(type: 'submit', class: "btn btn-warning btn-record btn-small", id: "send", :disabled => true ) do %>
-                                    UPLOAD <i class="icon-upload"></i> 
+                                    UPLOAD <i class="fa fa-upload"></i> 
                                   <% end %>              
 
           </div>
@@ -156,7 +156,7 @@
                       $('#stop').attr("class","btn btn-danger btn-record");  
                       $('#record').attr("disabled",true); 
                       $('#record').html('Recording...');
-                      $('#send').html('UPLOAD&nbsp;<i class="icon-upload"></i>'); 
+                      $('#send').html('UPLOAD&nbsp;<i class="fa fa-upload"></i>'); 
                       $('#send').attr("class","btn btn-warning btn-small btn-record");
                   }
                   
@@ -177,7 +177,7 @@
                        $('#record').attr("disabled",false); 
                        $('#stop').attr("disabled",true);
                        $('#stop').attr("class","btn btn-warning btn-small btn-record"); 
-                       $('#record').html('RECORD&nbsp;<i class="icon-caret-right"></i>');  
+                       $('#record').html('RECORD&nbsp;<i class="fa fa-caret-right"></i>');  
                   }
 
                   function callback_finished_recording()
@@ -192,7 +192,7 @@
                   {
                     
                       $('#status').html('Recording uploaded! <strong>Press the SAVE button</strong> below. Note: You may need to wait a minute and refresh your Dashboard to hear this recording on your profile page.');
-                      $('#send').html('<i class="icon-check"</i>&nbsp;UPLOADED');
+                      $('#send').html('<i class="fa fa-check"</i>&nbsp;UPLOADED');
                       $('#send').attr("class","btn btn-warning btn-small btn-record");
                       $('#send').attr("disabled",true);
                       
