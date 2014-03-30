@@ -1,8 +1,6 @@
-<div class="jumbotron">
-	<h1> Event Page: <em> <%= @event.title %> </em> </h1>
-	
-	<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
-</div>
+<h2> Event Page: <em> <%= @event.title %> </em> </h2>
+
+<% if @event.date && !(@event.title == 'the ETL Seminar') %><br/><h3>  <%= @event.date.strftime("%b %d, %Y")  %> </h3><% end %>
 
 <% flash.each do |key, value| %>
 	<div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
