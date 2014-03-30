@@ -101,7 +101,7 @@ NEXT&nbsp;<i class="icon-caret-right icon-white"></i>
 <h5>If you are not able to record on your mobile device, please <%= link_to "click here", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => ""} %>, set a password, and then log in on a laptop.</h5>
 
              <% flash.each do |key, value| %>
-              <div class="alert alert-block alert-<%=key%>"> 
+              <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
               <button type="button" class="close" data-dismiss="alert">×</button>
               <%= value %> 
               </div>
