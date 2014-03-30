@@ -3,11 +3,9 @@
 <% else %> 
 
 
-<div class="jumbotron">
-      <h1>VoiceGem Recording for the Jones-Ravenwood Wedding </h1>
+      <h2>VoiceGem Recording for the Jones-Ravenwood Wedding </h2>
       
       <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
-  </div>
 
   <script type="text/javascript">
             var swfVersionStr = "10.2.0";
