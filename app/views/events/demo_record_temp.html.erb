@@ -25,7 +25,7 @@ function setLeftMargin() {
 </script>
 
 <% flash.each do |key, value| %>
-    <div class="alert alert-block alert-<%=key%>"> 
+    <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
     <button type="button" class="close" data-dismiss="alert">×</button>
     <%= value %> 
     </div>

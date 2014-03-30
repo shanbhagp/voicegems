@@ -5,7 +5,7 @@
       <h1>Start the School Year Right with Our Student Name Directory Service </h1>
   </div>
              <% flash.each do |key, value| %>
-              <div class="alert alert-block alert-<%=key%>"> 
+              <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
               <button type="button" class="close" data-dismiss="alert">×</button>
               <%= value %> 
               </div>

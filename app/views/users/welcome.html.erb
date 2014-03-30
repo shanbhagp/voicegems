@@ -1,8 +1,9 @@
 <div class="container">
 
 <br/>
+
   <% flash.each do |key, value| %>
-    <div class="alert alert-block alert-<%=key%>"> 
+     <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
     <button type="button" class="close" data-dismiss="alert">×</button>
     <%= value %> 
     </div>
@@ -27,6 +28,7 @@
           </ul>
 
           <br/>
+
                                  
 
        <h3 class="centralized light">After your Free Trial  (<% if (current_user.created_at + 30.days) > Time.now %>ending <% else %>ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h3>

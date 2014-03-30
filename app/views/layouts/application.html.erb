@@ -25,6 +25,13 @@
   audiojs.events.ready(function() {
     var as = audiojs.createAll();
   });
+  
+    $(function () {
+        $("[rel='tooltip']").tooltip();
+    });
+    $(function () {
+        $("[rel='popover']").popover({html:true});
+    });
 </script>
 
 <script>

@@ -1,0 +1,63 @@
+
+                                 <div id="regrec_send_reminder<%= f.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+                                     <div class="modal-dialog">
+                                     <div class="modal-content">
+                                     <div class="modal-header">
+	                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                                    <h3>Request to Re-Record</h3>
+                                     </div>
+                                  
+                                     <div class="modal-body left">
+
+                                     	<h4> Emails already sent to this user: </h4> <br/>
+                                     	<table class="table table-condensed table-striped">
+	                                            <thead>
+	                                              <th>Sent To:</th>
+	                                              <th>By Admin:</th>
+	                                              <th>On:</th>
+	                                              
+	                                                                                                                    
+	                                            </thead>
+                                            	<tbody>
+		                                            <% f.vg_userinvites.each do |a| %>
+		                                              <tr>
+		                                                <td> <%= a.recipient_email %> </td>
+		                                                <td> <% if !a.admin_id.blank? %><%= User.find_by_id(a.admin_id).email %><% end %> </td>
+		                                                <td> <%if !a.sent_at.nil? %><%= a.sent_at.strftime("%b %d, %Y") %><% end %> </td>
+		                                                
+		                                              </tr>
+		                                            <% end %>
+                                         		 </tbody> 
+                                        </table> 
+
+                                  		<hr/>
+                                         <h4> The following email will be sent to <%= f.email %>: </h4> <hr/>
+
+                                         <div class="well">
+                                            <p> Hi there <% if !f.user.first_name.nil? %><%= f.user.first_name %><% end %>! </p>
+
+                                            <p>The admin for the event <%= f.event.title %> is requesting that you please re-record your VoiceGem. Your recording may not have been clear, so please double-check it and record again.</p>
+
+                                            <p>Please sign in at www.voicegems.com</p>
+
+                                            <p>Thank you!<p>
+                                            - The team at VoiceGems
+                                         </div>
+                                
+                                         	 <%= form_for(:vg, url: vg_rerecord_path) do |y| %>
+                                              	<%= y.hidden_field :x, :value => f.id %>
+                                               	<%= y.submit "Request Re-Recording", class: "btn-primary btn-large btn-modal", disable_with: 'sending request...' %>
+                                             <% end %>  
+		                                     <br/>
+		                                     <br/>
+
+                                     </div> <%# end div modal-body %>	
+
+                                  	 <div class="modal-footer">
+                                    	 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                  	 </div>
+                                         </div>
+                                         </div>
+
+                           		 </div>   <%# end MODAL div id="regrec_send_reminder %>	

@@ -46,7 +46,7 @@ _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
 <div class="sep"></div>
 
 <% flash.each do |key, value| %>
-    <div class="alert alert-block alert-<%=key%>"> 
+    <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
     <%= value %> 
     </div>
 <% end %>
