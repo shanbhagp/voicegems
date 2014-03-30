@@ -1,91 +1,98 @@
-
 <div class="container">
 
 <br/>
-<br/>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-block alert-<%=key%>"> 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %> 
+    </div>
+  <% end %>
 
-  <div class="row">
+<div class= "sections section-what">
+    <div class="container">
+      <header class="centralized"><br>
+          <h2>Welcome to Voicegems</h2>
+          <img src="<%= asset_path "divider.png"%>" class="divider">
+      </header>  
+    </div><!-- END CONTAINER -->
+</div><!-- END SECTION-WHAT -->       
+        
+ <div class= "sections">                           
 
-                  <div class="col-md-8 col-md-offset-2 home-block">
-                                <% flash.each do |key, value| %>
-                                  <div class="alert alert-block alert-<%=key%>"> 
-                                  <button type="button" class="close" data-dismiss="alert">×</button>
-                                  <%= value %> 
-                                  </div>
-                                <% end %>
-                            <div class="grey-box hero-block-2">
-                                <h3 class=""><span class="gold">Welcome to VoiceGems!</span></h3> <hr/>
+       <h3 class="centralized light">During Your 30-Day Free Trial</h3><br>
+          <ul class="col-lg-offset-2"> 
+              <li>You may create unlimited free trial Event Pages from your <%= link_to "Dashboard", current_user, :target => "_blank" %>.</li> 
+              <li>You may request and download unlimited VoiceGems from each free trial Event Page.</li>
+              <li>Use these free Event Pages fully, as an upsell or to enhance the value of your standard or premium service packages. </li>
+          </ul>
 
-                                <h4>During Your 30-Day Free Trial</h4>
-                                 <ul class="left">
-                                      <li>You may create unlimited free trial Event Pages from your <%= link_to "Dashboard", current_user, :target => "_blank" %>.</li> 
-                                      <li>You may request and download unlimited VoiceGems from each free trial Event Page.</li>
-                                      <li>Use these free Event Pages fully, as an upsell or to enhance the value of your standard or premium service packages. </li>
-                                   </ul>
-
-                                  <br/>
-                                 <h4>After your Free Trial (<% if (current_user.created_at + 30.days) > Time.now %>ending <% else %>ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h4>
-                                 <ul class="left">
+          <br/>
                                  
-                                   <li>Free trial Event Pages will be de-activated (locked). (Event Pages purchased during this time will never be locked.)</li>
-                                   
-                                   <li>Purchased Event Pages can be used to re-activate locked Event Pages or create new permanent Event Pages.</li>
-                                  </ul>
 
-                                <br/>
-                                <h4>You may <a href="existing_user_purchase" target="_blank">purchase Event Pages here</a> at any time, or from your Accounts tab.</h4>
+       <h3 class="centralized light">After your Free Trial  (<% if (current_user.created_at + 30.days) > Time.now %>ending <% else %>ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h3>
+           <ul class="col-lg-offset-2">                                 
+             <li>Free trial Event Pages will be de-activated (locked). (Event Pages purchased during this time will never be locked.)</li>
+             
+             <li>Purchased Event Pages can be used to re-activate locked Event Pages or create new permanent Event Pages.</li>
+          </ul>
+
+        <br/>
+        
+         <h3 class="centralized light">You may <a href="existing_user_purchase" target="_blank">purchase Event Pages here</a> at any time, or from your Accounts tab.</h3>
                                 
-                                <ul class="left"> 
-                                   <li><em>Purchased Event Pages can be used anytime, and never expire (will be active forever).</em></li>
-                                   <li>Event Pages are $99/each. Discounts applied for bulk purchases.</li>                                 
-                                   <li>You are encouraged to set your own fair fee-for-VoiceGems-service for your clients.</li>
-                                </ul>
+            <ul class="col-lg-offset-2"> 
+               <li><em>Purchased Event Pages can be used anytime, and never expire (will be active forever).</em></li>
+               <li>Event Pages are $99/each. Discounts applied for bulk purchases.</li>                                 
+               <li>You are encouraged to set your own fair fee-for-VoiceGems-service for your clients.</li>
+            </ul>
 
-                                <br/>
+           <br/>
 
-                              <h4>Using VoiceGems for an Event</h4>
-                              <h5 class="black">Once you create an Event Page from your <%= link_to "Dashboard", current_user, :target => "_blank" %>:</h5>
-                               <ul class="left"> 
-                                   <li>You can find the 'recording link' under the 'Request VoiceGems' tab.</li>
-                                   <li>You can give this link to your clients, who can then give it to whomever they wish (friends and family).</li>                          
-                                   <li>Users click the link to record a VoiceGem - these become available for download on your Event Page.</li>
-                                   <li>You can also invite other Admins from the 'Admins for this Event' tab, simply be entering their email address.  Admins can then access the Event Page, to get the recording link, hear or download VoiceGems, and invite other admins.</li>
-                                </ul>
+          <h3 class="centralized light">Using VoiceGems for an Event</h3><br>
+                <h4 class="col-lg-offset-2">Once you create an Event Page from your <%= link_to "Dashboard", current_user, :target => "_blank" %>:</h4>
+                      <ul class="col-lg-offset-2"> 
+                         <li>You can find the 'recording link' under the 'Request VoiceGems' tab.</li>
+                         <li>You can give this link to your clients, who can then give it to whomever they wish (friends and family).</li>                          
+                         <li>Users click the link to record a VoiceGem - these become available for download on your Event Page.</li>
+                         <li>You can also invite other Admins from the 'Admins for this Event' tab, simply be entering their email address.  Admins can then access the Event Page, to get the recording link, hear or download VoiceGems, and invite other admins.</li>
+                      </ul>
 
-                               <br/>
+                       <br/>
                                   
-                              <h4>Making the Most of VoiceGems!</h4>
-                              <h5 class="black">Support for getting client interest in VoiceGems:</h5>
-                               <ul class="left"> 
-                                   <li>Clients almost always immediately see the value in our service, but a Sales Sheet and recommended talking points are available.</li>
-                                   <li>We also provide a free premium poster design, integrated with your logo and branding, for use in your showroom, office, or bridal expos.  EXAMPLE:</li>                          
-                                   
-                                </ul>
+       <h3 class="centralized light">Making the Most of VoiceGems!</h3><br>
+           <h4 class="col-lg-offset-2">Support for getting client interest in VoiceGems:</h4>
+             <ul class="col-lg-offset-2"> 
+                 <li>Clients almost always immediately see the value in our service, but a Sales Sheet and recommended talking points are available.</li>
+                 <li>We also provide a free premium poster design, integrated with your logo and branding, for use in your showroom, office, or bridal expos.  EXAMPLE:</li>                               
+              </ul>
+
+               <br/>
+               
+         <div class="row centralized">     
+                <img src="<%= asset_path "logo2_Ask_Us.jpg"%>" alt="voice gems poster" width="300" height="200" class="poster">
+          </div>          
 
 
+      <header class="centralized"><br>
+          <img src="<%= asset_path "divider.png"%>" class="divider">
+      </header>  
+    
+        
 
-                                <br/> <hr/>
-                                <div class="row"> 
-                                  
-                                  <div class="col-md-3"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
-					Buy Event Pages
-				</button></a></div>
-                                  <div class="col-md-3 "><a href="<%= users_path %>/<%= current_user.id %>" ><button type="button" class="btn btn-primary btn-small">
-					Go to DashBoard
-				</button></a></div>
+         <div class="row">
+             <br/>                         
+             <center><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-lg">Buy Event Pages</button></a></center>
+             <br/>
+            <center><a href="<%= users_path %>/<%= current_user.id %>" ><button type="button" class="btn btn-primary btn-lg">Go to DashBoard</button></a></center>     
 
+         </div>      
 
+     <br/>
+     <br/>
+     
 
-
-                                </div>
-                                <br/>
-
-
-                            </div>
-                           <div class="tp-bannershadow tp-shadow1"></div>
-                  </div>
-  </div>
-
+</div>              
+            
+                
 
 </div>
-</br></br></br>

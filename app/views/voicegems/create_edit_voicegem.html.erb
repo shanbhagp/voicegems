@@ -1,7 +1,7 @@
 
 <%# show page is restricted through correct_user %>
 
-      <h2> Edit Your VoiceGem for <em><%= @voicegem.event.title %></em> </h2>
+      <h2> Create/Edit Your VoiceGem for <em><%= @voicegem.event.title %></em> </h2>
 
              <% flash.each do |key, value| %>
               <div class="alert alert-block alert-<%=key%>"> 
@@ -157,99 +157,74 @@
 <div class="container">
 
 
+<br/>
+<%= simple_form_for(@voicegem, :html => {:class => 'form-inline'}) do |f| %>
 
+      <div class="row well">
+                <div class="col-md-3 col-md-offset-1">
+                       <span class="label label-info">Step 1</span> <br/>(OPTIONAL) Enter/update your notes or song request for the DJ to accompany this VoiceGem:<br/><br/>
+                </div>
+                
+                <div class="col-md-4 col-md-offset-1">
+                      <span class="textarea2">
+                        <%= f.input :notes, placeholder: "examples: please say 'this is on behalf of Grandma Ruth' OR please say 'here's an old college favorite' and play with Neil Diamond's Sweet Caroline"  %>
+                 	    </span> <br/>   
+                </div>
+     </div>
 
-
-                                    
-<div class="row">
-  <div class="col-md-12 well">
-      
-
-      <h4><strong>Create/Update your <em>VoiceGem</em> for <%= @voicegem.event.title %>:</strong> </h4>
-      <br/>
-       <%= form_for(@voicegem, :html => {:class => "form-vertical"}) do |f| %>
-
-      <div class="row">
-         <div class="col-md-3 col-md-offset-1">
-          <span class="label label-info">Step 1</span> <br/>(OPTIONAL) Enter/update your notes or song request for the DJ to accompany this VoiceGem:<br/><br/>
-        </div>
-        
-        <div class="col-md-4 col-md-offset-1">
-          <span class="textarea2">
-          <%= f.text_area :notes, :class => "col-md-3" %>
-     	 </span> <br/>
-           <span class="help-block">(examples: "please say 'this message is on behalf of Grandma Ruth'" OR "please say 'here's an old college favorite' and then play message with Neil Diamond's Sweet Caroline")</span>
-         </div>
-      
-    </div>
-
-    <br/>
     <hr/>
 
-    <div class="row">
-
+    <div class="row well">
          <div class="col-md-3 col-md-offset-1">
-          <span class="label label-info">Step 2</span><br/>Create or change your voice-message for this event: <br/><br/>
+            <span class="label label-info">Step 2</span><br/>Create or change your voice-message for this event: <br/><br/>
           </div>
 
           <div class="col-md-7 col-md-offset-1">
- 
+                        <div id="flashContent">
+                            <p>
+                                To view this page ensure that Adobe Flash Player version 
+                                11.1.0 or greater is installed. 
+                            </p>
+                            <script type="text/javascript"> 
+                                var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
+                                document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
+                            </script> 
+                        </div>
+                        
+                        <noscript>
+                            You need to have JS enabled for Audior to show.
+                        </noscript>   
+                        
+                        <br/>
 
-             <div class="row">
-                                          <div id="flashContent">
-                                              <p>
-                                                  To view this page ensure that Adobe Flash Player version 
-                                                  11.1.0 or greater is installed. 
-                                              </p>
-                                              <script type="text/javascript"> 
-                                                  var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://"); 
-                                                  document.write("<a href='http://www.adobe.com/go/getflashplayer'>Get Adobe Flash Player</a>" ); 
-                                              </script> 
-                                          </div>
-                                          
-                                          <noscript>
-                                              You need to have JS enabled for Audior to show.
-                                          </noscript>   
-                                          
-                                          <br/>
-
-                                 <strong><span class="red">(remember to press 'SAVE' above when satisfied with your recording)</span></strong> 
+                        <strong><span class="red">(remember to press 'SAVE' above when satisfied with your recording)</span></strong> 
            </div>
+     </div>
 
-
-
-
-         </div>
-
-
-    </div>
-
-    <br/>
     <hr/>
 
-    <div class="row">
+    <div class="well row">
          <div class="col-md-3 col-md-offset-1">
-          <span class="label label-info">Step 3</span><br/>Save any changes:<br/><br/><br/>
+              <span class="label label-info">Step 3</span><br/>Save any changes:<br/><br/><br/>
           </div>
 
           <div class="col-md-7 col-md-offset-1">
-          <%= f.submit "Save Changes", class: "btn btn-large btn-primary col-md-3", disable_with: 'saving...' %>
-         </div>
+            <%= f.submit "Save Changes", class: "btn btn-large btn-primary col-md-3", disable_with: 'saving...' %>
+          </div>
 
     </div>
           
 
-
-      <% end %>                     
+<% end %>                     
           
-
-
+<br/>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-10">
+        <a href="<%= users_path%>/<%= current_user.id %>"><button class="btn btn-primary btn-small">Cancel</button> </a>
+    </div>
   </div>
-</div>
 
-            <div class="col-md-1 col-md-offset-11">
-          <a href="<%= users_path%>/<%= current_user.id %>" class="btn btn-default">Cancel</a>
-        </div>
-
+<br/>
+<br/>
 
 </div>

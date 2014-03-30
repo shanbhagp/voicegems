@@ -90,11 +90,11 @@ $(function() {
 						                <tr>  
 						                  <td><strong><%= link_to e.title, e %></strong> <% if e.purchase_type == 't'%><br/>(Trial Page - locked on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)<% end %> </td>
 						                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
-						                  <td><a  href="<%= edit_event_path(e) %>"><button type="button" class="btn btn-primary btn-small">edit event</button></a></td> 
+						                  <td><a  href="<%= edit_event_path(e) %>"><button type="button" class="btn btn-primary btn-small"><i class="fa fa-pencil"></i>&nbsp;edit event</button></a></td> 
 						                   <td> 
 				                  		<div id="<%= e.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                          <div class="modal-dialog">
-                                                          <div class="modal-content">
+                                              <div class="modal-dialog">
+                                              <div class="modal-content">
                                                           <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
@@ -123,12 +123,10 @@ $(function() {
 
                                                           <div class="modal-footer">
                                                             <button class="btn btn-default" data-dismiss="modal">Close</button>
-                                                              
-                                                      
-                                                            </div>
-                                                            </div>
-                                                            </div>
-                                                        </div>
+                                                          </div>
+	                                            </div>
+	                                            </div>
+                                        </div>
 
                                                           
                                                            
@@ -137,7 +135,7 @@ $(function() {
                                                          
                                                 </td>
                                           <% if page_is_active(e) %>
-						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" ><button class="btn btn-primary btn-small">go </button> </a>
+						                 	 <td> <a href="<%= events_path%>/<%= e.id %>" ><button class="btn btn-primary btn-small">go&nbsp;<i class="fa fa-caret-right"></i></button> </a>
 						                 	 </td>
 						                  <% else %>
 						                  		<% if current_user.purchased_events > 0 %>

@@ -12,18 +12,20 @@
 				    <div class="col-md-12">
 				      <div class="well">
 
-				            <h4><span class="blue"><i class="icon-list icon-white"></i></span>&nbsp;<strong>Event Pages you administer: </strong></h4>
+				            <h4><i class="icon-list icon-white"></i></span>&nbsp;<strong>Your Event Pages: </strong></h4>
 				            <br/>
 				            <table class="table table-striped event">
 				              <% @user.adminevents.each do |e| %>
 				                <tr>  
 				                  <td><strong><%= link_to e.title, e %></strong> </td>
 				                  <td> <% unless e.date.nil? %><%= e.date.strftime("%b %d, %Y") %><% end %> </td> 
-				                    <td><a  href="<%= edit_event_path(e) %>"><span class="label label-info"><i class="icon-pencil icon-white"></i>&nbsp;edit event</span></a>	 </td> 
+				                    <td><a  href="<%= edit_event_path(e) %>"><button type="button" class="btn btn-primary btn-small"><i class="fa fa-pencil"></i>&nbsp;edit event</button></a>	 </td> 
 				              	  <td><em>Invited to admin by:</em><% if !e.admininvites.nil? %><% if e.admininvites.find_by_user_id(@user.id) %> <% if User.find_by_id(e.admininvites.find_by_user_id(@user.id).admin_id) %>  <%= User.find_by_id(e.admininvites.find_by_user_id(@user.id).admin_id).first_name %> <%= User.find_by_id(e.admininvites.find_by_user_id(@user.id).admin_id).last_name %><% else %>  --<% end %><% else %>  --<% end %><% else %>  --<% end %></td> 
 				                
 				                  <td> 
-				                  			 <div id="<%= e.id %>" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				                  			 <div id="<%= e.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                        <div class="modal-content">
                                                           <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                             <h3>Admins<% if e.title %> for <%= e.title %><% end %></h3>
@@ -52,21 +54,21 @@
 
                                                           <div class="modal-footer">
                                                             <button class="btn" data-dismiss="modal">Close</button>
-                                                              
-                                                      
-                                                            </div>
-                                                        </div>
+                                                          </div>
+                                         </div>
+                                         </div>                 
+                                </div>
 
                                                           
                                                            
-                                                              <a data-toggle="modal" href="#<%= e.id %>" class="btn btn-info btn-small">See All Event Admins</a>
+                                                              <a data-toggle="modal" href="#<%= e.id %>"><button type="button" class="btn btn-primary btn-small">See All Event Admins</button></a>
                                                          
                                                          
                                                 </td>
 				                  
-				                  <td> <a href="<%= events_path%>/<%= e.id %>" class="btn btn-info btn-small">go <i class="icon-chevron-right icon-white"></i> </a>
+				                  <td> <a href="<%= events_path%>/<%= e.id %>"><button type="button" class="btn btn-primary btn-small">go&nbsp;<i class="fa fa-caret-right"></i></button></a>
 				                  </td>
-				                
+
 
 				                </tr>
 				              <% end %>

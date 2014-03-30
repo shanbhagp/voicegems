@@ -116,23 +116,31 @@
 	<div class="container">
 		<header class="centralized">
 			<h2>Invite Your DJ/MC to Use VoiceGems at Your Wedding!</h2>
+
+
 			<img src="<%= asset_path "divider.png"%>" class="divider">
 		</header>
+
+		<article class="col-lg-11 col-lg-offset-1">
+				<h5 class="light">VoiceGems is a service used by DJ's to craft exceptional moments on your big day.  If your DJ doesn't provide this service, don't let that stop you from enjoying VoiceGems!  Just invite them to try it out below:</h5>
+		</article>
+
 		<article>
 			<center>
 	
-          <div class="row" id="invite">
+                  <div class="row" id="invite">
        
-                      <div class="col-md-8 col-md-offset-2 home-block">
+                      <div class="col-md-11 col-md-offset-1 home-block">
                                     
                                 <div class="hero-block-2">
                                    <% flash.each do |key, value| %>
                                       <div class="alert alert-block alert-<%=key%>"> 
                                       <button type="button" class="close" data-dismiss="alert">×</button>
                                       <%= value %> 
+                                      <br/>
                                       </div>
                                     <% end %>
-                                    <br/>
+                              
                                     <%= form_for(:invite, url: invite_dj_path, :html => {:class => 'form-inline'}) do |y| %>
                                                     <%= y.text_field :sender_name, :placeholder => "Your Name" %> 
                                                     <%= y.text_field :sender_email, :placeholder => "Your Email" %> <br/> <br/>
