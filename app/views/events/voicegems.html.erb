@@ -106,121 +106,30 @@
 					 </div>
 
 					 <div class="col-md-2">
-						     <div class="btn-group pull-right">
+						<div class="btn-group pull-right">
+                                                   <%= render 'record_send_reminder', :f => f %>
+                                                   <%= render 'record_hide_entry_modal', :f => f %>
 
                         
 
                                                           
-                                 <div id="regrec_send_reminder<%= f.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-                                     <div class="modal-dialog">
-                                     <div class="modal-content">
-                                     <div class="modal-header">
-	                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                                    <h3>Request to Re-Record</h3>
-                                     </div>
-                                  
-                                     <div class="modal-body left">
-
-                                     	<h4> Emails already sent to this user: </h4> <br/>
-                                     	<table class="table table-condensed table-striped">
-	                                            <thead>
-	                                              <th>Sent To:</th>
-	                                              <th>By Admin:</th>
-	                                              <th>On:</th>
-	                                              
-	                                                                                                                    
-	                                            </thead>
-                                            	<tbody>
-		                                            <% f.vg_userinvites.each do |a| %>
-		                                              <tr>
-		                                                <td> <%= a.recipient_email %> </td>
-		                                                <td> <% if !a.admin_id.blank? %><%= User.find_by_id(a.admin_id).email %><% end %> </td>
-		                                                <td> <%if !a.sent_at.nil? %><%= a.sent_at.strftime("%b %d, %Y") %><% end %> </td>
-		                                                
-		                                              </tr>
-		                                            <% end %>
-                                         		 </tbody> 
-                                        </table> 
-
-                                  		<hr/>
-                                         <h4> The following email will be sent to <%= f.email %>: </h4> <hr/>
-
-                                         <div class="well">
-                                            <p> Hi there <% if !f.user.first_name.nil? %><%= f.user.first_name %><% end %>! </p>
-
-                                            <p>The admin for the event <%= f.event.title %> is requesting that you please re-record your VoiceGem. Your recording may not have been clear, so please double-check it and record again.</p>
-
-                                            <p>Please sign in at www.voicegems.com</p>
-
-                                            <p>Thank you!<p>
-                                            - The team at VoiceGems
-                                         </div>
-                                
-                                         	 <%= form_for(:vg, url: vg_rerecord_path) do |y| %>
-                                              	<%= y.hidden_field :x, :value => f.id %>
-                                               	<%= y.submit "Request Re-Recording", class: "btn-primary btn-large btn-modal", disable_with: 'sending request...' %>
-                                             <% end %>  
-		                                     <br/>
-		                                     <br/>
-
-                                     </div> <%# end div modal-body %>	
-
-                                  	 <div class="modal-footer">
-                                    	 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                  	 </div>
-                                         </div>
-                                         </div>
-
-                           		 </div>   <%# end MODAL div id="regrec_send_reminder %>	
 
                                  
 
-                                 <div id="regrec_hide_entry<%= f.id %>" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                     <div class="modal-dialog">
-                                     <div class="modal-content">
-
-                                    <div class="modal-header">
-                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                         <h3>Delete Entry for <%= f.email %> </h3>
-                                    </div>
-                                                          
-                                    <div class="modal-body left">
-                                                          
-                                         <h4> Please confirm you would like to delete this entry </h4> 
-                                         <h5> (Deleted entries are accessible under your 'Deleted Entries' tab) </h5>
-                                         <hr/>
-                                         <%= link_to f, disable_with: 'deleting...', method: :delete, class: 'btn btn-danger btn-large btn-modal' do %>
-                                                <i class="fa fa-trash-o"></i>&nbsp;Delete
-                                         <% end %>
-                                         <br/>
-                                         <br/>
-                                                               
-
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                     </div>
-                                     </div>
-                                     </div>
-
-                                 </div>  <%# end MODAL div id="regrec_hide_entry %>	         
-
-                                                            
-                             <%= link_to AWS::S3.new.buckets[ ENV["VG_BUCKET_NAME"]].objects["#{f.recording}.mp3"].url_for(:get, {
+                                        <%= link_to AWS::S3.new.buckets[ ENV["VG_BUCKET_NAME"]].objects["#{f.recording}.mp3"].url_for(:get, {
       expires: 10.minutes,
       response_content_disposition: "attachment; filename=#{f.user.first_name}_#{f.user.last_name}_#{f.recording}"
-    }).to_s, class: 'btn btn-info btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="fa fa-download"></i><% end %>
+    }).to_s, class: 'btn btn-small', id: "download_#{f.id}", rel: "tooltip", title:"Download MP3" do %><i class="fa fa-download fa-fw"></i><% end %>
 
 
 
+                                          <a id="regrec_popover_send_reminder<%=f.id%>_popover" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>">
+                                        </a>
 
-                              		<button id= "regrec_popover_send_reminder<%= f.id %>" rel="popover" data-placement="left" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-envelope"></i></button>
-
+                              		    <a id= "regrec_popover_send_reminder<%= f.id %>" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-small"><i class="fa fa-envelope fa-fw"></i></a>
                               		
                               
-                              		<button id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-info btn-small"><i class="fa fa-trash-o"></i></button>
+                              		<a id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="left" data-content="Click to delete this user's entry.<br/></br> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-small"><i class="fa fa-trash-o fa-fw" style="font-size: 1.2em"></i></a>
                                                                                  
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
