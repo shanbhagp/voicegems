@@ -77,7 +77,7 @@
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange3">
-                      <h5><span class="blue"><strong>Promo Code?</strong> (LIMITED TIME: Enter code 50OFF for 50% off!)</span></h5>
+                      <h5><span class="blue"><strong>Promo Code?</strong></span></h5>
                       
                     </a>
                   </div>
@@ -162,7 +162,7 @@
                                   <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-email="<%= current_user.email %>" data-name="VoiceGems" data-label="Enter New Card Details" data-amount="<%= @cost.to_i*100 %>"
                                     data-description="<%= @number %> Event Page<% if @number > 1 %>s<% end %>"
-                                    data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question "></i></a></span> 
+                                    data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question-circle"></i></a></span> 
                                 <br/>
                                 <br/>
                                
@@ -196,7 +196,7 @@
                                 <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                       data-key="<%= ENV['PUBLISHABLE_KEY'] %>" data-email="<%= current_user.email %>" data-amount="<%= @cost.to_i*100 %>" data-name="VoiceGems"
                                   data-description="<%= @number %> Event Page<% if @number > 1 %>s<% end %>"
-                                  data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question "></i></a></span> 
+                                  data-image="<%= image_path('VoiceGems-logo-glass.png')%>"> </script> <%= image_tag "lockoverlay.png" %>&nbsp;<span class="help-block">Secure Payment with Stripe <a href="https://stripe.com/help/security" target="_blank" ><i class="fa fa-question-circle "></i></a></span> 
                               <br/>
                               <br/>
                                   

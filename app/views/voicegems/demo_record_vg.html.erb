@@ -1,11 +1,5 @@
-<% if mobile_device? %>
-
-<% else %> 
-
-
-      <h2>VoiceGem Recording for the Jones-Ravenwood Wedding </h2>
-      
-      <% if !(@event.title == 'the ETL Seminar') %><br/><h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3><% end %>
+<h2>VoiceGem Recording for the Jones-Ravenwood Wedding </h2>
+<h3>  <% if !@event.nil? %><% if !@event.date.nil? %><%= @event.date.strftime("%b %d, %Y")  %> <% end %><% end %></h3>
 
   <script type="text/javascript">
             var swfVersionStr = "10.2.0";
@@ -38,7 +32,7 @@
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);
             swfobject.createCSS("#flashContent", "display:block;text-align:left;");
-        </script>
+  </script>
     
     <!-- Below is the MP3Recorder JS API (Callbacks) -->
     <script>
@@ -186,17 +180,12 @@
           </div>
 
 
-<div class="alert alert-block alert-info">
+<div class="alert alert-block  modal-header">
  
     <button type="button" class="close" data-dismiss="alert">×</button>
 
-              <h3>You've been invited to record a VoiceGem for an upcoming event, the Jones-Ravenwood Wedding.<em> Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="fa fa-info "></i></a> </h3>  
-
-          
-     
-            
-         
-    </div>  
+              <h3>You've been invited to record a VoiceGem for an upcoming event, the Jones-Ravenwood Wedding.<em> Just 3 Easy Steps.</em>&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo" class="btn btn-info">More Info <i class="fa fa-info-circle"></i></a> </h3>  
+ </div>  
 
 
 
@@ -372,6 +361,6 @@
 </div><%# end container %>
 
 
-<% end %> 
+
 
 

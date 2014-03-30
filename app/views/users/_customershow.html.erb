@@ -69,7 +69,7 @@ $(function() {
 
 										         </div> <%# end modal %>
 
-				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info "></i></a> &nbsp;&nbsp;&nbsp;
+				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info-circle "></i></a> &nbsp;&nbsp;&nbsp;
 
 						                         
 				                 			<%= f.select :purchase_type,  options_for_select([["from subscription pages (#{sub_pages_left} left)", "s"], ["from purchased pages (#{current_user.purchased_events} left)", "p"]]), :size => 5 %>
@@ -150,7 +150,7 @@ $(function() {
 
 										         </div> <%# end modal %>
 
-				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info "></i></a> &nbsp;&nbsp;
+				                 			<a data-toggle="modal" href="#info-code" ><i class="fa fa-info-circle "></i></a> &nbsp;&nbsp;
 
 				                 			<% if current_user.customer == true && current_user.event_type == 'all_inclusive' && !customer_has_master_list? %>
 				                 	      		Master List?  <%= f.check_box :master %> &nbsp;&nbsp; 
