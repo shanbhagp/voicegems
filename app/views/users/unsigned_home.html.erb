@@ -7,6 +7,8 @@
 
    <meta id="audiopath" name="<%= yield(:path) %>" content="audio">
 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
      <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "bootstrap_and_overrides" %>
@@ -40,20 +42,21 @@
 
 
 </head>
-	    <body>			
-				<div class= "sections section-home white">
+	    <body class="sections section-home white">			
 					<div class="container">
 							<header class="centralized">
 									<img src="<%= asset_path "Logo_White.png" %>" width="350px" class="img-responsive centralized" style="margin-left: auto; margin-right:auto">
 							</header>
 							
-							<article>
 									<div class="row">
-				                   		<img src="<%= asset_path "divider_q.png"%>" class="col-xs-offset-1 img-responsive">
-				                   		<br><br>
+				                   		<img src="<%= asset_path "divider_q.png"%>" class="col-xs-12 img-responsive">
+                                                                     </div>
+									<div class="row">
+							<article>
+                                                                <div class="col-xs-12">
 					                   	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">	
 					                	<!-- Carousel indicators -->
-			                                <ol class="carousel-indicators">
+			                                <ol class="carousel-indicators centralized">
 			                                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active" ></li>
 			                                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 			                                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
@@ -74,26 +77,23 @@
 								                    </div>						                    
 					                    	</div><!-- END CAROUSEL-INNTER -->				                    
 					                    </div><!-- END CAROUSEL-EXAMPLE-GENETIC -->			                    
+					                    </div>
 				                   
-				            		</div><!-- END ROW -->	
-				                	</br></br></br>
-				                	
-								    
 							</article>
+				            		</div><!-- END ROW -->	
+								    
 				            		<div class="row">
-								        <div class="col-xs-1 col-xs-offset-3">
+							<article>
+                                                            <div class="col-xs-12 center">
 										<a href="<%= djs_path %>"><button class="button button-1 button-1a">&nbsp;&nbsp;&nbsp;DJs&nbsp;&nbsp;&nbsp;</button></a>
-									</div>
-									<div class="col-xs-1 col-xs-offset-1">
 										<a href="<%= couples_path %>"><button class="button button-1 button-1a">Couples</button></a>
-									</div>
-									<div class="col-xs-4 col-xs-offset-1">
 								    		<a href="<%= login_path %>"><button class="button button-2 button-2a">Log In</button></a>
-								        </div>	
+                                                                   
+							    </div>	
+							</article>
 							  </div><!-- END ROW -->
 						
 					</div><!-- END CONTAINER -->
-				</div><!-- END SECTION-WELCOME -->
 				 
 		</body>
 	
