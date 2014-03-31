@@ -73,7 +73,7 @@
                                       </div>
                                       <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
-                                          <div class="well col-md-5 col-md-offset-3">
+                                          <div class="well col-xs-5 col-md-offset-3">
                                               <div class="hero-block-2">
                                                 <h4><i class="fa fa-user">&nbsp;</i><span>Admin Registration for New Users</span></h4>
                                                 <br/>
@@ -112,7 +112,7 @@
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
                                                   
-                                                <div class="well col-md-5 col-md-offset-3">
+                                                <div class="well col-xs-5 col-md-offset-3">
                                                     <h4><i class="fa fa-user">&nbsp;</i><span>Admin Registration for Existing Users</span></h4>
                                                                          <br/> 
                                                         <% flash.each do |key, value| %>
@@ -122,11 +122,11 @@
 
                                                           <%= f.hidden_field :token, :value => @user.invite_token %>
                                                            <span class="blue"><em>If you've been asked to register as an admin for this event, and have previously registered on our site, please sign in here:</em></span> <br/> <br/>
-                                                          <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
+                                                          <%= f.text_field :email, :class => "col-xs-3", :placeholder => "Email" %>
                                                           <br/>
                                                           <br/>
 
-                                                          <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
+                                                          <%= f.password_field :password, :class => "col-xs-3", :placeholder => "Password" %>
 
                                                             <br/>
                                                             <br/>

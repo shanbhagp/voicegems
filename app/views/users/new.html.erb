@@ -81,7 +81,7 @@
                                                    <div class="row">
                                                     <%= simple_form_for(@user, :html => {:class => 'form-inline'}) do |f| %>
 
-                                                         <div class="well col-md-3 col-md-offset-1">
+                                                         <div class="well col-xs-3 col-md-offset-1">
                                                           <h4> <% if !@user.first_name.blank? && !@user.last_name.blank? %><i class="fa fa-check fa-lg">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span><span class="muted"> (required)</span>  </h4>
                                                               
                                                               <br/>
@@ -98,25 +98,25 @@
                                                                   <% end %>
                                                                 <hr/>    
                                                          </div>
-                                                         <div class="well col-md-3">         
+                                                         <div class="well col-xs-3">         
                                                              <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info<span class="muted"> (optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "col-xs-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                                                                             
                                                                             <br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-xs-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                          
                                                                      <hr/>
                                                           </div>
 
-                                                          <div class="well col-md-3">
+                                                          <div class="well col-xs-3">
                                                               <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/>
                                                                   <div class="row">
-                                                                   <div class="col-md-3">
-                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large col-md-3", disable_with: "please wait..." %>
+                                                                   <div class="col-xs-3">
+                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large col-xs-3", disable_with: "please wait..." %>
                                                                     <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
                                                                    </div>
                                                                  </div>
@@ -142,20 +142,20 @@
                                           </div>
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
-                                              <div class="well col-md-4 col-md-offset-3">
+                                              <div class="well col-xs-4 col-md-offset-3">
                                                   <%= form_for(:session, url: addpo_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
                                                   <%= f.hidden_field :token, :value => @user.invite_token %>
                                                    <span class="blue"><em>If you've been invited for an event and have previously registered on our site, please sign in here:</em></span> <br/> <br/>
-                                                  <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
+                                                  <%= f.text_field :email, :class => "col-xs-3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
 
-                                                  <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
+                                                  <%= f.password_field :password, :class => "col-xs-3", :placeholder => "Password" %>
 
                                                     <br/>
                                                     <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-md-2") do %>
+                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-xs-2") do %>
                                                        Sign In <i class="fa fa-chevron-right "></i> 
                                                       <% end %>
 

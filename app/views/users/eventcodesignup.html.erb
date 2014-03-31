@@ -71,7 +71,7 @@
                                                    <div class="row">
                                                     <%= simple_form_for(@user, :url => eventcodesignupcreate_path, :html => {:class => 'form-inline'}) do |f| %>
 
-                                                         <div class="well col-md-3 col-md-offset-1">
+                                                         <div class="well col-xs-3 col-md-offset-1">
                                                           <h4> <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 1: Basic Info</span> </h4>
                                                               
                                                               <br/>
@@ -84,16 +84,16 @@
                                                                   <%= f.input :event_code, label: "Event Code" %> 
 
                                                          </div>
-                                                         <div class="well col-md-3"
+                                                         <div class="well col-xs-3"
                                                          >         
                                                              <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 2: NameGuide Info</span> <span class="muted">(optional)</span> </h4> 
                                                               <br/>      
-                                                                         <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                                                                         <%= f.input :phonetic, :class => "col-xs-3 fl-left", label: "Enter your name as you would like it announced at the event:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                                                                             
                                                                             <br/><br/>
 
                                                                           <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                                                                          <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                                                                          <%= f.text_area :notes, :class => "col-xs-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                                                                           <br/> <br/>
                                                                           <hr/>
                                                                          
@@ -101,12 +101,12 @@
 
                                                           </div>
 
-                                                          <div class="well col-md-3">
+                                                          <div class="well col-xs-3">
                                                               <h4><i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 3: Record Your Name</span> </h4> <br/>
                                                                   <br/><br/><br/> <br/>
                                                                   <div class="row">
-                                                                   <div class="col-md-3">
-                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large col-md-3", disable_with: "please wait..." %>
+                                                                   <div class="col-xs-3">
+                                                                    <%= f.button :submit, "Record Your Name", class: "btn btn-danger btn-large col-xs-3", disable_with: "please wait..." %>
                                                                     <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
                                                                    </div>
                                                                  </div>
@@ -133,23 +133,23 @@
                                           </div>
                                           <div id="collapseTwo" class="accordion-body collapse">
                                             <div class="accordion-inner">
-                                               <div class="well col-md-4 col-md-offset-3">
+                                               <div class="well col-xs-4 col-md-offset-3">
                                                   <%= form_for(:session, url: addeventcodeuser_path, :html => {:class => "form-horizontal"} ) do |f| %>
 
                                                   
-                                                   <div class="row"><div class="col-md-4 blue"><em>If you've been asked to register your name for an event with an event code and have previously registered on our site, please sign in here:</em></div></div> <br/> 
-                                                   <%= f.text_field :event_code, :class => "col-md-3", :placeholder => "Event Code" %> 
+                                                   <div class="row"><div class="col-xs-4 blue"><em>If you've been asked to register your name for an event with an event code and have previously registered on our site, please sign in here:</em></div></div> <br/> 
+                                                   <%= f.text_field :event_code, :class => "col-xs-3", :placeholder => "Event Code" %> 
                                                    <br/>
                                                    <br/>
-                                                  <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
+                                                  <%= f.text_field :email, :class => "col-xs-3", :placeholder => "Email" %>
                                                   <br/>
                                                   <br/>
 
-                                                  <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
+                                                  <%= f.password_field :password, :class => "col-xs-3", :placeholder => "Password" %>
 
                                                     <br/>
                                                     <br/>
-                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-md-2") do %>
+                                                      <%= button_tag(type: 'submit', class: "btn btn-primary btn-small col-xs-2") do %>
                                                        Sign In <i class="fa fa-chevron-right "></i> 
                                                       <% end %>
 

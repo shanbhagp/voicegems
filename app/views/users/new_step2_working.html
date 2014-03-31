@@ -29,7 +29,7 @@
 <div class="row">
 <%= simple_form_for(@user, :html => {:class => 'form-inline'}) do |f| %>
 
-     <div class="well col-md-3">
+     <div class="well col-xs-3">
       <h4>  <% if signed_in? %><i class="fa fa-check fa-lg">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i><span class="blue">STEP 1: Basic Info</span> (required) </h4>
           
           <br/>
@@ -43,26 +43,26 @@
               <%= f.input :email %>
 
      </div>
-     <div class="well col-md-3">         
+     <div class="well col-xs-3">         
          <h4>  <% if signed_in? %><i class="fa fa-check fa-lg">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i><span class="blue">STEP 2: NameGuide Info</span> (optional) </h4> 
           <br/>      
-                     <%= f.input :phonetic, :class => "col-md-3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
+                     <%= f.input :phonetic, :class => "col-xs-3 fl-left", label: "Enter your name as you would like it announced:", placeholder: "(e.g., 'Dr. Henry Jones, Jr.')"  %>
                         
                         <br/>
 
                       <%= f.label :notes, "Enter any notes to aid in pronunciation:" %>
-                      <%= f.text_area :notes, :class => "col-md-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
+                      <%= f.text_area :notes, :class => "col-xs-3", :placeholder => "(e.g., 'first name sounds like Ravine' or 'last name pronounced GLI-cough')" %>
                      
                  
 
       </div>
 
-      <div class="well col-md-4">
+      <div class="well col-xs-4">
           <h4>  <% if signed_in? %><i class="fa fa-check fa-lg">&nbsp;<% else %><i class="fa fa-check-empty">&nbsp;<% end %></i><span class="blue">STEP 3: Save Info</span> (required) </h4> <br/>
 
               <div class="row">
-               <div class="col-md-2 col-md-offset-1">
-                <%= f.button :submit, "Save Info", class: "btn btn-primary btn-large col-md-2", disabled: "true" %>
+               <div class="col-xs-2 col-md-offset-1">
+                <%= f.button :submit, "Save Info", class: "btn btn-primary btn-large col-xs-2", disabled: "true" %>
                </div>
              </div>
               
@@ -71,7 +71,7 @@
             <h4>  <i class="fa fa-check-empty">&nbsp;</i><span class="blue">STEP 4: Record Your Name</span> (recommended) </h4> <br/>
 
               <div class="row">
-               <div class="col-md-2 col-md-offset-1">
+               <div class="col-xs-2 col-md-offset-1">
                         <div id="recordmodal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -139,7 +139,7 @@
                          </div> <%# end modal %>
                    <button data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name </button> <br/>
                <span class="blue"><em>(this is easy and takes just a few seconds!) </em></span>
-              </div> <%# end col-md-2 %>
+              </div> <%# end col-xs-2 %>
             </div> <%# end row %>
           
         
@@ -151,9 +151,9 @@
 
 <hr/>
 <div class="row">
-    <div class="col-md-8 col-md-offset-3">
+    <div class="col-xs-8 col-md-offset-3">
         
-         <a href="<%= setpassword_path(:id => current_user.id) %>" class="btn btn-primary btn-large col-md-5"> DONE <i class="fa fa-caret-right "></i> </a>
+         <a href="<%= setpassword_path(:id => current_user.id) %>" class="btn btn-primary btn-large col-xs-5"> DONE <i class="fa fa-caret-right "></i> </a>
     </div>
 </div>  
 

@@ -337,7 +337,7 @@ end
 
 <div class="row">
 
-           <div class="well col-md-5 col-md-offset-2">
+           <div class="well col-xs-5 col-md-offset-2">
                 <h4> <span class="label label-info"> <i class="fa fa-user ">&nbsp;</i>New Admin Registration </span> </h4>
                 <%= simple_form_for(@user, :url => admincodesignupcreate_path, :html => {:class => "form-horizontal"}) do |f| %>
                 <br/>
@@ -362,7 +362,7 @@ end
     
 
 
-      <div class="well col-md-3 col-md-offset-1">
+      <div class="well col-xs-3 col-md-offset-1">
         <h4> <span class="label label-info"> <i class="fa fa-user ">&nbsp;</i> Already Registered on our site?</span> </h4>
                   <br/> 
              
@@ -370,14 +370,14 @@ end
 
                     
                      <span><em>If you're registering as an admin for an event but have previously registered on our site, please enter the admin code and sign in:<em></span> <br/> <br/>
-                     <%= f.text_field :access_code, :class => "col-md-3", :placeholder => "Admin Code" %> 
+                     <%= f.text_field :access_code, :class => "col-xs-3", :placeholder => "Admin Code" %> 
                     <br/>
                     <br/>
-                    <%= f.text_field :email, :class => "col-md-3", :placeholder => "Email" %>
+                    <%= f.text_field :email, :class => "col-xs-3", :placeholder => "Email" %>
                     <br/>
                     <br/>
 
-                    <%= f.password_field :password, :class => "col-md-3", :placeholder => "Password" %>
+                    <%= f.password_field :password, :class => "col-xs-3", :placeholder => "Password" %>
 
                       <br/>
                       <br/>
