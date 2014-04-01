@@ -126,7 +126,7 @@
         //success  will be true if the upload succeeded and false otherwise
         console.log('Audior.onUploadDone('+success+', '+recordName+', '+duration+', '+recorderId+')')
         document.getElementById("dwl").disabled = false
-         document.getElementById("continuebtn").setAttribute("class", "col-md-6 col-md-offset-3")
+         document.getElementById("continuebtn").setAttribute("class", "col-xs-6 col-md-offset-3")
         document.getElementById("firstDisplay").innerHTML  = "Click 'NEXT' below.";
   
       }
@@ -170,7 +170,7 @@
 
 <div class="row">
          <!-- BELOW: Chrome browser detection. Tested on Chrome, FireFox, and MSIE --> 
-         <div class="col-md-8 col-md-offset-2">
+         <div class="col-xs-8 col-md-offset-2">
           
           <script type='text/javascript'>
             var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
@@ -184,13 +184,13 @@
 </div>
 
 <div class="row">
-     <div class="col-md-12">
+     <div class="col-xs-12">
           <center><div><h3 class="black">Please record your VoiceGem here:</h3></div></center>
      </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
      <center>
                                           <div id="flashContent">
                                               <p>
@@ -214,7 +214,7 @@
 </div>
 
 <div class="row">                     
-    <div class="col-md-12">
+    <div class="col-xs-12">
      <center>                        
               <div id="continuebtn" class="invisible">
            
@@ -229,7 +229,7 @@
 </div>                      
                       
 <div class="row">
-      <div class="col-md-12">     
+      <div class="col-xs-12">     
              <div class="panel-group" id="accordionrec">
 
                       <div class="panel panel-default">
@@ -286,7 +286,7 @@
                                       <hr/>
 
                                        <div class="row">
-                                          <div class="well col-md-12">
+                                          <div class="well col-xs-12">
                                             <center>
                                                 <h4> Can you see an animation below? </h4>
                                       
@@ -294,7 +294,7 @@
 
                                                  <h5>If not, you will probably need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
 
-                                               <%= link_to "Skip Recording", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => "col-md-2 fl-right"} %>
+                                               <%= link_to "Skip Recording", {:controller => "users", :action => "setpassword", :id => current_user.id, :event => @event.id, :x => "skip" }, {:class => "col-xs-2 fl-right"} %>
                                             </center>
                                           </div>                           
 

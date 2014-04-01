@@ -21,17 +21,17 @@ $(function() {
      		
 	    	 		 <div class="row">
 				 		 			        
-				         <div class="col-md-12">
+				         <div class="col-xs-12">
 				             <div class="well">
 				                 <h4><i class="fa fa-edit"></i>&nbsp;Create an Event Page: </h4> </br>
 
 				                     <%= form_for(Event.new, :html => {:class => "form-inline"}) do |f| %>
 				                      
 				                     	
-				                        <%= f.text_field :title, :placeholder => 'Title (required)', :class => "col-md-3" %> &nbsp;&nbsp;
+				                        <%= f.text_field :title, :placeholder => 'Title (required)', :class => "col-xs-3" %> &nbsp;&nbsp;
 				                         
 				                            
-				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "col-md-2" %> &nbsp;&nbsp;
+				                        <%= f.text_field :date, :placeholder => 'Date (required)', :class => "col-xs-2" %> &nbsp;&nbsp;
 
 				                                        	      
 						        				  <% if user_is_trialing? && purch_pages_left? %>
@@ -60,13 +60,13 @@ $(function() {
 				              <% if user_is_trialing? %> 
 				              <div class="row centralized"> 
 
-				             <div class="col-md-2 col-md-offset-9"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
+				             <div class="col-xs-2 col-md-offset-9"><a href="<%= existing_user_purchase_path %>" ><button type="button" class="btn btn-primary btn-small">
 					Buy Event Pages&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>
 				</button></a></div></div>
 				             <% end %>        
 
 				             </div> <%# end well %>
-				         </div> <%# end col-md-12 %>
+				         </div> <%# end col-xs-12 %>
 				        
 				         
 
@@ -77,7 +77,7 @@ $(function() {
 				<hr/>
 
 				 <div class="row">
-				    <div class="col-md-12">
+				    <div class="col-xs-12">
 				      <div class="well">
 
 				            <h4><i class="fa fa-list"></i></span>&nbsp;<strong>Your Event Pages: </strong></h4>

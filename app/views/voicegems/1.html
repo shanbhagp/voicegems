@@ -77,12 +77,12 @@ mixpanel.init("25930c9aea6961ab6d145f4bfa793e2c");</script><!-- end Mixpanel -->
   	<div class="jumbotron masthead row">
 
 		<div class="container">
-		<div class="col-md-offset-1 col-md-6">
+		<div class="col-xs-offset-1 col-md-6">
 			<h1>The easiest way <br /> to send a voice message</h1>
 			<h2 style="margin-top: 10px">Send yourself one to try it out</h2>
 			<br />
 		</div>
-		<div id="sample-recorder" class="col-md-4">
+		<div id="sample-recorder" class="col-xs-4">
 			<form>
 				<div class="control-group" id="to-control-group">
 					<label class="control-label" for="to">Your Email Address</label>
@@ -98,27 +98,27 @@ mixpanel.init("25930c9aea6961ab6d145f4bfa793e2c");</script><!-- end Mixpanel -->
 			<div class="row">
 	<div id="home-recorder">
 			<img alt="Spinner" id="flash-spinner" src="/assets/spinner-ceb380acbab98f0450df16fd19c7f286.gif" />
-			<div id="record-div" class="col-md-2" style="display: none">
+			<div id="record-div" class="col-xs-2" style="display: none">
 				<span id="recordButton" href="javascript:void(0)"><img alt="Recordbutton" id="recButtonImage" src="/assets/RecordButton-03b189028fa51e77b866811248119b91.png" /></span><br />
 				<span id="recordText">Record</span>
 			</div>
 
-			<div id="play-div" class="col-md-1">
+			<div id="play-div" class="col-xs-1">
 				<span id="playButton" href="javascript:void(0)"><img alt="Playbutton" id="play-button-image" src="/assets/PlayButton-3382ada7223300cfbc31f6a1101d389f.png" /></span><br />
 				<span id="replayText">Replay</span>
 			</div>
 
-			<span id="recording-timer" class="col-md-1">0:00</span>
-			<div id="sound-level" class="col-md-2"></div>
+			<span id="recording-timer" class="col-xs-1">0:00</span>
+			<div id="sound-level" class="col-xs-2"></div>
 	</div>
 	<div id="flash-row">
-		<div class="col-md-2" id="allow-instructions" style="display:none">
+		<div class="col-xs-2" id="allow-instructions" style="display:none">
 			Click allow to enable your microphone <br /> <br />
 			<a href="#" id="flash-settings-link">Skip this next time?</a>
 			<a target="_blank" href="/troubleshooting">Problems?</a>
 			<img alt="Spinner" id="permission-spinner" src="/assets/spinner-ceb380acbab98f0450df16fd19c7f286.gif" />
 		</div>
-		<div class="col-md-2" id="flash-object-div"></div>
+		<div class="col-xs-2" id="flash-object-div"></div>
 	</div> 
 </div>
 
@@ -137,11 +137,11 @@ mixpanel.init("25930c9aea6961ab6d145f4bfa793e2c");</script><!-- end Mixpanel -->
 </div>
 
 	<div class="row" id="send-row">
-		<a href="#" class="btn btn-large btn-success col-md-2" id="send-button">Send</a>
+		<a href="#" class="btn btn-large btn-success col-xs-2" id="send-button">Send</a>
 
-		<p id="need-recording" class="col-md-4 help-inline" style="display:none">Please record your message first</p>
+		<p id="need-recording" class="col-xs-4 help-inline" style="display:none">Please record your message first</p>
 
-		<div id="upload-progress" class="progress progress-warning progress-striped active col-md-2" style="display:none">
+		<div id="upload-progress" class="progress progress-warning progress-striped active col-xs-2" style="display:none">
 			<div id="upload-progress-bar" class="bar" style="width: 1000%;"></div>
 		</div>
 	</div>
@@ -203,10 +203,10 @@ $(document).ready(function() {
     
 
 <div class="row" style="margin-top: 25px">
-	<div class="col-md-offset-1 col-md-5">
+	<div class="col-xs-offset-1 col-md-5">
 		<img alt="Vg_email_shadow" src="/assets/vg_email_shadow-d6ab2128157a95f280f8a7c9a5cdc80d.png" />
 	</div> 
-	<div class="col-md-offset-1 col-md-5" style="margin-top: 60px">
+	<div class="col-xs-offset-1 col-md-5" style="margin-top: 60px">
 		<span class="splash-title">Speak with anyone</span>
 		<br /><br />
 		<span class="splash-content">Send a voice message to anyone with an email or Facebook message. The recipients don’t need to sign up or install anything to listen or reply. Record for as long as you want and send it to any number of people, pretty simple.</span>
@@ -214,22 +214,22 @@ $(document).ready(function() {
 </div>
 <hr class="hr-soften">
 <div class="row" style="margin-top: 25px">
-	<div class="col-md-offset-1 col-md-5" style="margin-top: 60px">
+	<div class="col-xs-offset-1 col-md-5" style="margin-top: 60px">
 		<span class="splash-title">On the web and mobile</span>
 		<br /><br />
 		<span class="splash-content">Record voice messages and see your inbox on the web or in the Voicegem iOS app. The recievers can listen on their device with no extra software, so no need to worry about what device your friend has.</span>
 	</div>
-	<div class="col-md-offset-1 col-md-5">
+	<div class="col-xs-offset-1 col-md-5">
 		<img alt="Ios_shadow" src="/assets/ios_shadow-e7e3346ea1676ee3d3b49ba8400da0f3.png" />
 		<img alt="Vg_web_shadow" src="/assets/vg_web_shadow-16d9100d62f29db7c2638e090c1425c9.png" style="margin-left: 7px" />
 	</div> 
 </div>
 <hr class="hr-soften">
 <div class="row" style="margin-top: 25px">
-	<div class="col-md-offset-1 col-md-5">
+	<div class="col-xs-offset-1 col-md-5">
 		<a href="http://developer.voicegem.com"><img alt="Widget_shadow" src="/assets/widget_shadow-da21db8b95a860f3b96bc01063478389.png" /></a>
 	</div> 
-	<div class="col-md-offset-1 col-md-5" style="margin-top: 40px">
+	<div class="col-xs-offset-1 col-md-5" style="margin-top: 40px">
 		<a href="http://developer.voicegem.com" style="text-decoration: none"><span class="splash-title">On your website</span></a>
 		<br /><br />
 		<span class="splash-content">Integrate Voicegem into your site to hear from your users, quite literally. Just copy and paste the couple lines of code, and you’re set.</span>
@@ -358,7 +358,7 @@ $(document).ready(function() {
  			<tbody>
  				<td width="45%" style="vertical-align: top">
  					<h3 style="margin-bottom: 10px;">Login</h3>
-					<form id="login-form-fields" class="col-md-3" action="/post_login">
+					<form id="login-form-fields" class="col-xs-3" action="/post_login">
 						<div id="login-email-control-group" class="control-group">
 							<label class="control-label" for="login-email-control-group">Email</label>
 							<input type="text" class="input-medium" placeholder="you@email.com" id="login-email">

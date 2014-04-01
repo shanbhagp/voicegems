@@ -49,26 +49,26 @@
         </table>
 
 	    <div class="row">
-			<div class="well col-md-12 modal-header">
+			<div class="well col-xs-12 modal-header">
 					
 						
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					
 					<a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				</div>
 			
 
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="right" title="How the student would like their name announced. Click the play button next to their name to hear it in their own voice. If an 'x' appears instead of the play button, you may need to ask the student to re-record."><h4>Name To be Announced</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Degree to be awarded"><h4>Degree</h4></a><em></em>
 														
 				</div>	
@@ -76,26 +76,26 @@
 
 				 
 
-			</div>	<%# end div well col-md-12 %>	
+			</div>	<%# end div well col-xs-12 %>	
 
 		</div> <%# end div row %>	
 
 
 		<% @undergradpos.each do |f| %>					    	
 			 <div class="row break">
-				 <div class="well col-md-12">
-					 <div class="col-md-3 ">
+				 <div class="well col-xs-12">
+					 <div class="col-xs-3 ">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						<span>(<%= f.user.email %>)</span> <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
 
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -109,7 +109,7 @@
 					 </div>
 			
 
-					 <div class="col-md-2">								
+					 <div class="col-xs-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
@@ -123,7 +123,7 @@
 
 		 <% if @undergradpos.count == 0  %>
 		 	   <div class="row">
-				<div class=" well col-md-6 col-md-offset-3 cent">
+				<div class=" well col-xs-6 col-md-offset-3 cent">
 					<h3> No entries in this category </h3>
 				</div>
 			   </div>
@@ -143,52 +143,52 @@
         </table>
 
 	    <div class="row">
-			<div class="well col-md-12 modal-header">
+			<div class="well col-xs-12 modal-header">
 					
 						
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					
 					<a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				</div>
 			
 
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="right" title="How the student would like their name announced. Click the play button next to their name to hear it in their own voice. If an 'x' appears instead of the play button, you may need to ask the student to re-record."><h4>Name To be Announced</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Degree to be awarded."><h4>Degree</h4></a>
 														
 				</div>	
 				
 				
 
-			</div>	<%# end div well col-md-12 %>	
+			</div>	<%# end div well col-xs-12 %>	
 
 		</div> <%# end div row %>	
 
 
 		<% @gradpos.each do |f| %>					    	
 			 <div class="row break">
-				 <div class="well col-md-12">
-					 <div class="col-md-3 ">
+				 <div class="well col-xs-12">
+					 <div class="col-xs-3 ">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						<span>(<%= f.user.email %>)</span> <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
 
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -202,7 +202,7 @@
 					 </div>
 			
 
-					 <div class="col-md-2">								
+					 <div class="col-xs-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
@@ -214,7 +214,7 @@
 
 		 <% if @gradpos.count == 0  %>
 		 	   <div class="row">
-				<div class=" well col-md-6 col-md-offset-3 cent">
+				<div class=" well col-xs-6 col-md-offset-3 cent">
 					<h3> No entries in this category </h3>
 				</div>
 			   </div>
@@ -231,25 +231,25 @@
 		 </table>
 		
 		 <div class="row">
-			 <div class="well col-md-12 modal-header">
+			 <div class="well col-xs-12 modal-header">
 									
 										
-				 <div class="col-md-3">
+				 <div class="col-xs-3">
 					 <a href="#" rel="tooltip" data-placement="right" title="Student's registered name and email address."><h4>Student Name/Email</h4></a>
 				 </div>
 										
 						
-				 <div class="col-md-3">
+				 <div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="right" title="Any notes student entered to help with pronouncing their name.  They may have left this blank."><h4>Student's Notes</h4></a>
 				 </div>
 							
 
-				 <div class="col-md-3">
+				 <div class="col-xs-3">
 					 <a href="#" rel="tooltip" data-placement="right" title="How the student would like their name announced. When the student voice-records their name, the play button will appear next to their name."><h4>Name To be Announced</h4></a>
 										<em>(name not yet voice-recorded)</em>
 				 </div>
 
-				 <div class="col-md-2">
+				 <div class="col-xs-2">
 					<a href="#" rel="tooltip" data-placement="right" title="Degree to be awarded."><h4>Degree</h4></a>
 																		
 				 </div>	
@@ -262,22 +262,22 @@
 
 		 <% @registeredandunrecordedpos.each do |f| %>					    	
 			 <div class="row break">
-				 <div class="well col-md-12">
+				 <div class="well col-xs-12">
 									
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 						 <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						 (<%= f.user.email %>) <br/>
 						 <% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 					
 
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 						 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 
 						
 					
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 						 <table>
 							 <tbody>
 							 	<tr>
@@ -290,7 +290,7 @@
 						 </table>
 				     </div>
 
-					 <div class="col-md-2">
+					 <div class="col-xs-2">
 						 <%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>	
 
@@ -303,7 +303,7 @@
 
 		 <% if @registeredandunrecordedpos.count == 0  %>
 		   <div class="row">
-			<div class=" well col-md-6 col-md-offset-3 cent">
+			<div class=" well col-xs-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 			</div>
 		    </div>
@@ -347,7 +347,7 @@
       	
       	 <% if @unregisteredpos.count == 0  %>
       	 	  <div class="row">
-				<div class=" well col-md-6 col-md-offset-3 cent">
+				<div class=" well col-xs-6 col-md-offset-3 cent">
 				<h3> No entries in this category </h3>
 				</div>
 			 </div>

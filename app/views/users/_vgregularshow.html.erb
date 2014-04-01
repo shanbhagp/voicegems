@@ -2,7 +2,7 @@
 
 
 	<div class="row">
-	 	<div class="well col-md-12">
+	 	<div class="well col-xs-12">
 	 	<h4>As a customer, it looks like you do not have any of your own VoiceGems for any events. To hear and download VoiceGems for your clients' events, click on the 'Your Events' tab. </h4>
 	 	</div>
 	</div>
@@ -11,25 +11,25 @@
 
 
 <div class="row">
-   <div class="well col-md-12 modal-header bg-dark">
+   <div class="well col-xs-12 modal-header bg-dark">
             
               
-              <div class="col-md-2">
+              <div class="col-xs-2">
                   <a href="#" rel="tooltip" data-placement="top" title="Your registered name and email address."><h4>User Name/Email</h4></a>
                 </div>
                   
           
-                  <div class="col-md-4">
+                  <div class="col-xs-4">
                   <a href="#" rel="tooltip" data-placement="top" title="Notes or song request you may have entered for the DJ for to accompany VoiceGem."><h4>User's Notes/Song Request</h4></a>
                   <em>(optional)</em>
                   </div>
 
-                <div class="col-md-3">
+                <div class="col-xs-3">
                   <a href="#" rel="tooltip" data-placement="top" title="Your VoiceGem. Click the play button to hear your current voice-message for that event. If an 'x' appears rather than the play button, your  VoiceGem has not been made or processed yet."><h4>Recorded VoiceGem</h4></a>
                   <em>(press play button to hear)</em>
                </div>
 
-                <div class="col-md-3">
+                <div class="col-xs-3">
                   <br/>
                   <a href="#" rel="tooltip" data-placement="top" title="Click on the buttons below to edit your voice-message, accompanying song request, or notes."><h4>Edit Your VoiceGem</h4></a>
                                   
@@ -48,19 +48,19 @@
 
         <% @user.voicegems.each do |f| %>               
 		        <div class="row">
-		          <div class="well col-md-12">
-		                  <div class="col-md-2">
+		          <div class="well col-xs-12">
+		                  <div class="col-xs-2">
 		                    <%= f.user.first_name %> <%= f.user.last_name %> <br/>
 		                    (<%= f.user.email %>) <br/>           
 		                  </div>
 		          
 
-		                  <div class="col-md-4">
+		                  <div class="col-xs-4">
 		                      <% if f.notes.blank?%>--no notes--<% else %><%= f.notes %><%end%>
 		                  </div>
 
 		
-		                    <div class="col-md-3">
+		                    <div class="col-xs-3">
 		                      <span class="vg">
 		                        <audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['VG_BUCKET_NAME'] %>/<%= f.recording %>.mp3" ></audio> 
 		                    	</span>
@@ -69,7 +69,7 @@
 
 		            
 
-		            <div class="col-md-3">
+		            <div class="col-xs-3">
 		                  <a href="<%= create_edit_voicegem_path(:id => f.id)%>"> <button class="btn btn-primary btn-small"><i class="fa fa-pencil"></i>&nbsp;Edit this VoiceGem</button></a> <br/>
 		                  for <strong><%= link_to f.event.title, f.event %></strong>
 		            </div>

@@ -43,65 +43,65 @@
         </table>
 
 	     <div class="row">
-			<div class="well col-md-12 modal-header bg-dark">
+			<div class="well col-xs-12 modal-header bg-dark">
 					
 						
-				<div class="col-md-2">
+				<div class="col-xs-2">
 					
 					<a href="#" rel="tooltip" data-placement="top" title="User's name and email address."><h4>User Name/Email</h4></a>
 				</div>
 						
 		
-				<div class="col-md-2">
+				<div class="col-xs-2">
 					<a href="#" rel="tooltip" data-placement="top" title="Any notes user may have entered to accompany their VoiceGem."><h4>User's Notes</h4></a>
 				</div>
 			
 
-				<div class="col-md-3">
+				<div class="col-xs-3">
 					<a href="#" rel="tooltip" data-placement="top" title="User's recorded VoiceGem. Click the play button to hear. If an 'x' appears instead of the play button, you may need to ask the user to re-record."><h4>Recorded VoiceGem</h4></a>
 					<em>(press play button to hear)</em>
 				</div>
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 						<a href="#" rel="tooltip" data-placement="top" title="Any notes you may have for this VoiceGem. Click a text field below to enter notes or update them."><h4>Admin Notes</h4></a><em>(click on a field to edit)</em>
 														
 				</div>	
 				
 			
-				 <div class="col-md-1 col-md-offset-1" >
+				 <div class="col-xs-1 col-md-offset-1" >
 					<h4>Actions</h4>
 				</div>
 
-			</div>	<%# end div well col-md-12 %>	
+			</div>	<%# end div well col-xs-12 %>	
 
 		</div> <%# end div row %>	
 
 		<% @registeredandrecordedvgs.each do |f| %>					    	
 			 <div class="row">
-				 <div class="well col-md-12">
-					 <div class="col-md-2">
+				 <div class="well col-xs-12">
+					 <div class="col-xs-2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						(<%= f.user.email %>) <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
 
-					 <div class="col-md-2">
+					 <div class="col-xs-2">
 					 	 <% if f.notes.blank?%>--<% else %><%= f.notes %><%end%>
 					 </div>
 		
-					 <div class="col-md-3">
+					 <div class="col-xs-3">
 					 	<span class="vg">
 							<audio src="https://s3-us-west-1.amazonaws.com/<%= ENV['VG_BUCKET_NAME'] %>/<%= f.recording %>.mp3" /> 
 						</span>	 			
 					 </div>
 			
 
-					 <div class="col-md-2">								
+					 <div class="col-xs-2">								
 						<%= best_in_place f, :admin_notes, :type => :textarea, :ok_button => "Save Changes", :cancel_button => "Cancel", :nil => "-click text to enter or edit notes-" %>
 					 </div>
 
-					 <div class="col-md-2">
+					 <div class="col-xs-2">
 						     <div class="btn-group pull-right">
 
                         
@@ -233,7 +233,7 @@
 					                    });  
 					                 </script>
 
-					 </div> <%# end div col-md-2 %>
+					 </div> <%# end div col-xs-2 %>
 
 				 </div> <%# end div class="well" %>	
 
@@ -244,7 +244,7 @@
 
 		 <% if @registeredandrecordedvgs.count == 0  %>
 		 	   <div class="row">
-				<div class=" well col-md-6 col-md-offset-3 cent">
+				<div class=" well col-xs-6 col-md-offset-3 cent">
 					<h3> No VoiceGems recorded yet </h3>
 
 				</div>
@@ -333,7 +333,7 @@
                  </script>
     	 	<hr/>
     	 <div class="row">
-    	 	<div class="col-md-11">
+    	 	<div class="col-xs-11">
     	 	 <div class="well">
     	 	 		 <h4> <i class="fa fa-envelope"></i>&nbsp;Invite an admin for this event: </h4>
 					 <br />	
@@ -341,16 +341,16 @@
 				
 					     <%= f.hidden_field :event_id, :value => @event.id %>
 														 									    
-					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-md-3" %>
+					     <%= f.text_field :first_name, :placeholder => "First Name (recommended)", :class => "col-xs-3" %>
 																		
 					  
-					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-md-3" %>
+					     <%= f.text_field :last_name, :placeholder => "Last Name (recommended)", :class => "col-xs-3" %>
 					 
 															 									    
-					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
+					     <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-xs-2"  %>
 
 											 						  
-						 <%= f.submit "Invite Admin (disabled for demo)", class: "btn btn-primary col-md-offset-1", disabled: true, confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
+						 <%= f.submit "Invite Admin (disabled for demo)", class: "btn btn-primary col-xs-offset-1", disabled: true, confirm: 'Please confirm you would like to invite this person as an admin for this event.' %>
 						  	
 
 				     <% end %>
@@ -362,7 +362,7 @@
  	 </div>  <%# end admin tab pane %>
  	 <div class="tab-pane" id="request">
          <div class="row">
-         	<div class="well col-md-6 col-md-offset-3">
+         	<div class="well col-xs-6 col-md-offset-3">
          		 <p> People can record their VoiceGems for this event using either of these links:
 		            	<br/><br/>
 		            	<i class="fa fa-caret-right"></i>&nbsp;&nbsp;<%= @url %> <br/>

@@ -2,30 +2,30 @@
              	<caption><em>(this is what will appear on an admin's event page, and will be used to practice your name)</em></caption>
              </table>
 			<div class="row">
-				<div class="well col-md-12">
+				<div class="well col-xs-12">
 					
 						
-				<div class="col-md-2">
+				<div class="col-xs-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Attendee's registered name and email address."><span class="label label-info">Attendee Name/Email</span></a>
 					</div>
 						
 		
-						<div class="col-md-2">
+						<div class="col-xs-2">
 						<a href="#" rel="tooltip" data-placement="right" title="Any notes attendee entered to help with pronouncing their name.  They may have left this blank."><span class="label label-info">Attendee's Notes</span></a>
 						</div>
 			
 
-					<div class="col-md-3">
+					<div class="col-xs-3">
 						<a href="#" rel="tooltip" data-placement="right" title="How the attendee would like their name announced. Click the play button next to their name to hear it in their own voice."><span class="label label-info">Name To be announced</span></a><br/>
 						<em>(press play button to hear)</em>
 					</div>
 
-					<div class="col-md-3">
+					<div class="col-xs-3">
 						<a href="#" rel="tooltip" data-placement="right" title="Your notes for this attendee. Click a text field below to enter notes or update them."><span class="label label-default">Admin Notes (Your Notes)</span></a>
 														
 					</div>	
 
-						<div class="col-md-1 ">
+						<div class="col-xs-1 ">
 						<span class="label label-default ">Actions</span>
 					</div>
 
@@ -36,21 +36,21 @@
 
 			<% @user.practiceobjects.each do |f| %>					    	
 			<div class="row">
-				<div class="well col-md-12">
-					<div class="col-md-2">
+				<div class="well col-xs-12">
+					<div class="col-xs-2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
 						(<%= f.user.email %>) <br/>
 						
 					</div>
 	
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 					 		<% if f.user.notes.blank?%>--<% else %><%= f.user.notes %><%end%>
 					</div>
 
 		
 	
-						<div class="col-md-2">
+						<div class="col-xs-2">
 							<table>
 							 <tbody>
 							 	<tr>
@@ -65,11 +65,11 @@
 						
 					</div>
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 						<a href="<%= edit_practiceobject_path%>/<%= f.id %>" class="btn btn-info btn-small"> Edit PO <i class="fa fa-chevron-right "></i> </a>
 					</div>
 
-					<div class="col-md-2">
+					<div class="col-xs-2">
 						<%= f.event.title %> 
 					</div>
 			
@@ -90,7 +90,7 @@
 
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
           <h4><span class="label label-info"><i class="fa fa-volume-up "></i></span><strong> Your <em>Namewave</em>: </strong></h4>
     </div>
 
@@ -100,27 +100,27 @@
               <caption><em>(this is what will appear on the admin's event page, and will be used to practice your name)</em></caption>
              </table>
       <div class="row">
-        <div class="well col-md-10">
+        <div class="well col-xs-10">
           
             
-            <div class="col-md-3">
+            <div class="col-xs-3">
                 <a href="#" rel="tooltip" data-placement="right" title="Your registered name and email address."><span class="label label-info">Attendee Name/Email</span></a>
               </div>
                 
         
-                <div class="col-md-3">
+                <div class="col-xs-3">
                 <a href="#" rel="tooltip" data-placement="right" title="Any notes you think might help with pronouncing your name."><span class="label label-info">Attendee's Notes</span></a>
                 </div>
           
 
-              <div class="col-md-3">
+              <div class="col-xs-3">
                 <a href="#" rel="tooltip" data-placement="right" title="This is how you would like your name announced at the event. Click the play button to hear your current recording for that event."><span class="label label-info">Name To be announced</span></a><br/>
                 <em>(press play button to hear)</em>
               </div>
 
         </div>
 
-              <div class="col-md-2">
+              <div class="col-xs-2">
               	<br/>
               	 <a href="#" rel="tooltip" data-placement="right" title="This is the event at which your name will be announced."><span class="label label-info">Event</span></a>
               </div> 
@@ -132,21 +132,21 @@
 
             
       <div class="row">
-        <div class="well col-md-10">
-                <div class="col-md-3">
+        <div class="well col-xs-10">
+                <div class="col-xs-3">
                   <%= @user.first_name %> <%= @user.last_name %> <br/>
                   (<%= @user.email %>) <br/>
                   
                 </div>
         
 
-                <div class="col-md-3">
+                <div class="col-xs-3">
                     <% if @user.practiceobject.notes.blank?%>--<% else %><%= @user.practiceobject.notes %><%end%>
                 </div>
 
           
         
-                  <div class="col-md-3">
+                  <div class="col-xs-3">
                     <table>
                      <tbody>
                       <tr>
@@ -162,7 +162,7 @@
 
           
 
-              <div class="col-md-2">
+              <div class="col-xs-2">
                 <br/>
                 <strong><%= link_to @user.practiceobject.event.title, @user.practiceobject.event %></strong>
               </div>
@@ -190,8 +190,8 @@
             <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
 
 <div class="row">
-  <div class="col-md-1"><span class="red">MIC LEVEL</span> </div>
-          <div class="col-md-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
+  <div class="col-xs-1"><span class="red">MIC LEVEL</span> </div>
+          <div class="col-xs-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
           </div>
 Time: <span id="time">00:00</span> 
@@ -199,8 +199,8 @@ Time: <span id="time">00:00</span>
 
 
 <div class="row">
-  <div class="col-md-1"><span class="red">MIC LEVEL</span> </div>
-          <div class="col-md-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
+  <div class="col-xs-1"><span class="red">MIC LEVEL</span> </div>
+          <div class="col-xs-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
           </div>
 Elapsed Time: <span id="time">00</span>/10 seconds 
@@ -208,7 +208,7 @@ Elapsed Time: <span id="time">00</span>/10 seconds
        
 
 
-          <div class="col-md-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
+          <div class="col-xs-1" id="levelbase" style="width:200px;height:20px;background-color:#f89406">
              <div id="levelbar" style="height:19px; width:2px;background-color:red"></div>
           </div>
 
@@ -335,13 +335,13 @@ Elapsed Time: <span id="time">00</span>/10 seconds
                                 
                                       <%= f.hidden_field :event_id %>
                                                                           
-                                      <%= f.text_field :first_name, :placeholder => "First Name", :class => "col-md-2" %>
+                                      <%= f.text_field :first_name, :placeholder => "First Name", :class => "col-xs-2" %>
                                                             
                                     
-                                      <%= f.text_field :last_name, :placeholder => "Last Name", :class => "col-md-2" %>
+                                      <%= f.text_field :last_name, :placeholder => "Last Name", :class => "col-xs-2" %>
                                   
                                                                             
-                                      <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-md-2"  %>
+                                      <%= f.text_field :recipient_email, :placeholder => "Email (required)", :class => "col-xs-2"  %>
 
                                       <div  style="text-align:center; margin:10px" >
                                                 
@@ -721,7 +721,7 @@ $(function ()
 
   <div class="row">     
           <h4 class="blue">  <i class="fa fa-check-empty">&nbsp;</i>STEP 3: Save Info (required) </h4> <br/>
-          <div class="col-md-2 col-md-offset-2">
+          <div class="col-xs-2 col-md-offset-2">
            <a data-toggle="modal" href="#recordmodal" class="btn btn-danger btn-large">Record Your Name <i class="fa fa-caret-right "></i> </a>
          </div>     
        </div>
@@ -743,9 +743,9 @@ $(function ()
 ----------------------------
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-3">
+    <div class="col-xs-8 col-md-offset-3">
         
-         <% if !@user.recording.blank? %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" > DONE <i class="fa fa-caret-right "></i> </button> <% else %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" disabled="true" > DONE <i class="fa fa-caret-right "></i> </button>  <% end %>
+         <% if !@user.recording.blank? %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-xs-5" > DONE <i class="fa fa-caret-right "></i> </button> <% else %><button href="<%= setpassword_user_path(current_user) %>" class="btn btn-primary btn-large col-md-5" disabled="true" > DONE <i class="fa fa-caret-right "></i> </button>  <% end %>
     </div>
 </div>
 
@@ -753,7 +753,7 @@ $(function ()
 --------------------------------
 
                                                                    <div class="row">
-                                                                      <div class="col-md-3">
+                                                                      <div class="col-xs-3">
                                                                         <h4 class="blue">&nbsp;&nbsp;&nbsp;Please remember to press 'Done' </h4>
                                                                       </div>
                                                                    </div>
