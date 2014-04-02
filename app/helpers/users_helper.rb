@@ -969,7 +969,7 @@ end
 
 def vgfilter
   unless signed_in? && current_user.email == 'shanbhagp@aol.com'
-    redirect_to voicegems_info_path
+    redirect_to root_path
   end 
 
 end 

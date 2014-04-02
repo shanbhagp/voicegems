@@ -42,8 +42,15 @@
 
 
 </head>
-	    <body class="sections section-home white">			
+	    <body class="sections section-home white">	
+<% flash.each do |key, value| %>
+     <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <%= value %> 
+    </div>
+  <% end %>		
 					<div class="container">
+
 							<header class="centralized">
 									<img src="<%= asset_path "Logo_White.png" %>" width="350px" class="img-responsive centralized" style="margin-left: auto; margin-right:auto">
 							</header>

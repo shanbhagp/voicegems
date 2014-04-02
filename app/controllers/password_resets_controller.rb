@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
       user.password_reset_sent_at = Time.zone.now
       user.save
  	    UserMailer.password_reset(user, edit_password_reset_url(user.password_reset_token)).deliver
- 	    flash[:success] = "Email sent with password reset instructions."
+ 	    flash[:success] = "Email sent to #{user.email} with password reset instructions."
         redirect_to root_url
   	  else
   	  flash.now[:error] = "This email address is not registered on our site."
