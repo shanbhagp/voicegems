@@ -984,4 +984,15 @@ a:hover, a:focus {
 .dropdown-menu > li > a:hover {
     background-color: #F2EEE3;
 }
+.navbar-toggle{background-color:#E0D5B9  }
+.logomobile{visibility:hidden; }
+@media (max-width:480px) {.navbar-collapse{background-color:#E0D5B9;}
+.hiddenlogo{ display:none;display: block; visibility : hidden; }
+.logomobile{ position: fixed ; z-index: 10000; left: 5px; padding-top:10px; text-align: left;visibility: visible ; }
+}
 
+.bgc {
+  background-color: #FAFAFA;
+  opacity: 0.98;
+  filter:alpha(opacity=98); /* For IE8 and earlier */
+}
