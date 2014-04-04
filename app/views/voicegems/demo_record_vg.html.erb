@@ -202,7 +202,7 @@
    
     <button type="button" class="close" data-dismiss="alert">×</button>
        
-            <h3 class="red"><i class="fa fa-warning"></i>&nbsp;Using Chrome?</h3> <center><h4 class="red">You will probably be asked by your browser for access to your microphone, under the address bar above (it's easy to miss):</h4></center><center><img src="<%= image_path('Allow_Box_2.png')%>"></center> </h4>
+            <h3 class="red"><i class="fa fa-warning"></i>&nbsp;Using Chrome?</h3> <center><h4 class="red">You will probably be asked by your browser for access to your microphone, under the address bar above (it's easy to miss):</h4></center><center><img src="<%= image_path('Allow_Box_2.png')%>" class="img-responsive img-thumbnail"></center> </h4>
 
 </div>  
 
@@ -334,7 +334,7 @@
                                                                            <hr/>
                                                                         <h4 class="red"><i class="fa fa-warning red"></i>&nbsp;&nbsp;Nothing happens when I press 'Record'</h4>
                                                                             <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Using Chrome? If there is a small 'Allow/Deny' bar at the top of your browser, click allow and then try recording again (or refresh the page).</h5> 
-                                                                             <center><img src="<%= image_path('Allow_Box_2.png')%>"></center> <h5>Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
+                                                                             <center><img src="<%= image_path('Allow_Box_2.png')%>" class="img-responsive img-thumbnail"></center> <h5>Click <a href="https://support.google.com/chrome/answer/2696491?hl=en" target="_blank">here</a> for instructions on changing the advanced settings. </h5>
                                                                             <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure a microphone is plugged in, especially if you are using a desktop computer.</h5>
                                                                             <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;Please make sure <a href="http://helpx.adobe.com/flash-player/kb/find-version-flash-player.html" target="_blank">the latest version of Adobe Flash Player is enabled</a> on your browser.</h5> 
                                                                             <h5><i class="fa fa-wrench"></i>&nbsp;&nbsp;If you have a Flash-blocker installed on your browser, please <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">temporarily disable it</a> (you may need to restart browser to disable) or try a different browser. These blockers normally do not allow microphone access.</h5> 
@@ -355,7 +355,7 @@
                                                                               <center>
                                                                                   <h4> Can you see an animation below? </h4>
                                                                         
-                                                                                  <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130"/>
+                                                                                  <embed src="<%= asset_path('ncflash_2.swf') %>" width="270" height="130" class="img-responsive" />
 
                                                                                    <h5>If not, you will probably need to <a href="<%= flashissue_path %>.htm#collapseFour" target="_blank">check that Flash is enabled</a> and <a href="<%= flashissue_path %>.htm#collapseFive" target="_blank">Flash-blockers are disabled</a> before recording.</h5> 
 
