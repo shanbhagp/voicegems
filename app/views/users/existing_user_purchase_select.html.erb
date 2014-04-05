@@ -20,18 +20,19 @@
 
     <div class="row">
 
-            <div class="well col-xs-6 col-md-offset-3">
+            <div class="well col-xs-6 col-xs-offset-3">
        
                   <hr/>
                   <div class="accordion" id="accordionsub">
                           <div class="accordion-group">
-                            <div class="accordion-heading">
-                              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionsub" href="#collapsechange">
+                            <div class="accordion-heading modal-header">
+                             
                                <h3> <span class="help-block">Your Order</span></h3>
-                              </a>
+                         
                             </div>
                             <div id="collapsechange" class="accordion-body collapse in">
                                 <div class="accordion-inner">
+                                <br/>
                                   <% if !@number.nil? && @number.to_i > 0 %>
                                          <%= @number %> Event Page<% if @number.to_i > 1 %>s<% end %> @ <%= @price %>/Event
                                           <br/>

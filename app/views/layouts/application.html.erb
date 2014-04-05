@@ -7,6 +7,7 @@
 
    <meta id="audiopath" name="<%= yield(:path) %>" content="audio">
 
+
      <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
      
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -48,8 +49,8 @@
 
 </head>
 
-	<body>
-		<div id="fb-root"></div>
+  <body>
+    <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -57,16 +58,16 @@
   js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-		
-			<%= render 'layouts/header' %>
+    
+      <%= render 'layouts/static1_header' %>
 
 
-<div class="section-FAQ">
-			<%= yield %>
+ <div class="section-FAQ">
+      <%= yield %>
 </div>
-      <!-- Scroll to top -->
-			<%= render 'layouts/footer' %>
-		
+
+      <%= render 'layouts/static1_footer' %>
+    
 <!-- begin olark code -->
 <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
 f[z]=function(){
@@ -87,5 +88,5 @@ loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure"
 /* custom configuration goes here (www.olark.com/documentation) */
 olark.identify('1410-907-10-4509');/*]]>*/</script><noscript><a href="https://www.olark.com/site/1410-907-10-4509/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
 <!-- end olark code -->
-	</body>
+  </body>
 </html>

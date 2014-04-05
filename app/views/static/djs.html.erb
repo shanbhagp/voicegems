@@ -33,7 +33,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-			<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
+									<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
                             </div>
                         </div>
 		</header>
@@ -78,6 +78,73 @@
                         </div>
 		</header>
 		<article>
+
+		<% if mobile_device? %>
+			<div class="row">
+				<div class="col-xs-12">
+					<h5 class="normal centralized">Growth-Enhancing Benefits for DJs</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="video-container">
+						<iframe src="//player.vimeo.com/video/86656578" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+						<ul >
+							<li>
+								Provide an additional revenue channel
+							</li>
+							<li>
+								Expand your service portfolio
+							</li>
+							<li>
+								Differentiate your business and your brand
+							</li>
+						</ul>
+				 </div>
+			</div>
+
+			 <div class="row">
+                <div class="col-xs-12">
+						<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
+                </div>
+            </div>
+
+            <div class="row">
+				<div class="col-xs-12" >
+					<h5 class="normal centralized">A More Meaningful Experience for Clients</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12" >
+					<div class="video-container">
+						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12" >
+						<ul >
+							<li>
+								Any family member or friend can express sentiments
+							</li>
+							<li>
+								Toasts become far more thoughtful and relaxed
+							</li>
+							<li>
+								Music takes on an altogether new dimension 
+							</li>
+						</ul>
+				</div>
+			</div>
+
+		<% else %>
 			<div class="row">
 				<div class="col-xs-6">
 					<h5 class="normal centralized">Growth-Enhancing Benefits for DJs</h5>
@@ -130,6 +197,8 @@
 				</div>
 			</div>
 			<!--END ROW -->
+		<% end %>
+
 			<div class="row">
 					 <h5 class="normal centralized"><i class="fa fa-caret-right"></i><span class="blue"><a href="http://blog.voicegems.com/post/78532566464/founder-of-bridaltweet-com-loves-voicegems" target="_blank"><em>&nbsp;&nbsp;See why the Founder of BridalTweet.com loves VoiceGems!&nbsp;&nbsp;</a></em></span></h5>
 			</div>
@@ -192,7 +261,11 @@
 		</header>
 		<article>
                         <div class="row">
-			<ul class="col-xs-10 col-xs-offset-2 normal">
+           <% if mobile_device? %>
+          	 <ul class="col-xs-12 normal">
+           <% else %>
+				<ul class="col-xs-10 col-xs-offset-2 normal">
+		   <% end %>	
 				<li>
 					Create Free Trial Event Pages for your Clients (unlimited 30-day use)
 				</li>

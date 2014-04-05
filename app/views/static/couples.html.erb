@@ -23,13 +23,19 @@
 	</div>
 	<br/>
 	<div class="row">
+	<% if mobile_device? %>
+		<article class="col-xs-12">
+	<% else %>
 		<article class="col-xs-5 col-xs-offset-1">
+	<% end %>
 			<h5>From choosing a great cake and picking the right venue to having an exceptional DJ deliver a fantastic set, you expect everything to be perfect. <br/><br/>But what matters most is the love and well-wishes of your family and friends.</h5>
 		</article>
 
+		<% unless mobile_device? %>
 		<div class="col-xs-4 col-xs-offset-1">
 			<img src="<%= asset_path "wed2.jpeg"%>" class="img-responsive img-thumbnail" alt="Responsive image">
 		</div>
+		<% end %>
 	</div>
 
 <br/><br/>
@@ -70,7 +76,11 @@
 				</li>
 
 			</ul>
-				   <div class="centralized">
+				<% if mobile_device? %>
+				   <div class="video-container">
+				<% else %>
+					<div class="centralized">
+				<% end %>
 						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
 					</div>
 					<br/><br/>
@@ -114,7 +124,7 @@
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-STEPS -->
 
-<div class= "sections section-signUp gold-bg">
+<div class= "sections section-signUp gold-bg" id="invite">
 	<div class="container">
 		<header class="centralized">
 			<h2>Invite Your DJ/MC to Use VoiceGems at Your Wedding!</h2>
