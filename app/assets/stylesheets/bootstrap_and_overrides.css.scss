@@ -996,3 +996,9 @@ a:hover, a:focus {
   opacity: 0.98;
   filter:alpha(opacity=98); /* For IE8 and earlier */
 }
+
+/* making content invisible, including the Flash blocker */
+.invisible {
+    display: none;
+    visibility: hidden;
+}
