@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140326080440) do
+ActiveRecord::Schema.define(:version => 20140423100330) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20140326080440) do
     t.datetime "updated_at",                                   :null => false
     t.datetime "redeemed_on"
     t.integer  "cost"
+    t.string   "promo_msg"
   end
 
   create_table "customerkeys", :force => true do |t|
@@ -224,6 +225,7 @@ ActiveRecord::Schema.define(:version => 20140326080440) do
     t.string   "event_type"
     t.string   "grad_date"
     t.string   "coupon"
+    t.string   "promo_coupon"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

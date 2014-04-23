@@ -194,7 +194,7 @@ def owner
 end
 
 def owner_or_intern
-  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'sindura@voicegems.com' || current_user.email == 'kenduy@voicegems.com' || current_user.email == 'jychin@voicegems.com' || current_user.email == 'arshkit@voicegems.com' || current_user.email == 'domenighini@voicegems.com' 
+  unless ['shanbhagp@aol.com','peeyush_16@yahoo.com','dean@example.com','arshkit@voicegems.com'].include?(current_user.email)
 
     redirect_to current_user
     flash[:notice] = "Sorry, not authorized for that page."
@@ -202,7 +202,7 @@ def owner_or_intern
 end
 
 def owner_or_webdev
-  unless current_user.email == 'shanbhagp@aol.com' || current_user.email == 'dean@example.com' || current_user.email == 'jychin@voicegems.com' || current_user.email == 'lgkauffman@yahoo.com'
+  unless ['shanbhagp@aol.com','peeyush_16@yahoo.com','dean@example.com'].include?(current_user.email)
 
     redirect_to current_user
     flash[:notice] = "Sorry, not authorized for that page."

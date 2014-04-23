@@ -179,7 +179,9 @@ module UsersHelper
     end 
 
     def is_valid_percent_off_coupon(coupon)
-        !coupon.blank? && Coupon.find_by_free_page_name(coupon) && Coupon.find_by_free_page_name(coupon).active == true && Coupon.find_by_free_page_name(coupon).name == "percent_off_purchase"
+        return false if coupon.blank?
+        coupon_object = Coupon.percent_off_purchase(coupon)
+        !coupon_object.blank? && (current_user.blank? || coupon_object.max_redemptions.blank? || current_user.coupon.blank? || current_user.coupon.split(/,/).count(coupon) < coupon_object.max_redemptions)
     end 
 
     def redeem_single_use_coupon(coupon)
@@ -273,7 +275,7 @@ module UsersHelper
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
-          current_user.coupon = coupon
+          current_user.coupon = current_user.coupon.blank? ? coupon : current_user.coupon + "," + coupon
           current_user.save
 
           #create receipt
@@ -487,7 +489,7 @@ module UsersHelper
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
-          current_user.coupon = coupon
+          current_user.coupon = current_user.coupon.blank? ? coupon : current_user.coupon + "," + coupon
           current_user.save
 
           #create receipt
@@ -632,7 +634,7 @@ def existing_customer_purchase_events_existing_card(number, cost, coupon)
         
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
-          current_user.coupon = coupon 
+          current_user.coupon = current_user.coupon.blank? ? coupon : current_user.coupon + "," + coupon
           current_user.save
          
            #create receipt
@@ -693,7 +695,7 @@ def update_card_and_purchase(token, number, cost, coupon)
         #update purchased_events in my database
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
-          current_user.coupon = coupon 
+          current_user.coupon = current_user.coupon.blank? ? coupon : current_user.coupon + "," + coupon
           current_user.save
 
             #create receipt
@@ -753,7 +755,7 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
           current_user.update_attributes(:customer_id => customer.id, :customer => true, :admin => true)
           @eventtotal = current_user.purchased_events + number.to_i
           current_user.purchased_events = @eventtotal
-          current_user.coupon = coupon 
+          current_user.coupon = current_user.coupon.blank? ? coupon : current_user.coupon + "," + coupon
           current_user.save
 
            #create receipt

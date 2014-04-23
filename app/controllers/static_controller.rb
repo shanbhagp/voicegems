@@ -20,8 +20,11 @@ def djs
      @event = Event.find(ENV['demopage'].to_i)
      @event_code = @event.event_code
      @url = demo_record_vg_url(:event_code => @event.event_code)
-
-
+     if is_valid_percent_off_coupon(params[:promo_code])
+         @coupon = Coupon.find_by_free_page_name(params[:promo_code])
+         session[:coupon] = @coupon
+     end
+     
   render :layout => "static1"
 end 
 

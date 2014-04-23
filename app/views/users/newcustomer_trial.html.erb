@@ -24,6 +24,9 @@
               <%= f.input :password, label: "Create Password (minimum 6 characters)" %>
               <%= f.input :password_confirmation, label: "Confirm Password" %>
               <%= f.hidden_field :event_type, :value => 'voicegems_trial' %>
+              <% if session[:coupon] -%> 
+              <%= f.hidden_field :promo_coupon, :value => session[:coupon].free_page_name %>
+              <% end -%>
             
 
             

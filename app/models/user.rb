@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :notes, :phonetic, :recording, :salt, :password_confirmation, :password, :admin, :customer, :invite_token, :event_code, :customer_id, :company, :password_reset_token, :event_type, :subscription_id
+  attr_accessible :email, :first_name, :last_name, :notes, :phonetic, :recording, :salt, :password_confirmation, :password, :admin, :customer, :invite_token, :event_code, :customer_id, :company, :password_reset_token, :event_type, :subscription_id, :promo_coupon
   #be sure to remove admin and customer from accessible, which I think then means you can't submit a form, but rather have to set it in a controller?
-  attr_accessor :password_confirmation, :event_code, :access_code 
+  attr_accessor :password_confirmation, :event_code, :access_code
 
   has_secure_password
 

@@ -1226,7 +1226,7 @@ def changepur
 
     if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
-          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @new_price = (@price_in_dollars.to_f * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
           flash[:success] = "Your promo code has been applied!"
           redirect_to stripenewcustomer_purchase_path(:coupon => @coupon, :coupon_object => @coupon_object, :number => @number, :cost => @cost, :price => @price, :price_in_dollars => @price_in_dollars, :old_cost => @old_cost, :new_price => @new_price)
@@ -1275,7 +1275,7 @@ def coupon_purchase
 
     if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
-          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @new_price = (@price_in_dollars.to_f * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
           flash[:success] = "Your promo code has been applied!"
           #change to redirect from render ---- pass in all possible instance variables in case their used on the page.
@@ -1344,8 +1344,12 @@ end
 # the checkout page, allowing a change to the order through existing_changepur below
 def existing_user_purchase_select
   @number = params[:peu][:number].to_i
-  @coupon = params[:coupon]
-  @coupon_object = Coupon.find_by_free_page_name(@coupon)
+  if(params[:coupon])
+    @coupon = params[:coupon]
+    @coupon_object = Coupon.find_by_free_page_name(@coupon)
+  end
+  @coupon_object = session[:coupon] if session[:coupon]
+  @coupon = session[:coupon].free_page_name if session[:coupon]
 
     # if user is a stripe customer, want to allow him to use existing card
    if !current_user.customer_id.blank?  
@@ -1374,9 +1378,9 @@ def existing_user_purchase_select
 
    if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
-          @new_price = (@price_in_dollars * (100 - @coupon_object.percent_off)/100) * @number.to_i
+          @new_price = (@price_in_dollars.to_f * (100 - @coupon_object.percent_off)/100) * @number.to_i
           @cost = @new_price
-        #  flash.now[:success] = "Your promo code has been applied!"
+          flash.now[:success] = "Your promo code has been applied!"
         #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
      
     else #could not find that coupon

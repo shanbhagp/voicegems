@@ -16,6 +16,12 @@
 			<h2 class="centralized light">A cloud based service designed for DJ's </br> to provide a completely new dimension in your clients' experience</h2>
 		</article>
 			<br/><br/>
+                        <% if @coupon && !@coupon.promo_msg.blank? -%>
+			<center>
+				<b><%= @coupon.promo_msg -%></b>
+			</center>
+                        <br/>
+                        <% end -%>
 			<center>
 				 <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">Start Free Trial&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 			</center>
