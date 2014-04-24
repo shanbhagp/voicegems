@@ -18,6 +18,17 @@
         
  <div class= "sections">                           
 
+       <h3 class="centralized light">Using VoiceGems for an Event</h3><br>
+             <center><h4 class="">Once you create an Event Page from your <%= link_to "Dashboard", current_user, :target => "_blank" %>:</h4></center>
+                   <ul class="col-lg-offset-2"> 
+                      <li>You can find the 'recording link' under the 'Request VoiceGems' tab.</li>
+                      <li>You can give this link to your clients, who can then give it to whomever they wish (friends and family).</li>                          
+                      <li>Users click the link to record a VoiceGem - these become available for download on your Event Page.</li>
+                      <li>You can also invite other Admins from the 'Admins for this Event' tab, simply be entering their email address.  Admins can then access the Event Page, to get the recording link, hear or download VoiceGems, and invite other admins.</li>
+                   </ul>
+
+                    <br/>
+                               
        <h3 class="centralized light">During Your 30-Day Free Trial</h3><br>
           <ul class="col-lg-offset-2"> 
               <li>You may create unlimited free trial Event Pages from your <%= link_to "Dashboard", current_user, :target => "_blank" %>.</li> 
@@ -26,8 +37,6 @@
           </ul>
 
           <br/>
-
-                                 
 
        <h3 class="centralized light">After your Free Trial  (<% if (current_user.created_at + 30.days) > Time.now %>ending <% else %>ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h3>
            <ul class="col-lg-offset-2">                                 
@@ -48,17 +57,6 @@
 
            <br/>
 
-          <h3 class="centralized light">Using VoiceGems for an Event</h3><br>
-                <center><h4 class="">Once you create an Event Page from your <%= link_to "Dashboard", current_user, :target => "_blank" %>:</h4></center>
-                      <ul class="col-lg-offset-2"> 
-                         <li>You can find the 'recording link' under the 'Request VoiceGems' tab.</li>
-                         <li>You can give this link to your clients, who can then give it to whomever they wish (friends and family).</li>                          
-                         <li>Users click the link to record a VoiceGem - these become available for download on your Event Page.</li>
-                         <li>You can also invite other Admins from the 'Admins for this Event' tab, simply be entering their email address.  Admins can then access the Event Page, to get the recording link, hear or download VoiceGems, and invite other admins.</li>
-                      </ul>
-
-                       <br/>
-                                  
        <h3 class="centralized light">Making the Most of VoiceGems!</h3><br>
            <center><h4 class="">Support for getting client interest in VoiceGems:</h4></center>
              <ul class="col-lg-offset-2"> 
