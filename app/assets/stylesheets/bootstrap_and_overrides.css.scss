@@ -1013,3 +1013,24 @@ a:hover, a:focus {
 .text-black {
   color:black;
 }
+
+.zoom_img img{
+
+
+-moz-transition:-moz-transform 0.4s ease-in; 
+-webkit-transition:-webkit-transform 0.4s ease-in; 
+-o-transition:-o-transform 0.4s ease-in;
+}
+
+.zoom_img img:hover{
+-moz-transform:scale(2); 
+-webkit-transform:scale(2);
+-o-transform:scale(2);
+}
+
+.zoom {transition:All 2.2385s ease;-webkit-transition:All 2.2385s ease;-moz-transition:All 2.2385s ease;-o-transition:All 2.2385s ease;transform:  rotate(4deg) scale(1) skew(1deg) translate(10px); -webkit-transform:  rotate(4deg) scale(1) skew(1deg) translate(10px);-moz-transform:  rotate(4deg) scale(1) skew(1deg) translate(10px);-o-transform:  rotate(4deg) scale(1) skew(1deg) translate(10px);-ms-transform:  rotate(4deg) scale(1) skew(1deg) translate(10px);}.classname:hover{transform:  rotate(0deg) scale(1.404) skew(1deg) translate(0px);-webkit-transform:  rotate(0deg) scale(1.404) skew(1deg) translate(0px);-moz-transform:  rotate(0deg) scale(1.404) skew(1deg) translate(0px);-o-transform:  rotate(0deg) scale(1.404) skew(1deg) translate(0px);-ms-transform:  rotate(0deg) scale(1.404) skew(1deg) translate(0px);}
+
+.bottom {
+  position: relative;
+  bottom:   0;
+}

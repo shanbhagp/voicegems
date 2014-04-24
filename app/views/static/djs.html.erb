@@ -3,14 +3,19 @@
 		<header class="centralized">
                         <div class="row">
                             <div class="col-xs-12" >
-			    <img src="<%= asset_path "Logo_White_Micro.png" %>" width="500px" class="img-responsive img-center">
+			  					  <img src="<%= asset_path "Logo_White_Micro.png" %>" width="500px" class="img-responsive img-center">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-			    <img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
+			   						 <img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
                             </div>
                         </div>
+            
+
+            
+
+
 		</header>
    <div id="newinfo" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog">
@@ -21,18 +26,19 @@
               <h3 id="myModalLabel"><em>Exlusive Offer for Bridaltweet.com Subscribers!</em></h3>
             </div>
             <div class="modal-body text-black">
-            <center><h4>50% off your total on any number of Event Pages purchased by May 1, 2014!</h4></center>
+            <center><h4>50% discount on any number of Event Pages purchased by May 1, 2014!</h4></center>
             <hr/>
             <h5>After your 30-day free trial, any Event Pages that you created will be de-activated (locked).</h5>
            	<h5>But purchased Event Pages never expire, and can even be used to reactivate locked Event Pages.</h5>
-           	<h5>With the 50% off discount on these purchased Event Pages, you can make even higher margins when you integrate VoiceGems for your upcoming weddings!</h5><br/>
-            <h5><em><strong>So take advantage of this exclusive offer and stock up on purchased Event Pages before May 1st!</strong></em></h5>
+           	<h5>With the 50% off discount on these purchased Event Pages, you can make even higher margins when you integrate VoiceGems for your upcoming weddings!</h5><hr/>
+            <center><h5><em><strong>So take advantage of this exclusive offer and stock up on purchased Event Pages before May 1st!</strong></em></h5></center>
             <br/>
            	<center>
 				 <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">Start Free Trial&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 			</center>
 			<br/>
-			<center><h6>You can purchase discounted Event Pages after you start the free trial.</h6></center>	
+			<center><h6>You can purchase discounted Event Pages after you start the free trial.</h6></center><br/>
+			 <center><a href="#learn" data-dismiss="modal" id="learnbtn">Learn more about VoiceGems</a></center> 	
             </div>
             <div class="modal-footer">
               <button class="btn btn-primary" data-dismiss="modal">Done</button>  
@@ -54,10 +60,12 @@
 				 <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">Start Free Trial&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 			</center>
 			<br/><br/><br/>
+			                
 	</div><!-- END CONTAINER -->
+
 </div><!-- END SECTION-WELCOME -->
 
-<div class= "sections section-what">
+<div class= "sections section-what" id="learn">
 	<div class="container">
 		<header class="centralized">
                         <div class="row">
@@ -281,9 +289,11 @@
 
 <div class= "sections section-signUp gold-bg">
 	<div class="container">
+
 		<header class="centralized">
                         <div class="row">
                             <div class="col-xs-12" >
+
 			<h1>Start Your Free Trial Today</h1>
                             </div>
                         </div>
@@ -292,6 +302,12 @@
 			<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
                             </div>
                         </div>
+              <% if @coupon && !@coupon.promo_msg.blank? -%>
+			<center>
+				<b>Bridaltweet Subscriber Exclusive: Once you start your free trial, you will receive 50% off any purchase. Offer ends May 1, 2014.</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo"><i class="fa fa-info-circle "></i>&nbsp;More Info </a>
+			</center>
+                        <br/>
+                        <% end -%>           
 		</header>
 		<article>
                         <div class="row">
@@ -344,4 +360,20 @@
     jQuery(function(){
      $('.nav a:contains("DJs")').parent().addClass('active');
     });
+</script>
+
+<script>        
+    $("a#learnbtn").click(function(){
+    $('#newinfo').modal('hide')
+    });
+</script>
+
+<script>
+var $root = $('html, body');
+$("a#learnbtn").click(function() {
+    $root.animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 500);
+    return false;
+});
 </script>

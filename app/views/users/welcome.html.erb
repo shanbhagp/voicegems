@@ -26,8 +26,8 @@
                       <li>Users click the link to record a VoiceGem - these become available for download on your Event Page.</li>
                       <li>You can also invite other Admins from the 'Admins for this Event' tab, simply be entering their email address.  Admins can then access the Event Page, to get the recording link, hear or download VoiceGems, and invite other admins.</li>
                    </ul>
-
-                    <br/>
+                      <br/>
+                     <img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
                                
        <h3 class="centralized light">During Your 30-Day Free Trial</h3><br>
           <ul class="col-lg-offset-2"> 
@@ -37,6 +37,7 @@
           </ul>
 
           <br/>
+           <img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
 
        <h3 class="centralized light">After your Free Trial  (<% if (current_user.created_at + 30.days) > Time.now %>ending <% else %>ended <% end %> on <%= (current_user.created_at + 30.days).strftime("%b %d, %Y") %>)</h3>
            <ul class="col-lg-offset-2">                                 
@@ -45,7 +46,8 @@
              <li>Purchased Event Pages can be used to re-activate locked Event Pages or create new permanent Event Pages.</li>
           </ul>
 
-        <br/>
+          <br/>
+         <img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
         
          <h3 class="centralized light">You may <a href="existing_user_purchase" target="_blank">purchase Event Pages here</a> at any time, or from your Accounts tab.</h3>
                                 
@@ -55,7 +57,9 @@
                <li>You are encouraged to set your own fair fee-for-VoiceGems-service for your clients.</li>
             </ul>
 
+
            <br/>
+           <img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
 
        <h3 class="centralized light">Making the Most of VoiceGems!</h3><br>
            <center><h4 class="">Support for getting client interest in VoiceGems:</h4></center>
@@ -67,15 +71,16 @@
                <br/>
                
          <div class="row centralized">     
-                <img src="<%= asset_path "logo2_Ask_Us.jpg"%>" class="img-responsive img-thumbnail" alt="voice gems poster" width="300" height="200" class="poster">
-          </div>          
+                <div class="zoom_img" > <img src="<%= asset_path "flipside_11.jpg"%>" id="img1" class="img-responsive img-thumbnail" alt="voice gems poster" width="300" height="200" class="poster"></div>
+          </div>   
+          <center><h6>You will receive a hi-res version.</h6></center>       
 
-
+      <br/>
       <header class="centralized"><br>
           <img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
       </header>  
     
-        
+
 
          <div class="row">
              <br/>                         
