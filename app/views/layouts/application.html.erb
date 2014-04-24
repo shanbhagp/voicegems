@@ -68,8 +68,15 @@
      <% if session[:coupon] && !(params[:controller] == "users" && params[:action] == "existing_user_purchase_select")%>
      <div class="alert alert-block alert-info cent" style="background-color:black"> 
         <span style="color:white"><%= signed_in? ? session[:coupon].signed_in_promo_msg : session[:coupon].promo_msg -%></span>
-        <button type="button" class="close" data-dismiss="alert" style="color:white;background-color:white">×</button>
+        <button id="dismiss_promo" onclick="close_promo()" type="button" class="close" data-dismiss="alert" "color:white">×</button>
      </div>
+     <% if signed_in? -%>
+     <script>
+            function close_promo() {
+                $.get( "ajax/test.html", function( data ) {  alert( "Load was performed." ); });
+            }
+        </script>
+     <%end%>
      <%end%>
       <%= yield %>
 </div>
