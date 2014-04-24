@@ -12,6 +12,7 @@ def set_csp
   response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
   response.headers['X-Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
   response.headers['X-Webkit-CSP'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
+  response.headers['Access-Control-Allow-Origin'] = "*"
 end
 
 private
