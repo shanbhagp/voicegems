@@ -12,6 +12,7 @@ def vgrecord
       if Event.find_by_event_code(@event_code)
        @event = Event.find_by_event_code(@event_code)
        @user = User.new
+       @url = vgrecord_url(:event_code => @event.event_code)
 
             if signed_in?
                unless current_user.admin == true || current_user.customer == true
