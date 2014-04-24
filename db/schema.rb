@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140423100330) do
+ActiveRecord::Schema.define(:version => 20140424072642) do
 
   create_table "admininvites", :force => true do |t|
     t.integer  "event_id"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20140423100330) do
   add_index "adminkeys", ["user_id"], :name => "index_adminkeys_on_user_id"
 
   create_table "coupons", :force => true do |t|
-    t.string   "name",               :default => "single_use"
+    t.string   "name",                :default => "single_use"
     t.integer  "percent_off"
     t.integer  "max_redemptions"
     t.string   "duration"
@@ -48,12 +48,13 @@ ActiveRecord::Schema.define(:version => 20140423100330) do
     t.integer  "times_redeemed"
     t.string   "free_page_name"
     t.integer  "free_page_user"
-    t.boolean  "active",             :default => true
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.boolean  "active",              :default => true
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.datetime "redeemed_on"
     t.integer  "cost"
     t.string   "promo_msg"
+    t.string   "signed_in_promo_msg"
   end
 
   create_table "customerkeys", :force => true do |t|
@@ -170,6 +171,16 @@ ActiveRecord::Schema.define(:version => 20140423100330) do
     t.integer  "sub_actual_annual_cost_in_cents"
     t.boolean  "unlimited"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"

@@ -63,14 +63,14 @@
 
 
  <div class="section-FAQ">
-      
+     
      <% session[:coupon] = Coupon.find_by_free_page_name(current_user.promo_coupon) if session[:coupon].blank? && current_user && current_user.promo_coupon -%> 
-     <% if session[:coupon] && params[:controller] != "users" || params[:action] != "existing_user_purchase_select"%>
-     <div class="alert alert-block alert-info" style="background-color:black"> 
-      <span style="color:white"><%= session[:coupon].promo_msg-%></span>
-    <button type="button" class="close" data-dismiss="alert" style="color:white">×</button>
-    </div>
-      <%end%>
+     <% if session[:coupon] && !(params[:controller] == "users" && params[:action] == "existing_user_purchase_select")%>
+     <div class="alert alert-block alert-info cent" style="background-color:black"> 
+        <span style="color:white"><%= signed_in? ? session[:coupon].signed_in_promo_msg : session[:coupon].promo_msg -%></span>
+        <button type="button" class="close" data-dismiss="alert" style="color:white;background-color:white">×</button>
+     </div>
+     <%end%>
       <%= yield %>
 </div>
 
