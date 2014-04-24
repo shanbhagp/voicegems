@@ -82,7 +82,7 @@
 				 <div class="well col-xs-12">
 					 <div class="col-xs-2">
 						<%= f.user.first_name %> <%= f.user.last_name %> <br/>
-						(<%= f.user.email %>) <br/>
+						(<%= f.user.first_name %>@example.com) <br/>
 						<% unless f.email == f.user.email %>Invitation sent to: <%= f.email %><% end %>
 					 </div>
 	
