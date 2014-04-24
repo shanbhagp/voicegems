@@ -15,8 +15,8 @@
     <th>Free page user</th>
     <th>Cost</th>
     <th>Active</th>
-    <th></th>
-    <th></th>
+    <th>Promo Msg</th>
+    <th>Signed In Promo MSG</th>
     <th></th>
   </tr>
 
@@ -33,6 +33,8 @@
     <td><%= coupon.free_page_user %></td>
     <td><%= coupon.cost %></td>
     <td><%= coupon.active %></td>
+    <td><%= coupon.promo_msg %></td>
+    <td><%= coupon.signed_in_promo_msg %></td>
     <td><%= link_to 'Show', coupon %></td>
     <td><%= link_to 'Edit', edit_coupon_path(coupon) %></td>
     <td><%= link_to 'Destroy', coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>

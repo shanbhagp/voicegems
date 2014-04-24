@@ -1002,3 +1002,14 @@ a:hover, a:focus {
     display: none;
     visibility: hidden;
 }
+
+
+.white-x {
+  color:white;
+  opacity:0.6; 
+  filter: alpha(opacity=60);
+}
+
+.text-black {
+  color:black;
+}

@@ -12,13 +12,41 @@
                             </div>
                         </div>
 		</header>
+   <div id="newinfo" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+     <div class="modal-content">      
+            <div class="modal-header">
+ 
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h3 id="myModalLabel"><em>Exlusive Offer for Bridaltweet.com Subscribers!</em></h3>
+            </div>
+            <div class="modal-body text-black">
+            <center><h4>50% off your total on any number of Event Pages purchased by May 1, 2014!</h4></center>
+            <hr/>
+            <h5>After your 30-day free trial, any Event Pages that you created will be de-activated (locked).</h5>
+           	<h5>But purchased Event Pages never expire, and can even be used to reactivate locked Event Pages.</h5>
+           	<h5>With the 50% off discount on these purchased Event Pages, you can make even higher margins when you integrate VoiceGems for your upcoming weddings!</h5><br/>
+            <h5><em><strong>So take advantage of this exclusive offer and stock up on purchased Event Pages before May 1st!</strong></em></h5>
+            <br/>
+           	<center>
+				 <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">Start Free Trial&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+			</center>
+			<br/>
+			<center><h6>You can purchase discounted Event Pages after you start the free trial.</h6></center>	
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-dismiss="modal">Done</button>  
+            </div>
+    </div>
+    </div>
+</div>
 		<article>
 			<h2 class="centralized light">A cloud based service designed for DJ's </br> to provide a completely new dimension in your clients' experience</h2>
 		</article>
 			<br/><br/>
                         <% if @coupon && !@coupon.promo_msg.blank? -%>
 			<center>
-				<b><%= @coupon.promo_msg -%></b>
+				<b><%= @coupon.promo_msg -%></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="modal" href="#newinfo"><i class="fa fa-info-circle "></i>&nbsp;More Info </a>
 			</center>
                         <br/>
                         <% end -%>

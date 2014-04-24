@@ -9,9 +9,9 @@ before_filter :prepare_for_mobile
 before_filter :set_csp
 
 def set_csp
-  response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
-  response.headers['X-Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
-  response.headers['X-Webkit-CSP'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.googleapis.com"
+  response.headers['Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com"
+  response.headers['X-Content-Security-Policy'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com"
+  response.headers['X-Webkit-CSP'] = "default-src 'self' 'unsafe-inline' 'unsafe-eval' *.ning.com *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com *.googleusercontent.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.facebook.com *.olark.com *.google-analytics.com *.facebook.net *.ning.com *.stripe.com *.vimeo.com *.googleapis.com"
   response.headers['Access-Control-Allow-Origin'] = "*"
 end
 

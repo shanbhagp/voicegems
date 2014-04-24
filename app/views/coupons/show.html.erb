@@ -70,7 +70,14 @@
   <b>Active:</b>
   <%= @coupon.active %>
 </p>
-
+<p>
+  <b>Promo Message:</b>
+  <%= @coupon.promo_msg %>
+</p>
+<p>
+  <b>Signed In Promo Message:</b>
+  <%= @coupon.signed_in_promo_msg %>
+</p>
 
 <%= link_to 'Edit', edit_coupon_path(@coupon) %> |
 <%= link_to 'LIST OF COUPONS', coupons_path %>
