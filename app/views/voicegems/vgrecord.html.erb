@@ -44,7 +44,7 @@
                <center><h3><span class="label label-danger">Notice for Customers/Admins&nbsp;&nbsp;<i class="fa fa fa-warning"></i></span></h3></center>
             </div>
             <div class="modal-body">
-                   <h4> To see how <em>new users</em> will record a VoiceGem for this event, you will need to:</h4>
+                   <h4> To see how new users will record a VoiceGem for this event, you will need to:</h4>
 
                    <ol>
                         <li> Please <%= link_to "sign out", signout_path, method: "delete" %> or open a different browser </li>
@@ -52,7 +52,7 @@
                         <li> Register with a different email address (as if you were a new user) </li> 
                    </ol>
                     <br/>
-                 <h5> Note: Since you are already registered, please go to your <%= link_to "Dashboard", current_user, :target => "_blank" %> if you wish to record or edit any of your own VoiceGems (note that you may not have one for this event).</h5>
+                 <h5> Note: Since you are already a registered user, please go to your <%= link_to "Dashboard", current_user, :target => "_blank" %> if you wish to record or edit any of your own VoiceGems (note that as a customer/admin, you may not have a VoiceGem of your own for this event).</h5>
             </div>
             <div class="modal-footer">
               <button class="btn btn-primary" data-dismiss="modal">Close</button>  
