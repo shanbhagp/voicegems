@@ -207,29 +207,19 @@
 
 
 
-                                          <a id="regrec_popover_send_reminder<%=f.id%>" rel="popover" data-placement="bottom" data-content="If the VoiceGem is unclear, click to send an email asking this user to re-record it.<br/><br/> You will see a preview of the email to be sent, and a list of requests already sent." data-original-title="Ask to Re-Record" data-toggle="modal" href="#regrec_send_reminder<%= f.id %>" class="btn btn-small" data-trigger="hover">
+                                          <a id="regrec_popover_send_reminder<%=f.id%>" rel="tooltip" title="Ask to Re-Record (disabled for demo)" href="#regrec_send_reminder<%= f.id %>" class="btn btn-small" data-trigger="hover">
                               		    <i class="fa fa-envelope fa-fw"></i>
                                         </a>
 
                               
-                              		<a id= "regrec_popover_hide_entry<%= f.id %>" rel="popover" data-placement="bottom" data-content="Click to delete this user's entry.<br/><br/> Note: Deleted entries will appear only to you and other admins under 'Deleted Entries' tab, where they can be undeleted." data-original-title="Delete this Entry" data-toggle="modal" href="#regrec_hide_entry<%= f.id %>" class="btn btn-small" data-trigger="hover"><i class="fa fa-trash-o fa-fw" style="font-size: 1.2em"></i></a>
+                              		<a id= "regrec_popover_hide_entry<%= f.id %>" rel="tooltip" title="Delete this Entry (disabled for demo)" href="#regrec_hide_entry<%= f.id %>" class="btn btn-small" data-trigger="hover"><i class="fa fa-trash-o fa-fw" style="font-size: 1.2em"></i></a>
 
 
 
 
                       		 </div>  <%# end button group for Actions under tab 1 %>
 
-						           <script>  
-					                    $(function ()  
-					                    { $("#regrec_popover_reminders_sent<%= f.id %>").popover();  
-					                    });  
-					                    $(function ()  
-					                    { $("#regrec_popover_send_reminder<%= f.id %>").popover();  
-					                    });  
-					                    $(function ()  
-					                    { $("#regrec_popover_hide_entry<%= f.id %>").popover();  
-					                    });  
-					                 </script>
+		
 
 					 </div> <%# end div col-xs-2 %>
 
@@ -270,12 +260,7 @@
 		       
                 
                  </tr>
-                 <script>  
-                           $(function ()  
-                            { $("#popover_delete_admin").popover();  
-                            });  
-                
-                 </script>
+   
 
   						
                  <tr>
@@ -316,7 +301,7 @@
 
 		                 </div>  <%# END modal %>      
 
-		                 <a id= "popover_delete_admin" rel="popover" data-placement="bottom" data-content="Click to remove this admin's privileges." data-original-title="Remove Admin" data-toggle="modal" href="#remove_admin" data-trigger="hover"><i class="fa fa-ban red"></i></a> 
+		                 <a id= "popover_delete_admin" rel="tooltip" title="Remove Admin"  href="#remove_admin" data-trigger="hover"><i class="fa fa-ban red"></i></a> 
 		              </td> 
                               <td>
                               </td>
@@ -325,12 +310,7 @@
 
 
     	 </table>
-                 <script>  
-                           $(function ()  
-                            { $("#popover_delete_admin").popover();  
-                            });  
-                
-                 </script>
+ 
     	 	<hr/>
     	 <div class="row">
     	 	<div class="col-xs-11">
