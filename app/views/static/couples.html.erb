@@ -9,10 +9,13 @@
 		</article>
 		<br/>
 		<br/>
+		<center>
+		 <a href="#learn" data-dismiss="modal" id="learnbtn" class="btn btn-primary btn-lg">Learn More&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
+		</center>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-WELCOME -->
 
-<div class= "sections section-what">
+<div class= "sections section-what" id="learn">
 	<div class="container">
 
 	<div class="row">
@@ -28,7 +31,7 @@
 	<% else %>
 		<article class="col-xs-5 col-xs-offset-1">
 	<% end %>
-			<h5>From choosing a great cake and picking the right venue to having an exceptional DJ deliver a fantastic set, you expect everything to be perfect. <br/><br/>But what matters most is the love and well-wishes of your family and friends.</h5>
+			<h5>From choosing a great cake and picking the right venue to having an exceptional DJ deliver a fantastic set, you expect everything to be perfect. <br/><br/>But what matters most is the love, blessings, and well-wishes of your family and friends.</h5>
 		</article>
 
 		<% unless mobile_device? %>
@@ -44,7 +47,7 @@
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-WHAT -->
 
-<div class= "sections section-coupleWhy gold-bg">
+<div class= "sections section-coupleWhy gold-bg" >
 	<div class="container">
 		<header class="centralized">
 			<h1>Why VoiceGems</h1>
@@ -185,4 +188,14 @@
     jQuery(function(){
      $('.nav a:contains("Couples")').parent().addClass('active');
     });
+</script>
+
+<script>
+var $root = $('html, body');
+$("a#learnbtn").click(function() {
+    $root.animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 1000);
+    return false;
+});
 </script>
