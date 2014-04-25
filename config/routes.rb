@@ -374,6 +374,7 @@ match '/djs/:promo_code', to: 'static#djs'
 match '/home_page', to: 'static#home_page'
 
 match '/invite_dj', to: 'static#invite_dj'
+match '/close_promo_banner', to: 'users#close_promo_banner'
 
 #match '/show_master', to: 'events#show_master'
 

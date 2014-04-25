@@ -403,6 +403,13 @@ end
 
 end
 
+def close_promo_banner
+   if signed_in?
+       session[:dont_show_promo_msg] = true
+   end
+   render :nothing => true, :status => 200
+end
+
 
 def saveupload
 
