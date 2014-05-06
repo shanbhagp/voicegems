@@ -49,8 +49,10 @@ $(function() {
 						                          		<%= f.hidden_field :purchase_type, :value => 'p' %>
 						                          		<%= f.submit "Create Event Page", class: "btn btn-primary" %>&nbsp;&nbsp;<span class="help-inline">(<%= current_user.purchased_events %> pages remaining)</span>
 						                          
-						                          <% else %>
-						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-inline">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>"><button type="button" class="btn btn-primary btn-small">Buy Event Pages&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></button></a>
+						                          <% elsif couple? %>
+						                          		<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp; <a href="<%= existing_couple_purchase_path %>"><button type="button" class="btn btn-primary btn-small">Buy Event Pages&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></button></a>
+						                           <% else %> 
+						                           			<%= f.submit "Create Event Page", class: "btn btn-primary", disabled: true %>&nbsp;&nbsp;<span class="help-inline">(Free Trial Ended)</span>&nbsp;&nbsp; <a href="<%= existing_user_purchase_path %>"><button type="button" class="btn btn-primary btn-small">Buy Event Pages&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></button></a>
 						                          <% end %>
 
 				                       

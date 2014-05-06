@@ -1,10 +1,10 @@
 <p>Dear <%= @user.first_name %>,</p>
 
-<p>Thank you for your purchase of <%= @r.events_number %> Event Page<% if @r.events_number >1 %>s<% end %> on VoiceGems!</p>
+<p>Thank you for your purchase of <%= @r.events_number %> VoiceGems Page<% if @r.events_number >1 %>s<% end %>!</p>
 
 
-			Events: <%= @number %><br/>
-			Price/Event: <%= @price %>.00<br/>
+			Pages: <%= @number %><br/>
+			Price/Page: <%= @price %>.00<br/>
 			<% if @r.en_coupon_name.blank? %><hr/><strong>TOTAL PAID:  $<%= number_with_precision((@r.en_actual_cost_in_cents.to_f)/100, :precision => 2) %></strong><% end %>
 			<% if !@r.en_coupon_name.blank? %>
 			Subtotal: $<%= @cost %> <br/>

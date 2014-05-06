@@ -170,6 +170,11 @@ module UsersHelper
         current_user.event_type == 'voicegems_trial' &&  Time.now < current_user.created_at + 31.days
     end
 
+    def couple?
+
+         current_user.event_type == 'voicegems_couple'
+    end 
+
     def purch_pages_left?
        current_user.purchased_events > 0
     end 
@@ -766,7 +771,7 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
             #mail receipt
             UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
 
-          flash[:success] = "Thank you for your purchase!  You can now create an event page, from which you can 1) invite attendees to record their names, 2) hear those recordings, and 3) invite other admins (who can request and hear recordings)."
+          flash[:success] = "Thank you for your purchase!  You can now create a VoiceGems page, from which you can 1) get the link to invite people to record their VoiceGems, 2) hear those VoiceGems and 3) invite other admins (who can also request and download VoiceGems)."
         else
           flash[:error] = "Something went wrong, please try again."
           false 

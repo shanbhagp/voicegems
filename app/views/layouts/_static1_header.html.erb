@@ -18,7 +18,9 @@
             <li><%= link_to "FAQ", faq_path %></li>
             <% if !signed_in? %>
             <li><%= link_to "Log In", login_path %></li>
-            <li><%= link_to "Sign Up",newcustomer_trial_path %></li>
+
+               <li><%= link_to "Sign Up", newcustomer_couple_path %></li>
+
             <% else %>
             <li><%= link_to "Dashboard", current_user %></li>
             <li class="dropdown">
@@ -33,14 +35,20 @@
 
                   <li class="divider"></li>
                   <% if current_user.customer == true %>
-                  <li>
-                    <%= link_to existing_user_purchase_path do %><i class="fa fa-shopping-cart"></i> Purchase Event Pages<% end %>
-                  </li>
+                        <% if couple? %>
+                              <li>
+                                <%= link_to existing_couple_purchase_path do %><i class="fa fa-shopping-cart"></i> Purchase VoiceGems Pages<% end %>
+                              </li>
+                        <% else %>
+                              <li>
+                                <%= link_to existing_user_purchase_path do %><i class="fa fa-shopping-cart"></i> Purchase Event Pages<% end %>
+                              </li>
 
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to welcome_path do %><i class="fa fa-leaf"></i> Getting Started<% end %>
-                  </li>
+                              <li class="divider"></li>
+                              <li>
+                                <%= link_to welcome_path do %><i class="fa fa-leaf"></i> Getting Started<% end %>
+                              </li>
+                        <% end %>
                   <% end %>
                   <li>
                     <%= link_to signout_path, method: "delete" do %><i class="fa fa-sign-out"></i> Sign out<% end %>

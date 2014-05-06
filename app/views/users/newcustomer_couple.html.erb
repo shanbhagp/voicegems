@@ -1,0 +1,55 @@
+
+<div class="InternalTitle">
+      <h1>VoiceGems Registration</h1>
+      <br/>
+  </div>
+
+<div class="container">
+
+<br/>
+<br/>
+
+<div class="row">
+      <div class="col-xs-10 col-xs-offset-1">
+        <div class="grey-box hero-block-2">
+      <br>
+      * all fields required
+          <%= simple_form_for(@user,:wrapper => :bootstrap_horizontal, url: newcustomercreate_couple_path, :html => {:class => "form-horizontal"}) do |f| %>
+          <br/>
+          <%= f.error_notification %>
+              <%= f.input :first_name, label: "First Name" %>
+              <%= f.input :last_name, label: "Last Name" %>
+              <%= f.input :email, label: "Email" %>
+              <%= f.input :password, label: "Create Password (minimum 6 characters)" %>
+              <%= f.input :password_confirmation, label: "Confirm Password" %>
+              <%= f.hidden_field :event_type, :value => 'voicegems_couple' %>
+
+
+            
+              <div class="form-actions">
+               <br><br>
+              <%= f.button :submit, "Register", class: "btn btn-large btn-primary" %>
+              <br><br>
+                
+              </div>
+<h6>By registering you agree to our <%= link_to "Terms and Conditions", terms_path, :target => "_blank" %>.</h6>
+          <% end %>
+
+       </div>
+        <div class="tp-bannershadow tp-shadow1"></div>
+    </div>
+    <br><br><br><br><br>
+</div>
+
+</div>
+
+
+<script>
+    jQuery(function(){
+        $('#nav').load('nav.html');
+    });
+
+    jQuery(function(){
+     $('.nav a:contains("Sign Up")').parent().addClass('active');
+    });
+</script>

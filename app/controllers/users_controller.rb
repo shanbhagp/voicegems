@@ -1504,6 +1504,206 @@ def newcustomer_trial
 
 end 
 
+#----- BEGIN COUPLE PURCHASING CODE -----
+
+def newcustomer_couple
+
+  @user = User.new 
+
+  if signed_in?
+    flash[:notice] = "Since you are already a registered user, please use this page to purchase Event Pages."
+    redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
+  end 
+
+end 
+
+
+def newcustomercreate_couple
+    @user = User.new(params[:user]) #replaced code below so when hit this url directly, don't get a nil error
+
+   # @user = User.new
+   # @user.email = params[:user][:email]
+   # @user.password=params[:user][:password]
+   # @user.password_confirmation=params[:user][:password_confirmation]
+   # @user.first_name = params[:user][:first_name]
+   # @user.last_name = params[:user][:last_name]
+   # @user.company = params[:user][:company]
+   # @user.event_type = params[:user][:event_type]
+   #this will pass in the @plan value into the stripenewcustomer_purchase page via the render 'stripenewcustomer_purchase' below (changed this from redirect, wasn't sure that would work)
+
+
+    if @user.save
+
+      sign_in @user
+      # since user is new, won't have any PO with user_id; might have floating PO's with this email for some event, but those would be caught later when customer signs in for those events
+      # when creates an event, can invite himself (at that email) to create a PO for that event for himself
+      flash[:success] = "Welcome to VoiceGems! Please purchase your VoiceGems Page here."
+      
+      # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
+      # redirect_to welcome_path  # a welcome page to explain to them what to do
+      # create_vg_trial_without_stripe 
+      @coupon = 'BTMAY9'
+       redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
+       #path({:peu => {:number => @number }, :coupon => @coupon})
+    else
+
+          if  User.find_by_email(@user.email)#if the user already exists, tell them to try logging in to the right
+                        flash[:error] = "You are already registered on our site. Please sign in to purchase a VoiceGems page under your Accounts tab."
+                         redirect_to root_path
+          else
+              render action: 'newcustomer_couple'
+          end    
+
+    end 
+end  
+
+def existing_couple_purchase
+      @number = 1
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+end 
+
+#CHECKOUT PAGE
+def existing_couple_purchase_select
+
+  @number = params[:peu][:number].to_i
+  if(params[:coupon])
+    @coupon = params[:coupon]
+    @coupon_object = Coupon.find_by_free_page_name(@coupon)
+  end
+
+    # if user is a stripe customer, want to allow him to use existing card
+   if !current_user.customer_id.blank?  
+     c = Stripe::Customer.retrieve(current_user.customer_id)
+     @last4 = c.cards.data.first.last4
+     @cardtype = c.cards.data.first.type
+   end 
+
+
+  if @number.to_i < 16 
+     @cost = @number.to_i*tier_one_price 
+     @price = "$#{tier_one_price}"
+     @price_in_dollars = tier_one_price
+  end 
+  if @number.to_i > 15 && @number.to_i < 41 
+     @cost = @number.to_i*tier_two_price 
+     @price = "$#{tier_two_price}"
+     @price_in_dollars = tier_two_price
+  end 
+  if @number.to_i > 40 
+     @cost = @number.to_i*tier_three_price
+     @price = "$#{tier_three_price}"
+     @price_in_dollars = tier_three_price
+  end 
+
+
+  # if is_valid_percent_off_coupon(@coupon)
+          @old_cost = @cost 
+          @new_price = 79
+          @cost = @new_price
+          flash.now[:success] = "Your promo code has been applied!"
+        #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
+     
+    #else #could not find that coupon
+        #preserve the values (applies if someone tries to change the number of event pages after applying the code)
+    #   @coupon = nil 
+      # redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }})
+
+   # end
+end
+
+def existing_couple_changepur
+  @number= params[:pur][:number].to_i
+  @coupon= params[:pur][:code]
+
+  redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+end 
+
+def existing_couple_coupon_purchase
+    @coupon= params[:coup][:code]
+    @number= params[:coup][:number].to_i  # just to preserve the number of pages in the purchase order
+    @coupon_object = Coupon.find_by_free_page_name(@coupon)
+
+    if is_valid_percent_off_coupon(@coupon)
+          flash[:success] = "Your promo code has been applied!"
+           redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+
+    elsif is_valid_free_coupon(@coupon)
+
+         create_vg_customer_without_stripe #gives 2 events free, for the MBLV promo code. 
+         flash[:success] = "Thank you for using VoiceGems! Your promo code was applied.  You can now create a VoiceGems Page, from which you can 1) get the link to give to guests to record their VoiceGems, 2) hear those VoiceGems, and 3) invite your DJ and other 'admins' (who can also request and download VoiceGems)."
+         redirect_to current_user
+         
+    else #could not find that coupon
+      @coupon = nil 
+      flash[:error] = "Sorry, not a valid promo code."
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+    end
+end 
+
+
+# stripe receiver for existing user who is not a stripe customer purchasing events (i.e., a new cc)
+def purchase_events_new_stripe_couple
+      token = params[:stripeToken]
+      @number = params[:number].to_i
+      coupon = params[:coupon]
+      cost = params[:cost]
+
+        if create_customer_and_purchase_existing_user(token, @number, cost, coupon) # this is almost like create_customer_purchase, except have flash.nows in that helper
+           #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+           # if !coupon.blank?
+           #   redeem_single_use_coupon(coupon)
+           # end 
+           redirect_to current_user
+        else
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+        end 
+
+end
+
+
+# stripe receiver for existing user and stripe customer purchasing events with new cc details
+def purchase_events_new_card_couple
+    token = params[:stripeToken]
+    @number = params[:number].to_i
+    coupon = params[:coupon]
+    cost = params[:cost]
+
+        if update_card_and_purchase(token, @number, cost, coupon)
+           #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+           # if !coupon.blank?
+           #   redeem_single_use_coupon(coupon)
+           # end 
+          flash[:success] = "Thank you! You have purchased #{@number} VoiceGems Pages."
+          redirect_to current_user
+        else
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+        end 
+end 
+
+# use existing stripe card to purchase events
+def purchase_events_existing_card_couple
+
+  @number = params[:peu][:number]
+  coupon = params[:peu][:coupon] # this is the coupon name/code, a string
+  cost = params[:peu][:cost]
+
+  # retrieve stripe customer object (downstream from user having a customer_id)
+  c = Stripe::Customer.retrieve(current_user.customer_id)
+  
+  if existing_customer_purchase_events_existing_card(@number, cost, coupon)
+         #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
+            #if !coupon.blank?
+            #  redeem_single_use_coupon(coupon)
+            #end 
+      flash[:success] = "Thank you! You have purchased #{@number} VoiceGems pages."
+      redirect_to current_user
+  else #errors in processing the card shouldn't usually happen, because the card was originally ok.  Can test by using stripes card number that binds to customer but does not charge correctly.
+          # YES THE REDIRECT WORKS WITH THAT STRIPE TESTING NUMBER
+       redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+  end 
+
+end 
+#---- END COUPLE PURCHASING CODE
 
 def newcustomercreate_trial
 @user = User.new(params[:user]) #replaced code below so when hit this url directly, don't get a nil error

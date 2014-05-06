@@ -376,6 +376,33 @@ match '/home_page', to: 'static#home_page'
 match '/invite_dj', to: 'static#invite_dj'
 match '/close_promo_banner', to: 'users#close_promo_banner'
 
+match '/newcustomer_couple', to: 'users#newcustomer_couple'
+
+match '/newcustomercreate_couple', to: 'users#newcustomercreate_couple'
+
+match '/existing_couple_purchase', to: 'users#existing_couple_purchase'
+
+match '/existing_couple_purchase_select', to: 'users#existing_couple_purchase_select'
+
+match '/existing_couple_changepur', to: 'users#existing_couple_changepur'
+
+match '/existing_couple_coupon_purchase', to: 'users#existing_couple_coupon_purchase'
+
+match '/purchase_events_new_stripe_couple', to: 'users#purchase_events_new_stripe_couple'
+
+match '/purchase_events_new_card_couple', to: 'users#purchase_events_new_card_couple'
+
+match '/purchase_events_existing_card_couple', to: 'users#purchase_events_existing_card_couple'
+
+
+
+
+#match '/set_order_couple', to: 'users#set_order_couple'
+
+# match '/stripenewcustomer_couple_purchase', to: 'users#stripenewcustomer_couple_purchase'
+
+# match '/stripe_couple_purchase', to: 'users#stripe_couple_purchase'
+
 #match '/show_master', to: 'events#show_master'
 
 #match '/vgrecord_step2', to: 'voicegems#vgrecord_step2'

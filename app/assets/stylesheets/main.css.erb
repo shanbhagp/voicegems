@@ -73,7 +73,9 @@ a{
 /*section-home*/
 .section-home {
   height: 100%;
-  background:  url(<%= asset_path "Home_2.jpg" %>) fixed;
+  background-image: url(<%= asset_path "Home_2.jpg" %>);
+  background-position: center;
+  background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -91,11 +93,18 @@ a{
   width: 100%;
   min-height: 100%;
   overflow: hidden;
-  background:  url(<%= asset_path "DJ_1.jpg" %>) fixed;
+  background-image: url(<%= asset_path "DJ_1.jpg" %>);
+  background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+@media only screen and (min-width:769px) {
+  .section-DJWelcome {
+    background-attachment: fixed;
+  }
 }
 .section-DJWelcome header{
 	padding-top: 120px;
@@ -331,12 +340,20 @@ background: -webkit-linear-gradient(#D2C8AC, white);
   width: 100%;
   min-height: 100%;
   overflow: hidden;
-  background:  url(<%= asset_path "corbis_3.jpg" %>) fixed;
+  background-image: url(<%= asset_path "corbis_3.jpg" %>);
+  background-position: center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+
+@media only screen and (min-width:769px) {
+  .section-CoupleWelcome {
+    background-attachment: fixed;
+  }
+}
+
 .section-CoupleWelcome header{
 	padding-top: 120px;
 }

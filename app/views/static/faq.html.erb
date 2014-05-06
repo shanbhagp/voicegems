@@ -26,21 +26,66 @@
 				</div>
 				<div id="collapseTwo" class="panel-collapse collapse">
 					<div class="panel-body">
-						First, DJs create a VoiceGems Event page. A custom link for that page is shared with guests, family and friends,
-						who click the link to record a short meaningful message/toast online. These messages are available on the Event Page,
-						where DJs can download and blend them into their music on the day of the event, providing an unparalleled experience.
+						First, create a VoiceGems Event Page (just enter a title and date). Then share a custom link for that page with anyone you choose: guests, family and friends.  Clicking the link takes them to our easy-to-use online voice-recorder where they create a short meaningful message/toast. These messages are available on your personal VoiceGems Page,
+						where DJs can download and blend them into their music/entertainment on the day of the event, providing an unparalleled experience.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> How do I get VoiceGems for my next event? </a></h4>
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> How do I get VoiceGems and how much does it cost? </a></h4>
 				</div>
 				<div id="collapseThree" class="panel-collapse collapse">
 					<div class="panel-body">
-						If you’re a DJ, its as simple as <a href="<%= newcustomer_trial_path %>" target="_blank">signing up</a> for a free 30-day trial. You can then set up Event Pages for your clients.
-						For couples, <a href="<%= couples_path %>.htm#invite" target="_blank">invite</a> your wedding DJ to sign up!
+						<strong>Couples</strong> can purchase a personal VoiceGems Page <a href="<%= newcustomer_couple_path %>" target="_blank">here</a>. Service for one event (one VoiceGems Page) is $99.  Just invite your DJ to use the page in the 'Admin' tab on your page (simply enter their email address).
+
+						<br/><br/>
+
+						<strong>DJ's</strong> can <a href="<%= newcustomer_trial_path %>" target="_blank">sign up</a>, purchase bundles of VoiceGems Pages at a bulk discount, and then set up the pages for clients at a fair fee-for-service. 
+						
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen"> How do I give my DJ access to the recordings?</a></h4>
+				</div>
+				<div id="collapseSixteen" class="panel-collapse collapse">
+					<div class="panel-body">
+						To give your DJ access to your VoiceGems Page, simply add them as an admin from the Admin tab on that VoiceGems page (just enter their email address.)
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve"> Is my payment information secure? </a></h4>
+				</div>
+				<div id="collapseTwelve" class="panel-collapse collapse">
+					<div class="panel-body">
+						Yes. If fact, our entire site uses up-to-date SSL Encryption (indicated by the padlock icon and https:// prefix in your browser's address bar).
+						This means that not only payment information, but all user information, is securely handled.
+						As an added layer of security, we use the Stripe payment gateway, and strictly comply with their payment processing protocol.
+						This means that encrypted payment information (such as credit card numbers) never touch our database,
+						but are instead immediately transmitted to Stripe's industry-standard secure processing system.
+					</div><!-- END PANEL-BODY -->
+				</div><!-- END COLLAPSE-ONE -->
+			</div><!-- END PANEL-DEFALT-->
+
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen"> What is the refund policy/guarantee?</a></h4>
+				</div>
+				<div id="collapseFourteen" class="panel-collapse collapse">
+					<div class="panel-body">
+						Our service may be unique, but we strive to make sure it's the best it can be.  We offer a 100% Money-Back Satisfaction Guarantee.  Just email info@voicegems.com<br/>
+						<br/>
+						<strong>Couples:</strong> if you are not satisfied with VoiceGems for any reason, just send a refund request within 30 days after your event, and we will process a full refund within 7 days. <br/><br/>
+						<strong>DJ's:</strong> if you are not satisfied with VoiceGems for any reason, just send a refund request within 30 days of purchase, and we will process a full refund within 7 days. <br/><br/>
+						We should that we have not yet ever received a single refund request - everyone loves mixing music with meaning!
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
@@ -65,7 +110,7 @@
 				<div id="collapseFive" class="panel-collapse collapse">
 					<div class="panel-body">
 						An unlimited number of messages/toast can be recorded for each event.
-						To keep those messages meaningful and easy to integrate, each one is limited to 30 seconds.
+						To keep those messages meaningful and easy to integrate, each one is limited to 30 seconds (a valuable lesson from Twitter!).  To request a larger message maximum for your event, simply email info@voicegems.com.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
@@ -77,8 +122,8 @@
 				<div id="collapseSix" class="panel-collapse collapse">
 					<div class="panel-body">
 						Never. We keep all user information, including names, emails, and any other personal information, strictly confidential.
-						Email addresses may be used for VoiceGems related communication (for example, requesting a name recording),
-						but is not given to any third party. Our business model is based on the unique value our service provides, not the value of user information.
+						Email addresses may be used for VoiceGems related communication,
+						but is not given to any third party.  Please see our <%= link_to "Privacy Policy", privacy_path %>.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
@@ -90,25 +135,24 @@
 				<div id="collapseSeven" class="panel-collapse collapse">
 					<div class="panel-body">
 						VoiceGems gives you the power to decide who you want to participate in this special experience.
-						Once an Event Page is created, the recording link can be sent to any number of people.
+						Once a VoiceGems Page is created, the recording link can be sent to any number of people you choose.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"> Do couples get access to the VoiceGems (and for how long)? </a></h4>
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseEight"> How long does my VoiceGems page last? </a></h4>
 				</div>
 				<div id="collapseEight" class="panel-collapse collapse">
 					<div class="panel-body">
-						Yes. VoiceGems are meant to create a lasting memory for couples.
-						Not only do they make the event even more special on the big day, but VoiceGems can be cherished for a lifetime.
-						VoiceGems are stored on the cloud and available on the Event Page forever.
-						To give couples access to the VoiceGems, DJ's can simply add them as an admin from the Admin tab on the Event Page.
-						Couples can preview the VoiceGems before the big day if they wish, or wait to make them a surprise.
+						Forever. VoiceGems are meant to create a lasting memory for couples.
+						VoiceGems are securely stored on the cloud, so not only do they make the event even more special on the big day, but VoiceGems can be cherished for a lifetime.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
+
+
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -118,7 +162,7 @@
 					<div class="panel-body">
 						Yes. As long as there's a mic, a user can record a VoiceGem via laptop, desktop, or mobile web.
 						We should note that while possible on mobile devices,
-						managing Event Pages (creating an Event Page, previewing VoiceGems, downloading MP3's, adding another 'Admin' for an Event Page)
+						managing VoiceGems Event Pages (creating a VoiceGems Event Page, previewing VoiceGems, downloading MP3's, adding another 'Admin' for a VoiceGems Event Page)
 						is optimized for non-mobile devices.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
@@ -143,42 +187,15 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">How do I start a free trial or purchase Event Pages?</a></h4>
-				</div>
-				<div id="collapseFifteen" class="panel-collapse collapse">
-					<div class="panel-body">
-						Once you <a href="<%= newcustomer_trial_path %>" target="_blank">sign up</a> for a 30-day free trial, you may <% if signed_in? && current_user.customer == true %><a href="<%= existing_user_purchase_path %>" target="_blank">purchase Event Pages</a><% else %>purchase Event Pages<% end %> under your 'Account' tab. 
-					</div><!-- END PANEL-BODY -->
-				</div><!-- END COLLAPSE-ONE -->
-			</div><!-- END PANEL-DEFALT-->
-
-
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
 					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseEleven"> If I purchase more than one event page, do I get any discount? </a></h4>
 				</div>
 				<div id="collapseEleven" class="panel-collapse collapse">
 					<div class="panel-body">
-						Yes! Event Pages purchased in bulk receive substantial discounts. DJ's, <a href="<%= newcustomer_trial_path %>" target="_blank">sign up</a> for a free 30-day trial for more information.
+						Yes! VoiceGems Event Pages purchased in bulk receive discounts. DJ's, <a href="<%= newcustomer_trial_path %>" target="_blank">sign up</a> for more information.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve"> Is my payment information secure? </a></h4>
-				</div>
-				<div id="collapseTwelve" class="panel-collapse collapse">
-					<div class="panel-body">
-						Yes. If fact, our entire site uses up-to-date SSL Encryption (indicated by the padlock icon and https:// prefix in your browser's address bar).
-						This means that not only payment information, but all user information, is securely handled.
-						As an added layer of security, we use the Stripe payment gateway, and strictly comply with their payment processing protocol.
-						This means that encrypted payment information (such as credit card numbers) never touch our database,
-						but are instead immediately transmitted to Stripe's industry-standard secure processing system.
-					</div><!-- END PANEL-BODY -->
-				</div><!-- END COLLAPSE-ONE -->
-			</div><!-- END PANEL-DEFALT-->
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -188,19 +205,6 @@
 					<div class="panel-body">
 						No. Registering for VoiceGems allows you to create Event Pages and gives you access to special promotions.
 						Payment is on a per-event basis.
-					</div><!-- END PANEL-BODY -->
-				</div><!-- END COLLAPSE-ONE -->
-			</div><!-- END PANEL-DEFALT-->
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen"> What happens when my free trial ends and how do I re-activate an Event Page? </a></h4>
-				</div>
-				<div id="collapseFourteen" class="panel-collapse collapse">
-					<div class="panel-body">
-						At the end of your 30-day free trial, you will not be able to create new Event Pages and all existing pages will be locked.
-						To continue using VoiceGems, simply <% if signed_in? && current_user.customer == true %><a href="<%= existing_user_purchase_path %>" target="_blank">purchase Event Pages</a><% else %>purchase Event Pages<% end %>. These can be used as credits 
-						to create new Event Pages or re-activate ones created during the free trial.
 					</div><!-- END PANEL-BODY -->
 				</div><!-- END COLLAPSE-ONE -->
 			</div><!-- END PANEL-DEFALT-->

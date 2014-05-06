@@ -8,6 +8,7 @@
 			<h2 class="centralized light">Let the brilliance of your wedding toasts shine through</h2>
 		</article>
 		<br/>
+
 		<div class="row">
 											<article>
                                    <div class="col-xs-12">
@@ -38,7 +39,7 @@
 				                   
 							</article>
 		</div>
-		<br/><br/>	
+		<br/><br/><br/>	
 		<center>
 		 <a href="#learn" data-dismiss="modal" id="learnbtn" class="btn btn-primary btn-lg">Learn More&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a>
 		</center>
@@ -80,7 +81,7 @@
 <div class= "sections section-coupleWhy gold-bg" >
 	<div class="container">
 		<header class="centralized">
-			<h1>Why VoiceGems</h1>
+			<h1>Bringing More Special Moments to the Mix</h1>
 			<img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
 		</header>
 	
@@ -98,12 +99,14 @@
 					Encourages toasts to be more thoughtful and relaxed while eliminating stress and embarassment 
 				</li>	
 				<li>
-					Your DJ can blend toasts with music to create a meaningful and fun entertainment mix 
+					Your DJ can blend toasts with music to create a truly meaningful and fun entertainment mix 
 				</li>
 				 <li>
-					Toasts can be played any time to rekindle the memories of your special life moments
+					Toasts can be played any time to rekindle and share special memories
 				</li>
-			
+				<li>
+					Record <em>your own</em> VoiceGems for the father-daughter dance and other special moments
+				</li>
 				<li>
 					All VoiceGems are permanently stored on your personal Event Page - a keepsake of voices and sentiments to be treasured forever
 				</li>
@@ -131,83 +134,96 @@
 <div class= "sections section-steps">
 	<div class="container">
 		<header class="centralized">
-			<h1>4 Easy Steps</h1>
+			<h1>3 Easy Steps</h1>
 			<img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
 		</header>
 		<article>
 			<ol class="col-lg-offset-2">
+				
 				<li>
-					DJ Creates a VoiceGems Page for an Event
+					Share a link with Guests, Friends &amp Family before the Event
 				</li>
-				<span class="grey">Demo Page - &nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
+				<span class="grey">Demo Link:&nbsp;<a href="<%= @url%>" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</a></span>
 				<li>
-					A Link is Shared with Guests, Friends &amp Family before the Event
+					They Record Short Messages/Toasts with our Easy-to-Use Online Voice Recorder
+
 				</li>
-				<span class="grey">Demo Link - &nbsp;<a href="<%= @url%>" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</a></span>
-				<li>
-					They Record Short Messages/Toasts with our Online Voice Recorder
+				<span class="grey">Example VoiceGems:&nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
+								<li>
+					Your DJ Blends the VoiceGems into Music for an Unforgettable Event!
 				</li>
-				<span class="grey">(30-second limit on messages. Can be paired with song requests.)</span>
-				<li>
-					DJ Blends the VoiceGems into Music for an Unforgettable Event!
-				</li>
-				<span class="grey">(All VoiceGems downloadable as high-quality <a href="<%= auphonic_path %>" target="_blank"><strong>noise-cancelled</strong></a>  MP3's for easy mixing)</span>
+				<span class="grey">(Downloadable as automatically <a href="<%= auphonic_path %>" target="_blank"><strong>noise-cancelled</strong></a>  MP3's for the highest-quality mixing)</span>
 			</ol>
 		</article>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-STEPS -->
 
-<div class= "sections section-signUp gold-bg" id="invite">
+<div class= "sections section-signUp gold-bg">
 	<div class="container">
+
 		<header class="centralized">
-			<h2>Invite Your DJ/MC to Use VoiceGems at Your Wedding!</h2>
+                        <div class="row">
+                            <div class="col-xs-12" >
 
-
-			<img src="<%= asset_path "divider.png"%>" class="divider img-responsive img-center">
+			<h1>Get Your Personal VoiceGems Page Today!</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12" >
+			<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
+                            </div>
+                        </div>
+			<h3>	<span class="gold"><strong>Limited Time 20% Off Promotion!</strong> <em>Only $79</em> if purchased by May 9th (regular price $99)</span> </h3>          
 		</header>
-
-		<article class="col-lg-11 col-lg-offset-1">
-				<h5 class="light">VoiceGems is a service used by DJ's to craft exceptional moments on your big day.  If your DJ doesn't provide this service, don't let that stop you from enjoying VoiceGems!  Just invite them to try it out below:</h5>
-		</article>
-
 		<article>
-			<center>
+          <div class="row">
+           <% if mobile_device? %>
+          	 <ul class="col-xs-12 normal">
+           <% else %>
+				<ul class="col-xs-10 col-xs-offset-2 normal">
+		   <% end %>	
+
+				<li>
+					Request VoiceGems (unlimited recordings) just by sharing a link! <br/>
+					 <span class="grey">Tip: Ask a family member to review recordings so your VoiceGems stay a surprise!</span>
+				</li>
 	
-                  <div class="row" id="invite">
-       
-                      <div class="col-xs-11 col-md-offset-1 home-block">
-                                    
-                                <div class="hero-block-2">
-                                   <% flash.each do |key, value| %>
-                                      <div class="alert alert-block alert-<%=get_alert_class(key)%>"> 
-                                      <button type="button" class="close" data-dismiss="alert">×</button>
-                                      <%= value %> 
-                                      <br/>
-                                      </div>
-                                    <% end %>
-                              
-                                    <%= form_for(:invite, url: invite_dj_path, :html => {:class => 'form-inline'}) do |y| %>
-                                                    <%= y.text_field :sender_name, :placeholder => "Your Name" %> 
-                                                    <%= y.text_field :sender_email, :placeholder => "Your Email" %> <br/> <br/>
-                                                     <%= y.text_field :recipient_name, :placeholder => "DJ's Name" %> 
-                                                    <%= y.text_field :recipient_email, :placeholder => "DJ's Email" %>
-                                                    <br/><br/>
-                                                    <%= button_tag(:type => 'submit', :class => 'btn btn-primary btn-large', :disable_with => 'sending invite...')  do %>
-                                                     Send Invite!&nbsp;&nbsp;<i class="fa fa-envelope"></i>
-                                                    <% end %>
-                                                   
-                                                   <br/>
-                                    <% end %>  
+				<li>
+					One-click access for your DJ to download recordings
+				</li>
+				<li>
+					Recordings automatically noise-cancelled for high quality mixing
+				</li>
+				<li>
+					Secure cloud-based storage so you keep them on your personal VoiceGems Page forever!
+				</li>
+				<li>
+					Rapid email customer support
+				</li>
+			</ul>
+                        </div>
+                        <div class="row">
+			<div class="col-xs-12">
 
-                                </div>
-                               <div class="tp-bannershadow tp-shadow1"></div>
-                      </div>
-                  </div>
+			<center>
+				 <a href="<%= newcustomer_couple_path %>" class="btn btn-primary btn-lg">Get Your VoiceGems!&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a><span class="grey"><br/>100% Money-Back Satisfaction Guarantee up to 30 days after event!</span><br/><br/>
 
+                               
 			</center>
+			<br/>
+
+                        </div>
+                        </div>
+                        <div class="row">
+			<div class="col-xs-12">
+			<center><img src="<%= asset_path "shadow3.png" %>" class="shadow img-responsive img-center">
+			</center>
+                        </div>
+                        </div>
 		</article>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-STEPS -->
+
 
 
 <script>
