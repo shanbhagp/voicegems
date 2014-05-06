@@ -1596,19 +1596,19 @@ def existing_couple_purchase_select
   end 
 
 
-  # if is_valid_percent_off_coupon(@coupon)
+   if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
           @new_price = 79
           @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
         #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
      
-    #else #could not find that coupon
+    else #could not find that coupon
         #preserve the values (applies if someone tries to change the number of event pages after applying the code)
-    #   @coupon = nil 
+       @coupon = nil 
       # redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }})
 
-   # end
+    end
 end
 
 def existing_couple_changepur
