@@ -21,16 +21,16 @@
 			                                </ol>							                   		
 					                    	<div class="carousel-inner">		                   	
 						                   			<div class="item active">
-							                    	<p class="centralized">It's really made a difference in our weddings... </br>
-							                    	I truly think this product will change the wedding industry more over the next five years than anything I've seen in a long time.</p>
+							                    	<p class="centralized"><strong>It's really made a difference in our weddings... </br>
+							                    	I truly think this product will change the wedding industry more over the next five years than anything I've seen in a long time.</p></strong>
 							                   		<p class="centralized normal">DJ Allen Walker, Big Daddy Walker Productions</p>
 						                    		</div>		
 								                    <div class="item">
-									                    <p class="centralized">Our wedding experience was just completely different, </br>and it's definitely something I would recommend your DJ set up for your wedding!</p>
+									                    <p class="centralized"><strong>Our wedding experience was just completely different, </br>and it's definitely something I would recommend your DJ set up for your wedding!</p></strong>
 									                    <p class="centralized normal">Kim Schafer, Former Bride, Cincinnati, OH</p>		
 								                    </div>	
 								                    <div class="item">
-									                    <p class="centralized">Couples increasingly look for just this sort of thing. By bringing the voices of family and friends into the mix, VoiceGems adds a fun and meaningful social dimension which promises to  transform the way couples and their guests experience weddings.</p>
+									                    <p class="centralized"><strong>Couples increasingly look for just this sort of thing. By bringing the voices of family and friends into the mix, VoiceGems adds a fun and meaningful social dimension which promises to  transform the way couples and their guests experience weddings.</p></strong>
 									                    <p class="centralized normal">Christine Dyer, Founder, Bridaltweet.com</p>		
 								                    </div>						                    
 					                    	</div><!-- END CAROUSEL-INNTER -->				                    
@@ -112,13 +112,72 @@
 				</li>
 	
 			</ul>
-				<% if mobile_device? %>
-				   <div class="video-container">
-				<% else %>
-					<div class="centralized">
-				<% end %>
+
+	<% if mobile_device? %>
+
+            <div class="row">
+				<div class="col-xs-12" >
+					<h5 class="normal centralized">Why Brides Love VoiceGems!</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12" >
+					<div class="video-container">
 						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
 					</div>
+				</div>
+			</div>
+			 <div class="row">
+                <div class="col-xs-12">
+						<img src="<%= asset_path "divider.png" %>" class="divider img-responsive img-center">
+                </div>
+            </div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h5 class="normal centralized">Why DJ's Love VoiceGems!</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="video-container">
+						<iframe src="//player.vimeo.com/video/86656578" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+
+
+		<% else %>
+
+			<div class="row">
+				<div class="col-xs-6" >
+					<h5 class="normal centralized">Why Brides Love VoiceGems!</h5>
+				</div>
+
+				<div class="col-xs-6">
+					<h5 class="normal centralized">Why DJ's Love VoiceGems!</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-6" >
+					<div class="video-container">
+						<iframe src="//player.vimeo.com/video/86657019" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+					</div>
+				</div>
+
+
+				<div class="col-xs-6">
+					<div class="video-container">
+						<iframe src="//player.vimeo.com/video/86656578" width="470" height="265" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					</div>
+				</div>
+
+				
+			</div>
+	
+			<!--END ROW -->
+		<% end %>
 					<br/><br/>
 					 <h5 class="normal centralized"><i class="fa fa-caret-right"></i><span class="blue"><a href="http://blog.voicegems.com/post/78532566464/founder-of-bridaltweet-com-loves-voicegems" target="_blank"><em>&nbsp;&nbsp;See why the Founder of BridalTweet.com loves VoiceGems!&nbsp;&nbsp;</a></em></span></h5>
 			

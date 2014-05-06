@@ -1511,7 +1511,7 @@ def newcustomer_couple
   @user = User.new 
 
   if signed_in?
-    flash[:notice] = "Since you are already a registered user, please use this page to purchase Event Pages."
+    flash[:notice] = "Since you are already a registered user, please use this page to purchase a VoiceGems Event Page."
     redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
   end 
 
@@ -1520,7 +1520,8 @@ end
 
 def newcustomercreate_couple
     @user = User.new(params[:user]) #replaced code below so when hit this url directly, don't get a nil error
-
+    @user.admin = true
+    @user.customer = true 
    # @user = User.new
    # @user.email = params[:user][:email]
    # @user.password=params[:user][:password]
