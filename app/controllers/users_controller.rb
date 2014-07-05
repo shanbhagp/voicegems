@@ -1543,7 +1543,7 @@ def newcustomercreate_couple
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do
       # create_vg_trial_without_stripe 
-      @coupon = 'BTMAY9'
+      @coupon = 'BTJULY15'
        redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
        #path({:peu => {:number => @number }, :coupon => @coupon})
     else
@@ -1560,7 +1560,7 @@ end
 
 def existing_couple_purchase
       @number = 1
-      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
 end 
 
 #CHECKOUT PAGE
@@ -1599,7 +1599,7 @@ def existing_couple_purchase_select
 
    if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
-          @new_price = 79
+          @new_price = 69
           @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
         #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
@@ -1616,7 +1616,7 @@ def existing_couple_changepur
   @number= params[:pur][:number].to_i
   @coupon= params[:pur][:code]
 
-  redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+  redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
 end 
 
 def existing_couple_coupon_purchase
@@ -1626,7 +1626,7 @@ def existing_couple_coupon_purchase
 
     if is_valid_percent_off_coupon(@coupon)
           flash[:success] = "Your promo code has been applied!"
-           redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+           redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
 
     elsif is_valid_free_coupon(@coupon)
 
@@ -1637,7 +1637,7 @@ def existing_couple_coupon_purchase
     else #could not find that coupon
       @coupon = nil 
       flash[:error] = "Sorry, not a valid promo code."
-      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
     end
 end 
 
@@ -1656,7 +1656,7 @@ def purchase_events_new_stripe_couple
            # end 
            redirect_to current_user
         else
-          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
         end 
 
 end
@@ -1677,7 +1677,7 @@ def purchase_events_new_card_couple
           flash[:success] = "Thank you! You have purchased #{@number} VoiceGems Pages."
           redirect_to current_user
         else
-          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
         end 
 end 
 
@@ -1700,7 +1700,7 @@ def purchase_events_existing_card_couple
       redirect_to current_user
   else #errors in processing the card shouldn't usually happen, because the card was originally ok.  Can test by using stripes card number that binds to customer but does not charge correctly.
           # YES THE REDIRECT WORKS WITH THAT STRIPE TESTING NUMBER
-       redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTMAY9'})
+       redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
   end 
 
 end 
