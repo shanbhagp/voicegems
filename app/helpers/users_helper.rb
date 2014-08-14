@@ -630,7 +630,7 @@ def existing_customer_purchase_events_existing_card(number, cost, coupon)
      
         # charge the Customer instead of the card
         Stripe::Charge.create(
-            :amount => @cost.to_i*100, # in cents
+            :amount => @cost.to_i, # in cents
             :currency => "usd",
             :customer => c.id,
             :description => "#{number} pages"
@@ -644,11 +644,11 @@ def existing_customer_purchase_events_existing_card(number, cost, coupon)
          
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
-               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+               :events_number => number, :en_actual_cost_in_cents => @cost, :en_coupon_name => coupon) 
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price, tier_one_limit, tier_two_limit).deliver
         
         rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
@@ -691,7 +691,7 @@ def update_card_and_purchase(token, number, cost, coupon)
 
       #create new charge for these event pages
         Stripe::Charge.create(
-            :amount => @cost.to_i*100, # in cents
+            :amount => @cost.to_i, # in cents
             :currency => "usd",
             :customer => c.id,
             :description => "#{number} pages"
@@ -705,11 +705,11 @@ def update_card_and_purchase(token, number, cost, coupon)
 
             #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => c.id,
-               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+               :events_number => number, :en_actual_cost_in_cents => @cost, :en_coupon_name => coupon) 
             @r.save
  
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price, tier_one_limit, tier_two_limit).deliver
 
        rescue Stripe::InvalidRequestError => e
          logger.error "Stripe error while creating customer: #{e.message}"
@@ -750,7 +750,7 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
 
         # charge the Customer instead of the card
         Stripe::Charge.create(
-            :amount => @cost.to_i*100, # in cents
+            :amount => @cost.to_i, # in cents
             :currency => "usd",
             :customer => customer.id,
             :description => "#{number} pages"
@@ -765,11 +765,11 @@ def create_customer_and_purchase_existing_user(token, number, cost, coupon)# thi
 
            #create receipt
             @r = Receipt.new(:user_id => current_user.id, :email => current_user.email, :customer_id => customer.id,
-               :events_number => number, :en_actual_cost_in_cents => @cost.to_i*100, :en_coupon_name => coupon) 
+               :events_number => number, :en_actual_cost_in_cents => @cost, :en_coupon_name => coupon) 
             @r.save
 
             #mail receipt
-            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price).deliver
+            UserMailer.purchase_receipt(current_user, @r, tier_one_price, tier_two_price, tier_three_price, tier_one_limit, tier_two_limit).deliver
 
           flash[:success] = "Thank you for your purchase!  You can now create a VoiceGems page, from which you can 1) get the link to invite people to record their VoiceGems, 2) hear those VoiceGems and 3) invite other admins (who can also request and download VoiceGems)."
         else
@@ -833,6 +833,22 @@ end
 def tier_three_price
   79
 end 
+
+def one_page_price
+  99
+end 
+
+def tier_one_limit
+  15
+end
+
+def tier_two_limit
+  40
+end
+
+def tier_three_limit
+end 
+
 
 def anchor_and_update_pos(po)
 

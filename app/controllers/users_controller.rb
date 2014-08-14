@@ -1366,27 +1366,27 @@ def existing_user_purchase_select
    end 
 
 
-  if @number.to_i < 16 
-     @cost = @number.to_i*tier_one_price 
+  if @number.to_i <= tier_one_limit  
+     @cost = @number.to_i*tier_one_price*100 #in cents
      @price = "$#{tier_one_price}"
-     @price_in_dollars = tier_one_price
+ 
   end 
-  if @number.to_i > 15 && @number.to_i < 41 
-     @cost = @number.to_i*tier_two_price 
+  if @number.to_i > tier_one_limit && @number.to_i <= tier_two_limit 
+     @cost = @number.to_i*tier_two_price*100 #in cents
      @price = "$#{tier_two_price}"
-     @price_in_dollars = tier_two_price
+
   end 
-  if @number.to_i > 40 
-     @cost = @number.to_i*tier_three_price
+  if @number.to_i > tier_two_limit
+     @cost = @number.to_i*tier_three_price*100 #in cents
      @price = "$#{tier_three_price}"
-     @price_in_dollars = tier_three_price
+
   end 
 
 
    if is_valid_percent_off_coupon(@coupon)
-          @old_cost = @cost 
-          @new_price = (@price_in_dollars.to_f * (100 - @coupon_object.percent_off)/100) * @number.to_i
-          @cost = @new_price
+          @old_cost = @cost  #in cents
+          @new_price = (@cost.to_f * (100 - @coupon_object.percent_off)/100) #in cents
+          @cost = @new_price # in cents
           flash.now[:success] = "Your promo code has been applied!"
         #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
      
@@ -1434,7 +1434,7 @@ def purchase_events_existing_card
 
   @number = params[:peu][:number]
   coupon = params[:peu][:coupon] # this is the coupon name/code, a string
-  cost = params[:peu][:cost]
+  cost = params[:peu][:cost] #in cents
 
   # retrieve stripe customer object (downstream from user having a customer_id)
   c = Stripe::Customer.retrieve(current_user.customer_id)
@@ -1460,7 +1460,7 @@ def purchase_events_new_card
     token = params[:stripeToken]
     @number = params[:number].to_i
     coupon = params[:coupon]
-    cost = params[:cost]
+    cost = params[:cost] #in cents
 
         if update_card_and_purchase(token, @number, cost, coupon)
            #if the customer had a coupon, update that coupon to be inactive, and attach customer's user id to it
@@ -1543,7 +1543,7 @@ def newcustomercreate_couple
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do
       # create_vg_trial_without_stripe 
-      @coupon = 'BTJULY15'
+      @coupon = '25OFFAUG'
        redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
        #path({:peu => {:number => @number }, :coupon => @coupon})
     else
@@ -1580,26 +1580,12 @@ def existing_couple_purchase_select
    end 
 
 
-  if @number.to_i < 16 
-     @cost = @number.to_i*tier_one_price 
-     @price = "$#{tier_one_price}"
-     @price_in_dollars = tier_one_price
-  end 
-  if @number.to_i > 15 && @number.to_i < 41 
-     @cost = @number.to_i*tier_two_price 
-     @price = "$#{tier_two_price}"
-     @price_in_dollars = tier_two_price
-  end 
-  if @number.to_i > 40 
-     @cost = @number.to_i*tier_three_price
-     @price = "$#{tier_three_price}"
-     @price_in_dollars = tier_three_price
-  end 
-
+@cost = one_page_price*100 #in cents
+@price = "$#{one_page_price}"
 
    if is_valid_percent_off_coupon(@coupon)
           @old_cost = @cost 
-          @new_price = 69
+          @new_price = (@cost.to_f * (100 - @coupon_object.percent_off)/100) #in cents
           @cost = @new_price
           flash.now[:success] = "Your promo code has been applied!"
         #redirect_to existing_user_purchase_select_path( { :peu => { :number => @number }}, :coupon => @coupon)
@@ -1637,7 +1623,7 @@ def existing_couple_coupon_purchase
     else #could not find that coupon
       @coupon = nil 
       flash[:error] = "Sorry, not a valid promo code."
-      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => @coupon})
     end
 end 
 
@@ -1656,7 +1642,7 @@ def purchase_events_new_stripe_couple
            # end 
            redirect_to current_user
         else
-          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => coupon})
         end 
 
 end
@@ -1677,7 +1663,7 @@ def purchase_events_new_card_couple
           flash[:success] = "Thank you! You have purchased #{@number} VoiceGems Pages."
           redirect_to current_user
         else
-          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+          redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => coupon})
         end 
 end 
 
@@ -1700,7 +1686,7 @@ def purchase_events_existing_card_couple
       redirect_to current_user
   else #errors in processing the card shouldn't usually happen, because the card was originally ok.  Can test by using stripes card number that binds to customer but does not charge correctly.
           # YES THE REDIRECT WORKS WITH THAT STRIPE TESTING NUMBER
-       redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+       redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => coupon})
   end 
 
 end 

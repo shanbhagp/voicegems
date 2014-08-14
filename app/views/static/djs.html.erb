@@ -47,7 +47,7 @@
     </div>
 </div>
 		<article>
-			<h2 class="centralized light">A cloud based service designed for DJ's </br> to provide a completely new dimension in your clients' experience</h2>
+			<h2 class="centralized light">A unique service designed to bring</br> a completely new dimension to your clients' experience</h2>
 		</article>
 			<br/><br/>
                         <% if @coupon && !@coupon.promo_msg.blank? -%>
@@ -57,7 +57,7 @@
                         <br/>
                         <% end -%>
 			<center>
-				<% if current_user && couple? %> <a href="<%= existing_couple_purchase_path %>" class="btn btn-primary btn-lg">DJ Sign Up&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a><% else %> <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">DJ Sign Up&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a> <% end %>
+				<% if current_user && couple? %> <a href="<%= existing_couple_purchase_path %>" class="btn btn-primary btn-lg">DJ Sign Up&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a><% else %> <a href="#sign" class="btn btn-primary btn-lg" id="signbtn">DJ Sign Up</a>&nbsp;&nbsp;<a href="#learn" data-dismiss="modal" id="learnbtndj" class="btn btn-primary btn-lg">Learn More&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a> <% end %>
 			</center>
 			<br/><br/><br/>
 			                
@@ -82,8 +82,8 @@
 		<article>
                         <div class="row">
                             <div class="col-xs-12" >
-			<h5 class="centralized light">VoiceGems collects short pre-recorded wedding toasts
-			for you to blend in your entertainment mix, creating a fun, social, and meaningful touch everyone will love and remember!</h5>
+			<h5 class="centralized light">VoiceGems enables easy collection of short, pre-recorded wedding messages
+			for you to blend in your entertainment mix.  A unique, fun, and meaningful touch everyone will love and remember!</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -93,7 +93,7 @@
 					Easy to collect and access recordings through our custom web links
 				</li>
 				<li>
-					All recordings polished with cutting-edge noise reduction audio processors&nbsp;&nbsp;<a href="<%= auphonic_path%>" target="_blank"><em>Learn More</em></a>
+					All recordings automatically cleaned with cutting-edge <a href="<%= auphonic_path%>" target="_blank">noise reduction audio processors</a>
 				</li>
 				<li>
 					Highest quality voice MP3's downloadable for easy integration
@@ -174,13 +174,13 @@
 				<div class="col-xs-12" >
 						<ul >
 							<li>
-								Any family member or friend can express sentiments
+								Any family member or friend can express fun stories or treasured sentiments
 							</li>
 							<li>
-								Toasts become far more thoughtful and relaxed
+								Touching moments created when you play messages from absent loved ones
 							</li>
 							<li>
-								Music takes on an altogether new dimension 
+								Music takes on an altogether new dimension when paired with messages 
 							</li>
 						</ul>
 				</div>
@@ -227,14 +227,14 @@
 				<div class="col-xs-6" >
 					<ul >
 						<li>
-							Any family member or friend can express sentiments
-						</li>
-						<li>
-							Toasts become far more thoughtful and relaxed
-						</li>
-						<li>
-							Music takes on an altogether new dimension 
-						</li>
+								Anyone can express fun stories or treasured sentiments
+							</li>
+							<li>
+								Touching moments with messages from absent loved ones
+							</li>
+							<li>
+								Music becomes more meaningful with dedications 
+							</li>
 					</ul>
 				</div>
 			</div>
@@ -253,7 +253,7 @@
 		<header class="centralized">
                         <div class="row">
                             <div class="col-xs-12" >
-			<h1>4 Easy Steps</h1>
+			<h1>3 Easy Steps</h1>
                             </div>
                             </div>
                         <div class="row">
@@ -265,33 +265,33 @@
 		<article>
                         <div class="row">
 			<ol class="col-xs-10 col-xs-offset-2">
-				<li>
-					DJ Creates a VoiceGems Page for an Event (in under 10 seconds)
-				</li>
-				<span class="grey">Demo Page - &nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
+				
+				
 				<li>
 					A Link is Shared with Guests, Friends &amp Family before the Event
 				</li>
 				<span class="grey">Demo Link - &nbsp;<a href="<%= @url%>" target="_blank">Please record your VoiceGem for the Jones-Ravenwood wedding here!</a></span>
 				<li>
-					They Record Short Messages/Toasts with our Online Voice Recorder
+					They Record Short Messages onto a Dedicated Page with our Online Voice Recorder
 				</li>
-				<span class="grey">(Can be paired with song requests.)</span>
+				<span class="grey">Demo Page - &nbsp;<a href="<%= demo_event_page_path %>" target="_blank">VoiceGems Page for the Jones-Ravenwood Wedding</a></span>
+				
 				<li>
-					DJ Blends the VoiceGems into Music for an Unforgettable Event!
+					DJ Blends the VoiceGems into Entertainment Mix for an Unforgettable Event!
 				</li>
 				<span class="grey">(All VoiceGems downloadable as high-quality <a href="<%= auphonic_path %>" target="_blank"><strong>noise-cancelled</strong></a> MP3's for easy mixing)</span>
 			</ol>
 			</div>
+			<a href="<%= demo_event_page_path %>" target="_blank" class="btn btn-primary btn-lg">Hear some real VoiceGems</a>
 		</article>
 	</div><!-- END CONTAINER -->
 </div><!-- END SECTION-STEPS -->
 
-<div class= "sections section-signUp gold-bg">
+<div class= "sections section-signUp gold-bg" id="sign">
 	<div class="container">
 
 		<header class="centralized">
-                        <div class="row">
+                        <div class="row" >
                             <div class="col-xs-12" >
 
 			<h1>Start Offering VoiceGems Today!</h1>
@@ -317,19 +317,19 @@
 				<ul class="col-xs-10 col-xs-offset-2 normal">
 		   <% end %>	
 				<li>
-					Buy VoiceGems Event Pages for your Clients (no expiration, use anytime)
+					Buy VoiceGems Pages for your clients (no expiration, use anytime)
 				</li>
 				<li>
-					Set a fair-fee-for-service, and buy discounted VoiceGems Pages in bulk.
+					Set a fair fee-for-service for your clients, and buy discounted VoiceGems Pages in bulk.
 				</li>
 				<li>
 					Request VoiceGems (unlimited recordings per Page)
 				</li>
 				<li>
-					Download and Mix Polished VoiceGems from the Page
+					Download and mix polished VoiceGems from the Page
 				</li>
 				<li>
-					Rapid Email Customer Support
+					Rapid email customer support
 				</li>
 			</ul>
                         </div>
@@ -338,7 +338,7 @@
 
 			<center>
 				 <% if current_user && couple? %> <a href="<%= existing_couple_purchase_path %>" class="btn btn-primary btn-lg">Sign Up Today&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a><% else %> <a href="<%= newcustomer_trial_path %>" class="btn btn-primary btn-lg">Sign Up Today&nbsp;&nbsp;<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a> <% end %>
-                              
+                  <br/>100% Money-Back Satisfaction Guarantee up to 30 days after purchase!</span><br/><br/>            
 			</center>
                         </div>
                         </div>
@@ -370,10 +370,20 @@
 
 <script>
 var $root = $('html, body');
-$("a#learnbtn").click(function() {
+$("a#signbtn").click(function() {
     $root.animate({
         scrollTop: $( $.attr(this, 'href') ).offset().top
-    }, 500);
+    }, 1000);
+    return false;
+});
+</script>
+
+<script>
+var $root = $('html, body');
+$("a#learnbtndj").click(function() {
+    $root.animate({
+        scrollTop: $( $.attr(this, 'href') ).offset().top
+    }, 1000);
     return false;
 });
 </script>

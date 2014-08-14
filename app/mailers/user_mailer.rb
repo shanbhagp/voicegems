@@ -48,22 +48,22 @@ def sub_receipt_edu(user, receipt)
 
 end 
 
-def purchase_receipt(user, receipt, t1, t2, t3)
+def purchase_receipt(user, receipt, t1, t2, t3, t1l, t2l)
 
   @user = user
   @r = receipt
   @number = @r.events_number
 
-    if @number.to_i < 16 
-       @cost = @number.to_i*t1
+    if @number.to_i <= t1l  
+       @cost = @number.to_i*t1*100 # in cents
        @price = "$#{t1}" 
     end 
-    if @number.to_i > 15 && @number.to_i < 41 
-       @cost = @number.to_i*t2
+    if @number.to_i > t1l && @number.to_i <= t2l
+       @cost = @number.to_i*t2*100 # in cents
        @price = "$#{t2}"
     end 
-    if @number.to_i > 40 
-       @cost = @number.to_i*t3
+    if @number.to_i > t2l
+       @cost = @number.to_i*t3*100 #in cents
        @price = "$#{t3}"
     end 
 

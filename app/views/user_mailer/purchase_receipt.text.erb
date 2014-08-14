@@ -6,7 +6,7 @@ Pages: <%= @number %>
 Price/Page: <%= @price %>.00
 <% if @r.en_coupon_name.blank? %>TOTAL PAID:  $<%= number_with_precision((@r.en_actual_cost_in_cents.to_f)/100, :precision => 2) %><% end %>
 <% if !@r.en_coupon_name.blank? %>
-Subtotal: $<%= @cost %>
+Subtotal: $<%= number_with_precision((@cost.to_f)/100, :precision => 2) %>
 Discount Code Applied: <%= @r.en_coupon_name %>
 TOTAL PAID:  $<%= number_with_precision((@r.en_actual_cost_in_cents.to_f)/100, :precision => 2) %><% end %>
 
