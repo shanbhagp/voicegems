@@ -1543,7 +1543,7 @@ def newcustomercreate_couple
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do
       # create_vg_trial_without_stripe 
-      @coupon = '25OFFAUG'
+       @coupon = '25OFFAUG'
        redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
        #path({:peu => {:number => @number }, :coupon => @coupon})
     else
@@ -1560,7 +1560,7 @@ end
 
 def existing_couple_purchase
       @number = 1
-      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => '25OFFAUG'})
 end 
 
 #CHECKOUT PAGE
@@ -1602,7 +1602,7 @@ def existing_couple_changepur
   @number= params[:pur][:number].to_i
   @coupon= params[:pur][:code]
 
-  redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+  redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => @coupon})
 end 
 
 def existing_couple_coupon_purchase
@@ -1612,7 +1612,7 @@ def existing_couple_coupon_purchase
 
     if is_valid_percent_off_coupon(@coupon)
           flash[:success] = "Your promo code has been applied!"
-           redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => 'BTJULY15'})
+           redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => @coupon})
 
     elsif is_valid_free_coupon(@coupon)
 
