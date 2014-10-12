@@ -1543,7 +1543,7 @@ def newcustomercreate_couple
       # render 'stripe_vgtrial'  # i think @number defined in this action is being used on the stripenewcustomer_purchase rendering
       # redirect_to welcome_path  # a welcome page to explain to them what to do
       # create_vg_trial_without_stripe 
-       @coupon = '25OFFAUG'
+       @coupon = nil
        redirect_to existing_couple_purchase_select_path({:peu => {:number => 1}, :coupon => @coupon})
        #path({:peu => {:number => @number }, :coupon => @coupon})
     else
@@ -1560,7 +1560,7 @@ end
 
 def existing_couple_purchase
       @number = 1
-      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => '25OFFAUG'})
+      redirect_to existing_couple_purchase_select_path({:peu => {:number => @number }, :coupon => nil})
 end 
 
 #CHECKOUT PAGE
